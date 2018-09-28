@@ -1,0 +1,453 @@
+ARM GAS  /tmp/ccnsX4nD.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"mcu.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.mcu_sleep,"ax",%progbits
+  16              		.align	1
+  17              		.global	mcu_sleep
+  18              		.syntax unified
+  19              		.code	16
+  20              		.thumb_func
+  21              		.fpu softvfp
+  23              	mcu_sleep:
+  24              	.LFB38:
+  25              		.file 1 "src/mcu.c"
+   1:src/mcu.c     **** /**
+   2:src/mcu.c     ****  * @file mcu.c
+   3:src/mcu.c     ****  *
+   4:src/mcu.c     ****  * @brief MCU related
+   5:src/mcu.c     ****  */
+   6:src/mcu.c     **** 
+   7:src/mcu.c     **** #include <stdint.h>
+   8:src/mcu.c     **** 
+   9:src/mcu.c     **** #include "mcu.h"
+  10:src/mcu.c     **** 
+  11:src/mcu.c     **** #include "gpio.h"
+  12:src/mcu.c     **** #include "main.h"
+  13:src/mcu.c     **** #include "stm32f0xx_hal.h"
+  14:src/mcu.c     **** 
+  15:src/mcu.c     **** /*****************************************
+  16:src/mcu.c     ****  * Private Function Prototypes
+  17:src/mcu.c     ****  *****************************************/
+  18:src/mcu.c     **** 
+  19:src/mcu.c     **** /**
+  20:src/mcu.c     ****  * @brief Initializes System Clock.
+  21:src/mcu.c     ****  */
+  22:src/mcu.c     **** static void SystemClock_Config(void);
+  23:src/mcu.c     **** 
+  24:src/mcu.c     **** /*****************************************
+  25:src/mcu.c     ****  * Public Function Body Definitions
+  26:src/mcu.c     ****  *****************************************/
+  27:src/mcu.c     **** void mcu_init(void) {
+  28:src/mcu.c     ****     HAL_Init();
+  29:src/mcu.c     **** 
+  30:src/mcu.c     ****     SystemClock_Config();
+  31:src/mcu.c     **** 
+  32:src/mcu.c     ****     MX_GPIO_Init();
+  33:src/mcu.c     **** }
+ARM GAS  /tmp/ccnsX4nD.s 			page 2
+
+
+  34:src/mcu.c     **** 
+  35:src/mcu.c     **** void mcu_sleep(uint32_t ms) {
+  26              		.loc 1 35 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              	.LVL0:
+  31 0000 10B5     		push	{r4, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 4, -8
+  34              		.cfi_offset 14, -4
+  36:src/mcu.c     ****     HAL_Delay(ms);
+  35              		.loc 1 36 0
+  36 0002 FFF7FEFF 		bl	HAL_Delay
+  37              	.LVL1:
+  37:src/mcu.c     **** }
+  38              		.loc 1 37 0
+  39              		@ sp needed
+  40 0006 10BD     		pop	{r4, pc}
+  41              		.cfi_endproc
+  42              	.LFE38:
+  44              		.section	.text.led_toggle,"ax",%progbits
+  45              		.align	1
+  46              		.global	led_toggle
+  47              		.syntax unified
+  48              		.code	16
+  49              		.thumb_func
+  50              		.fpu softvfp
+  52              	led_toggle:
+  53              	.LFB39:
+  38:src/mcu.c     **** 
+  39:src/mcu.c     **** void led_toggle(void) {
+  54              		.loc 1 39 0
+  55              		.cfi_startproc
+  56              		@ args = 0, pretend = 0, frame = 0
+  57              		@ frame_needed = 0, uses_anonymous_args = 0
+  58 0000 10B5     		push	{r4, lr}
+  59              		.cfi_def_cfa_offset 8
+  60              		.cfi_offset 4, -8
+  61              		.cfi_offset 14, -4
+  40:src/mcu.c     ****     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+  62              		.loc 1 40 0
+  63 0002 9020     		movs	r0, #144
+  64 0004 2021     		movs	r1, #32
+  65 0006 C005     		lsls	r0, r0, #23
+  66 0008 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  67              	.LVL2:
+  41:src/mcu.c     **** }
+  68              		.loc 1 41 0
+  69              		@ sp needed
+  70 000c 10BD     		pop	{r4, pc}
+  71              		.cfi_endproc
+  72              	.LFE39:
+  74              		.section	.text._Error_Handler,"ax",%progbits
+  75              		.align	1
+  76              		.global	_Error_Handler
+  77              		.syntax unified
+ARM GAS  /tmp/ccnsX4nD.s 			page 3
+
+
+  78              		.code	16
+  79              		.thumb_func
+  80              		.fpu softvfp
+  82              	_Error_Handler:
+  83              	.LFB41:
+  42:src/mcu.c     **** 
+  43:src/mcu.c     **** /*****************************************
+  44:src/mcu.c     ****  * Private Function Body Definitions
+  45:src/mcu.c     ****  *****************************************/
+  46:src/mcu.c     **** 
+  47:src/mcu.c     **** // Clock config should be copied from Cube generated
+  48:src/mcu.c     **** // main.c before "make prepare" is called
+  49:src/mcu.c     **** void SystemClock_Config(void)
+  50:src/mcu.c     **** {
+  51:src/mcu.c     **** 
+  52:src/mcu.c     ****   RCC_OscInitTypeDef RCC_OscInitStruct;
+  53:src/mcu.c     ****   RCC_ClkInitTypeDef RCC_ClkInitStruct;
+  54:src/mcu.c     **** 
+  55:src/mcu.c     ****     /**Initializes the CPU, AHB and APB busses clocks
+  56:src/mcu.c     ****     */
+  57:src/mcu.c     ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48;
+  58:src/mcu.c     ****   RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
+  59:src/mcu.c     ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  60:src/mcu.c     ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  61:src/mcu.c     ****   {
+  62:src/mcu.c     ****     _Error_Handler(__FILE__, __LINE__);
+  63:src/mcu.c     ****   }
+  64:src/mcu.c     **** 
+  65:src/mcu.c     ****     /**Initializes the CPU, AHB and APB busses clocks
+  66:src/mcu.c     ****     */
+  67:src/mcu.c     ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+  68:src/mcu.c     ****                               |RCC_CLOCKTYPE_PCLK1;
+  69:src/mcu.c     ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI48;
+  70:src/mcu.c     ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  71:src/mcu.c     ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  72:src/mcu.c     **** 
+  73:src/mcu.c     ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+  74:src/mcu.c     ****   {
+  75:src/mcu.c     ****     _Error_Handler(__FILE__, __LINE__);
+  76:src/mcu.c     ****   }
+  77:src/mcu.c     **** 
+  78:src/mcu.c     ****     /**Configure the Systick interrupt time
+  79:src/mcu.c     ****     */
+  80:src/mcu.c     ****   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+  81:src/mcu.c     **** 
+  82:src/mcu.c     ****     /**Configure the Systick
+  83:src/mcu.c     ****     */
+  84:src/mcu.c     ****   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+  85:src/mcu.c     **** 
+  86:src/mcu.c     ****   /* SysTick_IRQn interrupt configuration */
+  87:src/mcu.c     ****   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+  88:src/mcu.c     **** }
+  89:src/mcu.c     **** 
+  90:src/mcu.c     **** void _Error_Handler(char* file, int line) {
+  84              		.loc 1 90 0
+  85              		.cfi_startproc
+  86              		@ Volatile: function does not return.
+ARM GAS  /tmp/ccnsX4nD.s 			page 4
+
+
+  87              		@ args = 0, pretend = 0, frame = 0
+  88              		@ frame_needed = 0, uses_anonymous_args = 0
+  89              		@ link register save eliminated.
+  90              	.LVL3:
+  91              	.L4:
+  92 0000 FEE7     		b	.L4
+  93              		.cfi_endproc
+  94              	.LFE41:
+  96              		.global	__aeabi_uidiv
+  97              		.section	.text.SystemClock_Config,"ax",%progbits
+  98              		.align	1
+  99              		.syntax unified
+ 100              		.code	16
+ 101              		.thumb_func
+ 102              		.fpu softvfp
+ 104              	SystemClock_Config:
+ 105              	.LFB40:
+  50:src/mcu.c     **** 
+ 106              		.loc 1 50 0
+ 107              		.cfi_startproc
+ 108              		@ args = 0, pretend = 0, frame = 72
+ 109              		@ frame_needed = 0, uses_anonymous_args = 0
+  50:src/mcu.c     **** 
+ 110              		.loc 1 50 0
+ 111 0000 00B5     		push	{lr}
+ 112              		.cfi_def_cfa_offset 4
+ 113              		.cfi_offset 14, -4
+ 114 0002 93B0     		sub	sp, sp, #76
+ 115              		.cfi_def_cfa_offset 80
+  57:src/mcu.c     ****   RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
+ 116              		.loc 1 57 0
+ 117 0004 2023     		movs	r3, #32
+ 118 0006 0593     		str	r3, [sp, #20]
+  58:src/mcu.c     ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+ 119              		.loc 1 58 0
+ 120 0008 1F3B     		subs	r3, r3, #31
+ 121 000a 0D93     		str	r3, [sp, #52]
+  59:src/mcu.c     ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 122              		.loc 1 59 0
+ 123 000c 0023     		movs	r3, #0
+ 124 000e 0E93     		str	r3, [sp, #56]
+  60:src/mcu.c     ****   {
+ 125              		.loc 1 60 0
+ 126 0010 05A8     		add	r0, sp, #20
+ 127 0012 FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 128              	.LVL4:
+ 129 0016 0028     		cmp	r0, #0
+ 130 0018 1FD1     		bne	.L8
+  67:src/mcu.c     ****                               |RCC_CLOCKTYPE_PCLK1;
+ 131              		.loc 1 67 0
+ 132 001a 0723     		movs	r3, #7
+ 133 001c 0193     		str	r3, [sp, #4]
+  69:src/mcu.c     ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 134              		.loc 1 69 0
+ 135 001e 043B     		subs	r3, r3, #4
+ 136 0020 0293     		str	r3, [sp, #8]
+  70:src/mcu.c     ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ARM GAS  /tmp/ccnsX4nD.s 			page 5
+
+
+ 137              		.loc 1 70 0
+ 138 0022 0023     		movs	r3, #0
+ 139 0024 0393     		str	r3, [sp, #12]
+  71:src/mcu.c     **** 
+ 140              		.loc 1 71 0
+ 141 0026 0493     		str	r3, [sp, #16]
+  73:src/mcu.c     ****   {
+ 142              		.loc 1 73 0
+ 143 0028 0121     		movs	r1, #1
+ 144 002a 01A8     		add	r0, sp, #4
+ 145 002c FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 146              	.LVL5:
+ 147 0030 0028     		cmp	r0, #0
+ 148 0032 16D1     		bne	.L9
+  80:src/mcu.c     **** 
+ 149              		.loc 1 80 0
+ 150 0034 FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
+ 151              	.LVL6:
+ 152 0038 FA21     		movs	r1, #250
+ 153 003a 8900     		lsls	r1, r1, #2
+ 154 003c FFF7FEFF 		bl	__aeabi_uidiv
+ 155              	.LVL7:
+ 156 0040 FFF7FEFF 		bl	HAL_SYSTICK_Config
+ 157              	.LVL8:
+  84:src/mcu.c     **** 
+ 158              		.loc 1 84 0
+ 159 0044 0420     		movs	r0, #4
+ 160 0046 FFF7FEFF 		bl	HAL_SYSTICK_CLKSourceConfig
+ 161              	.LVL9:
+  87:src/mcu.c     **** }
+ 162              		.loc 1 87 0
+ 163 004a 0120     		movs	r0, #1
+ 164 004c 0022     		movs	r2, #0
+ 165 004e 0021     		movs	r1, #0
+ 166 0050 4042     		rsbs	r0, r0, #0
+ 167 0052 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 168              	.LVL10:
+  88:src/mcu.c     **** 
+ 169              		.loc 1 88 0
+ 170 0056 13B0     		add	sp, sp, #76
+ 171              		@ sp needed
+ 172 0058 00BD     		pop	{pc}
+ 173              	.L8:
+  62:src/mcu.c     ****   }
+ 174              		.loc 1 62 0
+ 175 005a 3E21     		movs	r1, #62
+ 176 005c 0348     		ldr	r0, .L10
+ 177 005e FFF7FEFF 		bl	_Error_Handler
+ 178              	.LVL11:
+ 179              	.L9:
+  75:src/mcu.c     ****   }
+ 180              		.loc 1 75 0
+ 181 0062 4B21     		movs	r1, #75
+ 182 0064 0148     		ldr	r0, .L10
+ 183 0066 FFF7FEFF 		bl	_Error_Handler
+ 184              	.LVL12:
+ 185              	.L11:
+ARM GAS  /tmp/ccnsX4nD.s 			page 6
+
+
+ 186 006a C046     		.align	2
+ 187              	.L10:
+ 188 006c 00000000 		.word	.LC0
+ 189              		.cfi_endproc
+ 190              	.LFE40:
+ 192              		.section	.text.mcu_init,"ax",%progbits
+ 193              		.align	1
+ 194              		.global	mcu_init
+ 195              		.syntax unified
+ 196              		.code	16
+ 197              		.thumb_func
+ 198              		.fpu softvfp
+ 200              	mcu_init:
+ 201              	.LFB37:
+  27:src/mcu.c     ****     HAL_Init();
+ 202              		.loc 1 27 0
+ 203              		.cfi_startproc
+ 204              		@ args = 0, pretend = 0, frame = 0
+ 205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 206 0000 10B5     		push	{r4, lr}
+ 207              		.cfi_def_cfa_offset 8
+ 208              		.cfi_offset 4, -8
+ 209              		.cfi_offset 14, -4
+  28:src/mcu.c     **** 
+ 210              		.loc 1 28 0
+ 211 0002 FFF7FEFF 		bl	HAL_Init
+ 212              	.LVL13:
+  30:src/mcu.c     **** 
+ 213              		.loc 1 30 0
+ 214 0006 FFF7FEFF 		bl	SystemClock_Config
+ 215              	.LVL14:
+  32:src/mcu.c     **** }
+ 216              		.loc 1 32 0
+ 217 000a FFF7FEFF 		bl	MX_GPIO_Init
+ 218              	.LVL15:
+  33:src/mcu.c     **** 
+ 219              		.loc 1 33 0
+ 220              		@ sp needed
+ 221 000e 10BD     		pop	{r4, pc}
+ 222              		.cfi_endproc
+ 223              	.LFE37:
+ 225              		.section	.rodata.SystemClock_Config.str1.4,"aMS",%progbits,1
+ 226              		.align	2
+ 227              	.LC0:
+ 228 0000 7372632F 		.ascii	"src/mcu.c\000"
+ 228      6D63752E 
+ 228      6300
+ 229              		.text
+ 230              	.Letext0:
+ 231              		.file 2 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_d
+ 232              		.file 3 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdin
+ 233              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ 234              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 235              		.file 6 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h
+ 236              		.file 7 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types
+ 237              		.file 8 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/incl
+ 238              		.file 9 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.
+ARM GAS  /tmp/ccnsX4nD.s 			page 7
+
+
+ 239              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 240              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h"
+ 241              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
+ 242              		.file 13 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
+ 243              		.file 14 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
+ 244              		.file 15 "cube/Inc/gpio.h"
+ARM GAS  /tmp/ccnsX4nD.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 mcu.c
+     /tmp/ccnsX4nD.s:16     .text.mcu_sleep:0000000000000000 $t
+     /tmp/ccnsX4nD.s:23     .text.mcu_sleep:0000000000000000 mcu_sleep
+     /tmp/ccnsX4nD.s:45     .text.led_toggle:0000000000000000 $t
+     /tmp/ccnsX4nD.s:52     .text.led_toggle:0000000000000000 led_toggle
+     /tmp/ccnsX4nD.s:75     .text._Error_Handler:0000000000000000 $t
+     /tmp/ccnsX4nD.s:82     .text._Error_Handler:0000000000000000 _Error_Handler
+     /tmp/ccnsX4nD.s:98     .text.SystemClock_Config:0000000000000000 $t
+     /tmp/ccnsX4nD.s:104    .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/ccnsX4nD.s:188    .text.SystemClock_Config:000000000000006c $d
+     /tmp/ccnsX4nD.s:193    .text.mcu_init:0000000000000000 $t
+     /tmp/ccnsX4nD.s:200    .text.mcu_init:0000000000000000 mcu_init
+     /tmp/ccnsX4nD.s:226    .rodata.SystemClock_Config.str1.4:0000000000000000 $d
+                           .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
+                           .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
+                           .group:0000000000000000 wm4.features.h.33.d0b7f3cd6ee95f610104014bb3ed522a
+                           .group:0000000000000000 wm4._default_types.h.15.247e5cd201eca3442cbf5404108c4935
+                           .group:0000000000000000 wm4._intsup.h.10.cce27fed8484c08a33f522034c30d2b5
+                           .group:0000000000000000 wm4._stdint.h.10.c24fa3af3bc1706662bb5593a907e841
+                           .group:0000000000000000 wm4.stdint.h.23.d53047a68f4a85177f80b422d52785ed
+                           .group:0000000000000000 wm4.main.h.42.3e9602f258f21c216c24749e16771da2
+                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.106428aa4afcad6bf79baa0a3e608f3f
+                           .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
+                           .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
+                           .group:0000000000000000 wm4.core_cm0.h.42.7022e4f00906b4c8e9c5322381e90c37
+                           .group:0000000000000000 wm4.cmsis_gcc.h.36.5bb14fd68ce7855540fcfe2d9305ae16
+                           .group:0000000000000000 wm4.core_cm0.h.175.2353140684a11cc8267b4125ac92735e
+                           .group:0000000000000000 wm4.stm32f072xb.h.653.664388dc5ef2a697008be7ff13986fc5
+                           .group:0000000000000000 wm4.stm32f0xx.h.186.8a2f1abf0fccd74c76b01fef06350694
+                           .group:0000000000000000 wm4.newlib.h.8.f6e543eac3f2f65163ba2ffe3b04987b
+                           .group:0000000000000000 wm4.ieeefp.h.77.220d9cccac42cd58761758bee2df4ce6
+                           .group:0000000000000000 wm4.config.h.220.6cac6a9685cfce5e83c17784171638d9
+                           .group:0000000000000000 wm4._ansi.h.31.de524f58584151836e90d8620a16f8e8
+                           .group:0000000000000000 wm4.stdio.h.31.7c0e28c411445f3f9c5b11accf882760
+                           .group:0000000000000000 wm4.stddef.h.187.2ff233552538c6ff9b8575ca8ea52cb3
+                           .group:0000000000000000 wm4.cdefs.h.47.0bcdf94cb40e176393dd1404056825b4
+                           .group:0000000000000000 wm4.stddef.h.39.ec95e8feac892e292b69dc7ae75b0d64
+                           .group:0000000000000000 wm4.stdarg.h.34.3a23a216c0c293b3d2ea2e89281481e6
+                           .group:0000000000000000 wm4.lock.h.2.1461d1fff82dffe8bfddc23307f6484f
+                           .group:0000000000000000 wm4._types.h.125.5cf8a495f1f7ef36777ad868a1e32068
+                           .group:0000000000000000 wm4.stddef.h.161.5349cb105733e8777bfb0cf53c4e3f34
+                           .group:0000000000000000 wm4._types.h.184.03611d4f6b5bec9997bcf4279eceba07
+                           .group:0000000000000000 wm4.reent.h.17.90c2574d4acdcfce933db5cb09ff35fe
+                           .group:0000000000000000 wm4.types.h.40.e8c16e7ec36ba55f133d0616070e25fc
+                           .group:0000000000000000 wm4.types.h.114.fb65732f4f5f288a036a25898de2c91f
+                           .group:0000000000000000 wm4.stdio.h.2.4aa87247282eca6c8f36f9de33d8df1a
+                           .group:0000000000000000 wm4.stdio.h.81.2a55589bfa3ee24eeb84e3c79458e4a9
+                           .group:0000000000000000 wm4.stm32f0xx_hal_def.h.76.81362c22f1bfa407bb20bdc5ef2fe817
+                           .group:0000000000000000 wm4.stm32f0xx_hal_rcc.h.64.1680b96367ed05251327e73e2ef7e0a0
+                           .group:0000000000000000 wm4.stm32f0xx_hal_rcc_ex.h.38.fed157297eb0e49fa475a8f4d962b1a1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_gpio.h.38.5de46a121e30d1d136216266f57becb9
+                           .group:0000000000000000 wm4.stm32f0xx_hal_gpio_ex.h.38.4ae096506dfd35e4cd1e2bfdbf19c71f
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.38.9bc992aa465d2468bc055502b51063f3
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma_ex.h.38.c2269542e0bcc97944af39289a0a60b8
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.500.3b36a5be41f3e2ac138f4041ccf5cecb
+                           .group:0000000000000000 wm4.stm32f0xx_hal_cortex.h.38.61b1088b7495d338bc65ee2571a0bb95
+ARM GAS  /tmp/ccnsX4nD.s 			page 9
+
+
+                           .group:0000000000000000 wm4.stm32f0xx_hal_flash.h.38.752a2d52b6ea91b900355f4ecd0538c0
+                           .group:0000000000000000 wm4.stm32f0xx_hal_flash_ex.h.38.8097982a0077322c9b7a892e64a756d8
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.38.387f38a4bc9cbea958e7081da9f60815
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c_ex.h.38.9a4523b2ddbaaa2727287ccab47d88d1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
+                           .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
+
+UNDEFINED SYMBOLS
+HAL_Delay
+HAL_GPIO_TogglePin
+__aeabi_uidiv
+HAL_RCC_OscConfig
+HAL_RCC_ClockConfig
+HAL_RCC_GetHCLKFreq
+HAL_SYSTICK_Config
+HAL_SYSTICK_CLKSourceConfig
+HAL_NVIC_SetPriority
+HAL_Init
+MX_GPIO_Init

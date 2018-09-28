@@ -27,26 +27,5 @@
             "externalConsole": false,
             "cwd": "${workspaceRoot}"
         },
-        {
-            "type": "gnu-debugger",
-            "request": "launch",
-            "name": "GNU debugger",
-            "program": "${workspaceFolder}/build/main.elf",
-            "toolchain": "${env:ARM_GCC_PATH}",
-            "client": "arm-none-eabi-gdb",
-            "server": "JLinkGDBServer",
-            "windows":{
-                "server": "JLinkGDBServerCL.exe",
-                "client": "arm-none-eabi-gdb.exe",
-            },
-
-            // Change device as needed
-            "serverArgs": [
-                "-device", "STM32F303xE",
-                "-if", "SWD",
-                "-speed", "4000"
-            ],
-            "serverPort": 2331,
-        }
     ]
 }

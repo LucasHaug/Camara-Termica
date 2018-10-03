@@ -11,6 +11,9 @@
 #include "gpio.h"
 #include "main.h"
 #include "stm32f0xx_hal.h"
+#include "adc.h"
+#include "dma.h"
+#include "temp_sensors.h"
 
 /*****************************************
  * Private Function Prototypes
@@ -30,6 +33,8 @@ void mcu_init(void) {
     SystemClock_Config();
 
     MX_GPIO_Init();
+
+    temp_sensors_init();
 }
 
 void mcu_sleep(uint32_t ms) {

@@ -5,6 +5,9 @@
  */
 
 #include "mcu.h"
+#include "temp_sensors.h"
+#include "adc.h"
+#include "dma.h"
 
 /*****************************************
  * Private Constant Definitions

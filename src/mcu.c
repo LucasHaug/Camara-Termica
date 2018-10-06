@@ -11,9 +11,8 @@
 #include "gpio.h"
 #include "main.h"
 #include "stm32f0xx_hal.h"
-#include "adc.h"
-#include "dma.h"
-#include "temp_sensors.h"
+
+#include "sensors.h"
 #include "fans.h"
 
 /*****************************************
@@ -35,7 +34,7 @@ void mcu_init(void) {
 
     MX_GPIO_Init();
 
-    temp_sensors_init();
+    sensors_init();
     fans_init();
 }
 

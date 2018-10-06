@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cczzxrxK.s 			page 1
+ARM GAS  /tmp/ccAzbnIt.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -38,39 +38,38 @@ ARM GAS  /tmp/cczzxrxK.s 			page 1
   11:src/mcu.c     **** #include "gpio.h"
   12:src/mcu.c     **** #include "main.h"
   13:src/mcu.c     **** #include "stm32f0xx_hal.h"
-  14:src/mcu.c     **** #include "adc.h"
-  15:src/mcu.c     **** #include "dma.h"
-  16:src/mcu.c     **** #include "temp_sensors.h"
-  17:src/mcu.c     **** #include "fans.h"
-  18:src/mcu.c     **** 
-  19:src/mcu.c     **** /*****************************************
-  20:src/mcu.c     ****  * Private Function Prototypes
-  21:src/mcu.c     ****  *****************************************/
-  22:src/mcu.c     **** 
-  23:src/mcu.c     **** /**
-  24:src/mcu.c     ****  * @brief Initializes System Clock.
-  25:src/mcu.c     ****  */
-  26:src/mcu.c     **** static void SystemClock_Config(void);
-  27:src/mcu.c     **** 
-  28:src/mcu.c     **** /*****************************************
-  29:src/mcu.c     ****  * Public Function Body Definitions
-  30:src/mcu.c     ****  *****************************************/
-  31:src/mcu.c     **** void mcu_init(void) {
-  32:src/mcu.c     ****     HAL_Init();
-  33:src/mcu.c     **** 
-ARM GAS  /tmp/cczzxrxK.s 			page 2
+  14:src/mcu.c     **** 
+  15:src/mcu.c     **** #include "sensors.h"
+  16:src/mcu.c     **** #include "fans.h"
+  17:src/mcu.c     **** 
+  18:src/mcu.c     **** /*****************************************
+  19:src/mcu.c     ****  * Private Function Prototypes
+  20:src/mcu.c     ****  *****************************************/
+  21:src/mcu.c     **** 
+  22:src/mcu.c     **** /**
+  23:src/mcu.c     ****  * @brief Initializes System Clock.
+  24:src/mcu.c     ****  */
+  25:src/mcu.c     **** static void SystemClock_Config(void);
+  26:src/mcu.c     **** 
+  27:src/mcu.c     **** /*****************************************
+  28:src/mcu.c     ****  * Public Function Body Definitions
+  29:src/mcu.c     ****  *****************************************/
+  30:src/mcu.c     **** void mcu_init(void) {
+  31:src/mcu.c     ****     HAL_Init();
+  32:src/mcu.c     **** 
+  33:src/mcu.c     ****     SystemClock_Config();
+ARM GAS  /tmp/ccAzbnIt.s 			page 2
 
 
-  34:src/mcu.c     ****     SystemClock_Config();
-  35:src/mcu.c     **** 
-  36:src/mcu.c     ****     MX_GPIO_Init();
-  37:src/mcu.c     **** 
-  38:src/mcu.c     ****     temp_sensors_init();
-  39:src/mcu.c     ****     fans_init();
-  40:src/mcu.c     **** }
-  41:src/mcu.c     **** 
-  42:src/mcu.c     **** void mcu_sleep(uint32_t ms) {
-  26              		.loc 1 42 0
+  34:src/mcu.c     **** 
+  35:src/mcu.c     ****     MX_GPIO_Init();
+  36:src/mcu.c     **** 
+  37:src/mcu.c     ****     sensors_init();
+  38:src/mcu.c     ****     fans_init();
+  39:src/mcu.c     **** }
+  40:src/mcu.c     **** 
+  41:src/mcu.c     **** void mcu_sleep(uint32_t ms) {
+  26              		.loc 1 41 0
   27              		.cfi_startproc
   28              		@ args = 0, pretend = 0, frame = 0
   29              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -79,12 +78,12 @@ ARM GAS  /tmp/cczzxrxK.s 			page 1
   32              		.cfi_def_cfa_offset 8
   33              		.cfi_offset 4, -8
   34              		.cfi_offset 14, -4
-  43:src/mcu.c     ****     HAL_Delay(ms);
-  35              		.loc 1 43 0
+  42:src/mcu.c     ****     HAL_Delay(ms);
+  35              		.loc 1 42 0
   36 0002 FFF7FEFF 		bl	HAL_Delay
   37              	.LVL1:
-  44:src/mcu.c     **** }
-  38              		.loc 1 44 0
+  43:src/mcu.c     **** }
+  38              		.loc 1 43 0
   39              		@ sp needed
   40 0006 10BD     		pop	{r4, pc}
   41              		.cfi_endproc
@@ -98,59 +97,59 @@ ARM GAS  /tmp/cczzxrxK.s 			page 1
   50              		.fpu softvfp
   52              	_Error_Handler:
   53              	.LFB40:
-  45:src/mcu.c     **** 
-  46:src/mcu.c     **** /*****************************************
-  47:src/mcu.c     ****  * Private Function Body Definitions
-  48:src/mcu.c     ****  *****************************************/
-  49:src/mcu.c     **** 
-  50:src/mcu.c     **** // Clock config should be copied from Cube generated
-  51:src/mcu.c     **** // main.c before "make prepare" is called
-  52:src/mcu.c     **** void SystemClock_Config(void)
-  53:src/mcu.c     **** {
-  54:src/mcu.c     **** 
-  55:src/mcu.c     ****   RCC_OscInitTypeDef RCC_OscInitStruct;
-  56:src/mcu.c     ****   RCC_ClkInitTypeDef RCC_ClkInitStruct;
-  57:src/mcu.c     **** 
-  58:src/mcu.c     ****     /**Initializes the CPU, AHB and APB busses clocks
-  59:src/mcu.c     ****     */
-  60:src/mcu.c     ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48;
-  61:src/mcu.c     ****   RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
-  62:src/mcu.c     ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
-  63:src/mcu.c     ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  64:src/mcu.c     ****   {
-ARM GAS  /tmp/cczzxrxK.s 			page 3
+  44:src/mcu.c     **** 
+  45:src/mcu.c     **** /*****************************************
+  46:src/mcu.c     ****  * Private Function Body Definitions
+  47:src/mcu.c     ****  *****************************************/
+  48:src/mcu.c     **** 
+  49:src/mcu.c     **** // Clock config should be copied from Cube generated
+  50:src/mcu.c     **** // main.c before "make prepare" is called
+  51:src/mcu.c     **** void SystemClock_Config(void)
+  52:src/mcu.c     **** {
+  53:src/mcu.c     **** 
+  54:src/mcu.c     ****   RCC_OscInitTypeDef RCC_OscInitStruct;
+  55:src/mcu.c     ****   RCC_ClkInitTypeDef RCC_ClkInitStruct;
+  56:src/mcu.c     **** 
+  57:src/mcu.c     ****     /**Initializes the CPU, AHB and APB busses clocks
+  58:src/mcu.c     ****     */
+  59:src/mcu.c     ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48;
+  60:src/mcu.c     ****   RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
+  61:src/mcu.c     ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  62:src/mcu.c     ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  63:src/mcu.c     ****   {
+  64:src/mcu.c     ****     _Error_Handler(__FILE__, __LINE__);
+ARM GAS  /tmp/ccAzbnIt.s 			page 3
 
 
-  65:src/mcu.c     ****     _Error_Handler(__FILE__, __LINE__);
-  66:src/mcu.c     ****   }
-  67:src/mcu.c     **** 
-  68:src/mcu.c     ****     /**Initializes the CPU, AHB and APB busses clocks
-  69:src/mcu.c     ****     */
-  70:src/mcu.c     ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-  71:src/mcu.c     ****                               |RCC_CLOCKTYPE_PCLK1;
-  72:src/mcu.c     ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI48;
-  73:src/mcu.c     ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  74:src/mcu.c     ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-  75:src/mcu.c     **** 
-  76:src/mcu.c     ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
-  77:src/mcu.c     ****   {
-  78:src/mcu.c     ****     _Error_Handler(__FILE__, __LINE__);
-  79:src/mcu.c     ****   }
-  80:src/mcu.c     **** 
-  81:src/mcu.c     ****     /**Configure the Systick interrupt time
-  82:src/mcu.c     ****     */
-  83:src/mcu.c     ****   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
-  84:src/mcu.c     **** 
-  85:src/mcu.c     ****     /**Configure the Systick
-  86:src/mcu.c     ****     */
-  87:src/mcu.c     ****   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
-  88:src/mcu.c     **** 
-  89:src/mcu.c     ****   /* SysTick_IRQn interrupt configuration */
-  90:src/mcu.c     ****   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
-  91:src/mcu.c     **** }
-  92:src/mcu.c     **** 
-  93:src/mcu.c     **** void _Error_Handler(char* file, int line) {
-  54              		.loc 1 93 0
+  65:src/mcu.c     ****   }
+  66:src/mcu.c     **** 
+  67:src/mcu.c     ****     /**Initializes the CPU, AHB and APB busses clocks
+  68:src/mcu.c     ****     */
+  69:src/mcu.c     ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+  70:src/mcu.c     ****                               |RCC_CLOCKTYPE_PCLK1;
+  71:src/mcu.c     ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI48;
+  72:src/mcu.c     ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  73:src/mcu.c     ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  74:src/mcu.c     **** 
+  75:src/mcu.c     ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+  76:src/mcu.c     ****   {
+  77:src/mcu.c     ****     _Error_Handler(__FILE__, __LINE__);
+  78:src/mcu.c     ****   }
+  79:src/mcu.c     **** 
+  80:src/mcu.c     ****     /**Configure the Systick interrupt time
+  81:src/mcu.c     ****     */
+  82:src/mcu.c     ****   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+  83:src/mcu.c     **** 
+  84:src/mcu.c     ****     /**Configure the Systick
+  85:src/mcu.c     ****     */
+  86:src/mcu.c     ****   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+  87:src/mcu.c     **** 
+  88:src/mcu.c     ****   /* SysTick_IRQn interrupt configuration */
+  89:src/mcu.c     ****   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+  90:src/mcu.c     **** }
+  91:src/mcu.c     **** 
+  92:src/mcu.c     **** void _Error_Handler(char* file, int line) {
+  54              		.loc 1 92 0
   55              		.cfi_startproc
   56              		@ Volatile: function does not return.
   57              		@ args = 0, pretend = 0, frame = 0
@@ -170,65 +169,65 @@ ARM GAS  /tmp/cczzxrxK.s 			page 1
   72              		.fpu softvfp
   74              	SystemClock_Config:
   75              	.LFB39:
-  53:src/mcu.c     **** 
-  76              		.loc 1 53 0
+  52:src/mcu.c     **** 
+  76              		.loc 1 52 0
   77              		.cfi_startproc
   78              		@ args = 0, pretend = 0, frame = 72
   79              		@ frame_needed = 0, uses_anonymous_args = 0
-  53:src/mcu.c     **** 
-  80              		.loc 1 53 0
+  52:src/mcu.c     **** 
+  80              		.loc 1 52 0
   81 0000 00B5     		push	{lr}
-ARM GAS  /tmp/cczzxrxK.s 			page 4
-
-
   82              		.cfi_def_cfa_offset 4
+ARM GAS  /tmp/ccAzbnIt.s 			page 4
+
+
   83              		.cfi_offset 14, -4
   84 0002 93B0     		sub	sp, sp, #76
   85              		.cfi_def_cfa_offset 80
-  60:src/mcu.c     ****   RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
-  86              		.loc 1 60 0
+  59:src/mcu.c     ****   RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
+  86              		.loc 1 59 0
   87 0004 2023     		movs	r3, #32
   88 0006 0593     		str	r3, [sp, #20]
-  61:src/mcu.c     ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
-  89              		.loc 1 61 0
+  60:src/mcu.c     ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  89              		.loc 1 60 0
   90 0008 1F3B     		subs	r3, r3, #31
   91 000a 0D93     		str	r3, [sp, #52]
-  62:src/mcu.c     ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  92              		.loc 1 62 0
+  61:src/mcu.c     ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  92              		.loc 1 61 0
   93 000c 0023     		movs	r3, #0
   94 000e 0E93     		str	r3, [sp, #56]
-  63:src/mcu.c     ****   {
-  95              		.loc 1 63 0
+  62:src/mcu.c     ****   {
+  95              		.loc 1 62 0
   96 0010 05A8     		add	r0, sp, #20
   97 0012 FFF7FEFF 		bl	HAL_RCC_OscConfig
   98              	.LVL3:
   99 0016 0028     		cmp	r0, #0
  100 0018 1FD1     		bne	.L7
-  70:src/mcu.c     ****                               |RCC_CLOCKTYPE_PCLK1;
- 101              		.loc 1 70 0
+  69:src/mcu.c     ****                               |RCC_CLOCKTYPE_PCLK1;
+ 101              		.loc 1 69 0
  102 001a 0723     		movs	r3, #7
  103 001c 0193     		str	r3, [sp, #4]
-  72:src/mcu.c     ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 104              		.loc 1 72 0
+  71:src/mcu.c     ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 104              		.loc 1 71 0
  105 001e 043B     		subs	r3, r3, #4
  106 0020 0293     		str	r3, [sp, #8]
-  73:src/mcu.c     ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
- 107              		.loc 1 73 0
+  72:src/mcu.c     ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 107              		.loc 1 72 0
  108 0022 0023     		movs	r3, #0
  109 0024 0393     		str	r3, [sp, #12]
-  74:src/mcu.c     **** 
- 110              		.loc 1 74 0
+  73:src/mcu.c     **** 
+ 110              		.loc 1 73 0
  111 0026 0493     		str	r3, [sp, #16]
-  76:src/mcu.c     ****   {
- 112              		.loc 1 76 0
+  75:src/mcu.c     ****   {
+ 112              		.loc 1 75 0
  113 0028 0121     		movs	r1, #1
  114 002a 01A8     		add	r0, sp, #4
  115 002c FFF7FEFF 		bl	HAL_RCC_ClockConfig
  116              	.LVL4:
  117 0030 0028     		cmp	r0, #0
  118 0032 16D1     		bne	.L8
-  83:src/mcu.c     **** 
- 119              		.loc 1 83 0
+  82:src/mcu.c     **** 
+ 119              		.loc 1 82 0
  120 0034 FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
  121              	.LVL5:
  122 0038 FA21     		movs	r1, #250
@@ -237,38 +236,38 @@ ARM GAS  /tmp/cczzxrxK.s 			page 1
  125              	.LVL6:
  126 0040 FFF7FEFF 		bl	HAL_SYSTICK_Config
  127              	.LVL7:
-  87:src/mcu.c     **** 
-ARM GAS  /tmp/cczzxrxK.s 			page 5
+  86:src/mcu.c     **** 
+ 128              		.loc 1 86 0
+ARM GAS  /tmp/ccAzbnIt.s 			page 5
 
 
- 128              		.loc 1 87 0
  129 0044 0420     		movs	r0, #4
  130 0046 FFF7FEFF 		bl	HAL_SYSTICK_CLKSourceConfig
  131              	.LVL8:
-  90:src/mcu.c     **** }
- 132              		.loc 1 90 0
+  89:src/mcu.c     **** }
+ 132              		.loc 1 89 0
  133 004a 0120     		movs	r0, #1
  134 004c 0022     		movs	r2, #0
  135 004e 0021     		movs	r1, #0
  136 0050 4042     		rsbs	r0, r0, #0
  137 0052 FFF7FEFF 		bl	HAL_NVIC_SetPriority
  138              	.LVL9:
-  91:src/mcu.c     **** 
- 139              		.loc 1 91 0
+  90:src/mcu.c     **** 
+ 139              		.loc 1 90 0
  140 0056 13B0     		add	sp, sp, #76
  141              		@ sp needed
  142 0058 00BD     		pop	{pc}
  143              	.L7:
-  65:src/mcu.c     ****   }
- 144              		.loc 1 65 0
- 145 005a 4121     		movs	r1, #65
+  64:src/mcu.c     ****   }
+ 144              		.loc 1 64 0
+ 145 005a 4021     		movs	r1, #64
  146 005c 0348     		ldr	r0, .L9
  147 005e FFF7FEFF 		bl	_Error_Handler
  148              	.LVL10:
  149              	.L8:
-  78:src/mcu.c     ****   }
- 150              		.loc 1 78 0
- 151 0062 4E21     		movs	r1, #78
+  77:src/mcu.c     ****   }
+ 150              		.loc 1 77 0
+ 151 0062 4D21     		movs	r1, #77
  152 0064 0148     		ldr	r0, .L9
  153 0066 FFF7FEFF 		bl	_Error_Handler
  154              	.LVL11:
@@ -287,8 +286,8 @@ ARM GAS  /tmp/cczzxrxK.s 			page 1
  168              		.fpu softvfp
  170              	mcu_init:
  171              	.LFB37:
-  31:src/mcu.c     ****     HAL_Init();
- 172              		.loc 1 31 0
+  30:src/mcu.c     ****     HAL_Init();
+ 172              		.loc 1 30 0
  173              		.cfi_startproc
  174              		@ args = 0, pretend = 0, frame = 0
  175              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -296,31 +295,31 @@ ARM GAS  /tmp/cczzxrxK.s 			page 1
  177              		.cfi_def_cfa_offset 8
  178              		.cfi_offset 4, -8
  179              		.cfi_offset 14, -4
-  32:src/mcu.c     **** 
- 180              		.loc 1 32 0
-ARM GAS  /tmp/cczzxrxK.s 			page 6
-
-
+  31:src/mcu.c     **** 
+ 180              		.loc 1 31 0
  181 0002 FFF7FEFF 		bl	HAL_Init
+ARM GAS  /tmp/ccAzbnIt.s 			page 6
+
+
  182              	.LVL12:
-  34:src/mcu.c     **** 
- 183              		.loc 1 34 0
+  33:src/mcu.c     **** 
+ 183              		.loc 1 33 0
  184 0006 FFF7FEFF 		bl	SystemClock_Config
  185              	.LVL13:
-  36:src/mcu.c     **** 
- 186              		.loc 1 36 0
+  35:src/mcu.c     **** 
+ 186              		.loc 1 35 0
  187 000a FFF7FEFF 		bl	MX_GPIO_Init
  188              	.LVL14:
-  38:src/mcu.c     ****     fans_init();
- 189              		.loc 1 38 0
- 190 000e FFF7FEFF 		bl	temp_sensors_init
+  37:src/mcu.c     ****     fans_init();
+ 189              		.loc 1 37 0
+ 190 000e FFF7FEFF 		bl	sensors_init
  191              	.LVL15:
-  39:src/mcu.c     **** }
- 192              		.loc 1 39 0
+  38:src/mcu.c     **** }
+ 192              		.loc 1 38 0
  193 0012 FFF7FEFF 		bl	fans_init
  194              	.LVL16:
-  40:src/mcu.c     **** 
- 195              		.loc 1 40 0
+  39:src/mcu.c     **** 
+ 195              		.loc 1 39 0
  196              		@ sp needed
  197 0016 10BD     		pop	{r4, pc}
  198              		.cfi_endproc
@@ -336,36 +335,33 @@ ARM GAS  /tmp/cczzxrxK.s 			page 1
  207              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
  208              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
  209              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
- 210              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
- 211              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
- 212              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
- 213              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
- 214              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
+ 210              		.file 5 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+ 211              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+ 212              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+ 213              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
+ 214              		.file 9 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
  215              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
  216              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h"
- 217              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
- 218              		.file 13 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_adc.h"
- 219              		.file 14 "cube/Inc/adc.h"
- 220              		.file 15 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
- 221              		.file 16 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
- 222              		.file 17 "cube/Inc/gpio.h"
- 223              		.file 18 "inc/temp_sensors.h"
- 224              		.file 19 "inc/fans.h"
-ARM GAS  /tmp/cczzxrxK.s 			page 7
+ 217              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
+ 218              		.file 13 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
+ 219              		.file 14 "cube/Inc/gpio.h"
+ 220              		.file 15 "inc/sensors.h"
+ 221              		.file 16 "inc/fans.h"
+ARM GAS  /tmp/ccAzbnIt.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 mcu.c
-     /tmp/cczzxrxK.s:16     .text.mcu_sleep:0000000000000000 $t
-     /tmp/cczzxrxK.s:23     .text.mcu_sleep:0000000000000000 mcu_sleep
-     /tmp/cczzxrxK.s:45     .text._Error_Handler:0000000000000000 $t
-     /tmp/cczzxrxK.s:52     .text._Error_Handler:0000000000000000 _Error_Handler
-     /tmp/cczzxrxK.s:68     .text.SystemClock_Config:0000000000000000 $t
-     /tmp/cczzxrxK.s:74     .text.SystemClock_Config:0000000000000000 SystemClock_Config
-     /tmp/cczzxrxK.s:158    .text.SystemClock_Config:000000000000006c $d
-     /tmp/cczzxrxK.s:163    .text.mcu_init:0000000000000000 $t
-     /tmp/cczzxrxK.s:170    .text.mcu_init:0000000000000000 mcu_init
-     /tmp/cczzxrxK.s:202    .rodata.SystemClock_Config.str1.4:0000000000000000 $d
+     /tmp/ccAzbnIt.s:16     .text.mcu_sleep:0000000000000000 $t
+     /tmp/ccAzbnIt.s:23     .text.mcu_sleep:0000000000000000 mcu_sleep
+     /tmp/ccAzbnIt.s:45     .text._Error_Handler:0000000000000000 $t
+     /tmp/ccAzbnIt.s:52     .text._Error_Handler:0000000000000000 _Error_Handler
+     /tmp/ccAzbnIt.s:68     .text.SystemClock_Config:0000000000000000 $t
+     /tmp/ccAzbnIt.s:74     .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/ccAzbnIt.s:158    .text.SystemClock_Config:000000000000006c $d
+     /tmp/ccAzbnIt.s:163    .text.mcu_init:0000000000000000 $t
+     /tmp/ccAzbnIt.s:170    .text.mcu_init:0000000000000000 mcu_init
+     /tmp/ccAzbnIt.s:202    .rodata.SystemClock_Config.str1.4:0000000000000000 $d
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
                            .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
                            .group:0000000000000000 wm4.features.h.33.d0b7f3cd6ee95f610104014bb3ed522a
@@ -373,7 +369,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4._intsup.h.10.cce27fed8484c08a33f522034c30d2b5
                            .group:0000000000000000 wm4._stdint.h.10.c24fa3af3bc1706662bb5593a907e841
                            .group:0000000000000000 wm4.stdint.h.23.d53047a68f4a85177f80b422d52785ed
-                           .group:0000000000000000 wm4.main.h.42.3e9602f258f21c216c24749e16771da2
+                           .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
                            .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
                            .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
                            .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
@@ -411,7 +407,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_cortex.h.38.61b1088b7495d338bc65ee2571a0bb95
                            .group:0000000000000000 wm4.stm32f0xx_hal_adc.h.38.e3e4bca0d8b91dc0f73ca672bc0e5aca
                            .group:0000000000000000 wm4.stm32f0xx_hal_adc_ex.h.38.79c684f1976d63630feab98f4d82be4a
-ARM GAS  /tmp/cczzxrxK.s 			page 8
+ARM GAS  /tmp/ccAzbnIt.s 			page 8
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_flash.h.38.752a2d52b6ea91b900355f4ecd0538c0
@@ -424,7 +420,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
                            .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
-                           .group:0000000000000000 wm4.temp_sensors.h.2.5fbbca25b2d09f7574e1e1bf00150af4
+                           .group:0000000000000000 wm4.sensors.h.2.c7c4d47810dd4d55f1990b53a463410f
 
 UNDEFINED SYMBOLS
 HAL_Delay
@@ -437,5 +433,5 @@ HAL_SYSTICK_CLKSourceConfig
 HAL_NVIC_SetPriority
 HAL_Init
 MX_GPIO_Init
-temp_sensors_init
+sensors_init
 fans_init

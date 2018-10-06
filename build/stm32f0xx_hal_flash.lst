@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccKt1530.s 			page 1
+ARM GAS  /tmp/cc3fDMiU.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
   32:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   ==============================================================================
   33:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   [..]                             
   34:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****       This driver provides functions and macros to configure and program the FLASH 
-ARM GAS  /tmp/ccKt1530.s 			page 2
+ARM GAS  /tmp/cc3fDMiU.s 			page 2
 
 
   35:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****       memory of all STM32F0xx devices.
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
   89:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
   90:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   91:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-ARM GAS  /tmp/ccKt1530.s 			page 3
+ARM GAS  /tmp/cc3fDMiU.s 			page 3
 
 
   92:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  146:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c **** static  void   FLASH_SetErrorCode(void);
  147:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c **** extern void    FLASH_PageErase(uint32_t PageAddress);
  148:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c **** /**
-ARM GAS  /tmp/ccKt1530.s 			page 4
+ARM GAS  /tmp/cc3fDMiU.s 			page 4
 
 
  149:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   * @}
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  203:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****       /* Program halfword (16-bit) at a specified address. */
  204:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****       nbiterations = 1U;
  205:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****     }
-ARM GAS  /tmp/ccKt1530.s 			page 5
+ARM GAS  /tmp/cc3fDMiU.s 			page 5
 
 
  206:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****     else if(TypeProgram == FLASH_TYPEPROGRAM_WORD)
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  260:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   __HAL_LOCK(&pFlash);
  261:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c **** 
  262:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   /* Check the parameters */
-ARM GAS  /tmp/ccKt1530.s 			page 6
+ARM GAS  /tmp/cc3fDMiU.s 			page 6
 
 
  263:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   assert_param(IS_FLASH_TYPEPROGRAM(TypeProgram));
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  317:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****     HAL_FLASH_OperationErrorCallback(addresstmp);
  318:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c **** 
  319:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****     /* Stop the procedure ongoing */
-ARM GAS  /tmp/ccKt1530.s 			page 7
+ARM GAS  /tmp/cc3fDMiU.s 			page 7
 
 
  320:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****     pFlash.ProcedureOnGoing = FLASH_PROC_NONE;
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  374:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****         }
  375:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****       else
  376:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****       {
-ARM GAS  /tmp/ccKt1530.s 			page 8
+ARM GAS  /tmp/cc3fDMiU.s 			page 8
 
 
  377:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****         /* Nb of 16-bit data to program can be decreased */
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  431:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****     __HAL_UNLOCK(&pFlash);
  432:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   }
  433:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c **** }
-ARM GAS  /tmp/ccKt1530.s 			page 9
+ARM GAS  /tmp/cc3fDMiU.s 			page 9
 
 
  434:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c **** 
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  488:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   * @{
  489:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   */
  490:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c **** 
-ARM GAS  /tmp/ccKt1530.s 			page 10
+ARM GAS  /tmp/cc3fDMiU.s 			page 10
 
 
  491:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c **** /**
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  545:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   * @retval HAL Status 
  546:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   */
  547:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_OB_Lock(void)
-ARM GAS  /tmp/ccKt1530.s 			page 11
+ARM GAS  /tmp/cc3fDMiU.s 			page 11
 
 
  548:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c **** {
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  602:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   * @}
  603:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   */
  604:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c **** 
-ARM GAS  /tmp/ccKt1530.s 			page 12
+ARM GAS  /tmp/cc3fDMiU.s 			page 12
 
 
  605:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c **** /** @addtogroup FLASH_Private_Functions
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
   59              		.syntax unified
   60              		.code	16
   61              		.thumb_func
-ARM GAS  /tmp/ccKt1530.s 			page 13
+ARM GAS  /tmp/cc3fDMiU.s 			page 13
 
 
   62              		.fpu softvfp
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
   66              		.loc 1 676 0
   67              		.cfi_startproc
   68              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccKt1530.s 			page 14
+ARM GAS  /tmp/cc3fDMiU.s 			page 14
 
 
   69              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  108              		@ sp needed
  109 002e 7047     		bx	lr
  110              	.LVL5:
-ARM GAS  /tmp/ccKt1530.s 			page 15
+ARM GAS  /tmp/cc3fDMiU.s 			page 15
 
 
  111              	.L7:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  162 0018 6D01     		lsls	r5, r5, #5
  163 001a 3D43     		orrs	r5, r7
  164 001c 3561     		str	r5, [r6, #16]
-ARM GAS  /tmp/ccKt1530.s 			page 16
+ARM GAS  /tmp/cc3fDMiU.s 			page 16
 
 
  269:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   pFlash.Data = Data;
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  208              	.L17:
  280:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****     /* Program word (32-bit : 2*16-bit) at a specified address. */
  209              		.loc 1 280 0
-ARM GAS  /tmp/ccKt1530.s 			page 17
+ARM GAS  /tmp/cc3fDMiU.s 			page 17
 
 
  210 004c 0349     		ldr	r1, .L18
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  463:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   /* Prevent unused argument(s) compilation warning */
  264              		.loc 1 463 0
  265              		.cfi_startproc
-ARM GAS  /tmp/ccKt1530.s 			page 18
+ARM GAS  /tmp/cc3fDMiU.s 			page 18
 
 
  266              		@ args = 0, pretend = 0, frame = 0
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  316 0018 5B42     		rsbs	r3, r3, #0
  317 001a A360     		str	r3, [r4, #8]
  314:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****     
-ARM GAS  /tmp/ccKt1530.s 			page 19
+ARM GAS  /tmp/cc3fDMiU.s 			page 19
 
 
  318              		.loc 1 314 0
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  400:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****           {
  363              		.loc 1 400 0
  364 005e 3B4B     		ldr	r3, .L39+4
-ARM GAS  /tmp/ccKt1530.s 			page 20
+ARM GAS  /tmp/cc3fDMiU.s 			page 20
 
 
  365 0060 1B78     		ldrb	r3, [r3]
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  410              		.loc 1 433 0
  411              		@ sp needed
  412 00a4 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
-ARM GAS  /tmp/ccKt1530.s 			page 21
+ARM GAS  /tmp/cc3fDMiU.s 			page 21
 
 
  413              	.L34:
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  457 00e0 0022     		movs	r2, #0
  458 00e2 1A70     		strb	r2, [r3]
  360:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****         }
-ARM GAS  /tmp/ccKt1530.s 			page 22
+ARM GAS  /tmp/cc3fDMiU.s 			page 22
 
 
  459              		.loc 1 360 0
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  505 0126 1A69     		ldr	r2, [r3, #16]
  506 0128 5B69     		ldr	r3, [r3, #20]
  507 012a 91B2     		uxth	r1, r2
-ARM GAS  /tmp/ccKt1530.s 			page 23
+ARM GAS  /tmp/cc3fDMiU.s 			page 23
 
 
  508 012c FFF7FEFF 		bl	FLASH_Program_HalfWord
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  501:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****   }
  559              		.loc 1 501 0
  560 000e 054A     		ldr	r2, .L44+8
-ARM GAS  /tmp/ccKt1530.s 			page 24
+ARM GAS  /tmp/cc3fDMiU.s 			page 24
 
 
  561 0010 5A60     		str	r2, [r3, #4]
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  611              	.LFE43:
  613              		.section	.text.HAL_FLASH_OB_Unlock,"ax",%progbits
  614              		.align	1
-ARM GAS  /tmp/ccKt1530.s 			page 25
+ARM GAS  /tmp/cc3fDMiU.s 			page 25
 
 
  615              		.global	HAL_FLASH_OB_Unlock
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  664              		.thumb_func
  665              		.fpu softvfp
  667              	HAL_FLASH_OB_Lock:
-ARM GAS  /tmp/ccKt1530.s 			page 26
+ARM GAS  /tmp/cc3fDMiU.s 			page 26
 
 
  668              	.LFB45:
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  718              	.LFE47:
  720              		.section	.text.FLASH_WaitForLastOperation,"ax",%progbits
  721              		.align	1
-ARM GAS  /tmp/ccKt1530.s 			page 27
+ARM GAS  /tmp/cc3fDMiU.s 			page 27
 
 
  722              		.global	FLASH_WaitForLastOperation
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  769              		.loc 1 652 0
  770 0028 0B4B     		ldr	r3, .L71
  771 002a DB68     		ldr	r3, [r3, #12]
-ARM GAS  /tmp/ccKt1530.s 			page 28
+ARM GAS  /tmp/cc3fDMiU.s 			page 28
 
 
  772 002c 9B06     		lsls	r3, r3, #26
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  818              		.section	.text.HAL_FLASH_Program,"ax",%progbits
  819              		.align	1
  820              		.global	HAL_FLASH_Program
-ARM GAS  /tmp/ccKt1530.s 			page 29
+ARM GAS  /tmp/cc3fDMiU.s 			page 29
 
 
  821              		.syntax unified
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  206:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****     {
  870              		.loc 1 206 0
  871 002a 022C     		cmp	r4, #2
-ARM GAS  /tmp/ccKt1530.s 			page 30
+ARM GAS  /tmp/cc3fDMiU.s 			page 30
 
 
  872 002c 02D0     		beq	.L84
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  918 0066 0CD1     		bne	.L75
  217:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c ****     {
  919              		.loc 1 217 0 discriminator 2
-ARM GAS  /tmp/ccKt1530.s 			page 31
+ARM GAS  /tmp/cc3fDMiU.s 			page 31
 
 
  920 0068 0134     		adds	r4, r4, #1
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  970              		.global	HAL_FLASH_OB_Launch
  971              		.syntax unified
  972              		.code	16
-ARM GAS  /tmp/ccKt1530.s 			page 32
+ARM GAS  /tmp/cc3fDMiU.s 			page 32
 
 
  973              		.thumb_func
@@ -1913,54 +1913,54 @@ ARM GAS  /tmp/ccKt1530.s 			page 1
  1020              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
  1021              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_flash.h"
  1022              		.file 13 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
-ARM GAS  /tmp/ccKt1530.s 			page 33
+ARM GAS  /tmp/cc3fDMiU.s 			page 33
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f0xx_hal_flash.c
-     /tmp/ccKt1530.s:16     .text.FLASH_Program_HalfWord:0000000000000000 $t
-     /tmp/ccKt1530.s:22     .text.FLASH_Program_HalfWord:0000000000000000 FLASH_Program_HalfWord
-     /tmp/ccKt1530.s:52     .text.FLASH_Program_HalfWord:0000000000000018 $d
+     /tmp/cc3fDMiU.s:16     .text.FLASH_Program_HalfWord:0000000000000000 $t
+     /tmp/cc3fDMiU.s:22     .text.FLASH_Program_HalfWord:0000000000000000 FLASH_Program_HalfWord
+     /tmp/cc3fDMiU.s:52     .text.FLASH_Program_HalfWord:0000000000000018 $d
                             *COM*:0000000000000020 pFlash
-     /tmp/ccKt1530.s:58     .text.FLASH_SetErrorCode:0000000000000000 $t
-     /tmp/ccKt1530.s:64     .text.FLASH_SetErrorCode:0000000000000000 FLASH_SetErrorCode
-     /tmp/ccKt1530.s:118    .text.FLASH_SetErrorCode:0000000000000034 $d
-     /tmp/ccKt1530.s:124    .text.HAL_FLASH_Program_IT:0000000000000000 $t
-     /tmp/ccKt1530.s:131    .text.HAL_FLASH_Program_IT:0000000000000000 HAL_FLASH_Program_IT
-     /tmp/ccKt1530.s:227    .text.HAL_FLASH_Program_IT:000000000000005c $d
-     /tmp/ccKt1530.s:233    .text.HAL_FLASH_EndOfOperationCallback:0000000000000000 $t
-     /tmp/ccKt1530.s:240    .text.HAL_FLASH_EndOfOperationCallback:0000000000000000 HAL_FLASH_EndOfOperationCallback
-     /tmp/ccKt1530.s:255    .text.HAL_FLASH_OperationErrorCallback:0000000000000000 $t
-     /tmp/ccKt1530.s:262    .text.HAL_FLASH_OperationErrorCallback:0000000000000000 HAL_FLASH_OperationErrorCallback
-     /tmp/ccKt1530.s:277    .text.HAL_FLASH_IRQHandler:0000000000000000 $t
-     /tmp/ccKt1530.s:284    .text.HAL_FLASH_IRQHandler:0000000000000000 HAL_FLASH_IRQHandler
-     /tmp/ccKt1530.s:529    .text.HAL_FLASH_IRQHandler:0000000000000148 $d
-     /tmp/ccKt1530.s:536    .text.HAL_FLASH_Unlock:0000000000000000 $t
-     /tmp/ccKt1530.s:543    .text.HAL_FLASH_Unlock:0000000000000000 HAL_FLASH_Unlock
-     /tmp/ccKt1530.s:575    .text.HAL_FLASH_Unlock:000000000000001c $d
-     /tmp/ccKt1530.s:582    .text.HAL_FLASH_Lock:0000000000000000 $t
-     /tmp/ccKt1530.s:589    .text.HAL_FLASH_Lock:0000000000000000 HAL_FLASH_Lock
-     /tmp/ccKt1530.s:609    .text.HAL_FLASH_Lock:0000000000000010 $d
-     /tmp/ccKt1530.s:614    .text.HAL_FLASH_OB_Unlock:0000000000000000 $t
-     /tmp/ccKt1530.s:621    .text.HAL_FLASH_OB_Unlock:0000000000000000 HAL_FLASH_OB_Unlock
-     /tmp/ccKt1530.s:653    .text.HAL_FLASH_OB_Unlock:000000000000001c $d
-     /tmp/ccKt1530.s:660    .text.HAL_FLASH_OB_Lock:0000000000000000 $t
-     /tmp/ccKt1530.s:667    .text.HAL_FLASH_OB_Lock:0000000000000000 HAL_FLASH_OB_Lock
-     /tmp/ccKt1530.s:687    .text.HAL_FLASH_OB_Lock:0000000000000010 $d
-     /tmp/ccKt1530.s:693    .text.HAL_FLASH_GetError:0000000000000000 $t
-     /tmp/ccKt1530.s:700    .text.HAL_FLASH_GetError:0000000000000000 HAL_FLASH_GetError
-     /tmp/ccKt1530.s:716    .text.HAL_FLASH_GetError:0000000000000008 $d
-     /tmp/ccKt1530.s:721    .text.FLASH_WaitForLastOperation:0000000000000000 $t
-     /tmp/ccKt1530.s:728    .text.FLASH_WaitForLastOperation:0000000000000000 FLASH_WaitForLastOperation
-     /tmp/ccKt1530.s:814    .text.FLASH_WaitForLastOperation:0000000000000058 $d
-     /tmp/ccKt1530.s:819    .text.HAL_FLASH_Program:0000000000000000 $t
-     /tmp/ccKt1530.s:826    .text.HAL_FLASH_Program:0000000000000000 HAL_FLASH_Program
-     /tmp/ccKt1530.s:962    .text.HAL_FLASH_Program:0000000000000094 $d
-     /tmp/ccKt1530.s:969    .text.HAL_FLASH_OB_Launch:0000000000000000 $t
-     /tmp/ccKt1530.s:976    .text.HAL_FLASH_OB_Launch:0000000000000000 HAL_FLASH_OB_Launch
-     /tmp/ccKt1530.s:1003   .text.HAL_FLASH_OB_Launch:0000000000000018 $d
+     /tmp/cc3fDMiU.s:58     .text.FLASH_SetErrorCode:0000000000000000 $t
+     /tmp/cc3fDMiU.s:64     .text.FLASH_SetErrorCode:0000000000000000 FLASH_SetErrorCode
+     /tmp/cc3fDMiU.s:118    .text.FLASH_SetErrorCode:0000000000000034 $d
+     /tmp/cc3fDMiU.s:124    .text.HAL_FLASH_Program_IT:0000000000000000 $t
+     /tmp/cc3fDMiU.s:131    .text.HAL_FLASH_Program_IT:0000000000000000 HAL_FLASH_Program_IT
+     /tmp/cc3fDMiU.s:227    .text.HAL_FLASH_Program_IT:000000000000005c $d
+     /tmp/cc3fDMiU.s:233    .text.HAL_FLASH_EndOfOperationCallback:0000000000000000 $t
+     /tmp/cc3fDMiU.s:240    .text.HAL_FLASH_EndOfOperationCallback:0000000000000000 HAL_FLASH_EndOfOperationCallback
+     /tmp/cc3fDMiU.s:255    .text.HAL_FLASH_OperationErrorCallback:0000000000000000 $t
+     /tmp/cc3fDMiU.s:262    .text.HAL_FLASH_OperationErrorCallback:0000000000000000 HAL_FLASH_OperationErrorCallback
+     /tmp/cc3fDMiU.s:277    .text.HAL_FLASH_IRQHandler:0000000000000000 $t
+     /tmp/cc3fDMiU.s:284    .text.HAL_FLASH_IRQHandler:0000000000000000 HAL_FLASH_IRQHandler
+     /tmp/cc3fDMiU.s:529    .text.HAL_FLASH_IRQHandler:0000000000000148 $d
+     /tmp/cc3fDMiU.s:536    .text.HAL_FLASH_Unlock:0000000000000000 $t
+     /tmp/cc3fDMiU.s:543    .text.HAL_FLASH_Unlock:0000000000000000 HAL_FLASH_Unlock
+     /tmp/cc3fDMiU.s:575    .text.HAL_FLASH_Unlock:000000000000001c $d
+     /tmp/cc3fDMiU.s:582    .text.HAL_FLASH_Lock:0000000000000000 $t
+     /tmp/cc3fDMiU.s:589    .text.HAL_FLASH_Lock:0000000000000000 HAL_FLASH_Lock
+     /tmp/cc3fDMiU.s:609    .text.HAL_FLASH_Lock:0000000000000010 $d
+     /tmp/cc3fDMiU.s:614    .text.HAL_FLASH_OB_Unlock:0000000000000000 $t
+     /tmp/cc3fDMiU.s:621    .text.HAL_FLASH_OB_Unlock:0000000000000000 HAL_FLASH_OB_Unlock
+     /tmp/cc3fDMiU.s:653    .text.HAL_FLASH_OB_Unlock:000000000000001c $d
+     /tmp/cc3fDMiU.s:660    .text.HAL_FLASH_OB_Lock:0000000000000000 $t
+     /tmp/cc3fDMiU.s:667    .text.HAL_FLASH_OB_Lock:0000000000000000 HAL_FLASH_OB_Lock
+     /tmp/cc3fDMiU.s:687    .text.HAL_FLASH_OB_Lock:0000000000000010 $d
+     /tmp/cc3fDMiU.s:693    .text.HAL_FLASH_GetError:0000000000000000 $t
+     /tmp/cc3fDMiU.s:700    .text.HAL_FLASH_GetError:0000000000000000 HAL_FLASH_GetError
+     /tmp/cc3fDMiU.s:716    .text.HAL_FLASH_GetError:0000000000000008 $d
+     /tmp/cc3fDMiU.s:721    .text.FLASH_WaitForLastOperation:0000000000000000 $t
+     /tmp/cc3fDMiU.s:728    .text.FLASH_WaitForLastOperation:0000000000000000 FLASH_WaitForLastOperation
+     /tmp/cc3fDMiU.s:814    .text.FLASH_WaitForLastOperation:0000000000000058 $d
+     /tmp/cc3fDMiU.s:819    .text.HAL_FLASH_Program:0000000000000000 $t
+     /tmp/cc3fDMiU.s:826    .text.HAL_FLASH_Program:0000000000000000 HAL_FLASH_Program
+     /tmp/cc3fDMiU.s:962    .text.HAL_FLASH_Program:0000000000000094 $d
+     /tmp/cc3fDMiU.s:969    .text.HAL_FLASH_OB_Launch:0000000000000000 $t
+     /tmp/cc3fDMiU.s:976    .text.HAL_FLASH_OB_Launch:0000000000000000 HAL_FLASH_OB_Launch
+     /tmp/cc3fDMiU.s:1003   .text.HAL_FLASH_OB_Launch:0000000000000018 $d
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
-                           .group:0000000000000000 wm4.main.h.42.3e9602f258f21c216c24749e16771da2
+                           .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
                            .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
                            .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
                            .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
@@ -1973,7 +1973,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.core_cm0.h.74.a7f5ed9ff199b3163f5ed99892efe60d
                            .group:0000000000000000 wm4.cmsis_gcc.h.36.5bb14fd68ce7855540fcfe2d9305ae16
                            .group:0000000000000000 wm4.core_cm0.h.175.2353140684a11cc8267b4125ac92735e
-ARM GAS  /tmp/ccKt1530.s 			page 34
+ARM GAS  /tmp/cc3fDMiU.s 			page 34
 
 
                            .group:0000000000000000 wm4.stm32f072xb.h.653.664388dc5ef2a697008be7ff13986fc5

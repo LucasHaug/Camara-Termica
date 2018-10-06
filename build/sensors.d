@@ -1,4 +1,4 @@
-build/mcu.o: src/mcu.c inc/mcu.h cube/Inc/gpio.h \
+build/sensors.o: src/sensors.c cube/Inc/adc.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h \
  cube/Inc/stm32f0xx_hal_conf.h cube/Inc/main.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h \
@@ -26,11 +26,9 @@ build/mcu.o: src/mcu.c inc/mcu.h cube/Inc/gpio.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h \
- cube/Inc/main.h inc/sensors.h inc/fans.h
+ cube/Inc/dma.h inc/sensors.h
 
-inc/mcu.h:
-
-cube/Inc/gpio.h:
+cube/Inc/adc.h:
 
 cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:
 
@@ -88,8 +86,6 @@ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h:
 
 cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h:
 
-cube/Inc/main.h:
+cube/Inc/dma.h:
 
 inc/sensors.h:
-
-inc/fans.h:

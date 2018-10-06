@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccP6CxOl.s 			page 1
+ARM GAS  /tmp/ccCYATO5.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccP6CxOl.s 			page 1
   31:cube/Src/gpio.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   32:cube/Src/gpio.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
   33:cube/Src/gpio.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-ARM GAS  /tmp/ccP6CxOl.s 			page 2
+ARM GAS  /tmp/ccCYATO5.s 			page 2
 
 
   34:cube/Src/gpio.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccP6CxOl.s 			page 1
   47 0010 5A69     		ldr	r2, [r3, #20]
   48 0012 0240     		ands	r2, r0
   49 0014 0092     		str	r2, [sp]
-ARM GAS  /tmp/ccP6CxOl.s 			page 3
+ARM GAS  /tmp/ccCYATO5.s 			page 3
 
 
   50 0016 009A     		ldr	r2, [sp]
@@ -151,7 +151,7 @@ ARM GAS  /tmp/ccP6CxOl.s 			page 1
   75              	.LBE4:
   69:cube/Src/gpio.c **** 
   70:cube/Src/gpio.c ****   /*Configure GPIO pin Output Level */
-  71:cube/Src/gpio.c ****   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+  71:cube/Src/gpio.c ****   HAL_GPIO_WritePin(Green_Led_GPIO_Port, Green_Led_Pin, GPIO_PIN_RESET);
   76              		.loc 1 71 0
   77 003c 0022     		movs	r2, #0
   78 003e 2021     		movs	r1, #32
@@ -171,32 +171,32 @@ ARM GAS  /tmp/ccP6CxOl.s 			page 1
   89 0052 FFF7FEFF 		bl	HAL_GPIO_WritePin
   90              	.LVL1:
   75:cube/Src/gpio.c **** 
-  76:cube/Src/gpio.c ****   /*Configure GPIO pin : PC13 */
-  77:cube/Src/gpio.c ****   GPIO_InitStruct.Pin = GPIO_PIN_13;
+  76:cube/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+  77:cube/Src/gpio.c ****   GPIO_InitStruct.Pin = User_Button_Pin;
   91              		.loc 1 77 0
   92 0056 8023     		movs	r3, #128
   93 0058 9B01     		lsls	r3, r3, #6
   94 005a 0393     		str	r3, [sp, #12]
   78:cube/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-ARM GAS  /tmp/ccP6CxOl.s 			page 4
+ARM GAS  /tmp/ccCYATO5.s 			page 4
 
 
   95              		.loc 1 78 0
   96 005c 144B     		ldr	r3, .L2+8
   97 005e 0493     		str	r3, [sp, #16]
-  79:cube/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  79:cube/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
   98              		.loc 1 79 0
-  99 0060 0224     		movs	r4, #2
+  99 0060 0024     		movs	r4, #0
  100 0062 0594     		str	r4, [sp, #20]
-  80:cube/Src/gpio.c ****   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  80:cube/Src/gpio.c ****   HAL_GPIO_Init(User_Button_GPIO_Port, &GPIO_InitStruct);
  101              		.loc 1 80 0
  102 0064 03A9     		add	r1, sp, #12
  103 0066 1348     		ldr	r0, .L2+12
  104 0068 FFF7FEFF 		bl	HAL_GPIO_Init
  105              	.LVL2:
   81:cube/Src/gpio.c **** 
-  82:cube/Src/gpio.c ****   /*Configure GPIO pin : PA5 */
-  83:cube/Src/gpio.c ****   GPIO_InitStruct.Pin = GPIO_PIN_5;
+  82:cube/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+  83:cube/Src/gpio.c ****   GPIO_InitStruct.Pin = Green_Led_Pin;
  106              		.loc 1 83 0
  107 006c 2023     		movs	r3, #32
  108 006e 0393     		str	r3, [sp, #12]
@@ -206,12 +206,12 @@ ARM GAS  /tmp/ccP6CxOl.s 			page 1
  111 0072 0495     		str	r5, [sp, #16]
   85:cube/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
  112              		.loc 1 85 0
- 113 0074 0594     		str	r4, [sp, #20]
+ 113 0074 0226     		movs	r6, #2
+ 114 0076 0596     		str	r6, [sp, #20]
   86:cube/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 114              		.loc 1 86 0
- 115 0076 0026     		movs	r6, #0
- 116 0078 0696     		str	r6, [sp, #24]
-  87:cube/Src/gpio.c ****   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 115              		.loc 1 86 0
+ 116 0078 0694     		str	r4, [sp, #24]
+  87:cube/Src/gpio.c ****   HAL_GPIO_Init(Green_Led_GPIO_Port, &GPIO_InitStruct);
  117              		.loc 1 87 0
  118 007a 03A9     		add	r1, sp, #12
  119 007c 9020     		movs	r0, #144
@@ -228,17 +228,17 @@ ARM GAS  /tmp/ccP6CxOl.s 			page 1
  126 0086 0495     		str	r5, [sp, #16]
   92:cube/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
  127              		.loc 1 92 0
- 128 0088 0594     		str	r4, [sp, #20]
+ 128 0088 0596     		str	r6, [sp, #20]
   93:cube/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
  129              		.loc 1 93 0
- 130 008a 0696     		str	r6, [sp, #24]
+ 130 008a 0694     		str	r4, [sp, #24]
   94:cube/Src/gpio.c ****   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
  131              		.loc 1 94 0
  132 008c 03A9     		add	r1, sp, #12
  133 008e 0748     		ldr	r0, .L2+4
  134 0090 FFF7FEFF 		bl	HAL_GPIO_Init
  135              	.LVL4:
-ARM GAS  /tmp/ccP6CxOl.s 			page 5
+ARM GAS  /tmp/ccCYATO5.s 			page 5
 
 
   95:cube/Src/gpio.c **** 
@@ -282,16 +282,16 @@ ARM GAS  /tmp/ccP6CxOl.s 			page 1
  169              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
  170              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
  171              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
-ARM GAS  /tmp/ccP6CxOl.s 			page 6
+ARM GAS  /tmp/ccCYATO5.s 			page 6
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 gpio.c
-     /tmp/ccP6CxOl.s:16     .text.MX_GPIO_Init:0000000000000000 $t
-     /tmp/ccP6CxOl.s:23     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-     /tmp/ccP6CxOl.s:153    .text.MX_GPIO_Init:00000000000000a8 $d
+     /tmp/ccCYATO5.s:16     .text.MX_GPIO_Init:0000000000000000 $t
+     /tmp/ccCYATO5.s:23     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+     /tmp/ccCYATO5.s:153    .text.MX_GPIO_Init:00000000000000a8 $d
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
-                           .group:0000000000000000 wm4.main.h.42.3e9602f258f21c216c24749e16771da2
+                           .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
                            .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
                            .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
                            .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
@@ -342,7 +342,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
-ARM GAS  /tmp/ccP6CxOl.s 			page 7
+ARM GAS  /tmp/ccCYATO5.s 			page 7
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38

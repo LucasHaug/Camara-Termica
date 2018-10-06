@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdint.h>
 
 #include "fans.h"
 #include "gpio.h"
@@ -9,26 +10,35 @@ bool fan_on = false;
 
 void fans_init() {
     MX_TIM1_Init();
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
 
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_RESET);
+    // primeira ponte H
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);
+
+    // segunda ponte H - ver se é necessário, se pode usar o mesmo sinal do uC da primeira ponte
+    // HAL_GPIO_WritePin(GPIOX, GPIO_PIN_X, GPIO_PIN_SET);
+    // HAL_GPIO_WritePin(GPIOX, GPIO_PIN_X, GPIO_PIN_RESET);
 }
 
-void turn_fan_on() {
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 1000);
-}
-
-void turn_fan_off() {
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0000);
+void fan_speed(fan_t fan, uint16_t speed) {
+    switch (fan) {
+        case FAN_TOP:
+            __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed);
+            break;
+        case FAN_DOWN:
+            __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, speed);
+            break;
+    }
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     if (GPIO_Pin == GPIO_PIN_13 && fan_on == false) {
-        turn_fan_on();
+        fan_speed(FAN_TOP, 1000);
     }
     if (GPIO_Pin == GPIO_PIN_13 && fan_on == true) {
-        turn_fan_off();
+        fan_speed(FAN_TOP, 0);
     }
     fan_on = !fan_on;
 }

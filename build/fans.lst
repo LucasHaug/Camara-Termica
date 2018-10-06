@@ -1,0 +1,349 @@
+ARM GAS  /tmp/ccwAVVCa.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"fans.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.fans_init,"ax",%progbits
+  16              		.align	1
+  17              		.global	fans_init
+  18              		.syntax unified
+  19              		.code	16
+  20              		.thumb_func
+  21              		.fpu softvfp
+  23              	fans_init:
+  24              	.LFB37:
+  25              		.file 1 "src/fans.c"
+   1:src/fans.c    **** #include <stdbool.h>
+   2:src/fans.c    **** 
+   3:src/fans.c    **** #include "fans.h"
+   4:src/fans.c    **** #include "gpio.h"
+   5:src/fans.c    **** #include "tim.h"
+   6:src/fans.c    **** #include "stm32f0xx_hal_tim.h"
+   7:src/fans.c    **** 
+   8:src/fans.c    **** bool fan_on = false;
+   9:src/fans.c    **** 
+  10:src/fans.c    **** void fans_init() {
+  26              		.loc 1 10 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30 0000 70B5     		push	{r4, r5, r6, lr}
+  31              		.cfi_def_cfa_offset 16
+  32              		.cfi_offset 4, -16
+  33              		.cfi_offset 5, -12
+  34              		.cfi_offset 6, -8
+  35              		.cfi_offset 14, -4
+  11:src/fans.c    ****     MX_TIM1_Init();
+  36              		.loc 1 11 0
+  37 0002 FFF7FEFF 		bl	MX_TIM1_Init
+  38              	.LVL0:
+  12:src/fans.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+  39              		.loc 1 12 0
+  40 0006 0421     		movs	r1, #4
+  41 0008 0848     		ldr	r0, .L2
+  42 000a FFF7FEFF 		bl	HAL_TIM_PWM_Start
+  43              	.LVL1:
+  13:src/fans.c    **** 
+  14:src/fans.c    ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_RESET);
+  44              		.loc 1 14 0
+ARM GAS  /tmp/ccwAVVCa.s 			page 2
+
+
+  45 000e 8025     		movs	r5, #128
+  46 0010 ED00     		lsls	r5, r5, #3
+  47 0012 074C     		ldr	r4, .L2+4
+  48 0014 0022     		movs	r2, #0
+  49 0016 2900     		movs	r1, r5
+  50 0018 2000     		movs	r0, r4
+  51 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  52              	.LVL2:
+  15:src/fans.c    ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+  53              		.loc 1 15 0
+  54 001e 0122     		movs	r2, #1
+  55 0020 2900     		movs	r1, r5
+  56 0022 2000     		movs	r0, r4
+  57 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  58              	.LVL3:
+  16:src/fans.c    **** }
+  59              		.loc 1 16 0
+  60              		@ sp needed
+  61 0028 70BD     		pop	{r4, r5, r6, pc}
+  62              	.L3:
+  63 002a C046     		.align	2
+  64              	.L2:
+  65 002c 00000000 		.word	htim1
+  66 0030 00040048 		.word	1207960576
+  67              		.cfi_endproc
+  68              	.LFE37:
+  70              		.section	.text.turn_fan_on,"ax",%progbits
+  71              		.align	1
+  72              		.global	turn_fan_on
+  73              		.syntax unified
+  74              		.code	16
+  75              		.thumb_func
+  76              		.fpu softvfp
+  78              	turn_fan_on:
+  79              	.LFB38:
+  17:src/fans.c    **** 
+  18:src/fans.c    **** void turn_fan_on() {
+  80              		.loc 1 18 0
+  81              		.cfi_startproc
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84              		@ link register save eliminated.
+  19:src/fans.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 1000);
+  85              		.loc 1 19 0
+  86 0000 024B     		ldr	r3, .L5
+  87 0002 1B68     		ldr	r3, [r3]
+  88 0004 FA22     		movs	r2, #250
+  89 0006 9200     		lsls	r2, r2, #2
+  90 0008 9A63     		str	r2, [r3, #56]
+  20:src/fans.c    **** }
+  91              		.loc 1 20 0
+  92              		@ sp needed
+  93 000a 7047     		bx	lr
+  94              	.L6:
+  95              		.align	2
+  96              	.L5:
+  97 000c 00000000 		.word	htim1
+ARM GAS  /tmp/ccwAVVCa.s 			page 3
+
+
+  98              		.cfi_endproc
+  99              	.LFE38:
+ 101              		.section	.text.turn_fan_off,"ax",%progbits
+ 102              		.align	1
+ 103              		.global	turn_fan_off
+ 104              		.syntax unified
+ 105              		.code	16
+ 106              		.thumb_func
+ 107              		.fpu softvfp
+ 109              	turn_fan_off:
+ 110              	.LFB39:
+  21:src/fans.c    **** 
+  22:src/fans.c    **** void turn_fan_off() {
+ 111              		.loc 1 22 0
+ 112              		.cfi_startproc
+ 113              		@ args = 0, pretend = 0, frame = 0
+ 114              		@ frame_needed = 0, uses_anonymous_args = 0
+ 115              		@ link register save eliminated.
+  23:src/fans.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0000);
+ 116              		.loc 1 23 0
+ 117 0000 024B     		ldr	r3, .L8
+ 118 0002 1B68     		ldr	r3, [r3]
+ 119 0004 0022     		movs	r2, #0
+ 120 0006 9A63     		str	r2, [r3, #56]
+  24:src/fans.c    **** }
+ 121              		.loc 1 24 0
+ 122              		@ sp needed
+ 123 0008 7047     		bx	lr
+ 124              	.L9:
+ 125 000a C046     		.align	2
+ 126              	.L8:
+ 127 000c 00000000 		.word	htim1
+ 128              		.cfi_endproc
+ 129              	.LFE39:
+ 131              		.section	.text.HAL_GPIO_EXTI_Callback,"ax",%progbits
+ 132              		.align	1
+ 133              		.global	HAL_GPIO_EXTI_Callback
+ 134              		.syntax unified
+ 135              		.code	16
+ 136              		.thumb_func
+ 137              		.fpu softvfp
+ 139              	HAL_GPIO_EXTI_Callback:
+ 140              	.LFB40:
+  25:src/fans.c    **** 
+  26:src/fans.c    **** void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+ 141              		.loc 1 26 0
+ 142              		.cfi_startproc
+ 143              		@ args = 0, pretend = 0, frame = 0
+ 144              		@ frame_needed = 0, uses_anonymous_args = 0
+ 145              	.LVL4:
+ 146 0000 10B5     		push	{r4, lr}
+ 147              		.cfi_def_cfa_offset 8
+ 148              		.cfi_offset 4, -8
+ 149              		.cfi_offset 14, -4
+ 150 0002 0400     		movs	r4, r0
+  27:src/fans.c    ****     if (GPIO_Pin == GPIO_PIN_13 && fan_on == false) {
+ 151              		.loc 1 27 0
+ARM GAS  /tmp/ccwAVVCa.s 			page 4
+
+
+ 152 0004 8023     		movs	r3, #128
+ 153 0006 9B01     		lsls	r3, r3, #6
+ 154 0008 9842     		cmp	r0, r3
+ 155 000a 09D0     		beq	.L13
+ 156              	.LVL5:
+ 157              	.L11:
+  28:src/fans.c    ****         turn_fan_on();
+  29:src/fans.c    ****     }
+  30:src/fans.c    ****     if (GPIO_Pin == GPIO_PIN_13 && fan_on == true) {
+ 158              		.loc 1 30 0
+ 159 000c 8023     		movs	r3, #128
+ 160 000e 9B01     		lsls	r3, r3, #6
+ 161 0010 9C42     		cmp	r4, r3
+ 162 0012 0CD0     		beq	.L14
+ 163              	.L12:
+  31:src/fans.c    ****         turn_fan_off();
+  32:src/fans.c    ****     }
+  33:src/fans.c    ****     fan_on = !fan_on;
+ 164              		.loc 1 33 0
+ 165 0014 094A     		ldr	r2, .L15
+ 166 0016 1378     		ldrb	r3, [r2]
+ 167 0018 0121     		movs	r1, #1
+ 168 001a 4B40     		eors	r3, r1
+ 169 001c 1370     		strb	r3, [r2]
+  34:src/fans.c    **** }
+ 170              		.loc 1 34 0
+ 171              		@ sp needed
+ 172 001e 10BD     		pop	{r4, pc}
+ 173              	.LVL6:
+ 174              	.L13:
+  27:src/fans.c    ****         turn_fan_on();
+ 175              		.loc 1 27 0 discriminator 1
+ 176 0020 064B     		ldr	r3, .L15
+ 177 0022 1B78     		ldrb	r3, [r3]
+ 178 0024 002B     		cmp	r3, #0
+ 179 0026 F1D1     		bne	.L11
+  28:src/fans.c    ****     }
+ 180              		.loc 1 28 0
+ 181 0028 FFF7FEFF 		bl	turn_fan_on
+ 182              	.LVL7:
+ 183 002c EEE7     		b	.L11
+ 184              	.L14:
+  30:src/fans.c    ****         turn_fan_off();
+ 185              		.loc 1 30 0 discriminator 1
+ 186 002e 034B     		ldr	r3, .L15
+ 187 0030 1B78     		ldrb	r3, [r3]
+ 188 0032 002B     		cmp	r3, #0
+ 189 0034 EED0     		beq	.L12
+  31:src/fans.c    ****     }
+ 190              		.loc 1 31 0
+ 191 0036 FFF7FEFF 		bl	turn_fan_off
+ 192              	.LVL8:
+ 193 003a EBE7     		b	.L12
+ 194              	.L16:
+ 195              		.align	2
+ 196              	.L15:
+ 197 003c 00000000 		.word	.LANCHOR0
+ARM GAS  /tmp/ccwAVVCa.s 			page 5
+
+
+ 198              		.cfi_endproc
+ 199              	.LFE40:
+ 201              		.global	fan_on
+ 202              		.section	.bss.fan_on,"aw",%nobits
+ 203              		.set	.LANCHOR0,. + 0
+ 206              	fan_on:
+ 207 0000 00       		.space	1
+ 208              		.text
+ 209              	.Letext0:
+ 210              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+ 211              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
+ 212              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ 213              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 214              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+ 215              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+ 216              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+ 217              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
+ 218              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 219              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
+ 220              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
+ 221              		.file 13 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h"
+ 222              		.file 14 "cube/Inc/tim.h"
+ARM GAS  /tmp/ccwAVVCa.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 fans.c
+     /tmp/ccwAVVCa.s:16     .text.fans_init:0000000000000000 $t
+     /tmp/ccwAVVCa.s:23     .text.fans_init:0000000000000000 fans_init
+     /tmp/ccwAVVCa.s:65     .text.fans_init:000000000000002c $d
+     /tmp/ccwAVVCa.s:71     .text.turn_fan_on:0000000000000000 $t
+     /tmp/ccwAVVCa.s:78     .text.turn_fan_on:0000000000000000 turn_fan_on
+     /tmp/ccwAVVCa.s:97     .text.turn_fan_on:000000000000000c $d
+     /tmp/ccwAVVCa.s:102    .text.turn_fan_off:0000000000000000 $t
+     /tmp/ccwAVVCa.s:109    .text.turn_fan_off:0000000000000000 turn_fan_off
+     /tmp/ccwAVVCa.s:127    .text.turn_fan_off:000000000000000c $d
+     /tmp/ccwAVVCa.s:132    .text.HAL_GPIO_EXTI_Callback:0000000000000000 $t
+     /tmp/ccwAVVCa.s:139    .text.HAL_GPIO_EXTI_Callback:0000000000000000 HAL_GPIO_EXTI_Callback
+     /tmp/ccwAVVCa.s:197    .text.HAL_GPIO_EXTI_Callback:000000000000003c $d
+     /tmp/ccwAVVCa.s:206    .bss.fan_on:0000000000000000 fan_on
+     /tmp/ccwAVVCa.s:207    .bss.fan_on:0000000000000000 $d
+                           .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
+                           .group:0000000000000000 wm4.stdbool.h.29.07dce69c3b78884144b7f7bd19483461
+                           .group:0000000000000000 wm4.main.h.42.3e9602f258f21c216c24749e16771da2
+                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
+                           .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
+                           .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
+                           .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
+                           .group:0000000000000000 wm4.features.h.33.d0b7f3cd6ee95f610104014bb3ed522a
+                           .group:0000000000000000 wm4._default_types.h.15.247e5cd201eca3442cbf5404108c4935
+                           .group:0000000000000000 wm4._intsup.h.10.cce27fed8484c08a33f522034c30d2b5
+                           .group:0000000000000000 wm4._stdint.h.10.c24fa3af3bc1706662bb5593a907e841
+                           .group:0000000000000000 wm4.stdint.h.23.d53047a68f4a85177f80b422d52785ed
+                           .group:0000000000000000 wm4.core_cm0.h.74.a7f5ed9ff199b3163f5ed99892efe60d
+                           .group:0000000000000000 wm4.cmsis_gcc.h.36.5bb14fd68ce7855540fcfe2d9305ae16
+                           .group:0000000000000000 wm4.core_cm0.h.175.2353140684a11cc8267b4125ac92735e
+                           .group:0000000000000000 wm4.stm32f072xb.h.653.664388dc5ef2a697008be7ff13986fc5
+                           .group:0000000000000000 wm4.stm32f0xx.h.186.8a2f1abf0fccd74c76b01fef06350694
+                           .group:0000000000000000 wm4.newlib.h.8.f6e543eac3f2f65163ba2ffe3b04987b
+                           .group:0000000000000000 wm4.ieeefp.h.77.220d9cccac42cd58761758bee2df4ce6
+                           .group:0000000000000000 wm4.config.h.220.6cac6a9685cfce5e83c17784171638d9
+                           .group:0000000000000000 wm4._ansi.h.31.de524f58584151836e90d8620a16f8e8
+                           .group:0000000000000000 wm4.stdio.h.31.7c0e28c411445f3f9c5b11accf882760
+                           .group:0000000000000000 wm4.stddef.h.187.2ff233552538c6ff9b8575ca8ea52cb3
+                           .group:0000000000000000 wm4.cdefs.h.47.0bcdf94cb40e176393dd1404056825b4
+                           .group:0000000000000000 wm4.stddef.h.39.ec95e8feac892e292b69dc7ae75b0d64
+                           .group:0000000000000000 wm4.stdarg.h.34.3a23a216c0c293b3d2ea2e89281481e6
+                           .group:0000000000000000 wm4.lock.h.2.1461d1fff82dffe8bfddc23307f6484f
+                           .group:0000000000000000 wm4._types.h.125.5cf8a495f1f7ef36777ad868a1e32068
+                           .group:0000000000000000 wm4.stddef.h.161.5349cb105733e8777bfb0cf53c4e3f34
+                           .group:0000000000000000 wm4._types.h.184.03611d4f6b5bec9997bcf4279eceba07
+                           .group:0000000000000000 wm4.reent.h.17.90c2574d4acdcfce933db5cb09ff35fe
+                           .group:0000000000000000 wm4.types.h.40.e8c16e7ec36ba55f133d0616070e25fc
+                           .group:0000000000000000 wm4.types.h.114.fb65732f4f5f288a036a25898de2c91f
+                           .group:0000000000000000 wm4.stdio.h.2.4aa87247282eca6c8f36f9de33d8df1a
+                           .group:0000000000000000 wm4.stdio.h.81.2a55589bfa3ee24eeb84e3c79458e4a9
+                           .group:0000000000000000 wm4.stm32f0xx_hal_def.h.76.81362c22f1bfa407bb20bdc5ef2fe817
+                           .group:0000000000000000 wm4.stm32f0xx_hal_rcc.h.64.1680b96367ed05251327e73e2ef7e0a0
+                           .group:0000000000000000 wm4.stm32f0xx_hal_rcc_ex.h.38.fed157297eb0e49fa475a8f4d962b1a1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_gpio.h.38.5de46a121e30d1d136216266f57becb9
+                           .group:0000000000000000 wm4.stm32f0xx_hal_gpio_ex.h.38.4ae096506dfd35e4cd1e2bfdbf19c71f
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.38.9bc992aa465d2468bc055502b51063f3
+ARM GAS  /tmp/ccwAVVCa.s 			page 7
+
+
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma_ex.h.38.c2269542e0bcc97944af39289a0a60b8
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.500.3b36a5be41f3e2ac138f4041ccf5cecb
+                           .group:0000000000000000 wm4.stm32f0xx_hal_cortex.h.38.61b1088b7495d338bc65ee2571a0bb95
+                           .group:0000000000000000 wm4.stm32f0xx_hal_adc.h.38.e3e4bca0d8b91dc0f73ca672bc0e5aca
+                           .group:0000000000000000 wm4.stm32f0xx_hal_adc_ex.h.38.79c684f1976d63630feab98f4d82be4a
+                           .group:0000000000000000 wm4.stm32f0xx_hal_flash.h.38.752a2d52b6ea91b900355f4ecd0538c0
+                           .group:0000000000000000 wm4.stm32f0xx_hal_flash_ex.h.38.8097982a0077322c9b7a892e64a756d8
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.38.387f38a4bc9cbea958e7081da9f60815
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c_ex.h.38.9a4523b2ddbaaa2727287ccab47d88d1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
+                           .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
+                           .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
+                           .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
+
+UNDEFINED SYMBOLS
+MX_TIM1_Init
+HAL_TIM_PWM_Start
+HAL_GPIO_WritePin
+htim1

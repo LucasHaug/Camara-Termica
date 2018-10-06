@@ -1,0 +1,643 @@
+ARM GAS  /tmp/cciVzhHE.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"adc.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.MX_ADC_Init,"ax",%progbits
+  16              		.align	1
+  17              		.global	MX_ADC_Init
+  18              		.syntax unified
+  19              		.code	16
+  20              		.thumb_func
+  21              		.fpu softvfp
+  23              	MX_ADC_Init:
+  24              	.LFB37:
+  25              		.file 1 "cube/Src/adc.c"
+   1:cube/Src/adc.c **** /**
+   2:cube/Src/adc.c ****   ******************************************************************************
+   3:cube/Src/adc.c ****   * File Name          : ADC.c
+   4:cube/Src/adc.c ****   * Description        : This file provides code for the configuration
+   5:cube/Src/adc.c ****   *                      of the ADC instances.
+   6:cube/Src/adc.c ****   ******************************************************************************
+   7:cube/Src/adc.c ****   ** This notice applies to any and all portions of this file
+   8:cube/Src/adc.c ****   * that are not between comment pairs USER CODE BEGIN and
+   9:cube/Src/adc.c ****   * USER CODE END. Other portions of this file, whether 
+  10:cube/Src/adc.c ****   * inserted by the user or by software development tools
+  11:cube/Src/adc.c ****   * are owned by their respective copyright owners.
+  12:cube/Src/adc.c ****   *
+  13:cube/Src/adc.c ****   * COPYRIGHT(c) 2018 STMicroelectronics
+  14:cube/Src/adc.c ****   *
+  15:cube/Src/adc.c ****   * Redistribution and use in source and binary forms, with or without modification,
+  16:cube/Src/adc.c ****   * are permitted provided that the following conditions are met:
+  17:cube/Src/adc.c ****   *   1. Redistributions of source code must retain the above copyright notice,
+  18:cube/Src/adc.c ****   *      this list of conditions and the following disclaimer.
+  19:cube/Src/adc.c ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
+  20:cube/Src/adc.c ****   *      this list of conditions and the following disclaimer in the documentation
+  21:cube/Src/adc.c ****   *      and/or other materials provided with the distribution.
+  22:cube/Src/adc.c ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  23:cube/Src/adc.c ****   *      may be used to endorse or promote products derived from this software
+  24:cube/Src/adc.c ****   *      without specific prior written permission.
+  25:cube/Src/adc.c ****   *
+  26:cube/Src/adc.c ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  27:cube/Src/adc.c ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  28:cube/Src/adc.c ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  29:cube/Src/adc.c ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  30:cube/Src/adc.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  31:cube/Src/adc.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  32:cube/Src/adc.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  33:cube/Src/adc.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ARM GAS  /tmp/cciVzhHE.s 			page 2
+
+
+  34:cube/Src/adc.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  35:cube/Src/adc.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  36:cube/Src/adc.c ****   *
+  37:cube/Src/adc.c ****   ******************************************************************************
+  38:cube/Src/adc.c ****   */
+  39:cube/Src/adc.c **** 
+  40:cube/Src/adc.c **** /* Includes ------------------------------------------------------------------*/
+  41:cube/Src/adc.c **** #include "adc.h"
+  42:cube/Src/adc.c **** 
+  43:cube/Src/adc.c **** #include "gpio.h"
+  44:cube/Src/adc.c **** #include "dma.h"
+  45:cube/Src/adc.c **** 
+  46:cube/Src/adc.c **** /* USER CODE BEGIN 0 */
+  47:cube/Src/adc.c **** 
+  48:cube/Src/adc.c **** /* USER CODE END 0 */
+  49:cube/Src/adc.c **** 
+  50:cube/Src/adc.c **** ADC_HandleTypeDef hadc;
+  51:cube/Src/adc.c **** DMA_HandleTypeDef hdma_adc;
+  52:cube/Src/adc.c **** 
+  53:cube/Src/adc.c **** /* ADC init function */
+  54:cube/Src/adc.c **** void MX_ADC_Init(void)
+  55:cube/Src/adc.c **** {
+  26              		.loc 1 55 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 16
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30 0000 00B5     		push	{lr}
+  31              		.cfi_def_cfa_offset 4
+  32              		.cfi_offset 14, -4
+  33 0002 85B0     		sub	sp, sp, #20
+  34              		.cfi_def_cfa_offset 24
+  56:cube/Src/adc.c ****   ADC_ChannelConfTypeDef sConfig;
+  57:cube/Src/adc.c **** 
+  58:cube/Src/adc.c ****     /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of co
+  59:cube/Src/adc.c ****     */
+  60:cube/Src/adc.c ****   hadc.Instance = ADC1;
+  35              		.loc 1 60 0
+  36 0004 1948     		ldr	r0, .L6
+  37 0006 1A4B     		ldr	r3, .L6+4
+  38 0008 0360     		str	r3, [r0]
+  61:cube/Src/adc.c ****   hadc.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  39              		.loc 1 61 0
+  40 000a 8023     		movs	r3, #128
+  41 000c 1B06     		lsls	r3, r3, #24
+  42 000e 4360     		str	r3, [r0, #4]
+  62:cube/Src/adc.c ****   hadc.Init.Resolution = ADC_RESOLUTION_12B;
+  43              		.loc 1 62 0
+  44 0010 0023     		movs	r3, #0
+  45 0012 8360     		str	r3, [r0, #8]
+  63:cube/Src/adc.c ****   hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  46              		.loc 1 63 0
+  47 0014 C360     		str	r3, [r0, #12]
+  64:cube/Src/adc.c ****   hadc.Init.ScanConvMode = ADC_SCAN_DIRECTION_FORWARD;
+  48              		.loc 1 64 0
+  49 0016 0122     		movs	r2, #1
+  50 0018 0261     		str	r2, [r0, #16]
+  65:cube/Src/adc.c ****   hadc.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+ARM GAS  /tmp/cciVzhHE.s 			page 3
+
+
+  51              		.loc 1 65 0
+  52 001a 0421     		movs	r1, #4
+  53 001c 4161     		str	r1, [r0, #20]
+  66:cube/Src/adc.c ****   hadc.Init.LowPowerAutoWait = DISABLE;
+  54              		.loc 1 66 0
+  55 001e 8361     		str	r3, [r0, #24]
+  67:cube/Src/adc.c ****   hadc.Init.LowPowerAutoPowerOff = DISABLE;
+  56              		.loc 1 67 0
+  57 0020 C361     		str	r3, [r0, #28]
+  68:cube/Src/adc.c ****   hadc.Init.ContinuousConvMode = ENABLE;
+  58              		.loc 1 68 0
+  59 0022 0262     		str	r2, [r0, #32]
+  69:cube/Src/adc.c ****   hadc.Init.DiscontinuousConvMode = DISABLE;
+  60              		.loc 1 69 0
+  61 0024 4362     		str	r3, [r0, #36]
+  70:cube/Src/adc.c ****   hadc.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  62              		.loc 1 70 0
+  63 0026 C221     		movs	r1, #194
+  64 0028 FF31     		adds	r1, r1, #255
+  65 002a 8162     		str	r1, [r0, #40]
+  71:cube/Src/adc.c ****   hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  66              		.loc 1 71 0
+  67 002c C362     		str	r3, [r0, #44]
+  72:cube/Src/adc.c ****   hadc.Init.DMAContinuousRequests = ENABLE;
+  68              		.loc 1 72 0
+  69 002e 0263     		str	r2, [r0, #48]
+  73:cube/Src/adc.c ****   hadc.Init.Overrun = ADC_OVR_DATA_OVERWRITTEN;
+  70              		.loc 1 73 0
+  71 0030 4363     		str	r3, [r0, #52]
+  74:cube/Src/adc.c ****   if (HAL_ADC_Init(&hadc) != HAL_OK)
+  72              		.loc 1 74 0
+  73 0032 FFF7FEFF 		bl	HAL_ADC_Init
+  74              	.LVL0:
+  75 0036 0028     		cmp	r0, #0
+  76 0038 0ED1     		bne	.L4
+  77              	.L2:
+  75:cube/Src/adc.c ****   {
+  76:cube/Src/adc.c ****     _Error_Handler(__FILE__, __LINE__);
+  77:cube/Src/adc.c ****   }
+  78:cube/Src/adc.c **** 
+  79:cube/Src/adc.c ****     /**Configure for the selected ADC regular channel to be converted. 
+  80:cube/Src/adc.c ****     */
+  81:cube/Src/adc.c ****   sConfig.Channel = ADC_CHANNEL_0;
+  78              		.loc 1 81 0
+  79 003a 0023     		movs	r3, #0
+  80 003c 0193     		str	r3, [sp, #4]
+  82:cube/Src/adc.c ****   sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
+  81              		.loc 1 82 0
+  82 003e 8023     		movs	r3, #128
+  83 0040 5B01     		lsls	r3, r3, #5
+  84 0042 0293     		str	r3, [sp, #8]
+  83:cube/Src/adc.c ****   sConfig.SamplingTime = ADC_SAMPLETIME_13CYCLES_5;
+  85              		.loc 1 83 0
+  86 0044 0223     		movs	r3, #2
+  87 0046 0393     		str	r3, [sp, #12]
+  84:cube/Src/adc.c ****   if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  88              		.loc 1 84 0
+ARM GAS  /tmp/cciVzhHE.s 			page 4
+
+
+  89 0048 01A9     		add	r1, sp, #4
+  90 004a 0848     		ldr	r0, .L6
+  91 004c FFF7FEFF 		bl	HAL_ADC_ConfigChannel
+  92              	.LVL1:
+  93 0050 0028     		cmp	r0, #0
+  94 0052 06D1     		bne	.L5
+  95              	.L1:
+  85:cube/Src/adc.c ****   {
+  86:cube/Src/adc.c ****     _Error_Handler(__FILE__, __LINE__);
+  87:cube/Src/adc.c ****   }
+  88:cube/Src/adc.c **** 
+  89:cube/Src/adc.c **** }
+  96              		.loc 1 89 0
+  97 0054 05B0     		add	sp, sp, #20
+  98              		@ sp needed
+  99 0056 00BD     		pop	{pc}
+ 100              	.L4:
+  76:cube/Src/adc.c ****   }
+ 101              		.loc 1 76 0
+ 102 0058 4C21     		movs	r1, #76
+ 103 005a 0648     		ldr	r0, .L6+8
+ 104 005c FFF7FEFF 		bl	_Error_Handler
+ 105              	.LVL2:
+ 106 0060 EBE7     		b	.L2
+ 107              	.L5:
+  86:cube/Src/adc.c ****   }
+ 108              		.loc 1 86 0
+ 109 0062 5621     		movs	r1, #86
+ 110 0064 0348     		ldr	r0, .L6+8
+ 111 0066 FFF7FEFF 		bl	_Error_Handler
+ 112              	.LVL3:
+ 113              		.loc 1 89 0
+ 114 006a F3E7     		b	.L1
+ 115              	.L7:
+ 116              		.align	2
+ 117              	.L6:
+ 118 006c 00000000 		.word	hadc
+ 119 0070 00240140 		.word	1073816576
+ 120 0074 00000000 		.word	.LC1
+ 121              		.cfi_endproc
+ 122              	.LFE37:
+ 124              		.section	.text.HAL_ADC_MspInit,"ax",%progbits
+ 125              		.align	1
+ 126              		.global	HAL_ADC_MspInit
+ 127              		.syntax unified
+ 128              		.code	16
+ 129              		.thumb_func
+ 130              		.fpu softvfp
+ 132              	HAL_ADC_MspInit:
+ 133              	.LFB38:
+  90:cube/Src/adc.c **** 
+  91:cube/Src/adc.c **** void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
+  92:cube/Src/adc.c **** {
+ 134              		.loc 1 92 0
+ 135              		.cfi_startproc
+ 136              		@ args = 0, pretend = 0, frame = 24
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/cciVzhHE.s 			page 5
+
+
+ 138              	.LVL4:
+ 139 0000 70B5     		push	{r4, r5, r6, lr}
+ 140              		.cfi_def_cfa_offset 16
+ 141              		.cfi_offset 4, -16
+ 142              		.cfi_offset 5, -12
+ 143              		.cfi_offset 6, -8
+ 144              		.cfi_offset 14, -4
+ 145 0002 86B0     		sub	sp, sp, #24
+ 146              		.cfi_def_cfa_offset 40
+ 147 0004 0400     		movs	r4, r0
+  93:cube/Src/adc.c **** 
+  94:cube/Src/adc.c ****   GPIO_InitTypeDef GPIO_InitStruct;
+  95:cube/Src/adc.c ****   if(adcHandle->Instance==ADC1)
+ 148              		.loc 1 95 0
+ 149 0006 204B     		ldr	r3, .L13
+ 150 0008 0268     		ldr	r2, [r0]
+ 151 000a 9A42     		cmp	r2, r3
+ 152 000c 01D0     		beq	.L11
+ 153              	.LVL5:
+ 154              	.L8:
+  96:cube/Src/adc.c ****   {
+  97:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspInit 0 */
+  98:cube/Src/adc.c **** 
+  99:cube/Src/adc.c ****   /* USER CODE END ADC1_MspInit 0 */
+ 100:cube/Src/adc.c ****     /* ADC1 clock enable */
+ 101:cube/Src/adc.c ****     __HAL_RCC_ADC1_CLK_ENABLE();
+ 102:cube/Src/adc.c ****   
+ 103:cube/Src/adc.c ****     /**ADC GPIO Configuration    
+ 104:cube/Src/adc.c ****     PA0     ------> ADC_IN0 
+ 105:cube/Src/adc.c ****     */
+ 106:cube/Src/adc.c ****     GPIO_InitStruct.Pin = GPIO_PIN_0;
+ 107:cube/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 108:cube/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 109:cube/Src/adc.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 110:cube/Src/adc.c **** 
+ 111:cube/Src/adc.c ****     /* ADC1 DMA Init */
+ 112:cube/Src/adc.c ****     /* ADC Init */
+ 113:cube/Src/adc.c ****     hdma_adc.Instance = DMA1_Channel1;
+ 114:cube/Src/adc.c ****     hdma_adc.Init.Direction = DMA_PERIPH_TO_MEMORY;
+ 115:cube/Src/adc.c ****     hdma_adc.Init.PeriphInc = DMA_PINC_DISABLE;
+ 116:cube/Src/adc.c ****     hdma_adc.Init.MemInc = DMA_MINC_ENABLE;
+ 117:cube/Src/adc.c ****     hdma_adc.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
+ 118:cube/Src/adc.c ****     hdma_adc.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;
+ 119:cube/Src/adc.c ****     hdma_adc.Init.Mode = DMA_CIRCULAR;
+ 120:cube/Src/adc.c ****     hdma_adc.Init.Priority = DMA_PRIORITY_HIGH;
+ 121:cube/Src/adc.c ****     if (HAL_DMA_Init(&hdma_adc) != HAL_OK)
+ 122:cube/Src/adc.c ****     {
+ 123:cube/Src/adc.c ****       _Error_Handler(__FILE__, __LINE__);
+ 124:cube/Src/adc.c ****     }
+ 125:cube/Src/adc.c **** 
+ 126:cube/Src/adc.c ****     __HAL_LINKDMA(adcHandle,DMA_Handle,hdma_adc);
+ 127:cube/Src/adc.c **** 
+ 128:cube/Src/adc.c ****     /* ADC1 interrupt Init */
+ 129:cube/Src/adc.c ****     HAL_NVIC_SetPriority(ADC1_COMP_IRQn, 0, 0);
+ 130:cube/Src/adc.c ****     HAL_NVIC_EnableIRQ(ADC1_COMP_IRQn);
+ 131:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspInit 1 */
+ 132:cube/Src/adc.c **** 
+ARM GAS  /tmp/cciVzhHE.s 			page 6
+
+
+ 133:cube/Src/adc.c ****   /* USER CODE END ADC1_MspInit 1 */
+ 134:cube/Src/adc.c ****   }
+ 135:cube/Src/adc.c **** }
+ 155              		.loc 1 135 0
+ 156 000e 06B0     		add	sp, sp, #24
+ 157              		@ sp needed
+ 158              	.LVL6:
+ 159 0010 70BD     		pop	{r4, r5, r6, pc}
+ 160              	.LVL7:
+ 161              	.L11:
+ 162              	.LBB2:
+ 101:cube/Src/adc.c ****   
+ 163              		.loc 1 101 0
+ 164 0012 1E4B     		ldr	r3, .L13+4
+ 165 0014 9A69     		ldr	r2, [r3, #24]
+ 166 0016 8025     		movs	r5, #128
+ 167 0018 AD00     		lsls	r5, r5, #2
+ 168 001a 2A43     		orrs	r2, r5
+ 169 001c 9A61     		str	r2, [r3, #24]
+ 170 001e 9B69     		ldr	r3, [r3, #24]
+ 171 0020 2B40     		ands	r3, r5
+ 172 0022 0093     		str	r3, [sp]
+ 173 0024 009B     		ldr	r3, [sp]
+ 174              	.LBE2:
+ 106:cube/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 175              		.loc 1 106 0
+ 176 0026 0123     		movs	r3, #1
+ 177 0028 0193     		str	r3, [sp, #4]
+ 107:cube/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 178              		.loc 1 107 0
+ 179 002a 0233     		adds	r3, r3, #2
+ 180 002c 0293     		str	r3, [sp, #8]
+ 108:cube/Src/adc.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 181              		.loc 1 108 0
+ 182 002e 0026     		movs	r6, #0
+ 183 0030 0396     		str	r6, [sp, #12]
+ 109:cube/Src/adc.c **** 
+ 184              		.loc 1 109 0
+ 185 0032 9020     		movs	r0, #144
+ 186              	.LVL8:
+ 187 0034 01A9     		add	r1, sp, #4
+ 188 0036 C005     		lsls	r0, r0, #23
+ 189 0038 FFF7FEFF 		bl	HAL_GPIO_Init
+ 190              	.LVL9:
+ 113:cube/Src/adc.c ****     hdma_adc.Init.Direction = DMA_PERIPH_TO_MEMORY;
+ 191              		.loc 1 113 0
+ 192 003c 1448     		ldr	r0, .L13+8
+ 193 003e 154B     		ldr	r3, .L13+12
+ 194 0040 0360     		str	r3, [r0]
+ 114:cube/Src/adc.c ****     hdma_adc.Init.PeriphInc = DMA_PINC_DISABLE;
+ 195              		.loc 1 114 0
+ 196 0042 4660     		str	r6, [r0, #4]
+ 115:cube/Src/adc.c ****     hdma_adc.Init.MemInc = DMA_MINC_ENABLE;
+ 197              		.loc 1 115 0
+ 198 0044 8660     		str	r6, [r0, #8]
+ 116:cube/Src/adc.c ****     hdma_adc.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
+ 199              		.loc 1 116 0
+ARM GAS  /tmp/cciVzhHE.s 			page 7
+
+
+ 200 0046 8023     		movs	r3, #128
+ 201 0048 C360     		str	r3, [r0, #12]
+ 117:cube/Src/adc.c ****     hdma_adc.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;
+ 202              		.loc 1 117 0
+ 203 004a 0561     		str	r5, [r0, #16]
+ 118:cube/Src/adc.c ****     hdma_adc.Init.Mode = DMA_CIRCULAR;
+ 204              		.loc 1 118 0
+ 205 004c 8023     		movs	r3, #128
+ 206 004e 1B01     		lsls	r3, r3, #4
+ 207 0050 4361     		str	r3, [r0, #20]
+ 119:cube/Src/adc.c ****     hdma_adc.Init.Priority = DMA_PRIORITY_HIGH;
+ 208              		.loc 1 119 0
+ 209 0052 2023     		movs	r3, #32
+ 210 0054 8361     		str	r3, [r0, #24]
+ 120:cube/Src/adc.c ****     if (HAL_DMA_Init(&hdma_adc) != HAL_OK)
+ 211              		.loc 1 120 0
+ 212 0056 8023     		movs	r3, #128
+ 213 0058 9B01     		lsls	r3, r3, #6
+ 214 005a C361     		str	r3, [r0, #28]
+ 121:cube/Src/adc.c ****     {
+ 215              		.loc 1 121 0
+ 216 005c FFF7FEFF 		bl	HAL_DMA_Init
+ 217              	.LVL10:
+ 218 0060 0028     		cmp	r0, #0
+ 219 0062 0BD1     		bne	.L12
+ 220              	.L10:
+ 126:cube/Src/adc.c **** 
+ 221              		.loc 1 126 0
+ 222 0064 0A4B     		ldr	r3, .L13+8
+ 223 0066 E363     		str	r3, [r4, #60]
+ 224 0068 5C62     		str	r4, [r3, #36]
+ 129:cube/Src/adc.c ****     HAL_NVIC_EnableIRQ(ADC1_COMP_IRQn);
+ 225              		.loc 1 129 0
+ 226 006a 0022     		movs	r2, #0
+ 227 006c 0021     		movs	r1, #0
+ 228 006e 0C20     		movs	r0, #12
+ 229 0070 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 230              	.LVL11:
+ 130:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspInit 1 */
+ 231              		.loc 1 130 0
+ 232 0074 0C20     		movs	r0, #12
+ 233 0076 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 234              	.LVL12:
+ 235              		.loc 1 135 0
+ 236 007a C8E7     		b	.L8
+ 237              	.L12:
+ 123:cube/Src/adc.c ****     }
+ 238              		.loc 1 123 0
+ 239 007c 7B21     		movs	r1, #123
+ 240 007e 0648     		ldr	r0, .L13+16
+ 241 0080 FFF7FEFF 		bl	_Error_Handler
+ 242              	.LVL13:
+ 243 0084 EEE7     		b	.L10
+ 244              	.L14:
+ 245 0086 C046     		.align	2
+ 246              	.L13:
+ 247 0088 00240140 		.word	1073816576
+ARM GAS  /tmp/cciVzhHE.s 			page 8
+
+
+ 248 008c 00100240 		.word	1073876992
+ 249 0090 00000000 		.word	hdma_adc
+ 250 0094 08000240 		.word	1073872904
+ 251 0098 00000000 		.word	.LC1
+ 252              		.cfi_endproc
+ 253              	.LFE38:
+ 255              		.section	.text.HAL_ADC_MspDeInit,"ax",%progbits
+ 256              		.align	1
+ 257              		.global	HAL_ADC_MspDeInit
+ 258              		.syntax unified
+ 259              		.code	16
+ 260              		.thumb_func
+ 261              		.fpu softvfp
+ 263              	HAL_ADC_MspDeInit:
+ 264              	.LFB39:
+ 136:cube/Src/adc.c **** 
+ 137:cube/Src/adc.c **** void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
+ 138:cube/Src/adc.c **** {
+ 265              		.loc 1 138 0
+ 266              		.cfi_startproc
+ 267              		@ args = 0, pretend = 0, frame = 0
+ 268              		@ frame_needed = 0, uses_anonymous_args = 0
+ 269              	.LVL14:
+ 270 0000 10B5     		push	{r4, lr}
+ 271              		.cfi_def_cfa_offset 8
+ 272              		.cfi_offset 4, -8
+ 273              		.cfi_offset 14, -4
+ 274 0002 0400     		movs	r4, r0
+ 139:cube/Src/adc.c **** 
+ 140:cube/Src/adc.c ****   if(adcHandle->Instance==ADC1)
+ 275              		.loc 1 140 0
+ 276 0004 0A4B     		ldr	r3, .L18
+ 277 0006 0268     		ldr	r2, [r0]
+ 278 0008 9A42     		cmp	r2, r3
+ 279 000a 00D0     		beq	.L17
+ 280              	.LVL15:
+ 281              	.L15:
+ 141:cube/Src/adc.c ****   {
+ 142:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspDeInit 0 */
+ 143:cube/Src/adc.c **** 
+ 144:cube/Src/adc.c ****   /* USER CODE END ADC1_MspDeInit 0 */
+ 145:cube/Src/adc.c ****     /* Peripheral clock disable */
+ 146:cube/Src/adc.c ****     __HAL_RCC_ADC1_CLK_DISABLE();
+ 147:cube/Src/adc.c ****   
+ 148:cube/Src/adc.c ****     /**ADC GPIO Configuration    
+ 149:cube/Src/adc.c ****     PA0     ------> ADC_IN0 
+ 150:cube/Src/adc.c ****     */
+ 151:cube/Src/adc.c ****     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_0);
+ 152:cube/Src/adc.c **** 
+ 153:cube/Src/adc.c ****     /* ADC1 DMA DeInit */
+ 154:cube/Src/adc.c ****     HAL_DMA_DeInit(adcHandle->DMA_Handle);
+ 155:cube/Src/adc.c **** 
+ 156:cube/Src/adc.c ****     /* ADC1 interrupt Deinit */
+ 157:cube/Src/adc.c ****     HAL_NVIC_DisableIRQ(ADC1_COMP_IRQn);
+ 158:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspDeInit 1 */
+ 159:cube/Src/adc.c **** 
+ 160:cube/Src/adc.c ****   /* USER CODE END ADC1_MspDeInit 1 */
+ARM GAS  /tmp/cciVzhHE.s 			page 9
+
+
+ 161:cube/Src/adc.c ****   }
+ 162:cube/Src/adc.c **** } 
+ 282              		.loc 1 162 0
+ 283              		@ sp needed
+ 284              	.LVL16:
+ 285 000c 10BD     		pop	{r4, pc}
+ 286              	.LVL17:
+ 287              	.L17:
+ 146:cube/Src/adc.c ****   
+ 288              		.loc 1 146 0
+ 289 000e 094A     		ldr	r2, .L18+4
+ 290 0010 9369     		ldr	r3, [r2, #24]
+ 291 0012 0949     		ldr	r1, .L18+8
+ 292 0014 0B40     		ands	r3, r1
+ 293 0016 9361     		str	r3, [r2, #24]
+ 151:cube/Src/adc.c **** 
+ 294              		.loc 1 151 0
+ 295 0018 9020     		movs	r0, #144
+ 296              	.LVL18:
+ 297 001a 0121     		movs	r1, #1
+ 298 001c C005     		lsls	r0, r0, #23
+ 299 001e FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 300              	.LVL19:
+ 154:cube/Src/adc.c **** 
+ 301              		.loc 1 154 0
+ 302 0022 E06B     		ldr	r0, [r4, #60]
+ 303 0024 FFF7FEFF 		bl	HAL_DMA_DeInit
+ 304              	.LVL20:
+ 157:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspDeInit 1 */
+ 305              		.loc 1 157 0
+ 306 0028 0C20     		movs	r0, #12
+ 307 002a FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 308              	.LVL21:
+ 309              		.loc 1 162 0
+ 310 002e EDE7     		b	.L15
+ 311              	.L19:
+ 312              		.align	2
+ 313              	.L18:
+ 314 0030 00240140 		.word	1073816576
+ 315 0034 00100240 		.word	1073876992
+ 316 0038 FFFDFFFF 		.word	-513
+ 317              		.cfi_endproc
+ 318              	.LFE39:
+ 320              		.comm	hdma_adc,68,4
+ 321              		.comm	hadc,76,4
+ 322              		.section	.rodata.MX_ADC_Init.str1.4,"aMS",%progbits,1
+ 323              		.align	2
+ 324              	.LC1:
+ 325 0000 63756265 		.ascii	"cube/Src/adc.c\000"
+ 325      2F537263 
+ 325      2F616463 
+ 325      2E6300
+ 326              		.text
+ 327              	.Letext0:
+ 328              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+ 329              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
+ 330              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ARM GAS  /tmp/cciVzhHE.s 			page 10
+
+
+ 331              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 332              		.file 6 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h"
+ 333              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+ 334              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+ 335              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+ 336              		.file 10 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/re
+ 337              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 338              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
+ 339              		.file 13 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
+ 340              		.file 14 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_adc.h"
+ 341              		.file 15 "cube/Inc/adc.h"
+ 342              		.file 16 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
+ 343              		.file 17 "cube/Inc/dma.h"
+ARM GAS  /tmp/cciVzhHE.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 adc.c
+     /tmp/cciVzhHE.s:16     .text.MX_ADC_Init:0000000000000000 $t
+     /tmp/cciVzhHE.s:23     .text.MX_ADC_Init:0000000000000000 MX_ADC_Init
+     /tmp/cciVzhHE.s:118    .text.MX_ADC_Init:000000000000006c $d
+                            *COM*:000000000000004c hadc
+     /tmp/cciVzhHE.s:125    .text.HAL_ADC_MspInit:0000000000000000 $t
+     /tmp/cciVzhHE.s:132    .text.HAL_ADC_MspInit:0000000000000000 HAL_ADC_MspInit
+     /tmp/cciVzhHE.s:247    .text.HAL_ADC_MspInit:0000000000000088 $d
+                            *COM*:0000000000000044 hdma_adc
+     /tmp/cciVzhHE.s:256    .text.HAL_ADC_MspDeInit:0000000000000000 $t
+     /tmp/cciVzhHE.s:263    .text.HAL_ADC_MspDeInit:0000000000000000 HAL_ADC_MspDeInit
+     /tmp/cciVzhHE.s:314    .text.HAL_ADC_MspDeInit:0000000000000030 $d
+     /tmp/cciVzhHE.s:323    .rodata.MX_ADC_Init.str1.4:0000000000000000 $d
+                           .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
+                           .group:0000000000000000 wm4.main.h.42.3e9602f258f21c216c24749e16771da2
+                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
+                           .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
+                           .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
+                           .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
+                           .group:0000000000000000 wm4.features.h.33.d0b7f3cd6ee95f610104014bb3ed522a
+                           .group:0000000000000000 wm4._default_types.h.15.247e5cd201eca3442cbf5404108c4935
+                           .group:0000000000000000 wm4._intsup.h.10.cce27fed8484c08a33f522034c30d2b5
+                           .group:0000000000000000 wm4._stdint.h.10.c24fa3af3bc1706662bb5593a907e841
+                           .group:0000000000000000 wm4.stdint.h.23.d53047a68f4a85177f80b422d52785ed
+                           .group:0000000000000000 wm4.core_cm0.h.74.a7f5ed9ff199b3163f5ed99892efe60d
+                           .group:0000000000000000 wm4.cmsis_gcc.h.36.5bb14fd68ce7855540fcfe2d9305ae16
+                           .group:0000000000000000 wm4.core_cm0.h.175.2353140684a11cc8267b4125ac92735e
+                           .group:0000000000000000 wm4.stm32f072xb.h.653.664388dc5ef2a697008be7ff13986fc5
+                           .group:0000000000000000 wm4.stm32f0xx.h.186.8a2f1abf0fccd74c76b01fef06350694
+                           .group:0000000000000000 wm4.newlib.h.8.f6e543eac3f2f65163ba2ffe3b04987b
+                           .group:0000000000000000 wm4.ieeefp.h.77.220d9cccac42cd58761758bee2df4ce6
+                           .group:0000000000000000 wm4.config.h.220.6cac6a9685cfce5e83c17784171638d9
+                           .group:0000000000000000 wm4._ansi.h.31.de524f58584151836e90d8620a16f8e8
+                           .group:0000000000000000 wm4.stdio.h.31.7c0e28c411445f3f9c5b11accf882760
+                           .group:0000000000000000 wm4.stddef.h.187.2ff233552538c6ff9b8575ca8ea52cb3
+                           .group:0000000000000000 wm4.cdefs.h.47.0bcdf94cb40e176393dd1404056825b4
+                           .group:0000000000000000 wm4.stddef.h.39.ec95e8feac892e292b69dc7ae75b0d64
+                           .group:0000000000000000 wm4.stdarg.h.34.3a23a216c0c293b3d2ea2e89281481e6
+                           .group:0000000000000000 wm4.lock.h.2.1461d1fff82dffe8bfddc23307f6484f
+                           .group:0000000000000000 wm4._types.h.125.5cf8a495f1f7ef36777ad868a1e32068
+                           .group:0000000000000000 wm4.stddef.h.161.5349cb105733e8777bfb0cf53c4e3f34
+                           .group:0000000000000000 wm4._types.h.184.03611d4f6b5bec9997bcf4279eceba07
+                           .group:0000000000000000 wm4.reent.h.17.90c2574d4acdcfce933db5cb09ff35fe
+                           .group:0000000000000000 wm4.types.h.40.e8c16e7ec36ba55f133d0616070e25fc
+                           .group:0000000000000000 wm4.types.h.114.fb65732f4f5f288a036a25898de2c91f
+                           .group:0000000000000000 wm4.stdio.h.2.4aa87247282eca6c8f36f9de33d8df1a
+                           .group:0000000000000000 wm4.stdio.h.81.2a55589bfa3ee24eeb84e3c79458e4a9
+                           .group:0000000000000000 wm4.stm32f0xx_hal_def.h.76.81362c22f1bfa407bb20bdc5ef2fe817
+                           .group:0000000000000000 wm4.stm32f0xx_hal_rcc.h.64.1680b96367ed05251327e73e2ef7e0a0
+                           .group:0000000000000000 wm4.stm32f0xx_hal_rcc_ex.h.38.fed157297eb0e49fa475a8f4d962b1a1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_gpio.h.38.5de46a121e30d1d136216266f57becb9
+                           .group:0000000000000000 wm4.stm32f0xx_hal_gpio_ex.h.38.4ae096506dfd35e4cd1e2bfdbf19c71f
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.38.9bc992aa465d2468bc055502b51063f3
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma_ex.h.38.c2269542e0bcc97944af39289a0a60b8
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.500.3b36a5be41f3e2ac138f4041ccf5cecb
+                           .group:0000000000000000 wm4.stm32f0xx_hal_cortex.h.38.61b1088b7495d338bc65ee2571a0bb95
+ARM GAS  /tmp/cciVzhHE.s 			page 12
+
+
+                           .group:0000000000000000 wm4.stm32f0xx_hal_adc.h.38.e3e4bca0d8b91dc0f73ca672bc0e5aca
+                           .group:0000000000000000 wm4.stm32f0xx_hal_adc_ex.h.38.79c684f1976d63630feab98f4d82be4a
+                           .group:0000000000000000 wm4.stm32f0xx_hal_flash.h.38.752a2d52b6ea91b900355f4ecd0538c0
+                           .group:0000000000000000 wm4.stm32f0xx_hal_flash_ex.h.38.8097982a0077322c9b7a892e64a756d8
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.38.387f38a4bc9cbea958e7081da9f60815
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c_ex.h.38.9a4523b2ddbaaa2727287ccab47d88d1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
+                           .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
+                           .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
+                           .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
+
+UNDEFINED SYMBOLS
+HAL_ADC_Init
+HAL_ADC_ConfigChannel
+_Error_Handler
+HAL_GPIO_Init
+HAL_DMA_Init
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ
+HAL_GPIO_DeInit
+HAL_DMA_DeInit
+HAL_NVIC_DisableIRQ

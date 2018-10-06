@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccYc7Zi7.s 			page 1
+ARM GAS  /tmp/ccDZEyLk.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccYc7Zi7.s 			page 1
   31:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****           (++) HAL_I2CEx_EnableFastModePlus()
   32:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****           (++) HAL_I2CEx_DisableFastModePlus()
   33:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   @endverbatim
-ARM GAS  /tmp/ccYc7Zi7.s 			page 2
+ARM GAS  /tmp/ccDZEyLk.s 			page 2
 
 
   34:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   ******************************************************************************
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccYc7Zi7.s 			page 1
   88:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c **** 
   89:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c **** /** @defgroup I2CEx_Exported_Functions_Group1 Extended features functions
   90:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   * @brief    Extended features functions
-ARM GAS  /tmp/ccYc7Zi7.s 			page 3
+ARM GAS  /tmp/ccDZEyLk.s 			page 3
 
 
   91:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****  *
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccYc7Zi7.s 			page 1
   50 0014 0122     		movs	r2, #1
   51 0016 0255     		strb	r2, [r0, r4]
  121:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c **** 
-ARM GAS  /tmp/ccYc7Zi7.s 			page 4
+ARM GAS  /tmp/ccDZEyLk.s 			page 4
 
 
  122:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****     hi2c->State = HAL_I2C_STATE_BUSY;
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccYc7Zi7.s 			page 1
   87 004a 00E0     		b	.L2
   88              	.LVL3:
   89              	.L3:
-ARM GAS  /tmp/ccYc7Zi7.s 			page 5
+ARM GAS  /tmp/ccDZEyLk.s 			page 5
 
 
  141:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   }
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccYc7Zi7.s 			page 1
  129              		.cfi_offset 6, -12
  130              		.cfi_offset 7, -8
  131              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccYc7Zi7.s 			page 6
+ARM GAS  /tmp/ccDZEyLk.s 			page 6
 
 
  132              	.LVL8:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccYc7Zi7.s 			page 1
  179:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****     /* Set I2Cx DNF coefficient */
  180:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****     tmpreg |= DigitalFilter << 8U;
  164              		.loc 1 180 0 discriminator 2
-ARM GAS  /tmp/ccYc7Zi7.s 			page 7
+ARM GAS  /tmp/ccDZEyLk.s 			page 7
 
 
  165 002e 0902     		lsls	r1, r1, #8
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccYc7Zi7.s 			page 1
  200 004c 0220     		movs	r0, #2
  201              	.LVL19:
  202 004e FCE7     		b	.L8
-ARM GAS  /tmp/ccYc7Zi7.s 			page 8
+ARM GAS  /tmp/ccDZEyLk.s 			page 8
 
 
  203              	.L12:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccYc7Zi7.s 			page 1
  242 0012 4021     		movs	r1, #64
  243 0014 0122     		movs	r2, #1
  244 0016 4254     		strb	r2, [r0, r1]
-ARM GAS  /tmp/ccYc7Zi7.s 			page 9
+ARM GAS  /tmp/ccDZEyLk.s 			page 9
 
 
  216:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c **** 
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccYc7Zi7.s 			page 1
  278              		.loc 1 236 0
  279 0046 0220     		movs	r0, #2
  280              	.LVL23:
-ARM GAS  /tmp/ccYc7Zi7.s 			page 10
+ARM GAS  /tmp/ccDZEyLk.s 			page 10
 
 
  281              	.L14:
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccYc7Zi7.s 			page 1
  253:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****     /* Process Locked */
  254:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****     __HAL_LOCK(hi2c);
  320              		.loc 1 254 0
-ARM GAS  /tmp/ccYc7Zi7.s 			page 11
+ARM GAS  /tmp/ccDZEyLk.s 			page 11
 
 
  321 000a 2033     		adds	r3, r3, #32
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccYc7Zi7.s 			page 1
  358 0042 00E0     		b	.L18
  359              	.LVL28:
  360              	.L19:
-ARM GAS  /tmp/ccYc7Zi7.s 			page 12
+ARM GAS  /tmp/ccDZEyLk.s 			page 12
 
 
  272:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   }
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccYc7Zi7.s 			page 1
  393              		@ args = 0, pretend = 0, frame = 8
  394              		@ frame_needed = 0, uses_anonymous_args = 0
  395              		@ link register save eliminated.
-ARM GAS  /tmp/ccYc7Zi7.s 			page 13
+ARM GAS  /tmp/ccDZEyLk.s 			page 13
 
 
  396              	.LVL32:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccYc7Zi7.s 			page 1
  308:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   *   This parameter can be one of the @ref I2CEx_FastModePlus values
  309:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   * @note  For I2C1, fast mode plus driving capability can be disabled on all selected
  310:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   *        I2C1 pins using I2C_FASTMODEPLUS_I2C1 parameter or independently
-ARM GAS  /tmp/ccYc7Zi7.s 			page 14
+ARM GAS  /tmp/ccDZEyLk.s 			page 14
 
 
  311:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   *        on each one of the following pins PB6, PB7, PB8 and PB9.
@@ -837,45 +837,45 @@ ARM GAS  /tmp/ccYc7Zi7.s 			page 1
  474              	.LFE42:
  476              		.text
  477              	.Letext0:
- 478              		.file 2 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_d
-ARM GAS  /tmp/ccYc7Zi7.s 			page 15
+ 478              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+ARM GAS  /tmp/ccDZEyLk.s 			page 15
 
 
- 479              		.file 3 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdin
+ 479              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
  480              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
  481              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
- 482              		.file 6 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h
- 483              		.file 7 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types
- 484              		.file 8 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/incl
- 485              		.file 9 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.
+ 482              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+ 483              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+ 484              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+ 485              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
  486              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
  487              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
  488              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2c.h"
-ARM GAS  /tmp/ccYc7Zi7.s 			page 16
+ARM GAS  /tmp/ccDZEyLk.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f0xx_hal_i2c_ex.c
-     /tmp/ccYc7Zi7.s:16     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 $t
-     /tmp/ccYc7Zi7.s:23     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 HAL_I2CEx_ConfigAnalogFilter
-     /tmp/ccYc7Zi7.s:106    .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000054 $d
-     /tmp/ccYc7Zi7.s:111    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 $t
-     /tmp/ccYc7Zi7.s:118    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 HAL_I2CEx_ConfigDigitalFilter
-     /tmp/ccYc7Zi7.s:206    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000050 $d
-     /tmp/ccYc7Zi7.s:211    .text.HAL_I2CEx_EnableWakeUp:0000000000000000 $t
-     /tmp/ccYc7Zi7.s:218    .text.HAL_I2CEx_EnableWakeUp:0000000000000000 HAL_I2CEx_EnableWakeUp
-     /tmp/ccYc7Zi7.s:295    .text.HAL_I2CEx_DisableWakeUp:0000000000000000 $t
-     /tmp/ccYc7Zi7.s:302    .text.HAL_I2CEx_DisableWakeUp:0000000000000000 HAL_I2CEx_DisableWakeUp
-     /tmp/ccYc7Zi7.s:377    .text.HAL_I2CEx_DisableWakeUp:000000000000004c $d
-     /tmp/ccYc7Zi7.s:382    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 $t
-     /tmp/ccYc7Zi7.s:389    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 HAL_I2CEx_EnableFastModePlus
-     /tmp/ccYc7Zi7.s:424    .text.HAL_I2CEx_EnableFastModePlus:0000000000000020 $d
-     /tmp/ccYc7Zi7.s:430    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 $t
-     /tmp/ccYc7Zi7.s:437    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 HAL_I2CEx_DisableFastModePlus
-     /tmp/ccYc7Zi7.s:471    .text.HAL_I2CEx_DisableFastModePlus:0000000000000020 $d
+     /tmp/ccDZEyLk.s:16     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 $t
+     /tmp/ccDZEyLk.s:23     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 HAL_I2CEx_ConfigAnalogFilter
+     /tmp/ccDZEyLk.s:106    .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000054 $d
+     /tmp/ccDZEyLk.s:111    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 $t
+     /tmp/ccDZEyLk.s:118    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 HAL_I2CEx_ConfigDigitalFilter
+     /tmp/ccDZEyLk.s:206    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000050 $d
+     /tmp/ccDZEyLk.s:211    .text.HAL_I2CEx_EnableWakeUp:0000000000000000 $t
+     /tmp/ccDZEyLk.s:218    .text.HAL_I2CEx_EnableWakeUp:0000000000000000 HAL_I2CEx_EnableWakeUp
+     /tmp/ccDZEyLk.s:295    .text.HAL_I2CEx_DisableWakeUp:0000000000000000 $t
+     /tmp/ccDZEyLk.s:302    .text.HAL_I2CEx_DisableWakeUp:0000000000000000 HAL_I2CEx_DisableWakeUp
+     /tmp/ccDZEyLk.s:377    .text.HAL_I2CEx_DisableWakeUp:000000000000004c $d
+     /tmp/ccDZEyLk.s:382    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 $t
+     /tmp/ccDZEyLk.s:389    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 HAL_I2CEx_EnableFastModePlus
+     /tmp/ccDZEyLk.s:424    .text.HAL_I2CEx_EnableFastModePlus:0000000000000020 $d
+     /tmp/ccDZEyLk.s:430    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 $t
+     /tmp/ccDZEyLk.s:437    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 HAL_I2CEx_DisableFastModePlus
+     /tmp/ccDZEyLk.s:471    .text.HAL_I2CEx_DisableFastModePlus:0000000000000020 $d
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
                            .group:0000000000000000 wm4.main.h.42.3e9602f258f21c216c24749e16771da2
-                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.106428aa4afcad6bf79baa0a3e608f3f
+                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
                            .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
                            .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
                            .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
@@ -911,7 +911,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_rcc.h.64.1680b96367ed05251327e73e2ef7e0a0
                            .group:0000000000000000 wm4.stm32f0xx_hal_rcc_ex.h.38.fed157297eb0e49fa475a8f4d962b1a1
                            .group:0000000000000000 wm4.stm32f0xx_hal_gpio.h.38.5de46a121e30d1d136216266f57becb9
-ARM GAS  /tmp/ccYc7Zi7.s 			page 17
+ARM GAS  /tmp/ccDZEyLk.s 			page 17
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_gpio_ex.h.38.4ae096506dfd35e4cd1e2bfdbf19c71f
@@ -919,6 +919,8 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma_ex.h.38.c2269542e0bcc97944af39289a0a60b8
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.500.3b36a5be41f3e2ac138f4041ccf5cecb
                            .group:0000000000000000 wm4.stm32f0xx_hal_cortex.h.38.61b1088b7495d338bc65ee2571a0bb95
+                           .group:0000000000000000 wm4.stm32f0xx_hal_adc.h.38.e3e4bca0d8b91dc0f73ca672bc0e5aca
+                           .group:0000000000000000 wm4.stm32f0xx_hal_adc_ex.h.38.79c684f1976d63630feab98f4d82be4a
                            .group:0000000000000000 wm4.stm32f0xx_hal_flash.h.38.752a2d52b6ea91b900355f4ecd0538c0
                            .group:0000000000000000 wm4.stm32f0xx_hal_flash_ex.h.38.8097982a0077322c9b7a892e64a756d8
                            .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.38.387f38a4bc9cbea958e7081da9f60815
@@ -926,6 +928,8 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
+                           .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
+                           .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
                            .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
 
 NO UNDEFINED SYMBOLS

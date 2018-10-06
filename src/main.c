@@ -1,13 +1,6 @@
-/**
- * @file main.c
- *
- * @brief Main function
- */
-
 #include "mcu.h"
-#include "temp_sensors.h"
-#include "adc.h"
-#include "dma.h"
+#include "fans.h"
+#include "leds.h"
 
 /*****************************************
  * Private Constant Definitions
@@ -23,5 +16,6 @@ int main(void) {
     for (;;) {
         led_toggle();
         mcu_sleep(LED_TOGGLE_DELAY_MS);
+
     }
 }

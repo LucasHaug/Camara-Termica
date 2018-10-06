@@ -14,6 +14,7 @@
 #include "adc.h"
 #include "dma.h"
 #include "temp_sensors.h"
+#include "fans.h"
 
 /*****************************************
  * Private Function Prototypes
@@ -35,14 +36,11 @@ void mcu_init(void) {
     MX_GPIO_Init();
 
     temp_sensors_init();
+    fans_init();
 }
 
 void mcu_sleep(uint32_t ms) {
     HAL_Delay(ms);
-}
-
-void led_toggle(void) {
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 }
 
 /*****************************************

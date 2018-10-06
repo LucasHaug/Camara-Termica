@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cclWAlCg.s 			page 1
+ARM GAS  /tmp/cc0vsEQX.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
   31:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
   32:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
   33:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-ARM GAS  /tmp/cclWAlCg.s 			page 2
+ARM GAS  /tmp/cc0vsEQX.s 			page 2
 
 
   34:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
   88:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   * @brief Deinitializes the PWR peripheral registers to their default reset values.
   89:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   * @retval None
   90:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   */
-ARM GAS  /tmp/cclWAlCg.s 			page 3
+ARM GAS  /tmp/cc0vsEQX.s 			page 3
 
 
   91:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c **** void HAL_PWR_DeInit(void)
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
   67              		@ frame_needed = 0, uses_anonymous_args = 0
   68              		@ link register save eliminated.
  106:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   PWR->CR |= (uint32_t)PWR_CR_DBP;
-ARM GAS  /tmp/cclWAlCg.s 			page 4
+ARM GAS  /tmp/cc0vsEQX.s 			page 4
 
 
   69              		.loc 1 106 0
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  112              	.L8:
  113 000c 00700040 		.word	1073770496
  114 0010 FFFEFFFF 		.word	-257
-ARM GAS  /tmp/cclWAlCg.s 			page 5
+ARM GAS  /tmp/cc0vsEQX.s 			page 5
 
 
  115              		.cfi_endproc
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  163:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****               functions with
  164:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****           (++) PWR_SLEEPENTRY_WFI: enter SLEEP mode with WFI instruction
  165:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****           (++) PWR_SLEEPENTRY_WFE: enter SLEEP mode with WFE instruction
-ARM GAS  /tmp/cclWAlCg.s 			page 6
+ARM GAS  /tmp/cc0vsEQX.s 			page 6
 
 
  166:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****      
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  220:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****             configure the RTC to generate the RTC alarm using the HAL_RTC_SetAlarm_IT() function.
  221:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c **** 
  222:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****       (++) To wake up from the Stop mode with an RTC Tamper or time stamp event, it
-ARM GAS  /tmp/cclWAlCg.s 			page 7
+ARM GAS  /tmp/cc0vsEQX.s 			page 7
 
 
  223:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****            is necessary to configure the RTC to detect the tamper or time stamp event using the
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  152              		.global	HAL_PWR_DisableWakeUpPin
  153              		.syntax unified
  154              		.code	16
-ARM GAS  /tmp/cclWAlCg.s 			page 8
+ARM GAS  /tmp/cc0vsEQX.s 			page 8
 
 
  155              		.thumb_func
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  275:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   *           as regulator can't be modified in this mode. Parameter is kept for platform
  276:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   *           compatibility.
  277:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   * @param SLEEPEntry Specifies if SLEEP mode is entered with WFI or WFE instruction.
-ARM GAS  /tmp/cclWAlCg.s 			page 9
+ARM GAS  /tmp/cc0vsEQX.s 			page 9
 
 
  278:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   *           When WFI entry is used, tick interrupt have to be disabled if not desired as 
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
   18:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****      to endorse or promote products derived from this software without
   19:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****      specific prior written permission.
   20:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****    *
-ARM GAS  /tmp/cclWAlCg.s 			page 10
+ARM GAS  /tmp/cc0vsEQX.s 			page 10
 
 
   21:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
   75:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** /**
   76:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Control Register
   77:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the content of the Control Register.
-ARM GAS  /tmp/cclWAlCg.s 			page 11
+ARM GAS  /tmp/cc0vsEQX.s 			page 11
 
 
   78:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Control Register value
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  132:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****     \return               xPSR Register value
  133:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  134:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_xPSR(void)
-ARM GAS  /tmp/cclWAlCg.s 			page 12
+ARM GAS  /tmp/cc0vsEQX.s 			page 12
 
 
  135:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  189:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** {
  190:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR msp, %0\n" : : "r" (topOfMainStack) : "sp");
  191:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  /tmp/cclWAlCg.s 			page 13
+ARM GAS  /tmp/cc0vsEQX.s 			page 13
 
 
  192:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  246:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Base Priority register value
  247:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  248:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_BASEPRI(void)
-ARM GAS  /tmp/cclWAlCg.s 			page 14
+ARM GAS  /tmp/cc0vsEQX.s 			page 14
 
 
  249:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  303:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** 
  304:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** #endif /* (__CORTEX_M >= 0x03U) */
  305:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /tmp/cclWAlCg.s 			page 15
+ARM GAS  /tmp/cc0vsEQX.s 			page 15
 
 
  306:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  360:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****  * Otherwise, use general registers, specified by constraint "r" */
  361:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** #if defined (__thumb__) && !defined (__thumb2__)
  362:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_OUT_REG(r) "=l" (r)
-ARM GAS  /tmp/cclWAlCg.s 			page 16
+ARM GAS  /tmp/cc0vsEQX.s 			page 16
 
 
  363:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_USE_REG(r) "l" (r)
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  220              	.LBB23:
  396:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** }
  221              		.loc 2 396 0
-ARM GAS  /tmp/cclWAlCg.s 			page 17
+ARM GAS  /tmp/cc0vsEQX.s 			page 17
 
 
  222              		.syntax divided
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  264              		.section	.text.HAL_PWR_EnterSTOPMode,"ax",%progbits
  265              		.align	1
  266              		.global	HAL_PWR_EnterSTOPMode
-ARM GAS  /tmp/cclWAlCg.s 			page 18
+ARM GAS  /tmp/cc0vsEQX.s 			page 18
 
 
  267              		.syntax unified
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  289 0006 0324     		movs	r4, #3
  290 0008 A343     		bics	r3, r4
  291              	.LVL8:
-ARM GAS  /tmp/cclWAlCg.s 			page 19
+ARM GAS  /tmp/cc0vsEQX.s 			page 19
 
 
  341:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c **** 
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  333              	@ 396 "cube/Drivers/CMSIS/Include/cmsis_gcc.h" 1
  334 0020 20BF     		wfe
  335              	@ 0 "" 2
-ARM GAS  /tmp/cclWAlCg.s 			page 20
+ARM GAS  /tmp/cc0vsEQX.s 			page 20
 
 
  336              		.thumb
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  375              		.global	HAL_PWR_EnterSTANDBYMode
  376              		.syntax unified
  377              		.code	16
-ARM GAS  /tmp/cclWAlCg.s 			page 21
+ARM GAS  /tmp/cc0vsEQX.s 			page 21
 
 
  378              		.thumb_func
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  410              	.LBE36:
  390:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c **** 
  391:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   /* This option is used to ensure that store operations are completed */
-ARM GAS  /tmp/cclWAlCg.s 			page 22
+ARM GAS  /tmp/cc0vsEQX.s 			page 22
 
 
  392:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c **** #if defined ( __CC_ARM)
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  447              		.align	2
  448              	.L32:
  449 000c 00ED00E0 		.word	-536810240
-ARM GAS  /tmp/cclWAlCg.s 			page 23
+ARM GAS  /tmp/cc0vsEQX.s 			page 23
 
 
  450              		.cfi_endproc
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  426:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c **** 
  427:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c **** 
  428:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c **** /**
-ARM GAS  /tmp/cclWAlCg.s 			page 24
+ARM GAS  /tmp/cc0vsEQX.s 			page 24
 
 
  429:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   * @brief Enables CORTEX M4 SEVONPEND bit. 
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  449:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   /* Clear SEVONPEND bit of Cortex System Control Register */
  450:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c ****   CLEAR_BIT(SCB->SCR, ((uint32_t)SCB_SCR_SEVONPEND_Msk));
  530              		.loc 1 450 0
-ARM GAS  /tmp/cclWAlCg.s 			page 25
+ARM GAS  /tmp/cc0vsEQX.s 			page 25
 
 
  531 0000 024A     		ldr	r2, .L41
@@ -1458,59 +1458,59 @@ ARM GAS  /tmp/cclWAlCg.s 			page 1
  544              	.LFE48:
  546              		.text
  547              	.Letext0:
- 548              		.file 3 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_d
- 549              		.file 4 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdin
+ 548              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+ 549              		.file 4 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
  550              		.file 5 "cube/Drivers/CMSIS/Include/core_cm0.h"
  551              		.file 6 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
  552              		.file 7 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
- 553              		.file 8 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h
- 554              		.file 9 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types
- 555              		.file 10 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/inc
- 556              		.file 11 "/home/lhaug/Documents/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent
-ARM GAS  /tmp/cclWAlCg.s 			page 26
+ 553              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+ 554              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+ 555              		.file 10 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/
+ 556              		.file 11 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/re
+ARM GAS  /tmp/cc0vsEQX.s 			page 26
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f0xx_hal_pwr.c
-     /tmp/cclWAlCg.s:16     .text.HAL_PWR_DeInit:0000000000000000 $t
-     /tmp/cclWAlCg.s:23     .text.HAL_PWR_DeInit:0000000000000000 HAL_PWR_DeInit
-     /tmp/cclWAlCg.s:49     .text.HAL_PWR_DeInit:0000000000000018 $d
-     /tmp/cclWAlCg.s:55     .text.HAL_PWR_EnableBkUpAccess:0000000000000000 $t
-     /tmp/cclWAlCg.s:62     .text.HAL_PWR_EnableBkUpAccess:0000000000000000 HAL_PWR_EnableBkUpAccess
-     /tmp/cclWAlCg.s:82     .text.HAL_PWR_EnableBkUpAccess:0000000000000010 $d
-     /tmp/cclWAlCg.s:87     .text.HAL_PWR_DisableBkUpAccess:0000000000000000 $t
-     /tmp/cclWAlCg.s:94     .text.HAL_PWR_DisableBkUpAccess:0000000000000000 HAL_PWR_DisableBkUpAccess
-     /tmp/cclWAlCg.s:113    .text.HAL_PWR_DisableBkUpAccess:000000000000000c $d
-     /tmp/cclWAlCg.s:119    .text.HAL_PWR_EnableWakeUpPin:0000000000000000 $t
-     /tmp/cclWAlCg.s:126    .text.HAL_PWR_EnableWakeUpPin:0000000000000000 HAL_PWR_EnableWakeUpPin
-     /tmp/cclWAlCg.s:146    .text.HAL_PWR_EnableWakeUpPin:000000000000000c $d
-     /tmp/cclWAlCg.s:151    .text.HAL_PWR_DisableWakeUpPin:0000000000000000 $t
-     /tmp/cclWAlCg.s:158    .text.HAL_PWR_DisableWakeUpPin:0000000000000000 HAL_PWR_DisableWakeUpPin
-     /tmp/cclWAlCg.s:177    .text.HAL_PWR_DisableWakeUpPin:000000000000000c $d
-     /tmp/cclWAlCg.s:182    .text.HAL_PWR_EnterSLEEPMode:0000000000000000 $t
-     /tmp/cclWAlCg.s:189    .text.HAL_PWR_EnterSLEEPMode:0000000000000000 HAL_PWR_EnterSLEEPMode
-     /tmp/cclWAlCg.s:258    .text.HAL_PWR_EnterSLEEPMode:000000000000001c $d
-     /tmp/cclWAlCg.s:265    .text.HAL_PWR_EnterSTOPMode:0000000000000000 $t
-     /tmp/cclWAlCg.s:272    .text.HAL_PWR_EnterSTOPMode:0000000000000000 HAL_PWR_EnterSTOPMode
-     /tmp/cclWAlCg.s:366    .text.HAL_PWR_EnterSTOPMode:0000000000000034 $d
-     /tmp/cclWAlCg.s:374    .text.HAL_PWR_EnterSTANDBYMode:0000000000000000 $t
-     /tmp/cclWAlCg.s:381    .text.HAL_PWR_EnterSTANDBYMode:0000000000000000 HAL_PWR_EnterSTANDBYMode
-     /tmp/cclWAlCg.s:417    .text.HAL_PWR_EnterSTANDBYMode:0000000000000018 $d
-     /tmp/cclWAlCg.s:423    .text.HAL_PWR_EnableSleepOnExit:0000000000000000 $t
-     /tmp/cclWAlCg.s:430    .text.HAL_PWR_EnableSleepOnExit:0000000000000000 HAL_PWR_EnableSleepOnExit
-     /tmp/cclWAlCg.s:449    .text.HAL_PWR_EnableSleepOnExit:000000000000000c $d
-     /tmp/cclWAlCg.s:454    .text.HAL_PWR_DisableSleepOnExit:0000000000000000 $t
-     /tmp/cclWAlCg.s:461    .text.HAL_PWR_DisableSleepOnExit:0000000000000000 HAL_PWR_DisableSleepOnExit
-     /tmp/cclWAlCg.s:480    .text.HAL_PWR_DisableSleepOnExit:000000000000000c $d
-     /tmp/cclWAlCg.s:485    .text.HAL_PWR_EnableSEVOnPend:0000000000000000 $t
-     /tmp/cclWAlCg.s:492    .text.HAL_PWR_EnableSEVOnPend:0000000000000000 HAL_PWR_EnableSEVOnPend
-     /tmp/cclWAlCg.s:511    .text.HAL_PWR_EnableSEVOnPend:000000000000000c $d
-     /tmp/cclWAlCg.s:516    .text.HAL_PWR_DisableSEVOnPend:0000000000000000 $t
-     /tmp/cclWAlCg.s:523    .text.HAL_PWR_DisableSEVOnPend:0000000000000000 HAL_PWR_DisableSEVOnPend
-     /tmp/cclWAlCg.s:542    .text.HAL_PWR_DisableSEVOnPend:000000000000000c $d
+     /tmp/cc0vsEQX.s:16     .text.HAL_PWR_DeInit:0000000000000000 $t
+     /tmp/cc0vsEQX.s:23     .text.HAL_PWR_DeInit:0000000000000000 HAL_PWR_DeInit
+     /tmp/cc0vsEQX.s:49     .text.HAL_PWR_DeInit:0000000000000018 $d
+     /tmp/cc0vsEQX.s:55     .text.HAL_PWR_EnableBkUpAccess:0000000000000000 $t
+     /tmp/cc0vsEQX.s:62     .text.HAL_PWR_EnableBkUpAccess:0000000000000000 HAL_PWR_EnableBkUpAccess
+     /tmp/cc0vsEQX.s:82     .text.HAL_PWR_EnableBkUpAccess:0000000000000010 $d
+     /tmp/cc0vsEQX.s:87     .text.HAL_PWR_DisableBkUpAccess:0000000000000000 $t
+     /tmp/cc0vsEQX.s:94     .text.HAL_PWR_DisableBkUpAccess:0000000000000000 HAL_PWR_DisableBkUpAccess
+     /tmp/cc0vsEQX.s:113    .text.HAL_PWR_DisableBkUpAccess:000000000000000c $d
+     /tmp/cc0vsEQX.s:119    .text.HAL_PWR_EnableWakeUpPin:0000000000000000 $t
+     /tmp/cc0vsEQX.s:126    .text.HAL_PWR_EnableWakeUpPin:0000000000000000 HAL_PWR_EnableWakeUpPin
+     /tmp/cc0vsEQX.s:146    .text.HAL_PWR_EnableWakeUpPin:000000000000000c $d
+     /tmp/cc0vsEQX.s:151    .text.HAL_PWR_DisableWakeUpPin:0000000000000000 $t
+     /tmp/cc0vsEQX.s:158    .text.HAL_PWR_DisableWakeUpPin:0000000000000000 HAL_PWR_DisableWakeUpPin
+     /tmp/cc0vsEQX.s:177    .text.HAL_PWR_DisableWakeUpPin:000000000000000c $d
+     /tmp/cc0vsEQX.s:182    .text.HAL_PWR_EnterSLEEPMode:0000000000000000 $t
+     /tmp/cc0vsEQX.s:189    .text.HAL_PWR_EnterSLEEPMode:0000000000000000 HAL_PWR_EnterSLEEPMode
+     /tmp/cc0vsEQX.s:258    .text.HAL_PWR_EnterSLEEPMode:000000000000001c $d
+     /tmp/cc0vsEQX.s:265    .text.HAL_PWR_EnterSTOPMode:0000000000000000 $t
+     /tmp/cc0vsEQX.s:272    .text.HAL_PWR_EnterSTOPMode:0000000000000000 HAL_PWR_EnterSTOPMode
+     /tmp/cc0vsEQX.s:366    .text.HAL_PWR_EnterSTOPMode:0000000000000034 $d
+     /tmp/cc0vsEQX.s:374    .text.HAL_PWR_EnterSTANDBYMode:0000000000000000 $t
+     /tmp/cc0vsEQX.s:381    .text.HAL_PWR_EnterSTANDBYMode:0000000000000000 HAL_PWR_EnterSTANDBYMode
+     /tmp/cc0vsEQX.s:417    .text.HAL_PWR_EnterSTANDBYMode:0000000000000018 $d
+     /tmp/cc0vsEQX.s:423    .text.HAL_PWR_EnableSleepOnExit:0000000000000000 $t
+     /tmp/cc0vsEQX.s:430    .text.HAL_PWR_EnableSleepOnExit:0000000000000000 HAL_PWR_EnableSleepOnExit
+     /tmp/cc0vsEQX.s:449    .text.HAL_PWR_EnableSleepOnExit:000000000000000c $d
+     /tmp/cc0vsEQX.s:454    .text.HAL_PWR_DisableSleepOnExit:0000000000000000 $t
+     /tmp/cc0vsEQX.s:461    .text.HAL_PWR_DisableSleepOnExit:0000000000000000 HAL_PWR_DisableSleepOnExit
+     /tmp/cc0vsEQX.s:480    .text.HAL_PWR_DisableSleepOnExit:000000000000000c $d
+     /tmp/cc0vsEQX.s:485    .text.HAL_PWR_EnableSEVOnPend:0000000000000000 $t
+     /tmp/cc0vsEQX.s:492    .text.HAL_PWR_EnableSEVOnPend:0000000000000000 HAL_PWR_EnableSEVOnPend
+     /tmp/cc0vsEQX.s:511    .text.HAL_PWR_EnableSEVOnPend:000000000000000c $d
+     /tmp/cc0vsEQX.s:516    .text.HAL_PWR_DisableSEVOnPend:0000000000000000 $t
+     /tmp/cc0vsEQX.s:523    .text.HAL_PWR_DisableSEVOnPend:0000000000000000 HAL_PWR_DisableSEVOnPend
+     /tmp/cc0vsEQX.s:542    .text.HAL_PWR_DisableSEVOnPend:000000000000000c $d
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
                            .group:0000000000000000 wm4.main.h.42.3e9602f258f21c216c24749e16771da2
-                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.106428aa4afcad6bf79baa0a3e608f3f
+                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
                            .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
                            .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
                            .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
@@ -1527,7 +1527,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.newlib.h.8.f6e543eac3f2f65163ba2ffe3b04987b
                            .group:0000000000000000 wm4.ieeefp.h.77.220d9cccac42cd58761758bee2df4ce6
                            .group:0000000000000000 wm4.config.h.220.6cac6a9685cfce5e83c17784171638d9
-ARM GAS  /tmp/cclWAlCg.s 			page 27
+ARM GAS  /tmp/cc0vsEQX.s 			page 27
 
 
                            .group:0000000000000000 wm4._ansi.h.31.de524f58584151836e90d8620a16f8e8
@@ -1554,6 +1554,8 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma_ex.h.38.c2269542e0bcc97944af39289a0a60b8
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.500.3b36a5be41f3e2ac138f4041ccf5cecb
                            .group:0000000000000000 wm4.stm32f0xx_hal_cortex.h.38.61b1088b7495d338bc65ee2571a0bb95
+                           .group:0000000000000000 wm4.stm32f0xx_hal_adc.h.38.e3e4bca0d8b91dc0f73ca672bc0e5aca
+                           .group:0000000000000000 wm4.stm32f0xx_hal_adc_ex.h.38.79c684f1976d63630feab98f4d82be4a
                            .group:0000000000000000 wm4.stm32f0xx_hal_flash.h.38.752a2d52b6ea91b900355f4ecd0538c0
                            .group:0000000000000000 wm4.stm32f0xx_hal_flash_ex.h.38.8097982a0077322c9b7a892e64a756d8
                            .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.38.387f38a4bc9cbea958e7081da9f60815
@@ -1561,6 +1563,8 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
+                           .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
+                           .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
                            .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
 
 NO UNDEFINED SYMBOLS

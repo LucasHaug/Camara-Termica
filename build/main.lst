@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccTcDqoc.s 			page 1
+ARM GAS  /tmp/cczrVOoW.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccTcDqoc.s 			page 1
   39              		.loc 1 17 0 discriminator 1
   40 0006 FFF7FEFF 		bl	led_toggle
   41              	.LVL1:
-ARM GAS  /tmp/ccTcDqoc.s 			page 2
+ARM GAS  /tmp/cczrVOoW.s 			page 2
 
 
   18:src/main.c    ****         mcu_sleep(LED_TOGGLE_DELAY_MS);
@@ -84,14 +84,14 @@ ARM GAS  /tmp/ccTcDqoc.s 			page 1
   62              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
   63              		.file 9 "inc/mcu.h"
   64              		.file 10 "inc/leds.h"
-ARM GAS  /tmp/ccTcDqoc.s 			page 3
+ARM GAS  /tmp/cczrVOoW.s 			page 3
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccTcDqoc.s:16     .text.main:0000000000000000 $t
-     /tmp/ccTcDqoc.s:23     .text.main:0000000000000000 main
-     /tmp/ccTcDqoc.s:50     .text.main:0000000000000014 $d
+     /tmp/cczrVOoW.s:16     .text.main:0000000000000000 $t
+     /tmp/cczrVOoW.s:23     .text.main:0000000000000000 main
+     /tmp/cczrVOoW.s:50     .text.main:0000000000000014 $d
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
                            .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
                            .group:0000000000000000 wm4.features.h.33.d0b7f3cd6ee95f610104014bb3ed522a
@@ -144,7 +144,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
-ARM GAS  /tmp/ccTcDqoc.s 			page 4
+ARM GAS  /tmp/cczrVOoW.s 			page 4
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38

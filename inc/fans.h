@@ -2,8 +2,8 @@
 #define __FANS_H__
 
 typedef enum fan {
-    FAN_TOP,
-    FAN_DOWN,
+    TOP_FAN,
+    BOTTOM_FAN,
 } fan_t;
 
 void fans_init();

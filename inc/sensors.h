@@ -1,8 +1,8 @@
 #ifndef __SENSORS_H__
 #define __SENSORS_H__
 
-#define ADC_BUFFER_SIZE 512
-#define ADC_CHANNELS 2
+#define ADC_BUFFER_SIZE 513
+#define ADC_CHANNELS 3
 
 void sensors_init();
 

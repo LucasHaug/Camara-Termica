@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccCYATO5.s 			page 1
+ARM GAS  /tmp/ccnssqj3.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccCYATO5.s 			page 1
   31:cube/Src/gpio.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   32:cube/Src/gpio.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
   33:cube/Src/gpio.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-ARM GAS  /tmp/ccCYATO5.s 			page 2
+ARM GAS  /tmp/ccnssqj3.s 			page 2
 
 
   34:cube/Src/gpio.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
@@ -109,7 +109,7 @@ ARM GAS  /tmp/ccCYATO5.s 			page 1
   65:cube/Src/gpio.c ****   /* GPIO Ports Clock Enable */
   66:cube/Src/gpio.c ****   __HAL_RCC_GPIOC_CLK_ENABLE();
   40              		.loc 1 66 0
-  41 0004 284B     		ldr	r3, .L2
+  41 0004 2F4B     		ldr	r3, .L2
   42 0006 5969     		ldr	r1, [r3, #20]
   43 0008 8020     		movs	r0, #128
   44 000a 0003     		lsls	r0, r0, #12
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccCYATO5.s 			page 1
   47 0010 5A69     		ldr	r2, [r3, #20]
   48 0012 0240     		ands	r2, r0
   49 0014 0092     		str	r2, [sp]
-ARM GAS  /tmp/ccCYATO5.s 			page 3
+ARM GAS  /tmp/ccnssqj3.s 			page 3
 
 
   50 0016 009A     		ldr	r2, [sp]
@@ -151,145 +151,177 @@ ARM GAS  /tmp/ccCYATO5.s 			page 1
   75              	.LBE4:
   69:cube/Src/gpio.c **** 
   70:cube/Src/gpio.c ****   /*Configure GPIO pin Output Level */
-  71:cube/Src/gpio.c ****   HAL_GPIO_WritePin(Green_Led_GPIO_Port, Green_Led_Pin, GPIO_PIN_RESET);
+  71:cube/Src/gpio.c ****   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1, GPIO_PIN_RESET);
   76              		.loc 1 71 0
   77 003c 0022     		movs	r2, #0
-  78 003e 2021     		movs	r1, #32
-  79 0040 9020     		movs	r0, #144
-  80 0042 C005     		lsls	r0, r0, #23
-  81 0044 FFF7FEFF 		bl	HAL_GPIO_WritePin
-  82              	.LVL0:
+  78 003e 0221     		movs	r1, #2
+  79 0040 2148     		ldr	r0, .L2+4
+  80 0042 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  81              	.LVL0:
   72:cube/Src/gpio.c **** 
   73:cube/Src/gpio.c ****   /*Configure GPIO pin Output Level */
-  74:cube/Src/gpio.c ****   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10|GPIO_PIN_4, GPIO_PIN_RESET);
-  83              		.loc 1 74 0
-  84 0048 8227     		movs	r7, #130
-  85 004a FF00     		lsls	r7, r7, #3
-  86 004c 0022     		movs	r2, #0
-  87 004e 3900     		movs	r1, r7
-  88 0050 1648     		ldr	r0, .L2+4
-  89 0052 FFF7FEFF 		bl	HAL_GPIO_WritePin
-  90              	.LVL1:
+  74:cube/Src/gpio.c ****   HAL_GPIO_WritePin(Green_Led_GPIO_Port, Green_Led_Pin, GPIO_PIN_RESET);
+  82              		.loc 1 74 0
+  83 0046 0022     		movs	r2, #0
+  84 0048 2021     		movs	r1, #32
+  85 004a 9020     		movs	r0, #144
+  86 004c C005     		lsls	r0, r0, #23
+  87 004e FFF7FEFF 		bl	HAL_GPIO_WritePin
+  88              	.LVL1:
   75:cube/Src/gpio.c **** 
-  76:cube/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
-  77:cube/Src/gpio.c ****   GPIO_InitStruct.Pin = User_Button_Pin;
-  91              		.loc 1 77 0
-  92 0056 8023     		movs	r3, #128
-  93 0058 9B01     		lsls	r3, r3, #6
-  94 005a 0393     		str	r3, [sp, #12]
-  78:cube/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-ARM GAS  /tmp/ccCYATO5.s 			page 4
+  76:cube/Src/gpio.c ****   /*Configure GPIO pin Output Level */
+  77:cube/Src/gpio.c ****   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10|GPIO_PIN_4, GPIO_PIN_RESET);
+  89              		.loc 1 77 0
+  90 0052 8225     		movs	r5, #130
+  91 0054 ED00     		lsls	r5, r5, #3
+  92 0056 0022     		movs	r2, #0
+  93 0058 2900     		movs	r1, r5
+  94 005a 1C48     		ldr	r0, .L2+8
+  95 005c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ARM GAS  /tmp/ccnssqj3.s 			page 4
 
 
-  95              		.loc 1 78 0
-  96 005c 144B     		ldr	r3, .L2+8
-  97 005e 0493     		str	r3, [sp, #16]
-  79:cube/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  98              		.loc 1 79 0
-  99 0060 0024     		movs	r4, #0
- 100 0062 0594     		str	r4, [sp, #20]
-  80:cube/Src/gpio.c ****   HAL_GPIO_Init(User_Button_GPIO_Port, &GPIO_InitStruct);
- 101              		.loc 1 80 0
- 102 0064 03A9     		add	r1, sp, #12
- 103 0066 1348     		ldr	r0, .L2+12
- 104 0068 FFF7FEFF 		bl	HAL_GPIO_Init
- 105              	.LVL2:
-  81:cube/Src/gpio.c **** 
-  82:cube/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
-  83:cube/Src/gpio.c ****   GPIO_InitStruct.Pin = Green_Led_Pin;
- 106              		.loc 1 83 0
- 107 006c 2023     		movs	r3, #32
- 108 006e 0393     		str	r3, [sp, #12]
-  84:cube/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
- 109              		.loc 1 84 0
- 110 0070 0125     		movs	r5, #1
- 111 0072 0495     		str	r5, [sp, #16]
-  85:cube/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
- 112              		.loc 1 85 0
- 113 0074 0226     		movs	r6, #2
- 114 0076 0596     		str	r6, [sp, #20]
-  86:cube/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 115              		.loc 1 86 0
- 116 0078 0694     		str	r4, [sp, #24]
-  87:cube/Src/gpio.c ****   HAL_GPIO_Init(Green_Led_GPIO_Port, &GPIO_InitStruct);
- 117              		.loc 1 87 0
- 118 007a 03A9     		add	r1, sp, #12
- 119 007c 9020     		movs	r0, #144
- 120 007e C005     		lsls	r0, r0, #23
- 121 0080 FFF7FEFF 		bl	HAL_GPIO_Init
- 122              	.LVL3:
-  88:cube/Src/gpio.c **** 
-  89:cube/Src/gpio.c ****   /*Configure GPIO pins : PB10 PB4 */
-  90:cube/Src/gpio.c ****   GPIO_InitStruct.Pin = GPIO_PIN_10|GPIO_PIN_4;
- 123              		.loc 1 90 0
- 124 0084 0397     		str	r7, [sp, #12]
-  91:cube/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
- 125              		.loc 1 91 0
- 126 0086 0495     		str	r5, [sp, #16]
-  92:cube/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
- 127              		.loc 1 92 0
- 128 0088 0596     		str	r6, [sp, #20]
-  93:cube/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 129              		.loc 1 93 0
- 130 008a 0694     		str	r4, [sp, #24]
-  94:cube/Src/gpio.c ****   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
- 131              		.loc 1 94 0
- 132 008c 03A9     		add	r1, sp, #12
- 133 008e 0748     		ldr	r0, .L2+4
- 134 0090 FFF7FEFF 		bl	HAL_GPIO_Init
- 135              	.LVL4:
-ARM GAS  /tmp/ccCYATO5.s 			page 5
+  96              	.LVL2:
+  78:cube/Src/gpio.c **** 
+  79:cube/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+  80:cube/Src/gpio.c ****   GPIO_InitStruct.Pin = User_Button_Pin;
+  97              		.loc 1 80 0
+  98 0060 8023     		movs	r3, #128
+  99 0062 9B01     		lsls	r3, r3, #6
+ 100 0064 0393     		str	r3, [sp, #12]
+  81:cube/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+ 101              		.loc 1 81 0
+ 102 0066 1A4B     		ldr	r3, .L2+12
+ 103 0068 0493     		str	r3, [sp, #16]
+  82:cube/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 104              		.loc 1 82 0
+ 105 006a 0024     		movs	r4, #0
+ 106 006c 0594     		str	r4, [sp, #20]
+  83:cube/Src/gpio.c ****   HAL_GPIO_Init(User_Button_GPIO_Port, &GPIO_InitStruct);
+ 107              		.loc 1 83 0
+ 108 006e 03A9     		add	r1, sp, #12
+ 109 0070 1548     		ldr	r0, .L2+4
+ 110 0072 FFF7FEFF 		bl	HAL_GPIO_Init
+ 111              	.LVL3:
+  84:cube/Src/gpio.c **** 
+  85:cube/Src/gpio.c ****   /*Configure GPIO pin : PC1 */
+  86:cube/Src/gpio.c ****   GPIO_InitStruct.Pin = GPIO_PIN_1;
+ 112              		.loc 1 86 0
+ 113 0076 0226     		movs	r6, #2
+ 114 0078 0396     		str	r6, [sp, #12]
+  87:cube/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 115              		.loc 1 87 0
+ 116 007a 0127     		movs	r7, #1
+ 117 007c 0497     		str	r7, [sp, #16]
+  88:cube/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+ 118              		.loc 1 88 0
+ 119 007e 0596     		str	r6, [sp, #20]
+  89:cube/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 120              		.loc 1 89 0
+ 121 0080 0694     		str	r4, [sp, #24]
+  90:cube/Src/gpio.c ****   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+ 122              		.loc 1 90 0
+ 123 0082 03A9     		add	r1, sp, #12
+ 124 0084 1048     		ldr	r0, .L2+4
+ 125 0086 FFF7FEFF 		bl	HAL_GPIO_Init
+ 126              	.LVL4:
+  91:cube/Src/gpio.c **** 
+  92:cube/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+  93:cube/Src/gpio.c ****   GPIO_InitStruct.Pin = Green_Led_Pin;
+ 127              		.loc 1 93 0
+ 128 008a 2023     		movs	r3, #32
+ 129 008c 0393     		str	r3, [sp, #12]
+  94:cube/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 130              		.loc 1 94 0
+ 131 008e 0497     		str	r7, [sp, #16]
+  95:cube/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+ 132              		.loc 1 95 0
+ 133 0090 0596     		str	r6, [sp, #20]
+  96:cube/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ARM GAS  /tmp/ccnssqj3.s 			page 5
 
 
-  95:cube/Src/gpio.c **** 
-  96:cube/Src/gpio.c ****   /* EXTI interrupt init*/
-  97:cube/Src/gpio.c ****   HAL_NVIC_SetPriority(EXTI4_15_IRQn, 0, 0);
+ 134              		.loc 1 96 0
+ 135 0092 0694     		str	r4, [sp, #24]
+  97:cube/Src/gpio.c ****   HAL_GPIO_Init(Green_Led_GPIO_Port, &GPIO_InitStruct);
  136              		.loc 1 97 0
- 137 0094 0022     		movs	r2, #0
- 138 0096 0021     		movs	r1, #0
- 139 0098 0720     		movs	r0, #7
- 140 009a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 137 0094 03A9     		add	r1, sp, #12
+ 138 0096 9020     		movs	r0, #144
+ 139 0098 C005     		lsls	r0, r0, #23
+ 140 009a FFF7FEFF 		bl	HAL_GPIO_Init
  141              	.LVL5:
-  98:cube/Src/gpio.c ****   HAL_NVIC_EnableIRQ(EXTI4_15_IRQn);
- 142              		.loc 1 98 0
- 143 009e 0720     		movs	r0, #7
- 144 00a0 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 145              	.LVL6:
-  99:cube/Src/gpio.c **** 
- 100:cube/Src/gpio.c **** }
- 146              		.loc 1 100 0
- 147 00a4 09B0     		add	sp, sp, #36
- 148              		@ sp needed
- 149 00a6 F0BD     		pop	{r4, r5, r6, r7, pc}
- 150              	.L3:
- 151              		.align	2
- 152              	.L2:
- 153 00a8 00100240 		.word	1073876992
- 154 00ac 00040048 		.word	1207960576
- 155 00b0 00001110 		.word	269549568
- 156 00b4 00080048 		.word	1207961600
- 157              		.cfi_endproc
- 158              	.LFE37:
- 160              		.text
- 161              	.Letext0:
- 162              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
- 163              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
- 164              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
- 165              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
- 166              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
- 167              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
- 168              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
- 169              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
- 170              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
- 171              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
-ARM GAS  /tmp/ccCYATO5.s 			page 6
+  98:cube/Src/gpio.c **** 
+  99:cube/Src/gpio.c ****   /*Configure GPIO pins : PB10 PB4 */
+ 100:cube/Src/gpio.c ****   GPIO_InitStruct.Pin = GPIO_PIN_10|GPIO_PIN_4;
+ 142              		.loc 1 100 0
+ 143 009e 0395     		str	r5, [sp, #12]
+ 101:cube/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 144              		.loc 1 101 0
+ 145 00a0 0497     		str	r7, [sp, #16]
+ 102:cube/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+ 146              		.loc 1 102 0
+ 147 00a2 0596     		str	r6, [sp, #20]
+ 103:cube/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 148              		.loc 1 103 0
+ 149 00a4 0694     		str	r4, [sp, #24]
+ 104:cube/Src/gpio.c ****   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 150              		.loc 1 104 0
+ 151 00a6 03A9     		add	r1, sp, #12
+ 152 00a8 0848     		ldr	r0, .L2+8
+ 153 00aa FFF7FEFF 		bl	HAL_GPIO_Init
+ 154              	.LVL6:
+ 105:cube/Src/gpio.c **** 
+ 106:cube/Src/gpio.c ****   /* EXTI interrupt init*/
+ 107:cube/Src/gpio.c ****   HAL_NVIC_SetPriority(EXTI4_15_IRQn, 0, 0);
+ 155              		.loc 1 107 0
+ 156 00ae 0022     		movs	r2, #0
+ 157 00b0 0021     		movs	r1, #0
+ 158 00b2 0720     		movs	r0, #7
+ 159 00b4 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 160              	.LVL7:
+ 108:cube/Src/gpio.c ****   HAL_NVIC_EnableIRQ(EXTI4_15_IRQn);
+ 161              		.loc 1 108 0
+ 162 00b8 0720     		movs	r0, #7
+ 163 00ba FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 164              	.LVL8:
+ 109:cube/Src/gpio.c **** 
+ 110:cube/Src/gpio.c **** }
+ 165              		.loc 1 110 0
+ 166 00be 09B0     		add	sp, sp, #36
+ 167              		@ sp needed
+ 168 00c0 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 169              	.L3:
+ 170 00c2 C046     		.align	2
+ 171              	.L2:
+ 172 00c4 00100240 		.word	1073876992
+ 173 00c8 00080048 		.word	1207961600
+ 174 00cc 00040048 		.word	1207960576
+ 175 00d0 00001110 		.word	269549568
+ 176              		.cfi_endproc
+ARM GAS  /tmp/ccnssqj3.s 			page 6
+
+
+ 177              	.LFE37:
+ 179              		.text
+ 180              	.Letext0:
+ 181              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+ 182              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
+ 183              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ 184              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 185              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+ 186              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+ 187              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+ 188              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
+ 189              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
+ 190              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
+ARM GAS  /tmp/ccnssqj3.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 gpio.c
-     /tmp/ccCYATO5.s:16     .text.MX_GPIO_Init:0000000000000000 $t
-     /tmp/ccCYATO5.s:23     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-     /tmp/ccCYATO5.s:153    .text.MX_GPIO_Init:00000000000000a8 $d
+     /tmp/ccnssqj3.s:16     .text.MX_GPIO_Init:0000000000000000 $t
+     /tmp/ccnssqj3.s:23     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+     /tmp/ccnssqj3.s:172    .text.MX_GPIO_Init:00000000000000c4 $d
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
                            .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
                            .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
@@ -342,7 +374,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
-ARM GAS  /tmp/ccCYATO5.s 			page 7
+ARM GAS  /tmp/ccnssqj3.s 			page 8
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38

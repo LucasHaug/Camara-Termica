@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccFVivWr.s 			page 1
+ARM GAS  /tmp/ccd4uyt6.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccFVivWr.s 			page 1
   31:cube/Src/system_stm32f0xx.c ****   *        SYSCLK(Hz)                             | 8000000
   32:cube/Src/system_stm32f0xx.c ****   *-----------------------------------------------------------------------------
   33:cube/Src/system_stm32f0xx.c ****   *        HCLK(Hz)                               | 8000000
-ARM GAS  /tmp/ccFVivWr.s 			page 2
+ARM GAS  /tmp/ccd4uyt6.s 			page 2
 
 
   34:cube/Src/system_stm32f0xx.c ****   *-----------------------------------------------------------------------------
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccFVivWr.s 			page 1
   88:cube/Src/system_stm32f0xx.c **** /** @addtogroup STM32F0xx_System_Private_TypesDefinitions
   89:cube/Src/system_stm32f0xx.c ****   * @{
   90:cube/Src/system_stm32f0xx.c ****   */
-ARM GAS  /tmp/ccFVivWr.s 			page 3
+ARM GAS  /tmp/ccd4uyt6.s 			page 3
 
 
   91:cube/Src/system_stm32f0xx.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccFVivWr.s 			page 1
  145:cube/Src/system_stm32f0xx.c **** /** @addtogroup STM32F0xx_System_Private_FunctionPrototypes
  146:cube/Src/system_stm32f0xx.c ****   * @{
  147:cube/Src/system_stm32f0xx.c ****   */
-ARM GAS  /tmp/ccFVivWr.s 			page 4
+ARM GAS  /tmp/ccd4uyt6.s 			page 4
 
 
  148:cube/Src/system_stm32f0xx.c **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccFVivWr.s 			page 1
  181:cube/Src/system_stm32f0xx.c ****   RCC->CR &= (uint32_t)0xFFFBFFFFU;
   47              		.loc 1 181 0
   48 001a 1A68     		ldr	r2, [r3]
-ARM GAS  /tmp/ccFVivWr.s 			page 5
+ARM GAS  /tmp/ccd4uyt6.s 			page 5
 
 
   49 001c 0D48     		ldr	r0, .L2+12
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccFVivWr.s 			page 1
   67              		.loc 1 217 0
   68 003a 5A6B     		ldr	r2, [r3, #52]
   69 003c 8A43     		bics	r2, r1
-ARM GAS  /tmp/ccFVivWr.s 			page 6
+ARM GAS  /tmp/ccd4uyt6.s 			page 6
 
 
   70 003e 5A63     		str	r2, [r3, #52]
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccFVivWr.s 			page 1
  244:cube/Src/system_stm32f0xx.c ****   *
  245:cube/Src/system_stm32f0xx.c ****   *         (*) HSI_VALUE is a constant defined in stm32f0xx_hal.h file (default value
  246:cube/Src/system_stm32f0xx.c ****   *             8 MHz) but the real value may vary depending on the variations
-ARM GAS  /tmp/ccFVivWr.s 			page 7
+ARM GAS  /tmp/ccd4uyt6.s 			page 7
 
 
  247:cube/Src/system_stm32f0xx.c ****   *             in voltage and temperature.
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccFVivWr.s 			page 1
  279:cube/Src/system_stm32f0xx.c ****       pllmull = ( pllmull >> 18) + 2;
  280:cube/Src/system_stm32f0xx.c ****       predivfactor = (RCC->CFGR2 & RCC_CFGR2_PREDIV) + 1;
  281:cube/Src/system_stm32f0xx.c **** 
-ARM GAS  /tmp/ccFVivWr.s 			page 8
+ARM GAS  /tmp/ccd4uyt6.s 			page 8
 
 
  282:cube/Src/system_stm32f0xx.c ****       if (pllsource == RCC_CFGR_PLLSRC_HSE_PREDIV)
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccFVivWr.s 			page 1
  141 0024 1C4B     		ldr	r3, .L16
  142 0026 5A68     		ldr	r2, [r3, #4]
  143 0028 1209     		lsrs	r2, r2, #4
-ARM GAS  /tmp/ccFVivWr.s 			page 9
+ARM GAS  /tmp/ccd4uyt6.s 			page 9
 
 
  144 002a 0F23     		movs	r3, #15
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccFVivWr.s 			page 1
  189 005a 1140     		ands	r1, r2
  190 005c 0131     		adds	r1, r1, #1
  191              	.LVL18:
-ARM GAS  /tmp/ccFVivWr.s 			page 10
+ARM GAS  /tmp/ccd4uyt6.s 			page 10
 
 
  282:cube/Src/system_stm32f0xx.c ****       {
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccFVivWr.s 			page 1
  242              		.global	AHBPrescTable
  243              		.global	SystemCoreClock
  244              		.section	.data.SystemCoreClock,"aw",%progbits
-ARM GAS  /tmp/ccFVivWr.s 			page 11
+ARM GAS  /tmp/ccd4uyt6.s 			page 11
 
 
  245              		.align	2
@@ -646,23 +646,23 @@ ARM GAS  /tmp/ccFVivWr.s 			page 1
  293              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
  294              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
  295              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
-ARM GAS  /tmp/ccFVivWr.s 			page 12
+ARM GAS  /tmp/ccd4uyt6.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 system_stm32f0xx.c
-     /tmp/ccFVivWr.s:16     .text.SystemInit:0000000000000000 $t
-     /tmp/ccFVivWr.s:23     .text.SystemInit:0000000000000000 SystemInit
-     /tmp/ccFVivWr.s:80     .text.SystemInit:0000000000000048 $d
-     /tmp/ccFVivWr.s:91     .text.SystemCoreClockUpdate:0000000000000000 $t
-     /tmp/ccFVivWr.s:98     .text.SystemCoreClockUpdate:0000000000000000 SystemCoreClockUpdate
-     /tmp/ccFVivWr.s:233    .text.SystemCoreClockUpdate:0000000000000098 $d
-     /tmp/ccFVivWr.s:277    .rodata.APBPrescTable:0000000000000000 APBPrescTable
-     /tmp/ccFVivWr.s:256    .rodata.AHBPrescTable:0000000000000000 AHBPrescTable
-     /tmp/ccFVivWr.s:249    .data.SystemCoreClock:0000000000000000 SystemCoreClock
-     /tmp/ccFVivWr.s:245    .data.SystemCoreClock:0000000000000000 $d
-     /tmp/ccFVivWr.s:252    .rodata.AHBPrescTable:0000000000000000 $d
-     /tmp/ccFVivWr.s:274    .rodata.APBPrescTable:0000000000000000 $d
+     /tmp/ccd4uyt6.s:16     .text.SystemInit:0000000000000000 $t
+     /tmp/ccd4uyt6.s:23     .text.SystemInit:0000000000000000 SystemInit
+     /tmp/ccd4uyt6.s:80     .text.SystemInit:0000000000000048 $d
+     /tmp/ccd4uyt6.s:91     .text.SystemCoreClockUpdate:0000000000000000 $t
+     /tmp/ccd4uyt6.s:98     .text.SystemCoreClockUpdate:0000000000000000 SystemCoreClockUpdate
+     /tmp/ccd4uyt6.s:233    .text.SystemCoreClockUpdate:0000000000000098 $d
+     /tmp/ccd4uyt6.s:277    .rodata.APBPrescTable:0000000000000000 APBPrescTable
+     /tmp/ccd4uyt6.s:256    .rodata.AHBPrescTable:0000000000000000 AHBPrescTable
+     /tmp/ccd4uyt6.s:249    .data.SystemCoreClock:0000000000000000 SystemCoreClock
+     /tmp/ccd4uyt6.s:245    .data.SystemCoreClock:0000000000000000 $d
+     /tmp/ccd4uyt6.s:252    .rodata.AHBPrescTable:0000000000000000 $d
+     /tmp/ccd4uyt6.s:274    .rodata.APBPrescTable:0000000000000000 $d
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
                            .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
                            .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
@@ -706,7 +706,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma_ex.h.38.c2269542e0bcc97944af39289a0a60b8
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.500.3b36a5be41f3e2ac138f4041ccf5cecb
                            .group:0000000000000000 wm4.stm32f0xx_hal_cortex.h.38.61b1088b7495d338bc65ee2571a0bb95
-ARM GAS  /tmp/ccFVivWr.s 			page 13
+ARM GAS  /tmp/ccd4uyt6.s 			page 13
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_adc.h.38.e3e4bca0d8b91dc0f73ca672bc0e5aca

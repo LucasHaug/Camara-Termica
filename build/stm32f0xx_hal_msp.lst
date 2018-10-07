@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cceLspR7.s 			page 1
+ARM GAS  /tmp/ccGTTTCN.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cceLspR7.s 			page 1
   31:cube/Src/stm32f0xx_hal_msp.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   32:cube/Src/stm32f0xx_hal_msp.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
   33:cube/Src/stm32f0xx_hal_msp.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-ARM GAS  /tmp/cceLspR7.s 			page 2
+ARM GAS  /tmp/ccGTTTCN.s 			page 2
 
 
   34:cube/Src/stm32f0xx_hal_msp.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cceLspR7.s 			page 1
   58              	.LBE3:
   56:cube/Src/stm32f0xx_hal_msp.c **** 
   57:cube/Src/stm32f0xx_hal_msp.c ****   /* System interrupt init*/
-ARM GAS  /tmp/cceLspR7.s 			page 3
+ARM GAS  /tmp/ccGTTTCN.s 			page 3
 
 
   58:cube/Src/stm32f0xx_hal_msp.c ****   /* SVC_IRQn interrupt configuration */
@@ -174,14 +174,14 @@ ARM GAS  /tmp/cceLspR7.s 			page 1
   99              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
  100              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
  101              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
-ARM GAS  /tmp/cceLspR7.s 			page 4
+ARM GAS  /tmp/ccGTTTCN.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f0xx_hal_msp.c
-     /tmp/cceLspR7.s:16     .text.HAL_MspInit:0000000000000000 $t
-     /tmp/cceLspR7.s:23     .text.HAL_MspInit:0000000000000000 HAL_MspInit
-     /tmp/cceLspR7.s:87     .text.HAL_MspInit:0000000000000050 $d
+     /tmp/ccGTTTCN.s:16     .text.HAL_MspInit:0000000000000000 $t
+     /tmp/ccGTTTCN.s:23     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+     /tmp/ccGTTTCN.s:87     .text.HAL_MspInit:0000000000000050 $d
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
                            .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
                            .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
@@ -234,7 +234,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
-ARM GAS  /tmp/cceLspR7.s 			page 5
+ARM GAS  /tmp/ccGTTTCN.s 			page 5
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38

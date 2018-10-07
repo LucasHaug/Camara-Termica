@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc7IAbo5.s 			page 1
+ARM GAS  /tmp/ccpXFKhM.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -15,12 +15,162 @@ ARM GAS  /tmp/cc7IAbo5.s 			page 1
   12              		.text
   13              	.Ltext0:
   14              		.cfi_sections	.debug_frame
-  15              	.Letext0:
-ARM GAS  /tmp/cc7IAbo5.s 			page 2
+  15              		.section	.text.resistors_state,"ax",%progbits
+  16              		.align	1
+  17              		.global	resistors_state
+  18              		.syntax unified
+  19              		.code	16
+  20              		.thumb_func
+  21              		.fpu softvfp
+  23              	resistors_state:
+  24              	.LFB37:
+  25              		.file 1 "src/power_resistors.c"
+   1:src/power_resistors.c **** #include "power_resistors.h"
+   2:src/power_resistors.c **** 
+   3:src/power_resistors.c **** #include "gpio.h"
+   4:src/power_resistors.c **** 
+   5:src/power_resistors.c **** void resistors_state(state_t state) {
+  26              		.loc 1 5 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              	.LVL0:
+  31 0000 10B5     		push	{r4, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 4, -8
+  34              		.cfi_offset 14, -4
+   6:src/power_resistors.c ****     switch (state) {
+  35              		.loc 1 6 0
+  36 0002 0028     		cmp	r0, #0
+  37 0004 02D0     		beq	.L3
+  38 0006 0128     		cmp	r0, #1
+  39 0008 06D0     		beq	.L4
+  40              	.LVL1:
+  41              	.L1:
+   7:src/power_resistors.c ****         case ON:
+   8:src/power_resistors.c ****             HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1, SET);
+   9:src/power_resistors.c ****             break;
+  10:src/power_resistors.c ****         case OFF:
+  11:src/power_resistors.c ****             HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1, RESET);
+  12:src/power_resistors.c ****             break;
+  13:src/power_resistors.c ****     }
+  14:src/power_resistors.c **** }
+  42              		.loc 1 14 0
+  43              		@ sp needed
+  44 000a 10BD     		pop	{r4, pc}
+ARM GAS  /tmp/ccpXFKhM.s 			page 2
+
+
+  45              	.LVL2:
+  46              	.L3:
+   8:src/power_resistors.c ****             break;
+  47              		.loc 1 8 0
+  48 000c 0122     		movs	r2, #1
+  49 000e 0221     		movs	r1, #2
+  50 0010 0448     		ldr	r0, .L5
+  51              	.LVL3:
+  52 0012 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  53              	.LVL4:
+   9:src/power_resistors.c ****         case OFF:
+  54              		.loc 1 9 0
+  55 0016 F8E7     		b	.L1
+  56              	.LVL5:
+  57              	.L4:
+  11:src/power_resistors.c ****             break;
+  58              		.loc 1 11 0
+  59 0018 0022     		movs	r2, #0
+  60 001a 0221     		movs	r1, #2
+  61 001c 0148     		ldr	r0, .L5
+  62              	.LVL6:
+  63 001e FFF7FEFF 		bl	HAL_GPIO_WritePin
+  64              	.LVL7:
+  65              		.loc 1 14 0
+  66 0022 F2E7     		b	.L1
+  67              	.L6:
+  68              		.align	2
+  69              	.L5:
+  70 0024 00080048 		.word	1207961600
+  71              		.cfi_endproc
+  72              	.LFE37:
+  74              		.text
+  75              	.Letext0:
+  76              		.file 2 "inc/power_resistors.h"
+  77              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+  78              		.file 4 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
+  79              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+  80              		.file 6 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+  81              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+  82              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+  83              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+  84              		.file 10 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/re
+  85              		.file 11 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h"
+  86              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
+ARM GAS  /tmp/ccpXFKhM.s 			page 3
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 power_resistors.c
+     /tmp/ccpXFKhM.s:16     .text.resistors_state:0000000000000000 $t
+     /tmp/ccpXFKhM.s:23     .text.resistors_state:0000000000000000 resistors_state
+     /tmp/ccpXFKhM.s:70     .text.resistors_state:0000000000000024 $d
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
+                           .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
+                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
+                           .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
+                           .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
+                           .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
+                           .group:0000000000000000 wm4.features.h.33.d0b7f3cd6ee95f610104014bb3ed522a
+                           .group:0000000000000000 wm4._default_types.h.15.247e5cd201eca3442cbf5404108c4935
+                           .group:0000000000000000 wm4._intsup.h.10.cce27fed8484c08a33f522034c30d2b5
+                           .group:0000000000000000 wm4._stdint.h.10.c24fa3af3bc1706662bb5593a907e841
+                           .group:0000000000000000 wm4.stdint.h.23.d53047a68f4a85177f80b422d52785ed
+                           .group:0000000000000000 wm4.core_cm0.h.74.a7f5ed9ff199b3163f5ed99892efe60d
+                           .group:0000000000000000 wm4.cmsis_gcc.h.36.5bb14fd68ce7855540fcfe2d9305ae16
+                           .group:0000000000000000 wm4.core_cm0.h.175.2353140684a11cc8267b4125ac92735e
+                           .group:0000000000000000 wm4.stm32f072xb.h.653.664388dc5ef2a697008be7ff13986fc5
+                           .group:0000000000000000 wm4.stm32f0xx.h.186.8a2f1abf0fccd74c76b01fef06350694
+                           .group:0000000000000000 wm4.newlib.h.8.f6e543eac3f2f65163ba2ffe3b04987b
+                           .group:0000000000000000 wm4.ieeefp.h.77.220d9cccac42cd58761758bee2df4ce6
+                           .group:0000000000000000 wm4.config.h.220.6cac6a9685cfce5e83c17784171638d9
+                           .group:0000000000000000 wm4._ansi.h.31.de524f58584151836e90d8620a16f8e8
+                           .group:0000000000000000 wm4.stdio.h.31.7c0e28c411445f3f9c5b11accf882760
+                           .group:0000000000000000 wm4.stddef.h.187.2ff233552538c6ff9b8575ca8ea52cb3
+                           .group:0000000000000000 wm4.cdefs.h.47.0bcdf94cb40e176393dd1404056825b4
+                           .group:0000000000000000 wm4.stddef.h.39.ec95e8feac892e292b69dc7ae75b0d64
+                           .group:0000000000000000 wm4.stdarg.h.34.3a23a216c0c293b3d2ea2e89281481e6
+                           .group:0000000000000000 wm4.lock.h.2.1461d1fff82dffe8bfddc23307f6484f
+                           .group:0000000000000000 wm4._types.h.125.5cf8a495f1f7ef36777ad868a1e32068
+                           .group:0000000000000000 wm4.stddef.h.161.5349cb105733e8777bfb0cf53c4e3f34
+                           .group:0000000000000000 wm4._types.h.184.03611d4f6b5bec9997bcf4279eceba07
+                           .group:0000000000000000 wm4.reent.h.17.90c2574d4acdcfce933db5cb09ff35fe
+                           .group:0000000000000000 wm4.types.h.40.e8c16e7ec36ba55f133d0616070e25fc
+                           .group:0000000000000000 wm4.types.h.114.fb65732f4f5f288a036a25898de2c91f
+                           .group:0000000000000000 wm4.stdio.h.2.4aa87247282eca6c8f36f9de33d8df1a
+                           .group:0000000000000000 wm4.stdio.h.81.2a55589bfa3ee24eeb84e3c79458e4a9
+                           .group:0000000000000000 wm4.stm32f0xx_hal_def.h.76.81362c22f1bfa407bb20bdc5ef2fe817
+                           .group:0000000000000000 wm4.stm32f0xx_hal_rcc.h.64.1680b96367ed05251327e73e2ef7e0a0
+                           .group:0000000000000000 wm4.stm32f0xx_hal_rcc_ex.h.38.fed157297eb0e49fa475a8f4d962b1a1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_gpio.h.38.5de46a121e30d1d136216266f57becb9
+                           .group:0000000000000000 wm4.stm32f0xx_hal_gpio_ex.h.38.4ae096506dfd35e4cd1e2bfdbf19c71f
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.38.9bc992aa465d2468bc055502b51063f3
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma_ex.h.38.c2269542e0bcc97944af39289a0a60b8
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.500.3b36a5be41f3e2ac138f4041ccf5cecb
+                           .group:0000000000000000 wm4.stm32f0xx_hal_cortex.h.38.61b1088b7495d338bc65ee2571a0bb95
+                           .group:0000000000000000 wm4.stm32f0xx_hal_adc.h.38.e3e4bca0d8b91dc0f73ca672bc0e5aca
+                           .group:0000000000000000 wm4.stm32f0xx_hal_adc_ex.h.38.79c684f1976d63630feab98f4d82be4a
+                           .group:0000000000000000 wm4.stm32f0xx_hal_flash.h.38.752a2d52b6ea91b900355f4ecd0538c0
+                           .group:0000000000000000 wm4.stm32f0xx_hal_flash_ex.h.38.8097982a0077322c9b7a892e64a756d8
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.38.387f38a4bc9cbea958e7081da9f60815
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c_ex.h.38.9a4523b2ddbaaa2727287ccab47d88d1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
+ARM GAS  /tmp/ccpXFKhM.s 			page 4
 
-NO UNDEFINED SYMBOLS
+
+                           .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
+                           .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
+                           .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin

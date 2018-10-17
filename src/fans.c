@@ -37,10 +37,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     if (GPIO_Pin == GPIO_PIN_13 && fan_on == false) {
         fan_speed(TOP_FAN, 1000);
         fan_speed(BOTTOM_FAN, 0);
-    }
-    if (GPIO_Pin == GPIO_PIN_13 && fan_on == true) {
+    } else if (GPIO_Pin == GPIO_PIN_13 && fan_on == true) {
         fan_speed(TOP_FAN, 0);
         fan_speed(BOTTOM_FAN, 1000);
     }
+
     fan_on = !fan_on;
 }

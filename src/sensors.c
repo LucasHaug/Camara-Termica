@@ -3,11 +3,10 @@
 
 #include "sensors.h"
 
-uint32_t temperature[ADC_CHANNELS - 1] = { 0 };
+uint32_t temperature[ADC_CHANNELS - 1] = {0};
 uint32_t humidity = 0;
 
-
-uint32_t adc_buffer[ADC_BUFFER_SIZE] = { 0 };
+uint32_t adc_buffer[ADC_BUFFER_SIZE] = {0};
 
 void sensors_init() {
     MX_DMA_Init();
@@ -17,7 +16,7 @@ void sensors_init() {
 }
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
-    u_int32_t val[ADC_CHANNELS] = { 0 };
+    uint32_t val[ADC_CHANNELS] = {0};
 
     for (int i = 0; i < ADC_BUFFER_SIZE / ADC_CHANNELS; i++) {
         for (int j = 0; j < ADC_CHANNELS; j++) {
@@ -32,5 +31,6 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
     for (int i = 0; i < ADC_CHANNELS - 1; i++) {
         temperature[i] = val[i];
     }
+
     humidity = val[ADC_CHANNELS - 1];
 }

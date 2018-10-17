@@ -16,6 +16,5 @@ int main(void) {
     for (;;) {
         led_toggle();
         mcu_sleep(LED_TOGGLE_DELAY_MS);
-
     }
 }

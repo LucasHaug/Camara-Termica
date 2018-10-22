@@ -19,8 +19,6 @@ static float last_error = 0;
 static float current_time = 0;
 static float last_time = 0;
 
-static float current_temperature = 0;
-static float last_temperature = 0;
 static uint8_t temperature_trend[NMAX] = {0};
 // global temperature_trend[] index
 static uint8_t n = 0;
@@ -31,13 +29,12 @@ static float ki = 0.009;
 
 void pi_action(void) {
     int8_t current_trend = 0;
+    float current_temperature = (float) temperature[2] / 10;
 
-    current_temperature = (float) temperature[2] / 10;
     current_time = HAL_GetTick() / 1000;
     error = SETPOINT_TEMPERATURE - current_temperature;
     action = last_action + kp * (error - last_error) + ki * (current_time - last_time) * error;
     last_time = current_time;
-    last_temperature = current_temperature;
 
     // limit action value
     action *= 1000;
@@ -48,9 +45,9 @@ void pi_action(void) {
     }
 
     // calculate current temperature trend
-    if (current_temperature - last_temperature > 0) {
+    if (last_error - error > 0) {
         temperature_trend[n] = 1;
-    } else if (current_temperature - last_temperature < 0) {
+    } else if (last_error - error < 0) {
         temperature_trend[n] = -1;
     } else {
         temperature_trend[n] = 0;

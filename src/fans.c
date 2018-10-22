@@ -6,7 +6,7 @@
 #include "tim.h"
 #include "stm32f0xx_hal_tim.h"
 
-bool fan_on = false;
+static bool fan_on = false;
 
 void fans_init() {
     MX_TIM1_Init();

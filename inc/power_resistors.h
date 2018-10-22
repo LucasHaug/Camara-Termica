@@ -1,11 +1,14 @@
 #ifndef __POWER_RESISTORS_H__
 #define __POWER_RESISTORS_H__
 
-typedef enum state {
+/**
+ * Public Enumerations
+ */
+typedef enum resist_state {
     ON,
     OFF,
-} state_t;
+} resist_state_t;
 
-void resistors_state(state_t);
+void resistors_state(resist_state_t);
 
 #endif // __POWER_RESISTORS_H__

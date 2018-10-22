@@ -3,8 +3,12 @@
 
 #include "sensors.h"
 
-uint32_t temperature[ADC_CHANNELS - 1] = {0};
-uint32_t humidity = 0;
+#define OLD_VALUE_WEIGHT 3
+#define NEW_VALUE_WEIGHT 1
+
+uint32_t temperature[T_ADC_CHANNELS] = {0};
+//@ Mudar para adicionar o senosr de umidade + setar pino PA4
+// uint32_t uint32_t humidity[H_ADC_CHANNELS] = {0};
 
 uint32_t adc_buffer[ADC_BUFFER_SIZE] = {0};
 
@@ -16,21 +20,22 @@ void sensors_init() {
 }
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
-    uint32_t val[ADC_CHANNELS] = {0};
+    uint32_t val[T_ADC_CHANNELS + H_ADC_CHANNELS] = {0};
 
-    for (int i = 0; i < ADC_BUFFER_SIZE / ADC_CHANNELS; i++) {
-        for (int j = 0; j < ADC_CHANNELS; j++) {
-            val[j] += adc_buffer[ADC_CHANNELS * i + j];
+    for (int i = 0; i < ADC_BUFFER_SIZE / (T_ADC_CHANNELS + H_ADC_CHANNELS); i++) {
+        for (int j = 0; j < (T_ADC_CHANNELS + H_ADC_CHANNELS); j++) {
+            val[j] += adc_buffer[(T_ADC_CHANNELS + H_ADC_CHANNELS) * i + j];
         }
     }
 
-    for (int i = 0; i < ADC_CHANNELS; i++) {
-        val[i] /= ADC_BUFFER_SIZE / ADC_CHANNELS;
+    for (int i = 0; i < (T_ADC_CHANNELS + H_ADC_CHANNELS); i++) {
+        val[i] /= ADC_BUFFER_SIZE / (T_ADC_CHANNELS + H_ADC_CHANNELS);
     }
 
-    for (int i = 0; i < ADC_CHANNELS - 1; i++) {
-        temperature[i] = val[i];
+    for (int i = 0; i < T_ADC_CHANNELS; i++) {
+        temperature[i] = (NEW_VALUE_WEIGHT * val[i] + OLD_VALUE_WEIGHT * temperature[i]) /
+                         (NEW_VALUE_WEIGHT + OLD_VALUE_WEIGHT);
     }
-
-    humidity = val[ADC_CHANNELS - 1];
+    //@ Mudar para adicionar o senosr de umidade + setar pino PA4
+    // humidity = val[T_ADC_CHANNELS - 1];
 }

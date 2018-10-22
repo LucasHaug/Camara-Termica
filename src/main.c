@@ -1,6 +1,6 @@
-#include "mcu.h"
 #include "fans.h"
 #include "leds.h"
+#include "mcu.h"
 
 /*****************************************
  * Private Constant Definitions
@@ -14,7 +14,7 @@ int main(void) {
     mcu_init();
 
     for (;;) {
-        led_toggle();
+        leds_state(TOGGLE);
         mcu_sleep(LED_TOGGLE_DELAY_MS);
     }
 }

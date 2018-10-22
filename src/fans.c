@@ -22,7 +22,7 @@ void fans_init() {
     // HAL_GPIO_WritePin(GPIOX, GPIO_PIN_X, GPIO_PIN_RESET);
 }
 
-void fan_speed(fan_t fan, uint16_t speed) {
+void set_fan(fan_t fan, uint16_t speed) {
     switch (fan) {
         case TOP_FAN:
             __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed);
@@ -35,11 +35,11 @@ void fan_speed(fan_t fan, uint16_t speed) {
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     if (GPIO_Pin == GPIO_PIN_13 && fan_on == false) {
-        fan_speed(TOP_FAN, 1000);
-        fan_speed(BOTTOM_FAN, 0);
+        set_fan(TOP_FAN, 1000);
+        set_fan(BOTTOM_FAN, 0);
     } else if (GPIO_Pin == GPIO_PIN_13 && fan_on == true) {
-        fan_speed(TOP_FAN, 0);
-        fan_speed(BOTTOM_FAN, 1000);
+        set_fan(TOP_FAN, 0);
+        set_fan(BOTTOM_FAN, 1000);
     }
 
     fan_on = !fan_on;

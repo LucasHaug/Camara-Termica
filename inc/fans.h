@@ -1,6 +1,8 @@
 #ifndef __FANS_H__
 #define __FANS_H__
 
+#include <stdint.h>
+
 typedef enum fan {
     TOP_FAN,
     BOTTOM_FAN,
@@ -8,6 +10,6 @@ typedef enum fan {
 
 void fans_init();
 
-void fan_speed(fan_t fan, uint16_t speed);
+void set_fan(fan_t fan, uint16_t speed);
 
-#endif // __FANS_H__
+#endif  // __FANS_H__

@@ -11,29 +11,33 @@
 
 //@ Causar erro minimo proposital
 
-float action = 0;
-float last_action = 0;
-float error = 0;
-float last_error = 0;
+static float action = 0;
+static float last_action = 0;
+static float error = 0;
+static float last_error = 0;
 
-float current_time = 0;
-float last_time = 0;
+static float current_time = 0;
+static float last_time = 0;
 
-uint8_t action_trend[NMAX] = {0};
-// global action_trend[] index
-uint8_t n = 0;
+static float current_temperature = 0;
+static float last_temperature = 0;
+static uint8_t temperature_trend[NMAX] = {0};
+// global temperature_trend[] index
+static uint8_t n = 0;
 
 // pi control constants
-float kp = 0.2;
-float ki = 0.009;
+static float kp = 0.2;
+static float ki = 0.009;
 
 void pi_action(void) {
     int8_t current_trend = 0;
 
+    current_temperature = (float) temperature[2] / 10;
     current_time = HAL_GetTick() / 1000;
-    error = SETPOINT_TEMPERATURE - temperature[2];
+    error = SETPOINT_TEMPERATURE - current_temperature;
     action = last_action + kp * (error - last_error) + ki * (current_time - last_time) * error;
     last_time = current_time;
+    last_temperature = current_temperature;
 
     // limit action value
     action *= 1000;
@@ -43,20 +47,17 @@ void pi_action(void) {
         action = -1000;
     }
 
-    // calculate current action trend
-    if (action - last_action > 0) {
-        action_trend[n] = 1;
-    } else if (action - last_action < 0) {
-        action_trend[n] = -1;
+    // calculate current temperature trend
+    if (current_temperature - last_temperature > 0) {
+        temperature_trend[n] = 1;
+    } else if (current_temperature - last_temperature < 0) {
+        temperature_trend[n] = -1;
     } else {
-        action_trend[n] = 0;
+        temperature_trend[n] = 0;
     }
-    n++;
-    if (n > NMAX) {
-        n = 0;
-    }
+    n = (n + 1) % NMAX;
     for (int i = 0; i < NMAX; i++) {
-        current_trend += action_trend[i];
+        current_trend += temperature_trend[i];
     }
 
     if (current_trend > 0) {

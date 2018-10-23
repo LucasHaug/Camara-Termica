@@ -1,5 +1,6 @@
 build/power_resistors.o: src/power_resistors.c inc/power_resistors.h \
- cube/Inc/gpio.h cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h \
+ inc/mcu.h cube/Inc/gpio.h \
+ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h \
  cube/Inc/stm32f0xx_hal_conf.h cube/Inc/main.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h \
@@ -28,6 +29,8 @@ build/power_resistors.o: src/power_resistors.c inc/power_resistors.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h
 
 inc/power_resistors.h:
+
+inc/mcu.h:
 
 cube/Inc/gpio.h:
 

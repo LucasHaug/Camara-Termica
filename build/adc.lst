@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccqfr1gm.s 			page 1
+ARM GAS  /tmp/ccQpSm7j.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccqfr1gm.s 			page 1
   31:cube/Src/adc.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   32:cube/Src/adc.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
   33:cube/Src/adc.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-ARM GAS  /tmp/ccqfr1gm.s 			page 2
+ARM GAS  /tmp/ccQpSm7j.s 			page 2
 
 
   34:cube/Src/adc.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
@@ -98,8 +98,8 @@ ARM GAS  /tmp/ccqfr1gm.s 			page 1
   59:cube/Src/adc.c ****     */
   60:cube/Src/adc.c ****   hadc.Instance = ADC1;
   35              		.loc 1 60 0
-  36 0004 2648     		ldr	r0, .L10
-  37 0006 274B     		ldr	r3, .L10+4
+  36 0004 2048     		ldr	r0, .L8
+  37 0006 214B     		ldr	r3, .L8+4
   38 0008 0360     		str	r3, [r0]
   61:cube/Src/adc.c ****   hadc.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
   39              		.loc 1 61 0
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccqfr1gm.s 			page 1
   49 0016 0122     		movs	r2, #1
   50 0018 0261     		str	r2, [r0, #16]
   65:cube/Src/adc.c ****   hadc.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-ARM GAS  /tmp/ccqfr1gm.s 			page 3
+ARM GAS  /tmp/ccQpSm7j.s 			page 3
 
 
   51              		.loc 1 65 0
@@ -155,7 +155,7 @@ ARM GAS  /tmp/ccqfr1gm.s 			page 1
   73 0032 FFF7FEFF 		bl	HAL_ADC_Init
   74              	.LVL0:
   75 0036 0028     		cmp	r0, #0
-  76 0038 1ED1     		bne	.L6
+  76 0038 16D1     		bne	.L5
   77              	.L2:
   75:cube/Src/adc.c ****   {
   76:cube/Src/adc.c ****     _Error_Handler(__FILE__, __LINE__);
@@ -178,15 +178,15 @@ ARM GAS  /tmp/ccqfr1gm.s 			page 1
   87 0046 0393     		str	r3, [sp, #12]
   84:cube/Src/adc.c ****   if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
   88              		.loc 1 84 0
-ARM GAS  /tmp/ccqfr1gm.s 			page 4
+ARM GAS  /tmp/ccQpSm7j.s 			page 4
 
 
   89 0048 01A9     		add	r1, sp, #4
-  90 004a 1548     		ldr	r0, .L10
+  90 004a 0F48     		ldr	r0, .L8
   91 004c FFF7FEFF 		bl	HAL_ADC_ConfigChannel
   92              	.LVL1:
   93 0050 0028     		cmp	r0, #0
-  94 0052 16D1     		bne	.L7
+  94 0052 0ED1     		bne	.L6
   95              	.L3:
   85:cube/Src/adc.c ****   {
   86:cube/Src/adc.c ****     _Error_Handler(__FILE__, __LINE__);
@@ -201,437 +201,404 @@ ARM GAS  /tmp/ccqfr1gm.s 			page 1
   92:cube/Src/adc.c ****   if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
   99              		.loc 1 92 0
  100 0058 01A9     		add	r1, sp, #4
- 101 005a 1148     		ldr	r0, .L10
+ 101 005a 0B48     		ldr	r0, .L8
  102 005c FFF7FEFF 		bl	HAL_ADC_ConfigChannel
  103              	.LVL2:
  104 0060 0028     		cmp	r0, #0
- 105 0062 13D1     		bne	.L8
- 106              	.L4:
+ 105 0062 0BD1     		bne	.L7
+ 106              	.L1:
   93:cube/Src/adc.c ****   {
   94:cube/Src/adc.c ****     _Error_Handler(__FILE__, __LINE__);
   95:cube/Src/adc.c ****   }
   96:cube/Src/adc.c **** 
-  97:cube/Src/adc.c ****     /**Configure for the selected ADC regular channel to be converted. 
-  98:cube/Src/adc.c ****     */
-  99:cube/Src/adc.c ****   sConfig.Channel = ADC_CHANNEL_4;
- 107              		.loc 1 99 0
- 108 0064 0423     		movs	r3, #4
- 109 0066 0193     		str	r3, [sp, #4]
- 100:cube/Src/adc.c ****   if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
- 110              		.loc 1 100 0
- 111 0068 01A9     		add	r1, sp, #4
- 112 006a 0D48     		ldr	r0, .L10
- 113 006c FFF7FEFF 		bl	HAL_ADC_ConfigChannel
- 114              	.LVL3:
- 115 0070 0028     		cmp	r0, #0
- 116 0072 10D1     		bne	.L9
- 117              	.L1:
- 101:cube/Src/adc.c ****   {
- 102:cube/Src/adc.c ****     _Error_Handler(__FILE__, __LINE__);
- 103:cube/Src/adc.c ****   }
- 104:cube/Src/adc.c **** 
- 105:cube/Src/adc.c **** }
- 118              		.loc 1 105 0
- 119 0074 05B0     		add	sp, sp, #20
- 120              		@ sp needed
- 121 0076 00BD     		pop	{pc}
- 122              	.L6:
+  97:cube/Src/adc.c **** }
+ 107              		.loc 1 97 0
+ 108 0064 05B0     		add	sp, sp, #20
+ 109              		@ sp needed
+ 110 0066 00BD     		pop	{pc}
+ 111              	.L5:
   76:cube/Src/adc.c ****   }
- 123              		.loc 1 76 0
-ARM GAS  /tmp/ccqfr1gm.s 			page 5
-
-
- 124 0078 4C21     		movs	r1, #76
- 125 007a 0B48     		ldr	r0, .L10+8
- 126 007c FFF7FEFF 		bl	_Error_Handler
- 127              	.LVL4:
- 128 0080 DBE7     		b	.L2
- 129              	.L7:
+ 112              		.loc 1 76 0
+ 113 0068 4C21     		movs	r1, #76
+ 114 006a 0948     		ldr	r0, .L8+8
+ 115 006c FFF7FEFF 		bl	_Error_Handler
+ 116              	.LVL3:
+ 117 0070 E3E7     		b	.L2
+ 118              	.L6:
   86:cube/Src/adc.c ****   }
- 130              		.loc 1 86 0
- 131 0082 5621     		movs	r1, #86
- 132 0084 0848     		ldr	r0, .L10+8
- 133 0086 FFF7FEFF 		bl	_Error_Handler
- 134              	.LVL5:
- 135 008a E3E7     		b	.L3
- 136              	.L8:
+ 119              		.loc 1 86 0
+ 120 0072 5621     		movs	r1, #86
+ 121 0074 0648     		ldr	r0, .L8+8
+ 122 0076 FFF7FEFF 		bl	_Error_Handler
+ 123              	.LVL4:
+ 124 007a EBE7     		b	.L3
+ 125              	.L7:
   94:cube/Src/adc.c ****   }
- 137              		.loc 1 94 0
- 138 008c 5E21     		movs	r1, #94
- 139 008e 0648     		ldr	r0, .L10+8
- 140 0090 FFF7FEFF 		bl	_Error_Handler
- 141              	.LVL6:
- 142 0094 E6E7     		b	.L4
- 143              	.L9:
- 102:cube/Src/adc.c ****   }
- 144              		.loc 1 102 0
- 145 0096 6621     		movs	r1, #102
- 146 0098 0348     		ldr	r0, .L10+8
- 147 009a FFF7FEFF 		bl	_Error_Handler
- 148              	.LVL7:
- 149              		.loc 1 105 0
- 150 009e E9E7     		b	.L1
- 151              	.L11:
- 152              		.align	2
- 153              	.L10:
- 154 00a0 00000000 		.word	hadc
- 155 00a4 00240140 		.word	1073816576
- 156 00a8 00000000 		.word	.LC1
- 157              		.cfi_endproc
- 158              	.LFE37:
- 160              		.section	.text.HAL_ADC_MspInit,"ax",%progbits
- 161              		.align	1
- 162              		.global	HAL_ADC_MspInit
- 163              		.syntax unified
- 164              		.code	16
- 165              		.thumb_func
- 166              		.fpu softvfp
- 168              	HAL_ADC_MspInit:
- 169              	.LFB38:
+ 126              		.loc 1 94 0
+ 127 007c 5E21     		movs	r1, #94
+ 128 007e 0448     		ldr	r0, .L8+8
+ 129 0080 FFF7FEFF 		bl	_Error_Handler
+ARM GAS  /tmp/ccQpSm7j.s 			page 5
+
+
+ 130              	.LVL5:
+ 131              		.loc 1 97 0
+ 132 0084 EEE7     		b	.L1
+ 133              	.L9:
+ 134 0086 C046     		.align	2
+ 135              	.L8:
+ 136 0088 00000000 		.word	hadc
+ 137 008c 00240140 		.word	1073816576
+ 138 0090 00000000 		.word	.LC1
+ 139              		.cfi_endproc
+ 140              	.LFE37:
+ 142              		.section	.text.HAL_ADC_MspInit,"ax",%progbits
+ 143              		.align	1
+ 144              		.global	HAL_ADC_MspInit
+ 145              		.syntax unified
+ 146              		.code	16
+ 147              		.thumb_func
+ 148              		.fpu softvfp
+ 150              	HAL_ADC_MspInit:
+ 151              	.LFB38:
+  98:cube/Src/adc.c **** 
+  99:cube/Src/adc.c **** void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
+ 100:cube/Src/adc.c **** {
+ 152              		.loc 1 100 0
+ 153              		.cfi_startproc
+ 154              		@ args = 0, pretend = 0, frame = 24
+ 155              		@ frame_needed = 0, uses_anonymous_args = 0
+ 156              	.LVL6:
+ 157 0000 70B5     		push	{r4, r5, r6, lr}
+ 158              		.cfi_def_cfa_offset 16
+ 159              		.cfi_offset 4, -16
+ 160              		.cfi_offset 5, -12
+ 161              		.cfi_offset 6, -8
+ 162              		.cfi_offset 14, -4
+ 163 0002 86B0     		sub	sp, sp, #24
+ 164              		.cfi_def_cfa_offset 40
+ 165 0004 0400     		movs	r4, r0
+ 101:cube/Src/adc.c **** 
+ 102:cube/Src/adc.c ****   GPIO_InitTypeDef GPIO_InitStruct;
+ 103:cube/Src/adc.c ****   if(adcHandle->Instance==ADC1)
+ 166              		.loc 1 103 0
+ 167 0006 1F4B     		ldr	r3, .L15
+ 168 0008 0268     		ldr	r2, [r0]
+ 169 000a 9A42     		cmp	r2, r3
+ 170 000c 01D0     		beq	.L13
+ 171              	.LVL7:
+ 172              	.L10:
+ 104:cube/Src/adc.c ****   {
+ 105:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspInit 0 */
  106:cube/Src/adc.c **** 
- 107:cube/Src/adc.c **** void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
- 108:cube/Src/adc.c **** {
- 170              		.loc 1 108 0
- 171              		.cfi_startproc
- 172              		@ args = 0, pretend = 0, frame = 24
- 173              		@ frame_needed = 0, uses_anonymous_args = 0
- 174              	.LVL8:
- 175 0000 70B5     		push	{r4, r5, r6, lr}
- 176              		.cfi_def_cfa_offset 16
-ARM GAS  /tmp/ccqfr1gm.s 			page 6
+ 107:cube/Src/adc.c ****   /* USER CODE END ADC1_MspInit 0 */
+ 108:cube/Src/adc.c ****     /* ADC1 clock enable */
+ 109:cube/Src/adc.c ****     __HAL_RCC_ADC1_CLK_ENABLE();
+ 110:cube/Src/adc.c ****   
+ 111:cube/Src/adc.c ****     /**ADC GPIO Configuration    
+ 112:cube/Src/adc.c ****     PA0     ------> ADC_IN0
+ 113:cube/Src/adc.c ****     PA1     ------> ADC_IN1 
+ARM GAS  /tmp/ccQpSm7j.s 			page 6
 
 
- 177              		.cfi_offset 4, -16
- 178              		.cfi_offset 5, -12
- 179              		.cfi_offset 6, -8
- 180              		.cfi_offset 14, -4
- 181 0002 86B0     		sub	sp, sp, #24
- 182              		.cfi_def_cfa_offset 40
- 183 0004 0400     		movs	r4, r0
- 109:cube/Src/adc.c **** 
- 110:cube/Src/adc.c ****   GPIO_InitTypeDef GPIO_InitStruct;
- 111:cube/Src/adc.c ****   if(adcHandle->Instance==ADC1)
- 184              		.loc 1 111 0
- 185 0006 204B     		ldr	r3, .L17
- 186 0008 0268     		ldr	r2, [r0]
- 187 000a 9A42     		cmp	r2, r3
- 188 000c 01D0     		beq	.L15
- 189              	.LVL9:
- 190              	.L12:
- 112:cube/Src/adc.c ****   {
- 113:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspInit 0 */
- 114:cube/Src/adc.c **** 
- 115:cube/Src/adc.c ****   /* USER CODE END ADC1_MspInit 0 */
- 116:cube/Src/adc.c ****     /* ADC1 clock enable */
- 117:cube/Src/adc.c ****     __HAL_RCC_ADC1_CLK_ENABLE();
- 118:cube/Src/adc.c ****   
- 119:cube/Src/adc.c ****     /**ADC GPIO Configuration    
- 120:cube/Src/adc.c ****     PA0     ------> ADC_IN0
- 121:cube/Src/adc.c ****     PA1     ------> ADC_IN1
- 122:cube/Src/adc.c ****     PA4     ------> ADC_IN4 
- 123:cube/Src/adc.c ****     */
- 124:cube/Src/adc.c ****     GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_4;
- 125:cube/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
- 126:cube/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
- 127:cube/Src/adc.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
- 128:cube/Src/adc.c **** 
- 129:cube/Src/adc.c ****     /* ADC1 DMA Init */
- 130:cube/Src/adc.c ****     /* ADC Init */
- 131:cube/Src/adc.c ****     hdma_adc.Instance = DMA1_Channel1;
- 132:cube/Src/adc.c ****     hdma_adc.Init.Direction = DMA_PERIPH_TO_MEMORY;
- 133:cube/Src/adc.c ****     hdma_adc.Init.PeriphInc = DMA_PINC_DISABLE;
- 134:cube/Src/adc.c ****     hdma_adc.Init.MemInc = DMA_MINC_ENABLE;
- 135:cube/Src/adc.c ****     hdma_adc.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
- 136:cube/Src/adc.c ****     hdma_adc.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;
- 137:cube/Src/adc.c ****     hdma_adc.Init.Mode = DMA_CIRCULAR;
- 138:cube/Src/adc.c ****     hdma_adc.Init.Priority = DMA_PRIORITY_HIGH;
- 139:cube/Src/adc.c ****     if (HAL_DMA_Init(&hdma_adc) != HAL_OK)
- 140:cube/Src/adc.c ****     {
- 141:cube/Src/adc.c ****       _Error_Handler(__FILE__, __LINE__);
- 142:cube/Src/adc.c ****     }
- 143:cube/Src/adc.c **** 
- 144:cube/Src/adc.c ****     __HAL_LINKDMA(adcHandle,DMA_Handle,hdma_adc);
- 145:cube/Src/adc.c **** 
- 146:cube/Src/adc.c ****     /* ADC1 interrupt Init */
- 147:cube/Src/adc.c ****     HAL_NVIC_SetPriority(ADC1_COMP_IRQn, 0, 0);
- 148:cube/Src/adc.c ****     HAL_NVIC_EnableIRQ(ADC1_COMP_IRQn);
- 149:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspInit 1 */
- 150:cube/Src/adc.c **** 
- 151:cube/Src/adc.c ****   /* USER CODE END ADC1_MspInit 1 */
-ARM GAS  /tmp/ccqfr1gm.s 			page 7
+ 114:cube/Src/adc.c ****     */
+ 115:cube/Src/adc.c ****     GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1;
+ 116:cube/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 117:cube/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 118:cube/Src/adc.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 119:cube/Src/adc.c **** 
+ 120:cube/Src/adc.c ****     /* ADC1 DMA Init */
+ 121:cube/Src/adc.c ****     /* ADC Init */
+ 122:cube/Src/adc.c ****     hdma_adc.Instance = DMA1_Channel1;
+ 123:cube/Src/adc.c ****     hdma_adc.Init.Direction = DMA_PERIPH_TO_MEMORY;
+ 124:cube/Src/adc.c ****     hdma_adc.Init.PeriphInc = DMA_PINC_DISABLE;
+ 125:cube/Src/adc.c ****     hdma_adc.Init.MemInc = DMA_MINC_ENABLE;
+ 126:cube/Src/adc.c ****     hdma_adc.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
+ 127:cube/Src/adc.c ****     hdma_adc.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;
+ 128:cube/Src/adc.c ****     hdma_adc.Init.Mode = DMA_CIRCULAR;
+ 129:cube/Src/adc.c ****     hdma_adc.Init.Priority = DMA_PRIORITY_HIGH;
+ 130:cube/Src/adc.c ****     if (HAL_DMA_Init(&hdma_adc) != HAL_OK)
+ 131:cube/Src/adc.c ****     {
+ 132:cube/Src/adc.c ****       _Error_Handler(__FILE__, __LINE__);
+ 133:cube/Src/adc.c ****     }
+ 134:cube/Src/adc.c **** 
+ 135:cube/Src/adc.c ****     __HAL_LINKDMA(adcHandle,DMA_Handle,hdma_adc);
+ 136:cube/Src/adc.c **** 
+ 137:cube/Src/adc.c ****     /* ADC1 interrupt Init */
+ 138:cube/Src/adc.c ****     HAL_NVIC_SetPriority(ADC1_COMP_IRQn, 0, 0);
+ 139:cube/Src/adc.c ****     HAL_NVIC_EnableIRQ(ADC1_COMP_IRQn);
+ 140:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspInit 1 */
+ 141:cube/Src/adc.c **** 
+ 142:cube/Src/adc.c ****   /* USER CODE END ADC1_MspInit 1 */
+ 143:cube/Src/adc.c ****   }
+ 144:cube/Src/adc.c **** }
+ 173              		.loc 1 144 0
+ 174 000e 06B0     		add	sp, sp, #24
+ 175              		@ sp needed
+ 176              	.LVL8:
+ 177 0010 70BD     		pop	{r4, r5, r6, pc}
+ 178              	.LVL9:
+ 179              	.L13:
+ 180              	.LBB2:
+ 109:cube/Src/adc.c ****   
+ 181              		.loc 1 109 0
+ 182 0012 1D4B     		ldr	r3, .L15+4
+ 183 0014 9A69     		ldr	r2, [r3, #24]
+ 184 0016 8025     		movs	r5, #128
+ 185 0018 AD00     		lsls	r5, r5, #2
+ 186 001a 2A43     		orrs	r2, r5
+ 187 001c 9A61     		str	r2, [r3, #24]
+ 188 001e 9B69     		ldr	r3, [r3, #24]
+ 189 0020 2B40     		ands	r3, r5
+ 190 0022 0093     		str	r3, [sp]
+ 191 0024 009B     		ldr	r3, [sp]
+ 192              	.LBE2:
+ 115:cube/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 193              		.loc 1 115 0
+ 194 0026 0323     		movs	r3, #3
+ 195 0028 0193     		str	r3, [sp, #4]
+ 116:cube/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ARM GAS  /tmp/ccQpSm7j.s 			page 7
 
 
- 152:cube/Src/adc.c ****   }
- 153:cube/Src/adc.c **** }
- 191              		.loc 1 153 0
- 192 000e 06B0     		add	sp, sp, #24
- 193              		@ sp needed
- 194              	.LVL10:
- 195 0010 70BD     		pop	{r4, r5, r6, pc}
- 196              	.LVL11:
- 197              	.L15:
- 198              	.LBB2:
- 117:cube/Src/adc.c ****   
- 199              		.loc 1 117 0
- 200 0012 1E4B     		ldr	r3, .L17+4
- 201 0014 9A69     		ldr	r2, [r3, #24]
- 202 0016 8025     		movs	r5, #128
- 203 0018 AD00     		lsls	r5, r5, #2
- 204 001a 2A43     		orrs	r2, r5
- 205 001c 9A61     		str	r2, [r3, #24]
- 206 001e 9B69     		ldr	r3, [r3, #24]
- 207 0020 2B40     		ands	r3, r5
- 208 0022 0093     		str	r3, [sp]
- 209 0024 009B     		ldr	r3, [sp]
- 210              	.LBE2:
- 124:cube/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
- 211              		.loc 1 124 0
- 212 0026 1323     		movs	r3, #19
- 213 0028 0193     		str	r3, [sp, #4]
- 125:cube/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
- 214              		.loc 1 125 0
- 215 002a 103B     		subs	r3, r3, #16
- 216 002c 0293     		str	r3, [sp, #8]
- 126:cube/Src/adc.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
- 217              		.loc 1 126 0
- 218 002e 0026     		movs	r6, #0
- 219 0030 0396     		str	r6, [sp, #12]
- 127:cube/Src/adc.c **** 
- 220              		.loc 1 127 0
- 221 0032 9020     		movs	r0, #144
- 222              	.LVL12:
- 223 0034 01A9     		add	r1, sp, #4
- 224 0036 C005     		lsls	r0, r0, #23
- 225 0038 FFF7FEFF 		bl	HAL_GPIO_Init
- 226              	.LVL13:
- 131:cube/Src/adc.c ****     hdma_adc.Init.Direction = DMA_PERIPH_TO_MEMORY;
- 227              		.loc 1 131 0
- 228 003c 1448     		ldr	r0, .L17+8
- 229 003e 154B     		ldr	r3, .L17+12
- 230 0040 0360     		str	r3, [r0]
- 132:cube/Src/adc.c ****     hdma_adc.Init.PeriphInc = DMA_PINC_DISABLE;
- 231              		.loc 1 132 0
- 232 0042 4660     		str	r6, [r0, #4]
- 133:cube/Src/adc.c ****     hdma_adc.Init.MemInc = DMA_MINC_ENABLE;
- 233              		.loc 1 133 0
- 234 0044 8660     		str	r6, [r0, #8]
- 134:cube/Src/adc.c ****     hdma_adc.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
- 235              		.loc 1 134 0
- 236 0046 8023     		movs	r3, #128
-ARM GAS  /tmp/ccqfr1gm.s 			page 8
-
-
- 237 0048 C360     		str	r3, [r0, #12]
- 135:cube/Src/adc.c ****     hdma_adc.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;
+ 196              		.loc 1 116 0
+ 197 002a 0293     		str	r3, [sp, #8]
+ 117:cube/Src/adc.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 198              		.loc 1 117 0
+ 199 002c 0026     		movs	r6, #0
+ 200 002e 0396     		str	r6, [sp, #12]
+ 118:cube/Src/adc.c **** 
+ 201              		.loc 1 118 0
+ 202 0030 9020     		movs	r0, #144
+ 203              	.LVL10:
+ 204 0032 01A9     		add	r1, sp, #4
+ 205 0034 C005     		lsls	r0, r0, #23
+ 206 0036 FFF7FEFF 		bl	HAL_GPIO_Init
+ 207              	.LVL11:
+ 122:cube/Src/adc.c ****     hdma_adc.Init.Direction = DMA_PERIPH_TO_MEMORY;
+ 208              		.loc 1 122 0
+ 209 003a 1448     		ldr	r0, .L15+8
+ 210 003c 144B     		ldr	r3, .L15+12
+ 211 003e 0360     		str	r3, [r0]
+ 123:cube/Src/adc.c ****     hdma_adc.Init.PeriphInc = DMA_PINC_DISABLE;
+ 212              		.loc 1 123 0
+ 213 0040 4660     		str	r6, [r0, #4]
+ 124:cube/Src/adc.c ****     hdma_adc.Init.MemInc = DMA_MINC_ENABLE;
+ 214              		.loc 1 124 0
+ 215 0042 8660     		str	r6, [r0, #8]
+ 125:cube/Src/adc.c ****     hdma_adc.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
+ 216              		.loc 1 125 0
+ 217 0044 8023     		movs	r3, #128
+ 218 0046 C360     		str	r3, [r0, #12]
+ 126:cube/Src/adc.c ****     hdma_adc.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;
+ 219              		.loc 1 126 0
+ 220 0048 0561     		str	r5, [r0, #16]
+ 127:cube/Src/adc.c ****     hdma_adc.Init.Mode = DMA_CIRCULAR;
+ 221              		.loc 1 127 0
+ 222 004a 8023     		movs	r3, #128
+ 223 004c 1B01     		lsls	r3, r3, #4
+ 224 004e 4361     		str	r3, [r0, #20]
+ 128:cube/Src/adc.c ****     hdma_adc.Init.Priority = DMA_PRIORITY_HIGH;
+ 225              		.loc 1 128 0
+ 226 0050 2023     		movs	r3, #32
+ 227 0052 8361     		str	r3, [r0, #24]
+ 129:cube/Src/adc.c ****     if (HAL_DMA_Init(&hdma_adc) != HAL_OK)
+ 228              		.loc 1 129 0
+ 229 0054 8023     		movs	r3, #128
+ 230 0056 9B01     		lsls	r3, r3, #6
+ 231 0058 C361     		str	r3, [r0, #28]
+ 130:cube/Src/adc.c ****     {
+ 232              		.loc 1 130 0
+ 233 005a FFF7FEFF 		bl	HAL_DMA_Init
+ 234              	.LVL12:
+ 235 005e 0028     		cmp	r0, #0
+ 236 0060 0BD1     		bne	.L14
+ 237              	.L12:
+ 135:cube/Src/adc.c **** 
  238              		.loc 1 135 0
- 239 004a 0561     		str	r5, [r0, #16]
- 136:cube/Src/adc.c ****     hdma_adc.Init.Mode = DMA_CIRCULAR;
- 240              		.loc 1 136 0
- 241 004c 8023     		movs	r3, #128
- 242 004e 1B01     		lsls	r3, r3, #4
- 243 0050 4361     		str	r3, [r0, #20]
- 137:cube/Src/adc.c ****     hdma_adc.Init.Priority = DMA_PRIORITY_HIGH;
- 244              		.loc 1 137 0
- 245 0052 2023     		movs	r3, #32
- 246 0054 8361     		str	r3, [r0, #24]
- 138:cube/Src/adc.c ****     if (HAL_DMA_Init(&hdma_adc) != HAL_OK)
- 247              		.loc 1 138 0
- 248 0056 8023     		movs	r3, #128
- 249 0058 9B01     		lsls	r3, r3, #6
- 250 005a C361     		str	r3, [r0, #28]
- 139:cube/Src/adc.c ****     {
- 251              		.loc 1 139 0
- 252 005c FFF7FEFF 		bl	HAL_DMA_Init
- 253              	.LVL14:
- 254 0060 0028     		cmp	r0, #0
- 255 0062 0BD1     		bne	.L16
- 256              	.L14:
- 144:cube/Src/adc.c **** 
- 257              		.loc 1 144 0
- 258 0064 0A4B     		ldr	r3, .L17+8
- 259 0066 E363     		str	r3, [r4, #60]
- 260 0068 5C62     		str	r4, [r3, #36]
- 147:cube/Src/adc.c ****     HAL_NVIC_EnableIRQ(ADC1_COMP_IRQn);
- 261              		.loc 1 147 0
- 262 006a 0022     		movs	r2, #0
- 263 006c 0021     		movs	r1, #0
- 264 006e 0C20     		movs	r0, #12
- 265 0070 FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 266              	.LVL15:
- 148:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspInit 1 */
- 267              		.loc 1 148 0
- 268 0074 0C20     		movs	r0, #12
- 269 0076 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 270              	.LVL16:
- 271              		.loc 1 153 0
- 272 007a C8E7     		b	.L12
- 273              	.L16:
- 141:cube/Src/adc.c ****     }
- 274              		.loc 1 141 0
- 275 007c 8D21     		movs	r1, #141
- 276 007e 0648     		ldr	r0, .L17+16
- 277 0080 FFF7FEFF 		bl	_Error_Handler
- 278              	.LVL17:
- 279 0084 EEE7     		b	.L14
- 280              	.L18:
- 281 0086 C046     		.align	2
- 282              	.L17:
- 283 0088 00240140 		.word	1073816576
- 284 008c 00100240 		.word	1073876992
-ARM GAS  /tmp/ccqfr1gm.s 			page 9
+ 239 0062 0A4B     		ldr	r3, .L15+8
+ 240 0064 E363     		str	r3, [r4, #60]
+ARM GAS  /tmp/ccQpSm7j.s 			page 8
 
 
- 285 0090 00000000 		.word	hdma_adc
- 286 0094 08000240 		.word	1073872904
- 287 0098 00000000 		.word	.LC1
- 288              		.cfi_endproc
- 289              	.LFE38:
- 291              		.section	.text.HAL_ADC_MspDeInit,"ax",%progbits
- 292              		.align	1
- 293              		.global	HAL_ADC_MspDeInit
- 294              		.syntax unified
- 295              		.code	16
- 296              		.thumb_func
- 297              		.fpu softvfp
- 299              	HAL_ADC_MspDeInit:
- 300              	.LFB39:
- 154:cube/Src/adc.c **** 
- 155:cube/Src/adc.c **** void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
- 156:cube/Src/adc.c **** {
- 301              		.loc 1 156 0
- 302              		.cfi_startproc
- 303              		@ args = 0, pretend = 0, frame = 0
- 304              		@ frame_needed = 0, uses_anonymous_args = 0
- 305              	.LVL18:
- 306 0000 10B5     		push	{r4, lr}
- 307              		.cfi_def_cfa_offset 8
- 308              		.cfi_offset 4, -8
- 309              		.cfi_offset 14, -4
- 310 0002 0400     		movs	r4, r0
- 157:cube/Src/adc.c **** 
- 158:cube/Src/adc.c ****   if(adcHandle->Instance==ADC1)
- 311              		.loc 1 158 0
- 312 0004 0A4B     		ldr	r3, .L22
- 313 0006 0268     		ldr	r2, [r0]
- 314 0008 9A42     		cmp	r2, r3
- 315 000a 00D0     		beq	.L21
- 316              	.LVL19:
- 317              	.L19:
- 159:cube/Src/adc.c ****   {
- 160:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspDeInit 0 */
+ 241 0066 5C62     		str	r4, [r3, #36]
+ 138:cube/Src/adc.c ****     HAL_NVIC_EnableIRQ(ADC1_COMP_IRQn);
+ 242              		.loc 1 138 0
+ 243 0068 0022     		movs	r2, #0
+ 244 006a 0021     		movs	r1, #0
+ 245 006c 0C20     		movs	r0, #12
+ 246 006e FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 247              	.LVL13:
+ 139:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspInit 1 */
+ 248              		.loc 1 139 0
+ 249 0072 0C20     		movs	r0, #12
+ 250 0074 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 251              	.LVL14:
+ 252              		.loc 1 144 0
+ 253 0078 C9E7     		b	.L10
+ 254              	.L14:
+ 132:cube/Src/adc.c ****     }
+ 255              		.loc 1 132 0
+ 256 007a 8421     		movs	r1, #132
+ 257 007c 0548     		ldr	r0, .L15+16
+ 258 007e FFF7FEFF 		bl	_Error_Handler
+ 259              	.LVL15:
+ 260 0082 EEE7     		b	.L12
+ 261              	.L16:
+ 262              		.align	2
+ 263              	.L15:
+ 264 0084 00240140 		.word	1073816576
+ 265 0088 00100240 		.word	1073876992
+ 266 008c 00000000 		.word	hdma_adc
+ 267 0090 08000240 		.word	1073872904
+ 268 0094 00000000 		.word	.LC1
+ 269              		.cfi_endproc
+ 270              	.LFE38:
+ 272              		.section	.text.HAL_ADC_MspDeInit,"ax",%progbits
+ 273              		.align	1
+ 274              		.global	HAL_ADC_MspDeInit
+ 275              		.syntax unified
+ 276              		.code	16
+ 277              		.thumb_func
+ 278              		.fpu softvfp
+ 280              	HAL_ADC_MspDeInit:
+ 281              	.LFB39:
+ 145:cube/Src/adc.c **** 
+ 146:cube/Src/adc.c **** void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
+ 147:cube/Src/adc.c **** {
+ 282              		.loc 1 147 0
+ 283              		.cfi_startproc
+ 284              		@ args = 0, pretend = 0, frame = 0
+ 285              		@ frame_needed = 0, uses_anonymous_args = 0
+ 286              	.LVL16:
+ 287 0000 10B5     		push	{r4, lr}
+ 288              		.cfi_def_cfa_offset 8
+ 289              		.cfi_offset 4, -8
+ 290              		.cfi_offset 14, -4
+ 291 0002 0400     		movs	r4, r0
+ 148:cube/Src/adc.c **** 
+ 149:cube/Src/adc.c ****   if(adcHandle->Instance==ADC1)
+ARM GAS  /tmp/ccQpSm7j.s 			page 9
+
+
+ 292              		.loc 1 149 0
+ 293 0004 0A4B     		ldr	r3, .L20
+ 294 0006 0268     		ldr	r2, [r0]
+ 295 0008 9A42     		cmp	r2, r3
+ 296 000a 00D0     		beq	.L19
+ 297              	.LVL17:
+ 298              	.L17:
+ 150:cube/Src/adc.c ****   {
+ 151:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspDeInit 0 */
+ 152:cube/Src/adc.c **** 
+ 153:cube/Src/adc.c ****   /* USER CODE END ADC1_MspDeInit 0 */
+ 154:cube/Src/adc.c ****     /* Peripheral clock disable */
+ 155:cube/Src/adc.c ****     __HAL_RCC_ADC1_CLK_DISABLE();
+ 156:cube/Src/adc.c ****   
+ 157:cube/Src/adc.c ****     /**ADC GPIO Configuration    
+ 158:cube/Src/adc.c ****     PA0     ------> ADC_IN0
+ 159:cube/Src/adc.c ****     PA1     ------> ADC_IN1 
+ 160:cube/Src/adc.c ****     */
+ 161:cube/Src/adc.c ****     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_0|GPIO_PIN_1);
+ 162:cube/Src/adc.c **** 
+ 163:cube/Src/adc.c ****     /* ADC1 DMA DeInit */
+ 164:cube/Src/adc.c ****     HAL_DMA_DeInit(adcHandle->DMA_Handle);
+ 165:cube/Src/adc.c **** 
+ 166:cube/Src/adc.c ****     /* ADC1 interrupt Deinit */
+ 167:cube/Src/adc.c ****     HAL_NVIC_DisableIRQ(ADC1_COMP_IRQn);
+ 168:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspDeInit 1 */
+ 169:cube/Src/adc.c **** 
+ 170:cube/Src/adc.c ****   /* USER CODE END ADC1_MspDeInit 1 */
+ 171:cube/Src/adc.c ****   }
+ 172:cube/Src/adc.c **** } 
+ 299              		.loc 1 172 0
+ 300              		@ sp needed
+ 301              	.LVL18:
+ 302 000c 10BD     		pop	{r4, pc}
+ 303              	.LVL19:
+ 304              	.L19:
+ 155:cube/Src/adc.c ****   
+ 305              		.loc 1 155 0
+ 306 000e 094A     		ldr	r2, .L20+4
+ 307 0010 9369     		ldr	r3, [r2, #24]
+ 308 0012 0949     		ldr	r1, .L20+8
+ 309 0014 0B40     		ands	r3, r1
+ 310 0016 9361     		str	r3, [r2, #24]
  161:cube/Src/adc.c **** 
- 162:cube/Src/adc.c ****   /* USER CODE END ADC1_MspDeInit 0 */
- 163:cube/Src/adc.c ****     /* Peripheral clock disable */
- 164:cube/Src/adc.c ****     __HAL_RCC_ADC1_CLK_DISABLE();
- 165:cube/Src/adc.c ****   
- 166:cube/Src/adc.c ****     /**ADC GPIO Configuration    
- 167:cube/Src/adc.c ****     PA0     ------> ADC_IN0
- 168:cube/Src/adc.c ****     PA1     ------> ADC_IN1
- 169:cube/Src/adc.c ****     PA4     ------> ADC_IN4 
- 170:cube/Src/adc.c ****     */
- 171:cube/Src/adc.c ****     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_4);
- 172:cube/Src/adc.c **** 
- 173:cube/Src/adc.c ****     /* ADC1 DMA DeInit */
- 174:cube/Src/adc.c ****     HAL_DMA_DeInit(adcHandle->DMA_Handle);
- 175:cube/Src/adc.c **** 
- 176:cube/Src/adc.c ****     /* ADC1 interrupt Deinit */
- 177:cube/Src/adc.c ****     HAL_NVIC_DisableIRQ(ADC1_COMP_IRQn);
- 178:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspDeInit 1 */
- 179:cube/Src/adc.c **** 
-ARM GAS  /tmp/ccqfr1gm.s 			page 10
+ 311              		.loc 1 161 0
+ 312 0018 9020     		movs	r0, #144
+ 313              	.LVL20:
+ 314 001a 0321     		movs	r1, #3
+ 315 001c C005     		lsls	r0, r0, #23
+ 316 001e FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 317              	.LVL21:
+ 164:cube/Src/adc.c **** 
+ 318              		.loc 1 164 0
+ 319 0022 E06B     		ldr	r0, [r4, #60]
+ 320 0024 FFF7FEFF 		bl	HAL_DMA_DeInit
+ 321              	.LVL22:
+ 167:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspDeInit 1 */
+ARM GAS  /tmp/ccQpSm7j.s 			page 10
 
 
- 180:cube/Src/adc.c ****   /* USER CODE END ADC1_MspDeInit 1 */
- 181:cube/Src/adc.c ****   }
- 182:cube/Src/adc.c **** } 
- 318              		.loc 1 182 0
- 319              		@ sp needed
- 320              	.LVL20:
- 321 000c 10BD     		pop	{r4, pc}
- 322              	.LVL21:
- 323              	.L21:
- 164:cube/Src/adc.c ****   
- 324              		.loc 1 164 0
- 325 000e 094A     		ldr	r2, .L22+4
- 326 0010 9369     		ldr	r3, [r2, #24]
- 327 0012 0949     		ldr	r1, .L22+8
- 328 0014 0B40     		ands	r3, r1
- 329 0016 9361     		str	r3, [r2, #24]
- 171:cube/Src/adc.c **** 
- 330              		.loc 1 171 0
- 331 0018 9020     		movs	r0, #144
- 332              	.LVL22:
- 333 001a 1321     		movs	r1, #19
- 334 001c C005     		lsls	r0, r0, #23
- 335 001e FFF7FEFF 		bl	HAL_GPIO_DeInit
- 336              	.LVL23:
- 174:cube/Src/adc.c **** 
- 337              		.loc 1 174 0
- 338 0022 E06B     		ldr	r0, [r4, #60]
- 339 0024 FFF7FEFF 		bl	HAL_DMA_DeInit
- 340              	.LVL24:
- 177:cube/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspDeInit 1 */
- 341              		.loc 1 177 0
- 342 0028 0C20     		movs	r0, #12
- 343 002a FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
- 344              	.LVL25:
- 345              		.loc 1 182 0
- 346 002e EDE7     		b	.L19
- 347              	.L23:
- 348              		.align	2
- 349              	.L22:
- 350 0030 00240140 		.word	1073816576
- 351 0034 00100240 		.word	1073876992
- 352 0038 FFFDFFFF 		.word	-513
- 353              		.cfi_endproc
- 354              	.LFE39:
- 356              		.comm	hdma_adc,68,4
- 357              		.comm	hadc,76,4
- 358              		.section	.rodata.MX_ADC_Init.str1.4,"aMS",%progbits,1
- 359              		.align	2
- 360              	.LC1:
- 361 0000 63756265 		.ascii	"cube/Src/adc.c\000"
- 361      2F537263 
- 361      2F616463 
- 361      2E6300
- 362              		.text
- 363              	.Letext0:
- 364              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
- 365              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
-ARM GAS  /tmp/ccqfr1gm.s 			page 11
-
-
- 366              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
- 367              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
- 368              		.file 6 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h"
- 369              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
- 370              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
- 371              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
- 372              		.file 10 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/re
- 373              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
- 374              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
- 375              		.file 13 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
- 376              		.file 14 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_adc.h"
- 377              		.file 15 "cube/Inc/adc.h"
- 378              		.file 16 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
- 379              		.file 17 "cube/Inc/dma.h"
-ARM GAS  /tmp/ccqfr1gm.s 			page 12
+ 322              		.loc 1 167 0
+ 323 0028 0C20     		movs	r0, #12
+ 324 002a FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 325              	.LVL23:
+ 326              		.loc 1 172 0
+ 327 002e EDE7     		b	.L17
+ 328              	.L21:
+ 329              		.align	2
+ 330              	.L20:
+ 331 0030 00240140 		.word	1073816576
+ 332 0034 00100240 		.word	1073876992
+ 333 0038 FFFDFFFF 		.word	-513
+ 334              		.cfi_endproc
+ 335              	.LFE39:
+ 337              		.comm	hdma_adc,68,4
+ 338              		.comm	hadc,76,4
+ 339              		.section	.rodata.MX_ADC_Init.str1.4,"aMS",%progbits,1
+ 340              		.align	2
+ 341              	.LC1:
+ 342 0000 63756265 		.ascii	"cube/Src/adc.c\000"
+ 342      2F537263 
+ 342      2F616463 
+ 342      2E6300
+ 343              		.text
+ 344              	.Letext0:
+ 345              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+ 346              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
+ 347              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ 348              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 349              		.file 6 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h"
+ 350              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+ 351              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+ 352              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+ 353              		.file 10 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/re
+ 354              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 355              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
+ 356              		.file 13 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
+ 357              		.file 14 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_adc.h"
+ 358              		.file 15 "cube/Inc/adc.h"
+ 359              		.file 16 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
+ 360              		.file 17 "cube/Inc/dma.h"
+ARM GAS  /tmp/ccQpSm7j.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 adc.c
-     /tmp/ccqfr1gm.s:16     .text.MX_ADC_Init:0000000000000000 $t
-     /tmp/ccqfr1gm.s:23     .text.MX_ADC_Init:0000000000000000 MX_ADC_Init
-     /tmp/ccqfr1gm.s:154    .text.MX_ADC_Init:00000000000000a0 $d
+     /tmp/ccQpSm7j.s:16     .text.MX_ADC_Init:0000000000000000 $t
+     /tmp/ccQpSm7j.s:23     .text.MX_ADC_Init:0000000000000000 MX_ADC_Init
+     /tmp/ccQpSm7j.s:136    .text.MX_ADC_Init:0000000000000088 $d
                             *COM*:000000000000004c hadc
-     /tmp/ccqfr1gm.s:161    .text.HAL_ADC_MspInit:0000000000000000 $t
-     /tmp/ccqfr1gm.s:168    .text.HAL_ADC_MspInit:0000000000000000 HAL_ADC_MspInit
-     /tmp/ccqfr1gm.s:283    .text.HAL_ADC_MspInit:0000000000000088 $d
+     /tmp/ccQpSm7j.s:143    .text.HAL_ADC_MspInit:0000000000000000 $t
+     /tmp/ccQpSm7j.s:150    .text.HAL_ADC_MspInit:0000000000000000 HAL_ADC_MspInit
+     /tmp/ccQpSm7j.s:264    .text.HAL_ADC_MspInit:0000000000000084 $d
                             *COM*:0000000000000044 hdma_adc
-     /tmp/ccqfr1gm.s:292    .text.HAL_ADC_MspDeInit:0000000000000000 $t
-     /tmp/ccqfr1gm.s:299    .text.HAL_ADC_MspDeInit:0000000000000000 HAL_ADC_MspDeInit
-     /tmp/ccqfr1gm.s:350    .text.HAL_ADC_MspDeInit:0000000000000030 $d
-     /tmp/ccqfr1gm.s:359    .rodata.MX_ADC_Init.str1.4:0000000000000000 $d
+     /tmp/ccQpSm7j.s:273    .text.HAL_ADC_MspDeInit:0000000000000000 $t
+     /tmp/ccQpSm7j.s:280    .text.HAL_ADC_MspDeInit:0000000000000000 HAL_ADC_MspDeInit
+     /tmp/ccQpSm7j.s:331    .text.HAL_ADC_MspDeInit:0000000000000030 $d
+     /tmp/ccQpSm7j.s:340    .rodata.MX_ADC_Init.str1.4:0000000000000000 $d
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
                            .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
                            .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
@@ -675,7 +642,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma_ex.h.38.c2269542e0bcc97944af39289a0a60b8
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.500.3b36a5be41f3e2ac138f4041ccf5cecb
                            .group:0000000000000000 wm4.stm32f0xx_hal_cortex.h.38.61b1088b7495d338bc65ee2571a0bb95
-ARM GAS  /tmp/ccqfr1gm.s 			page 13
+ARM GAS  /tmp/ccQpSm7j.s 			page 12
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_adc.h.38.e3e4bca0d8b91dc0f73ca672bc0e5aca

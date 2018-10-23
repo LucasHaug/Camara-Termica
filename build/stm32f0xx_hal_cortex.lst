@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccaUwqZG.s 			page 1
+ARM GAS  /tmp/ccRkTdAH.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
   31:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c **** 
   32:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****       (#)  Enable the selected IRQ Channels using HAL_NVIC_EnableIRQ()
   33:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****       
-ARM GAS  /tmp/ccaUwqZG.s 			page 2
+ARM GAS  /tmp/ccRkTdAH.s 			page 2
 
 
   34:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****       -@-  Negative value of IRQn_Type are not allowed.
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
   88:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
   89:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   90:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-ARM GAS  /tmp/ccaUwqZG.s 			page 3
+ARM GAS  /tmp/ccRkTdAH.s 			page 3
 
 
   91:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  145:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   *         This parameter can be a value between 0 and 3.
  146:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   *         A lower priority value indicates a higher priority
  147:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   * @param  SubPriority the subpriority level for the IRQ channel.
-ARM GAS  /tmp/ccaUwqZG.s 			page 4
+ARM GAS  /tmp/ccRkTdAH.s 			page 4
 
 
  148:cube/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   *         with stm32f0xx devices, this parameter is a dummy value and it is ignored, because 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
   34:cube/Drivers/CMSIS/Include/core_cm0.h **** 
   35:cube/Drivers/CMSIS/Include/core_cm0.h **** #if   defined ( __ICCARM__ )
   36:cube/Drivers/CMSIS/Include/core_cm0.h ****  #pragma system_include         /* treat file as system include file for MISRA check */
-ARM GAS  /tmp/ccaUwqZG.s 			page 5
+ARM GAS  /tmp/ccRkTdAH.s 			page 5
 
 
   37:cube/Drivers/CMSIS/Include/core_cm0.h **** #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
   91:cube/Drivers/CMSIS/Include/core_cm0.h **** 
   92:cube/Drivers/CMSIS/Include/core_cm0.h **** #elif defined ( __GNUC__ )
   93:cube/Drivers/CMSIS/Include/core_cm0.h ****   #define __ASM            __asm                                      /*!< asm keyword for GNU Comp
-ARM GAS  /tmp/ccaUwqZG.s 			page 6
+ARM GAS  /tmp/ccRkTdAH.s 			page 6
 
 
   94:cube/Drivers/CMSIS/Include/core_cm0.h ****   #define __INLINE         inline                                     /*!< inline keyword for GNU C
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  148:cube/Drivers/CMSIS/Include/core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
  149:cube/Drivers/CMSIS/Include/core_cm0.h ****   #endif
  150:cube/Drivers/CMSIS/Include/core_cm0.h **** 
-ARM GAS  /tmp/ccaUwqZG.s 			page 7
+ARM GAS  /tmp/ccRkTdAH.s 			page 7
 
 
  151:cube/Drivers/CMSIS/Include/core_cm0.h **** #elif defined ( __TASKING__ )
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  205:cube/Drivers/CMSIS/Include/core_cm0.h ****     \li for automatic generation of peripheral register debug information.
  206:cube/Drivers/CMSIS/Include/core_cm0.h **** */
  207:cube/Drivers/CMSIS/Include/core_cm0.h **** #ifdef __cplusplus
-ARM GAS  /tmp/ccaUwqZG.s 			page 8
+ARM GAS  /tmp/ccRkTdAH.s 			page 8
 
 
  208:cube/Drivers/CMSIS/Include/core_cm0.h ****   #define   __I     volatile             /*!< Defines 'read only' permissions */
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  262:cube/Drivers/CMSIS/Include/core_cm0.h **** #define APSR_N_Msk                         (1UL << APSR_N_Pos)                            /*!< APSR
  263:cube/Drivers/CMSIS/Include/core_cm0.h **** 
  264:cube/Drivers/CMSIS/Include/core_cm0.h **** #define APSR_Z_Pos                         30U                                            /*!< APSR
-ARM GAS  /tmp/ccaUwqZG.s 			page 9
+ARM GAS  /tmp/ccRkTdAH.s 			page 9
 
 
  265:cube/Drivers/CMSIS/Include/core_cm0.h **** #define APSR_Z_Msk                         (1UL << APSR_Z_Pos)                            /*!< APSR
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  319:cube/Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_C_Msk                         (1UL << xPSR_C_Pos)                            /*!< xPSR
  320:cube/Drivers/CMSIS/Include/core_cm0.h **** 
  321:cube/Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_V_Pos                         28U                                            /*!< xPSR
-ARM GAS  /tmp/ccaUwqZG.s 			page 10
+ARM GAS  /tmp/ccRkTdAH.s 			page 10
 
 
  322:cube/Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_V_Msk                         (1UL << xPSR_V_Pos)                            /*!< xPSR
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  376:cube/Drivers/CMSIS/Include/core_cm0.h **** /*@} end of group CMSIS_NVIC */
  377:cube/Drivers/CMSIS/Include/core_cm0.h **** 
  378:cube/Drivers/CMSIS/Include/core_cm0.h **** 
-ARM GAS  /tmp/ccaUwqZG.s 			page 11
+ARM GAS  /tmp/ccRkTdAH.s 			page 11
 
 
  379:cube/Drivers/CMSIS/Include/core_cm0.h **** /**
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  433:cube/Drivers/CMSIS/Include/core_cm0.h **** 
  434:cube/Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_ISRPREEMPT_Pos            23U                                            /*!< SCB 
  435:cube/Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_ISRPREEMPT_Msk            (1UL << SCB_ICSR_ISRPREEMPT_Pos)               /*!< SCB 
-ARM GAS  /tmp/ccaUwqZG.s 			page 12
+ARM GAS  /tmp/ccRkTdAH.s 			page 12
 
 
  436:cube/Drivers/CMSIS/Include/core_cm0.h **** 
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  490:cube/Drivers/CMSIS/Include/core_cm0.h ****   @{
  491:cube/Drivers/CMSIS/Include/core_cm0.h ****  */
  492:cube/Drivers/CMSIS/Include/core_cm0.h **** 
-ARM GAS  /tmp/ccaUwqZG.s 			page 13
+ARM GAS  /tmp/ccRkTdAH.s 			page 13
 
 
  493:cube/Drivers/CMSIS/Include/core_cm0.h **** /**
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  547:cube/Drivers/CMSIS/Include/core_cm0.h **** 
  548:cube/Drivers/CMSIS/Include/core_cm0.h **** /**
  549:cube/Drivers/CMSIS/Include/core_cm0.h ****   \ingroup    CMSIS_core_register
-ARM GAS  /tmp/ccaUwqZG.s 			page 14
+ARM GAS  /tmp/ccRkTdAH.s 			page 14
 
 
  550:cube/Drivers/CMSIS/Include/core_cm0.h ****   \defgroup   CMSIS_core_bitfield     Core register bit field macros
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  604:cube/Drivers/CMSIS/Include/core_cm0.h ****   \defgroup CMSIS_Core_FunctionInterface Functions and Instructions Reference
  605:cube/Drivers/CMSIS/Include/core_cm0.h **** */
  606:cube/Drivers/CMSIS/Include/core_cm0.h **** 
-ARM GAS  /tmp/ccaUwqZG.s 			page 15
+ARM GAS  /tmp/ccRkTdAH.s 			page 15
 
 
  607:cube/Drivers/CMSIS/Include/core_cm0.h **** 
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  661:cube/Drivers/CMSIS/Include/core_cm0.h ****   \details Sets the pending bit of an external interrupt.
  662:cube/Drivers/CMSIS/Include/core_cm0.h ****   \param [in]      IRQn  Interrupt number. Value cannot be negative.
  663:cube/Drivers/CMSIS/Include/core_cm0.h ****  */
-ARM GAS  /tmp/ccaUwqZG.s 			page 16
+ARM GAS  /tmp/ccRkTdAH.s 			page 16
 
 
  664:cube/Drivers/CMSIS/Include/core_cm0.h **** __STATIC_INLINE void NVIC_SetPendingIRQ(IRQn_Type IRQn)
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
   60 001e 8901     		lsls	r1, r1, #6
   61              	.LVL4:
   62 0020 0B40     		ands	r3, r1
-ARM GAS  /tmp/ccaUwqZG.s 			page 17
+ARM GAS  /tmp/ccRkTdAH.s 			page 17
 
 
   63 0022 8340     		lsls	r3, r3, r0
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  109              	.L5:
  110 0058 00E100E0 		.word	-536813312
  111 005c 00ED00E0 		.word	-536810240
-ARM GAS  /tmp/ccaUwqZG.s 			page 18
+ARM GAS  /tmp/ccRkTdAH.s 			page 18
 
 
  112              	.LBE28:
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  149              	.L9:
  150 000e C046     		.align	2
  151              	.L8:
-ARM GAS  /tmp/ccaUwqZG.s 			page 19
+ARM GAS  /tmp/ccRkTdAH.s 			page 19
 
 
  152 0010 00E100E0 		.word	-536813312
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  191              	.L11:
  192 0010 00E100E0 		.word	-536813312
  193              		.cfi_endproc
-ARM GAS  /tmp/ccaUwqZG.s 			page 20
+ARM GAS  /tmp/ccRkTdAH.s 			page 20
 
 
  194              	.LFE39:
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
   27:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
   28:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
   29:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-ARM GAS  /tmp/ccaUwqZG.s 			page 21
+ARM GAS  /tmp/ccRkTdAH.s 			page 21
 
 
   30:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
   84:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, control" : "=r" (result) );
   85:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
   86:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  /tmp/ccaUwqZG.s 			page 22
+ARM GAS  /tmp/ccRkTdAH.s 			page 22
 
 
   87:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  141:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** 
  142:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** 
  143:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  /tmp/ccaUwqZG.s 			page 23
+ARM GAS  /tmp/ccRkTdAH.s 			page 23
 
 
  144:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Process Stack Pointer
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  198:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  199:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_PRIMASK(void)
  200:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  /tmp/ccaUwqZG.s 			page 24
+ARM GAS  /tmp/ccRkTdAH.s 			page 24
 
 
  201:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  255:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** 
  256:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** 
  257:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  /tmp/ccaUwqZG.s 			page 25
+ARM GAS  /tmp/ccRkTdAH.s 			page 25
 
 
  258:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Base Priority
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  312:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Floating Point Status/Control register value
  313:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  314:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_FPSCR(void)
-ARM GAS  /tmp/ccaUwqZG.s 			page 26
+ARM GAS  /tmp/ccRkTdAH.s 			page 26
 
 
  315:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  369:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  370:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   No Operation
  371:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****   \details No Operation does nothing. This instruction can be used for code alignment purposes.
-ARM GAS  /tmp/ccaUwqZG.s 			page 27
+ARM GAS  /tmp/ccRkTdAH.s 			page 27
 
 
  372:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****  */
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  426:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  427:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__((always_inline)) __STATIC_INLINE void __DSB(void)
  428:cube/Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  /tmp/ccaUwqZG.s 			page 28
+ARM GAS  /tmp/ccRkTdAH.s 			page 28
 
 
  429:cube/Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("dsb 0xF":::"memory");
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  234              	@ 429 "cube/Drivers/CMSIS/Include/cmsis_gcc.h" 1
  235 000a BFF34F8F 		dsb 0xF
  236              	@ 0 "" 2
-ARM GAS  /tmp/ccaUwqZG.s 			page 29
+ARM GAS  /tmp/ccRkTdAH.s 			page 29
 
 
  237              		.thumb
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  279              	.LVL16:
  280              	.LBB50:
  281              	.LBB51:
-ARM GAS  /tmp/ccaUwqZG.s 			page 30
+ARM GAS  /tmp/ccRkTdAH.s 			page 30
 
 
  735:cube/Drivers/CMSIS/Include/core_cm0.h ****                  SCB_AIRCR_SYSRESETREQ_Msk);
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  692:cube/Drivers/CMSIS/Include/core_cm0.h ****        (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
  294              		.loc 2 692 0
  295 000c 0948     		ldr	r0, .L20+8
-ARM GAS  /tmp/ccaUwqZG.s 			page 31
+ARM GAS  /tmp/ccRkTdAH.s 			page 31
 
 
  296              	.LVL19:
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  340              	.LFE41:
  342              		.section	.text.HAL_NVIC_GetPriority,"ax",%progbits
  343              		.align	1
-ARM GAS  /tmp/ccaUwqZG.s 			page 32
+ARM GAS  /tmp/ccRkTdAH.s 			page 32
 
 
  344              		.global	HAL_NVIC_GetPriority
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  367 000a 0E4A     		ldr	r2, .L26
  368 000c 9B58     		ldr	r3, [r3, r2]
  369 000e 0322     		movs	r2, #3
-ARM GAS  /tmp/ccaUwqZG.s 			page 33
+ARM GAS  /tmp/ccRkTdAH.s 			page 33
 
 
  370 0010 1040     		ands	r0, r2
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  421              		.global	HAL_NVIC_SetPendingIRQ
  422              		.syntax unified
  423              		.code	16
-ARM GAS  /tmp/ccaUwqZG.s 			page 34
+ARM GAS  /tmp/ccRkTdAH.s 			page 34
 
 
  424              		.thumb_func
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  463              		.syntax unified
  464              		.code	16
  465              		.thumb_func
-ARM GAS  /tmp/ccaUwqZG.s 			page 35
+ARM GAS  /tmp/ccRkTdAH.s 			page 35
 
 
  466              		.fpu softvfp
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  503              		.align	1
  504              		.global	HAL_NVIC_ClearPendingIRQ
  505              		.syntax unified
-ARM GAS  /tmp/ccaUwqZG.s 			page 36
+ARM GAS  /tmp/ccRkTdAH.s 			page 36
 
 
  506              		.code	16
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  545              		.global	HAL_SYSTICK_CLKSourceConfig
  546              		.syntax unified
  547              		.code	16
-ARM GAS  /tmp/ccaUwqZG.s 			page 37
+ARM GAS  /tmp/ccRkTdAH.s 			page 37
 
 
  548              		.thumb_func
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  580              	.L42:
  581              		.align	2
  582              	.L41:
-ARM GAS  /tmp/ccaUwqZG.s 			page 38
+ARM GAS  /tmp/ccRkTdAH.s 			page 38
 
 
  583 001c 10E000E0 		.word	-536813552
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  620              		@ args = 0, pretend = 0, frame = 0
  621              		@ frame_needed = 0, uses_anonymous_args = 0
  622 0000 10B5     		push	{r4, lr}
-ARM GAS  /tmp/ccaUwqZG.s 			page 39
+ARM GAS  /tmp/ccRkTdAH.s 			page 39
 
 
  623              		.cfi_def_cfa_offset 8
@@ -2304,45 +2304,45 @@ ARM GAS  /tmp/ccaUwqZG.s 			page 1
  642              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
  643              		.file 10 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/
  644              		.file 11 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/re
-ARM GAS  /tmp/ccaUwqZG.s 			page 40
+ARM GAS  /tmp/ccRkTdAH.s 			page 40
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f0xx_hal_cortex.c
-     /tmp/ccaUwqZG.s:16     .text.HAL_NVIC_SetPriority:0000000000000000 $t
-     /tmp/ccaUwqZG.s:23     .text.HAL_NVIC_SetPriority:0000000000000000 HAL_NVIC_SetPriority
-     /tmp/ccaUwqZG.s:110    .text.HAL_NVIC_SetPriority:0000000000000058 $d
-     /tmp/ccaUwqZG.s:118    .text.HAL_NVIC_EnableIRQ:0000000000000000 $t
-     /tmp/ccaUwqZG.s:125    .text.HAL_NVIC_EnableIRQ:0000000000000000 HAL_NVIC_EnableIRQ
-     /tmp/ccaUwqZG.s:152    .text.HAL_NVIC_EnableIRQ:0000000000000010 $d
-     /tmp/ccaUwqZG.s:157    .text.HAL_NVIC_DisableIRQ:0000000000000000 $t
-     /tmp/ccaUwqZG.s:164    .text.HAL_NVIC_DisableIRQ:0000000000000000 HAL_NVIC_DisableIRQ
-     /tmp/ccaUwqZG.s:192    .text.HAL_NVIC_DisableIRQ:0000000000000010 $d
-     /tmp/ccaUwqZG.s:197    .text.HAL_NVIC_SystemReset:0000000000000000 $t
-     /tmp/ccaUwqZG.s:204    .text.HAL_NVIC_SystemReset:0000000000000000 HAL_NVIC_SystemReset
-     /tmp/ccaUwqZG.s:255    .text.HAL_NVIC_SystemReset:0000000000000014 $d
-     /tmp/ccaUwqZG.s:265    .text.HAL_SYSTICK_Config:0000000000000000 $t
-     /tmp/ccaUwqZG.s:272    .text.HAL_SYSTICK_Config:0000000000000000 HAL_SYSTICK_Config
-     /tmp/ccaUwqZG.s:336    .text.HAL_SYSTICK_Config:000000000000002c $d
-     /tmp/ccaUwqZG.s:343    .text.HAL_NVIC_GetPriority:0000000000000000 $t
-     /tmp/ccaUwqZG.s:350    .text.HAL_NVIC_GetPriority:0000000000000000 HAL_NVIC_GetPriority
-     /tmp/ccaUwqZG.s:412    .text.HAL_NVIC_GetPriority:0000000000000044 $d
-     /tmp/ccaUwqZG.s:420    .text.HAL_NVIC_SetPendingIRQ:0000000000000000 $t
-     /tmp/ccaUwqZG.s:427    .text.HAL_NVIC_SetPendingIRQ:0000000000000000 HAL_NVIC_SetPendingIRQ
-     /tmp/ccaUwqZG.s:456    .text.HAL_NVIC_SetPendingIRQ:0000000000000014 $d
-     /tmp/ccaUwqZG.s:461    .text.HAL_NVIC_GetPendingIRQ:0000000000000000 $t
-     /tmp/ccaUwqZG.s:468    .text.HAL_NVIC_GetPendingIRQ:0000000000000000 HAL_NVIC_GetPendingIRQ
-     /tmp/ccaUwqZG.s:498    .text.HAL_NVIC_GetPendingIRQ:0000000000000014 $d
-     /tmp/ccaUwqZG.s:503    .text.HAL_NVIC_ClearPendingIRQ:0000000000000000 $t
-     /tmp/ccaUwqZG.s:510    .text.HAL_NVIC_ClearPendingIRQ:0000000000000000 HAL_NVIC_ClearPendingIRQ
-     /tmp/ccaUwqZG.s:539    .text.HAL_NVIC_ClearPendingIRQ:0000000000000014 $d
-     /tmp/ccaUwqZG.s:544    .text.HAL_SYSTICK_CLKSourceConfig:0000000000000000 $t
-     /tmp/ccaUwqZG.s:551    .text.HAL_SYSTICK_CLKSourceConfig:0000000000000000 HAL_SYSTICK_CLKSourceConfig
-     /tmp/ccaUwqZG.s:583    .text.HAL_SYSTICK_CLKSourceConfig:000000000000001c $d
-     /tmp/ccaUwqZG.s:588    .text.HAL_SYSTICK_Callback:0000000000000000 $t
-     /tmp/ccaUwqZG.s:595    .text.HAL_SYSTICK_Callback:0000000000000000 HAL_SYSTICK_Callback
-     /tmp/ccaUwqZG.s:609    .text.HAL_SYSTICK_IRQHandler:0000000000000000 $t
-     /tmp/ccaUwqZG.s:616    .text.HAL_SYSTICK_IRQHandler:0000000000000000 HAL_SYSTICK_IRQHandler
+     /tmp/ccRkTdAH.s:16     .text.HAL_NVIC_SetPriority:0000000000000000 $t
+     /tmp/ccRkTdAH.s:23     .text.HAL_NVIC_SetPriority:0000000000000000 HAL_NVIC_SetPriority
+     /tmp/ccRkTdAH.s:110    .text.HAL_NVIC_SetPriority:0000000000000058 $d
+     /tmp/ccRkTdAH.s:118    .text.HAL_NVIC_EnableIRQ:0000000000000000 $t
+     /tmp/ccRkTdAH.s:125    .text.HAL_NVIC_EnableIRQ:0000000000000000 HAL_NVIC_EnableIRQ
+     /tmp/ccRkTdAH.s:152    .text.HAL_NVIC_EnableIRQ:0000000000000010 $d
+     /tmp/ccRkTdAH.s:157    .text.HAL_NVIC_DisableIRQ:0000000000000000 $t
+     /tmp/ccRkTdAH.s:164    .text.HAL_NVIC_DisableIRQ:0000000000000000 HAL_NVIC_DisableIRQ
+     /tmp/ccRkTdAH.s:192    .text.HAL_NVIC_DisableIRQ:0000000000000010 $d
+     /tmp/ccRkTdAH.s:197    .text.HAL_NVIC_SystemReset:0000000000000000 $t
+     /tmp/ccRkTdAH.s:204    .text.HAL_NVIC_SystemReset:0000000000000000 HAL_NVIC_SystemReset
+     /tmp/ccRkTdAH.s:255    .text.HAL_NVIC_SystemReset:0000000000000014 $d
+     /tmp/ccRkTdAH.s:265    .text.HAL_SYSTICK_Config:0000000000000000 $t
+     /tmp/ccRkTdAH.s:272    .text.HAL_SYSTICK_Config:0000000000000000 HAL_SYSTICK_Config
+     /tmp/ccRkTdAH.s:336    .text.HAL_SYSTICK_Config:000000000000002c $d
+     /tmp/ccRkTdAH.s:343    .text.HAL_NVIC_GetPriority:0000000000000000 $t
+     /tmp/ccRkTdAH.s:350    .text.HAL_NVIC_GetPriority:0000000000000000 HAL_NVIC_GetPriority
+     /tmp/ccRkTdAH.s:412    .text.HAL_NVIC_GetPriority:0000000000000044 $d
+     /tmp/ccRkTdAH.s:420    .text.HAL_NVIC_SetPendingIRQ:0000000000000000 $t
+     /tmp/ccRkTdAH.s:427    .text.HAL_NVIC_SetPendingIRQ:0000000000000000 HAL_NVIC_SetPendingIRQ
+     /tmp/ccRkTdAH.s:456    .text.HAL_NVIC_SetPendingIRQ:0000000000000014 $d
+     /tmp/ccRkTdAH.s:461    .text.HAL_NVIC_GetPendingIRQ:0000000000000000 $t
+     /tmp/ccRkTdAH.s:468    .text.HAL_NVIC_GetPendingIRQ:0000000000000000 HAL_NVIC_GetPendingIRQ
+     /tmp/ccRkTdAH.s:498    .text.HAL_NVIC_GetPendingIRQ:0000000000000014 $d
+     /tmp/ccRkTdAH.s:503    .text.HAL_NVIC_ClearPendingIRQ:0000000000000000 $t
+     /tmp/ccRkTdAH.s:510    .text.HAL_NVIC_ClearPendingIRQ:0000000000000000 HAL_NVIC_ClearPendingIRQ
+     /tmp/ccRkTdAH.s:539    .text.HAL_NVIC_ClearPendingIRQ:0000000000000014 $d
+     /tmp/ccRkTdAH.s:544    .text.HAL_SYSTICK_CLKSourceConfig:0000000000000000 $t
+     /tmp/ccRkTdAH.s:551    .text.HAL_SYSTICK_CLKSourceConfig:0000000000000000 HAL_SYSTICK_CLKSourceConfig
+     /tmp/ccRkTdAH.s:583    .text.HAL_SYSTICK_CLKSourceConfig:000000000000001c $d
+     /tmp/ccRkTdAH.s:588    .text.HAL_SYSTICK_Callback:0000000000000000 $t
+     /tmp/ccRkTdAH.s:595    .text.HAL_SYSTICK_Callback:0000000000000000 HAL_SYSTICK_Callback
+     /tmp/ccRkTdAH.s:609    .text.HAL_SYSTICK_IRQHandler:0000000000000000 $t
+     /tmp/ccRkTdAH.s:616    .text.HAL_SYSTICK_IRQHandler:0000000000000000 HAL_SYSTICK_IRQHandler
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
                            .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
                            .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
@@ -2364,7 +2364,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.config.h.220.6cac6a9685cfce5e83c17784171638d9
                            .group:0000000000000000 wm4._ansi.h.31.de524f58584151836e90d8620a16f8e8
                            .group:0000000000000000 wm4.stdio.h.31.7c0e28c411445f3f9c5b11accf882760
-ARM GAS  /tmp/ccaUwqZG.s 			page 41
+ARM GAS  /tmp/ccRkTdAH.s 			page 41
 
 
                            .group:0000000000000000 wm4.stddef.h.187.2ff233552538c6ff9b8575ca8ea52cb3

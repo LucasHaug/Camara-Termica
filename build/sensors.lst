@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc8uY8iW.s 			page 1
+ARM GAS  /tmp/cc6qlACu.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -30,14 +30,21 @@ ARM GAS  /tmp/cc8uY8iW.s 			page 1
    3:src/sensors.c **** 
    4:src/sensors.c **** #include "sensors.h"
    5:src/sensors.c **** 
-   6:src/sensors.c **** uint32_t temperature[ADC_CHANNELS - 1] = { 0 };
-   7:src/sensors.c **** uint32_t humidity = 0;
+   6:src/sensors.c **** #define OLD_VALUE_WEIGHT 3
+   7:src/sensors.c **** #define NEW_VALUE_WEIGHT 1
    8:src/sensors.c **** 
-   9:src/sensors.c **** 
-  10:src/sensors.c **** uint32_t adc_buffer[ADC_BUFFER_SIZE] = { 0 };
-  11:src/sensors.c **** 
-  12:src/sensors.c **** void sensors_init() {
-  26              		.loc 1 12 0
+   9:src/sensors.c **** //@ calibration indexs
+  10:src/sensors.c **** static float a = 0;
+  11:src/sensors.c **** static float b = 0;
+  12:src/sensors.c **** 
+  13:src/sensors.c **** uint32_t temperature[T_ADC_CHANNELS] = {0};
+  14:src/sensors.c **** //@ Mudar para adicionar o senosr de umidade + setar pino PA4
+  15:src/sensors.c **** // uint32_t uint32_t humidity[H_ADC_CHANNELS] = {0};
+  16:src/sensors.c **** 
+  17:src/sensors.c **** uint32_t adc_buffer[ADC_BUFFER_SIZE] = {0};
+  18:src/sensors.c **** 
+  19:src/sensors.c **** void sensors_init(void) {
+  26              		.loc 1 19 0
   27              		.cfi_startproc
   28              		@ args = 0, pretend = 0, frame = 0
   29              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -45,262 +52,287 @@ ARM GAS  /tmp/cc8uY8iW.s 			page 1
   31              		.cfi_def_cfa_offset 8
   32              		.cfi_offset 4, -8
   33              		.cfi_offset 14, -4
-  13:src/sensors.c ****     MX_DMA_Init();
-  34              		.loc 1 13 0
+  20:src/sensors.c ****     MX_DMA_Init();
+  34              		.loc 1 20 0
   35 0002 FFF7FEFF 		bl	MX_DMA_Init
   36              	.LVL0:
-  14:src/sensors.c ****     MX_ADC_Init();
-  37              		.loc 1 14 0
+  21:src/sensors.c ****     MX_ADC_Init();
+  37              		.loc 1 21 0
+ARM GAS  /tmp/cc6qlACu.s 			page 2
+
+
   38 0006 FFF7FEFF 		bl	MX_ADC_Init
   39              	.LVL1:
-  15:src/sensors.c **** 
-  16:src/sensors.c ****     HAL_ADC_Start_DMA(&hadc, adc_buffer, ADC_BUFFER_SIZE);
-  40              		.loc 1 16 0
-  41 000a 034A     		ldr	r2, .L2
-  42 000c 0349     		ldr	r1, .L2+4
-ARM GAS  /tmp/cc8uY8iW.s 			page 2
-
-
-  43 000e 0448     		ldr	r0, .L2+8
-  44 0010 FFF7FEFF 		bl	HAL_ADC_Start_DMA
-  45              	.LVL2:
-  17:src/sensors.c **** }
-  46              		.loc 1 17 0
-  47              		@ sp needed
-  48 0014 10BD     		pop	{r4, pc}
-  49              	.L3:
-  50 0016 C046     		.align	2
-  51              	.L2:
-  52 0018 01020000 		.word	513
-  53 001c 00000000 		.word	adc_buffer
-  54 0020 00000000 		.word	hadc
+  22:src/sensors.c **** 
+  23:src/sensors.c ****     HAL_ADC_Start_DMA(&hadc, adc_buffer, ADC_BUFFER_SIZE);
+  40              		.loc 1 23 0
+  41 000a 8022     		movs	r2, #128
+  42 000c 5200     		lsls	r2, r2, #1
+  43 000e 0249     		ldr	r1, .L2
+  44 0010 0248     		ldr	r0, .L2+4
+  45 0012 FFF7FEFF 		bl	HAL_ADC_Start_DMA
+  46              	.LVL2:
+  24:src/sensors.c **** }
+  47              		.loc 1 24 0
+  48              		@ sp needed
+  49 0016 10BD     		pop	{r4, pc}
+  50              	.L3:
+  51              		.align	2
+  52              	.L2:
+  53 0018 00000000 		.word	adc_buffer
+  54 001c 00000000 		.word	hadc
   55              		.cfi_endproc
   56              	.LFE37:
-  58              		.global	__aeabi_uidiv
-  59              		.section	.text.HAL_ADC_ConvCpltCallback,"ax",%progbits
-  60              		.align	1
-  61              		.global	HAL_ADC_ConvCpltCallback
-  62              		.syntax unified
-  63              		.code	16
-  64              		.thumb_func
-  65              		.fpu softvfp
-  67              	HAL_ADC_ConvCpltCallback:
-  68              	.LFB38:
-  18:src/sensors.c **** 
-  19:src/sensors.c **** void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
-  69              		.loc 1 19 0
-  70              		.cfi_startproc
-  71              		@ args = 0, pretend = 0, frame = 16
-  72              		@ frame_needed = 0, uses_anonymous_args = 0
+  58              		.section	.text.calibrate_sensors,"ax",%progbits
+  59              		.align	1
+  60              		.global	calibrate_sensors
+  61              		.syntax unified
+  62              		.code	16
+  63              		.thumb_func
+  64              		.fpu softvfp
+  66              	calibrate_sensors:
+  67              	.LFB38:
+  25:src/sensors.c **** 
+  26:src/sensors.c **** void calibrate_sensors(float low_temp_ref, float high_temp_ref) {
+  68              		.loc 1 26 0
+  69              		.cfi_startproc
+  70              		@ args = 0, pretend = 0, frame = 0
+  71              		@ frame_needed = 0, uses_anonymous_args = 0
+  72              		@ link register save eliminated.
   73              	.LVL3:
-  74 0000 70B5     		push	{r4, r5, r6, lr}
-  75              		.cfi_def_cfa_offset 16
-  76              		.cfi_offset 4, -16
-  77              		.cfi_offset 5, -12
-  78              		.cfi_offset 6, -8
-  79              		.cfi_offset 14, -4
-  80 0002 84B0     		sub	sp, sp, #16
-  81              		.cfi_def_cfa_offset 32
-  20:src/sensors.c ****     u_int32_t val[ADC_CHANNELS] = { 0 };
-  82              		.loc 1 20 0
-  83 0004 0C22     		movs	r2, #12
-  84 0006 0021     		movs	r1, #0
-  85 0008 01A8     		add	r0, sp, #4
-  86              	.LVL4:
-  87 000a FFF7FEFF 		bl	memset
-  88              	.LVL5:
-  89              	.LBB2:
-  21:src/sensors.c **** 
-  22:src/sensors.c ****     for (int i = 0; i < ADC_BUFFER_SIZE / ADC_CHANNELS; i++) {
-  90              		.loc 1 22 0
-  91 000e 0021     		movs	r1, #0
-  92 0010 0FE0     		b	.L5
-  93              	.LVL6:
-  94              	.L6:
-  95              	.LBB3:
-ARM GAS  /tmp/cc8uY8iW.s 			page 3
+  27:src/sensors.c ****     float low_reading;
+  28:src/sensors.c ****     float high_reading;
+  29:src/sensors.c ****     float low_diff;
+  30:src/sensors.c ****     float high_diff;
+  31:src/sensors.c ****     return;
+  32:src/sensors.c **** 
+  33:src/sensors.c **** }
+  74              		.loc 1 33 0
+  75              		@ sp needed
+  76 0000 7047     		bx	lr
+  77              		.cfi_endproc
+  78              	.LFE38:
+  80              		.section	.text.HAL_ADC_ConvCpltCallback,"ax",%progbits
+  81              		.align	1
+  82              		.global	HAL_ADC_ConvCpltCallback
+  83              		.syntax unified
+  84              		.code	16
+  85              		.thumb_func
+ARM GAS  /tmp/cc6qlACu.s 			page 3
 
 
-  23:src/sensors.c ****         for (int j = 0; j < ADC_CHANNELS; j++) {
-  24:src/sensors.c ****             val[j] += adc_buffer[ADC_CHANNELS * i + j];
-  96              		.loc 1 24 0 discriminator 3
-  97 0012 4B00     		lsls	r3, r1, #1
-  98 0014 5B18     		adds	r3, r3, r1
-  99 0016 9B18     		adds	r3, r3, r2
- 100 0018 9B00     		lsls	r3, r3, #2
- 101 001a 1548     		ldr	r0, .L14
- 102 001c 1B58     		ldr	r3, [r3, r0]
- 103 001e 01A8     		add	r0, sp, #4
- 104 0020 9400     		lsls	r4, r2, #2
- 105 0022 2558     		ldr	r5, [r4, r0]
- 106 0024 AC46     		mov	ip, r5
- 107 0026 6344     		add	r3, r3, ip
- 108 0028 2350     		str	r3, [r4, r0]
-  23:src/sensors.c ****         for (int j = 0; j < ADC_CHANNELS; j++) {
- 109              		.loc 1 23 0 discriminator 3
- 110 002a 0132     		adds	r2, r2, #1
- 111              	.LVL7:
- 112              	.L7:
-  23:src/sensors.c ****         for (int j = 0; j < ADC_CHANNELS; j++) {
- 113              		.loc 1 23 0 is_stmt 0 discriminator 1
- 114 002c 022A     		cmp	r2, #2
- 115 002e F0DD     		ble	.L6
- 116              	.LBE3:
-  22:src/sensors.c ****         for (int j = 0; j < ADC_CHANNELS; j++) {
- 117              		.loc 1 22 0 is_stmt 1 discriminator 2
- 118 0030 0131     		adds	r1, r1, #1
- 119              	.LVL8:
- 120              	.L5:
-  22:src/sensors.c ****         for (int j = 0; j < ADC_CHANNELS; j++) {
- 121              		.loc 1 22 0 is_stmt 0 discriminator 1
- 122 0032 AA29     		cmp	r1, #170
- 123 0034 01DC     		bgt	.L13
- 124              	.LBB4:
-  23:src/sensors.c ****         for (int j = 0; j < ADC_CHANNELS; j++) {
- 125              		.loc 1 23 0 is_stmt 1
- 126 0036 0022     		movs	r2, #0
- 127 0038 F8E7     		b	.L7
- 128              	.L13:
- 129              	.LBE4:
- 130              	.LBE2:
- 131              	.LBB5:
-  25:src/sensors.c ****         }
-  26:src/sensors.c ****     }
-  27:src/sensors.c **** 
-  28:src/sensors.c ****     for (int i = 0; i < ADC_CHANNELS; i++) {
- 132              		.loc 1 28 0
- 133 003a 0024     		movs	r4, #0
- 134 003c 07E0     		b	.L8
- 135              	.LVL9:
- 136              	.L9:
-  29:src/sensors.c ****         val[i] /= ADC_BUFFER_SIZE / ADC_CHANNELS;
- 137              		.loc 1 29 0 discriminator 3
- 138 003e 01AD     		add	r5, sp, #4
- 139 0040 A600     		lsls	r6, r4, #2
- 140 0042 AB21     		movs	r1, #171
-ARM GAS  /tmp/cc8uY8iW.s 			page 4
+  86              		.fpu softvfp
+  88              	HAL_ADC_ConvCpltCallback:
+  89              	.LFB39:
+  34:src/sensors.c **** 
+  35:src/sensors.c **** void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
+  90              		.loc 1 35 0
+  91              		.cfi_startproc
+  92              		@ args = 0, pretend = 0, frame = 16
+  93              		@ frame_needed = 0, uses_anonymous_args = 0
+  94              	.LVL4:
+  95 0000 30B5     		push	{r4, r5, lr}
+  96              		.cfi_def_cfa_offset 12
+  97              		.cfi_offset 4, -12
+  98              		.cfi_offset 5, -8
+  99              		.cfi_offset 14, -4
+ 100 0002 85B0     		sub	sp, sp, #20
+ 101              		.cfi_def_cfa_offset 32
+  36:src/sensors.c ****     uint32_t val[T_ADC_CHANNELS + H_ADC_CHANNELS] = {0};
+ 102              		.loc 1 36 0
+ 103 0004 0822     		movs	r2, #8
+ 104 0006 0021     		movs	r1, #0
+ 105 0008 02A8     		add	r0, sp, #8
+ 106              	.LVL5:
+ 107 000a FFF7FEFF 		bl	memset
+ 108              	.LVL6:
+ 109              	.LBB2:
+  37:src/sensors.c **** 
+  38:src/sensors.c ****     for (int i = 0; i < ADC_BUFFER_SIZE / (T_ADC_CHANNELS + H_ADC_CHANNELS); i++) {
+ 110              		.loc 1 38 0
+ 111 000e 0020     		movs	r0, #0
+ 112 0010 10E0     		b	.L6
+ 113              	.LVL7:
+ 114              	.L7:
+ 115              	.LBB3:
+  39:src/sensors.c ****         for (int j = 0; j < (T_ADC_CHANNELS + H_ADC_CHANNELS); j++) {
+  40:src/sensors.c ****             val[j] += adc_buffer[(T_ADC_CHANNELS + H_ADC_CHANNELS) * i + j];
+ 116              		.loc 1 40 0 discriminator 3
+ 117 0012 4200     		lsls	r2, r0, #1
+ 118 0014 D218     		adds	r2, r2, r3
+ 119 0016 9200     		lsls	r2, r2, #2
+ 120 0018 1749     		ldr	r1, .L15
+ 121 001a 5258     		ldr	r2, [r2, r1]
+ 122 001c 9900     		lsls	r1, r3, #2
+ 123 001e 02AC     		add	r4, sp, #8
+ 124 0020 0C59     		ldr	r4, [r1, r4]
+ 125 0022 0194     		str	r4, [sp, #4]
+ 126 0024 A446     		mov	ip, r4
+ 127 0026 6244     		add	r2, r2, ip
+ 128 0028 02AC     		add	r4, sp, #8
+ 129 002a 0A51     		str	r2, [r1, r4]
+  39:src/sensors.c ****         for (int j = 0; j < (T_ADC_CHANNELS + H_ADC_CHANNELS); j++) {
+ 130              		.loc 1 39 0 discriminator 3
+ 131 002c 0133     		adds	r3, r3, #1
+ 132              	.LVL8:
+ 133              	.L8:
+  39:src/sensors.c ****         for (int j = 0; j < (T_ADC_CHANNELS + H_ADC_CHANNELS); j++) {
+ 134              		.loc 1 39 0 is_stmt 0 discriminator 1
+ARM GAS  /tmp/cc6qlACu.s 			page 4
 
 
- 141 0044 7059     		ldr	r0, [r6, r5]
- 142 0046 FFF7FEFF 		bl	__aeabi_uidiv
- 143              	.LVL10:
- 144 004a 7051     		str	r0, [r6, r5]
-  28:src/sensors.c ****         val[i] /= ADC_BUFFER_SIZE / ADC_CHANNELS;
- 145              		.loc 1 28 0 discriminator 3
- 146 004c 0134     		adds	r4, r4, #1
- 147              	.LVL11:
- 148              	.L8:
-  28:src/sensors.c ****         val[i] /= ADC_BUFFER_SIZE / ADC_CHANNELS;
- 149              		.loc 1 28 0 is_stmt 0 discriminator 1
- 150 004e 022C     		cmp	r4, #2
- 151 0050 F5DD     		ble	.L9
- 152              	.LBE5:
- 153              	.LBB6:
-  30:src/sensors.c ****     }
-  31:src/sensors.c **** 
-  32:src/sensors.c ****     for (int i = 0; i < ADC_CHANNELS - 1; i++) {
- 154              		.loc 1 32 0 is_stmt 1
- 155 0052 0023     		movs	r3, #0
- 156 0054 05E0     		b	.L10
- 157              	.LVL12:
- 158              	.L11:
-  33:src/sensors.c ****         temperature[i] = val[i];
- 159              		.loc 1 33 0 discriminator 3
- 160 0056 9A00     		lsls	r2, r3, #2
- 161 0058 01A9     		add	r1, sp, #4
- 162 005a 5058     		ldr	r0, [r2, r1]
- 163 005c 0549     		ldr	r1, .L14+4
- 164 005e 5050     		str	r0, [r2, r1]
-  32:src/sensors.c ****         temperature[i] = val[i];
- 165              		.loc 1 32 0 discriminator 3
- 166 0060 0133     		adds	r3, r3, #1
- 167              	.LVL13:
- 168              	.L10:
-  32:src/sensors.c ****         temperature[i] = val[i];
- 169              		.loc 1 32 0 is_stmt 0 discriminator 1
- 170 0062 012B     		cmp	r3, #1
- 171 0064 F7DD     		ble	.L11
- 172              	.LBE6:
-  34:src/sensors.c ****     }
-  35:src/sensors.c ****     humidity = val[ADC_CHANNELS - 1];
- 173              		.loc 1 35 0 is_stmt 1
- 174 0066 044B     		ldr	r3, .L14+8
- 175              	.LVL14:
- 176 0068 039A     		ldr	r2, [sp, #12]
- 177 006a 1A60     		str	r2, [r3]
-  36:src/sensors.c **** }
- 178              		.loc 1 36 0
- 179 006c 04B0     		add	sp, sp, #16
- 180              		@ sp needed
- 181              	.LVL15:
- 182 006e 70BD     		pop	{r4, r5, r6, pc}
- 183              	.L15:
- 184              		.align	2
- 185              	.L14:
- 186 0070 00000000 		.word	adc_buffer
-ARM GAS  /tmp/cc8uY8iW.s 			page 5
+ 135 002e 012B     		cmp	r3, #1
+ 136 0030 EFDD     		ble	.L7
+ 137              	.LBE3:
+  38:src/sensors.c ****         for (int j = 0; j < (T_ADC_CHANNELS + H_ADC_CHANNELS); j++) {
+ 138              		.loc 1 38 0 is_stmt 1 discriminator 2
+ 139 0032 0130     		adds	r0, r0, #1
+ 140              	.LVL9:
+ 141              	.L6:
+  38:src/sensors.c ****         for (int j = 0; j < (T_ADC_CHANNELS + H_ADC_CHANNELS); j++) {
+ 142              		.loc 1 38 0 is_stmt 0 discriminator 1
+ 143 0034 7F28     		cmp	r0, #127
+ 144 0036 01DC     		bgt	.L14
+ 145              	.LBB4:
+  39:src/sensors.c ****         for (int j = 0; j < (T_ADC_CHANNELS + H_ADC_CHANNELS); j++) {
+ 146              		.loc 1 39 0 is_stmt 1
+ 147 0038 0023     		movs	r3, #0
+ 148 003a F8E7     		b	.L8
+ 149              	.L14:
+ 150              	.LBE4:
+ 151              	.LBE2:
+ 152              	.LBB5:
+  41:src/sensors.c ****         }
+  42:src/sensors.c ****     }
+  43:src/sensors.c **** 
+  44:src/sensors.c ****     for (int i = 0; i < (T_ADC_CHANNELS + H_ADC_CHANNELS); i++) {
+ 153              		.loc 1 44 0
+ 154 003c 0023     		movs	r3, #0
+ 155 003e 07E0     		b	.L9
+ 156              	.LVL10:
+ 157              	.L10:
+  45:src/sensors.c ****         val[i] /= ADC_BUFFER_SIZE / (T_ADC_CHANNELS + H_ADC_CHANNELS);
+ 158              		.loc 1 45 0 discriminator 3
+ 159 0040 9900     		lsls	r1, r3, #2
+ 160 0042 02AA     		add	r2, sp, #8
+ 161 0044 8A58     		ldr	r2, [r1, r2]
+ 162 0046 0192     		str	r2, [sp, #4]
+ 163 0048 D209     		lsrs	r2, r2, #7
+ 164 004a 02A8     		add	r0, sp, #8
+ 165 004c 0A50     		str	r2, [r1, r0]
+  44:src/sensors.c ****         val[i] /= ADC_BUFFER_SIZE / (T_ADC_CHANNELS + H_ADC_CHANNELS);
+ 166              		.loc 1 44 0 discriminator 3
+ 167 004e 0133     		adds	r3, r3, #1
+ 168              	.LVL11:
+ 169              	.L9:
+  44:src/sensors.c ****         val[i] /= ADC_BUFFER_SIZE / (T_ADC_CHANNELS + H_ADC_CHANNELS);
+ 170              		.loc 1 44 0 is_stmt 0 discriminator 1
+ 171 0050 012B     		cmp	r3, #1
+ 172 0052 F5DD     		ble	.L10
+ 173              	.LBE5:
+ 174              	.LBB6:
+  46:src/sensors.c ****     }
+  47:src/sensors.c **** 
+  48:src/sensors.c ****     for (int i = 0; i < T_ADC_CHANNELS; i++) {
+ 175              		.loc 1 48 0 is_stmt 1
+ 176 0054 0022     		movs	r2, #0
+ 177 0056 0AE0     		b	.L11
+ 178              	.LVL12:
+ARM GAS  /tmp/cc6qlACu.s 			page 5
 
 
- 187 0074 00000000 		.word	.LANCHOR0
- 188 0078 00000000 		.word	.LANCHOR1
- 189              		.cfi_endproc
- 190              	.LFE38:
- 192              		.global	adc_buffer
- 193              		.global	humidity
- 194              		.global	temperature
- 195              		.section	.bss.adc_buffer,"aw",%nobits
- 196              		.align	2
- 199              	adc_buffer:
- 200 0000 00000000 		.space	2052
- 200      00000000 
- 200      00000000 
- 200      00000000 
- 200      00000000 
- 201              		.section	.bss.humidity,"aw",%nobits
- 202              		.align	2
- 203              		.set	.LANCHOR1,. + 0
- 206              	humidity:
- 207 0000 00000000 		.space	4
- 208              		.section	.bss.temperature,"aw",%nobits
- 209              		.align	2
- 210              		.set	.LANCHOR0,. + 0
- 213              	temperature:
- 214 0000 00000000 		.space	8
- 214      00000000 
- 215              		.text
- 216              	.Letext0:
- 217              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
- 218              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
- 219              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
- 220              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
- 221              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
- 222              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
- 223              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
- 224              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
- 225              		.file 10 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ty
- 226              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
- 227              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
- 228              		.file 13 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_adc.h"
- 229              		.file 14 "cube/Inc/adc.h"
- 230              		.file 15 "cube/Inc/dma.h"
- 231              		.file 16 "<built-in>"
-ARM GAS  /tmp/cc8uY8iW.s 			page 6
+ 179              	.L12:
+  49:src/sensors.c ****         temperature[i] = (NEW_VALUE_WEIGHT * val[i] + OLD_VALUE_WEIGHT * temperature[i]) /
+ 180              		.loc 1 49 0 discriminator 3
+ 181 0058 9100     		lsls	r1, r2, #2
+ 182 005a 02AB     		add	r3, sp, #8
+ 183 005c CB58     		ldr	r3, [r1, r3]
+ 184 005e 074C     		ldr	r4, .L15+4
+ 185 0060 0D59     		ldr	r5, [r1, r4]
+ 186 0062 6800     		lsls	r0, r5, #1
+ 187 0064 4019     		adds	r0, r0, r5
+ 188 0066 1B18     		adds	r3, r3, r0
+ 189 0068 9B08     		lsrs	r3, r3, #2
+ 190 006a 0B51     		str	r3, [r1, r4]
+  48:src/sensors.c ****         temperature[i] = (NEW_VALUE_WEIGHT * val[i] + OLD_VALUE_WEIGHT * temperature[i]) /
+ 191              		.loc 1 48 0 discriminator 3
+ 192 006c 0132     		adds	r2, r2, #1
+ 193              	.LVL13:
+ 194              	.L11:
+  48:src/sensors.c ****         temperature[i] = (NEW_VALUE_WEIGHT * val[i] + OLD_VALUE_WEIGHT * temperature[i]) /
+ 195              		.loc 1 48 0 is_stmt 0 discriminator 1
+ 196 006e 012A     		cmp	r2, #1
+ 197 0070 F2DD     		ble	.L12
+ 198              	.LBE6:
+  50:src/sensors.c ****                          (NEW_VALUE_WEIGHT + OLD_VALUE_WEIGHT);
+  51:src/sensors.c ****     }
+  52:src/sensors.c ****     //@ Mudar para adicionar o senosr de umidade + setar pino PA4
+  53:src/sensors.c ****     // humidity = val[T_ADC_CHANNELS - 1];
+  54:src/sensors.c **** }
+ 199              		.loc 1 54 0 is_stmt 1
+ 200 0072 05B0     		add	sp, sp, #20
+ 201              		@ sp needed
+ 202 0074 30BD     		pop	{r4, r5, pc}
+ 203              	.L16:
+ 204 0076 C046     		.align	2
+ 205              	.L15:
+ 206 0078 00000000 		.word	adc_buffer
+ 207 007c 00000000 		.word	.LANCHOR0
+ 208              		.cfi_endproc
+ 209              	.LFE39:
+ 211              		.global	adc_buffer
+ 212              		.global	temperature
+ 213              		.section	.bss.adc_buffer,"aw",%nobits
+ 214              		.align	2
+ 217              	adc_buffer:
+ 218 0000 00000000 		.space	1024
+ 218      00000000 
+ 218      00000000 
+ 218      00000000 
+ 218      00000000 
+ 219              		.section	.bss.temperature,"aw",%nobits
+ 220              		.align	2
+ 221              		.set	.LANCHOR0,. + 0
+ 224              	temperature:
+ 225 0000 00000000 		.space	8
+ 225      00000000 
+ 226              		.text
+ 227              	.Letext0:
+ARM GAS  /tmp/cc6qlACu.s 			page 6
+
+
+ 228              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+ 229              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
+ 230              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ 231              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 232              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+ 233              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+ 234              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+ 235              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
+ 236              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 237              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
+ 238              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_adc.h"
+ 239              		.file 13 "cube/Inc/adc.h"
+ 240              		.file 14 "inc/sensors.h"
+ 241              		.file 15 "cube/Inc/dma.h"
+ 242              		.file 16 "<built-in>"
+ARM GAS  /tmp/cc6qlACu.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 sensors.c
-     /tmp/cc8uY8iW.s:16     .text.sensors_init:0000000000000000 $t
-     /tmp/cc8uY8iW.s:23     .text.sensors_init:0000000000000000 sensors_init
-     /tmp/cc8uY8iW.s:52     .text.sensors_init:0000000000000018 $d
-     /tmp/cc8uY8iW.s:199    .bss.adc_buffer:0000000000000000 adc_buffer
-     /tmp/cc8uY8iW.s:60     .text.HAL_ADC_ConvCpltCallback:0000000000000000 $t
-     /tmp/cc8uY8iW.s:67     .text.HAL_ADC_ConvCpltCallback:0000000000000000 HAL_ADC_ConvCpltCallback
-     /tmp/cc8uY8iW.s:186    .text.HAL_ADC_ConvCpltCallback:0000000000000070 $d
-     /tmp/cc8uY8iW.s:206    .bss.humidity:0000000000000000 humidity
-     /tmp/cc8uY8iW.s:213    .bss.temperature:0000000000000000 temperature
-     /tmp/cc8uY8iW.s:196    .bss.adc_buffer:0000000000000000 $d
-     /tmp/cc8uY8iW.s:202    .bss.humidity:0000000000000000 $d
-     /tmp/cc8uY8iW.s:209    .bss.temperature:0000000000000000 $d
+     /tmp/cc6qlACu.s:16     .text.sensors_init:0000000000000000 $t
+     /tmp/cc6qlACu.s:23     .text.sensors_init:0000000000000000 sensors_init
+     /tmp/cc6qlACu.s:53     .text.sensors_init:0000000000000018 $d
+     /tmp/cc6qlACu.s:217    .bss.adc_buffer:0000000000000000 adc_buffer
+     /tmp/cc6qlACu.s:59     .text.calibrate_sensors:0000000000000000 $t
+     /tmp/cc6qlACu.s:66     .text.calibrate_sensors:0000000000000000 calibrate_sensors
+     /tmp/cc6qlACu.s:81     .text.HAL_ADC_ConvCpltCallback:0000000000000000 $t
+     /tmp/cc6qlACu.s:88     .text.HAL_ADC_ConvCpltCallback:0000000000000000 HAL_ADC_ConvCpltCallback
+     /tmp/cc6qlACu.s:206    .text.HAL_ADC_ConvCpltCallback:0000000000000078 $d
+     /tmp/cc6qlACu.s:224    .bss.temperature:0000000000000000 temperature
+     /tmp/cc6qlACu.s:214    .bss.adc_buffer:0000000000000000 $d
+     /tmp/cc6qlACu.s:220    .bss.temperature:0000000000000000 $d
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
                            .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
                            .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
@@ -344,7 +376,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma_ex.h.38.c2269542e0bcc97944af39289a0a60b8
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.500.3b36a5be41f3e2ac138f4041ccf5cecb
                            .group:0000000000000000 wm4.stm32f0xx_hal_cortex.h.38.61b1088b7495d338bc65ee2571a0bb95
-ARM GAS  /tmp/cc8uY8iW.s 			page 7
+ARM GAS  /tmp/cc6qlACu.s 			page 8
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_adc.h.38.e3e4bca0d8b91dc0f73ca672bc0e5aca
@@ -359,12 +391,11 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
                            .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
-                           .group:0000000000000000 wm4.sensors.h.2.bf0027ddad9cebca7879897763118f8c
+                           .group:0000000000000000 wm4.sensors.h.2.00432fce449e2e33197277736b8d3c92
 
 UNDEFINED SYMBOLS
 MX_DMA_Init
 MX_ADC_Init
 HAL_ADC_Start_DMA
 hadc
-__aeabi_uidiv
 memset

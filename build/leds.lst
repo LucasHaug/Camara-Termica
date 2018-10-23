@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccariHpW.s 			page 1
+ARM GAS  /tmp/ccQYLFBv.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -15,61 +15,122 @@ ARM GAS  /tmp/ccariHpW.s 			page 1
   12              		.text
   13              	.Ltext0:
   14              		.cfi_sections	.debug_frame
-  15              		.section	.text.led_toggle,"ax",%progbits
+  15              		.section	.text.leds_state,"ax",%progbits
   16              		.align	1
-  17              		.global	led_toggle
+  17              		.global	leds_state
   18              		.syntax unified
   19              		.code	16
   20              		.thumb_func
   21              		.fpu softvfp
-  23              	led_toggle:
+  23              	leds_state:
   24              	.LFB37:
   25              		.file 1 "src/leds.c"
    1:src/leds.c    **** #include "leds.h"
-   2:src/leds.c    **** 
-   3:src/leds.c    **** void led_toggle(void) {
-  26              		.loc 1 3 0
+   2:src/leds.c    **** #include "gpio.h"
+   3:src/leds.c    **** 
+   4:src/leds.c    **** //@ Mudar para psicar o led da placa e os leds da camara
+   5:src/leds.c    **** void leds_state(leds_state_t state) {
+  26              		.loc 1 5 0
   27              		.cfi_startproc
   28              		@ args = 0, pretend = 0, frame = 0
   29              		@ frame_needed = 0, uses_anonymous_args = 0
-  30 0000 10B5     		push	{r4, lr}
-  31              		.cfi_def_cfa_offset 8
-  32              		.cfi_offset 4, -8
-  33              		.cfi_offset 14, -4
-   4:src/leds.c    ****     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-  34              		.loc 1 4 0
-  35 0002 9020     		movs	r0, #144
-  36 0004 2021     		movs	r1, #32
-  37 0006 C005     		lsls	r0, r0, #23
-  38 0008 FFF7FEFF 		bl	HAL_GPIO_TogglePin
-  39              	.LVL0:
-   5:src/leds.c    **** }
-  40              		.loc 1 5 0
-  41              		@ sp needed
-  42 000c 10BD     		pop	{r4, pc}
-  43              		.cfi_endproc
-  44              	.LFE37:
-  46              		.text
-  47              	.Letext0:
-  48              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
-  49              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
-  50              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
-  51              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
-  52              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
-  53              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
-  54              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
-ARM GAS  /tmp/ccariHpW.s 			page 2
+  30              	.LVL0:
+  31 0000 10B5     		push	{r4, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 4, -8
+  34              		.cfi_offset 14, -4
+   6:src/leds.c    ****     switch (state) {
+  35              		.loc 1 6 0
+  36 0002 0128     		cmp	r0, #1
+  37 0004 0BD0     		beq	.L3
+  38 0006 0028     		cmp	r0, #0
+  39 0008 02D0     		beq	.L4
+  40 000a 0228     		cmp	r0, #2
+  41 000c 0ED0     		beq	.L5
+  42              	.LVL1:
+  43              	.L1:
+   7:src/leds.c    ****         case ON:
+   8:src/leds.c    ****             HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, SET);
+   9:src/leds.c    ****             break;
+  10:src/leds.c    ****         case OFF:
+  11:src/leds.c    ****             HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, RESET);
+  12:src/leds.c    ****             break;
+  13:src/leds.c    ****         case TOGGLE:
+  14:src/leds.c    ****             HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+  15:src/leds.c    ****             break;
+ARM GAS  /tmp/ccQYLFBv.s 			page 2
 
 
-  55              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
-  56              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
-ARM GAS  /tmp/ccariHpW.s 			page 3
+  16:src/leds.c    ****     }
+  17:src/leds.c    **** }
+  44              		.loc 1 17 0
+  45              		@ sp needed
+  46 000e 10BD     		pop	{r4, pc}
+  47              	.LVL2:
+  48              	.L4:
+   8:src/leds.c    ****             break;
+  49              		.loc 1 8 0
+  50 0010 9020     		movs	r0, #144
+  51              	.LVL3:
+  52 0012 0122     		movs	r2, #1
+  53 0014 2021     		movs	r1, #32
+  54 0016 C005     		lsls	r0, r0, #23
+  55 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  56              	.LVL4:
+   9:src/leds.c    ****         case OFF:
+  57              		.loc 1 9 0
+  58 001c F7E7     		b	.L1
+  59              	.LVL5:
+  60              	.L3:
+  11:src/leds.c    ****             break;
+  61              		.loc 1 11 0
+  62 001e 9020     		movs	r0, #144
+  63              	.LVL6:
+  64 0020 0022     		movs	r2, #0
+  65 0022 2021     		movs	r1, #32
+  66 0024 C005     		lsls	r0, r0, #23
+  67 0026 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  68              	.LVL7:
+  12:src/leds.c    ****         case TOGGLE:
+  69              		.loc 1 12 0
+  70 002a F0E7     		b	.L1
+  71              	.LVL8:
+  72              	.L5:
+  14:src/leds.c    ****             break;
+  73              		.loc 1 14 0
+  74 002c 9020     		movs	r0, #144
+  75              	.LVL9:
+  76 002e 2021     		movs	r1, #32
+  77 0030 C005     		lsls	r0, r0, #23
+  78 0032 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  79              	.LVL10:
+  80              		.loc 1 17 0
+  81 0036 EAE7     		b	.L1
+  82              		.cfi_endproc
+  83              	.LFE37:
+  85              		.text
+  86              	.Letext0:
+  87              		.file 2 "inc/leds.h"
+  88              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+  89              		.file 4 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
+  90              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+  91              		.file 6 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+  92              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+  93              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+  94              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+ARM GAS  /tmp/ccQYLFBv.s 			page 3
+
+
+  95              		.file 10 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/re
+  96              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
+  97              		.file 12 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h"
+ARM GAS  /tmp/ccQYLFBv.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 leds.c
-     /tmp/ccariHpW.s:16     .text.led_toggle:0000000000000000 $t
-     /tmp/ccariHpW.s:23     .text.led_toggle:0000000000000000 led_toggle
+     /tmp/ccQYLFBv.s:16     .text.leds_state:0000000000000000 $t
+     /tmp/ccQYLFBv.s:23     .text.leds_state:0000000000000000 leds_state
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
                            .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
                            .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
@@ -123,11 +184,12 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
-ARM GAS  /tmp/ccariHpW.s 			page 4
+ARM GAS  /tmp/ccQYLFBv.s 			page 5
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
                            .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
 
 UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
 HAL_GPIO_TogglePin

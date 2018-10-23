@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccpXFKhM.s 			page 1
+ARM GAS  /tmp/ccJlUnsR.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -26,10 +26,10 @@ ARM GAS  /tmp/ccpXFKhM.s 			page 1
   24              	.LFB37:
   25              		.file 1 "src/power_resistors.c"
    1:src/power_resistors.c **** #include "power_resistors.h"
-   2:src/power_resistors.c **** 
+   2:src/power_resistors.c **** #include "mcu.h"
    3:src/power_resistors.c **** #include "gpio.h"
    4:src/power_resistors.c **** 
-   5:src/power_resistors.c **** void resistors_state(state_t state) {
+   5:src/power_resistors.c **** void resistors_state(resist_state_t state) {
   26              		.loc 1 5 0
   27              		.cfi_startproc
   28              		@ args = 0, pretend = 0, frame = 0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccpXFKhM.s 			page 1
   42              		.loc 1 14 0
   43              		@ sp needed
   44 000a 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/ccpXFKhM.s 			page 2
+ARM GAS  /tmp/ccJlUnsR.s 			page 2
 
 
   45              	.LVL2:
@@ -105,26 +105,26 @@ ARM GAS  /tmp/ccpXFKhM.s 			page 1
   84              		.file 10 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/re
   85              		.file 11 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h"
   86              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
-ARM GAS  /tmp/ccpXFKhM.s 			page 3
+ARM GAS  /tmp/ccJlUnsR.s 			page 3
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 power_resistors.c
-     /tmp/ccpXFKhM.s:16     .text.resistors_state:0000000000000000 $t
-     /tmp/ccpXFKhM.s:23     .text.resistors_state:0000000000000000 resistors_state
-     /tmp/ccpXFKhM.s:70     .text.resistors_state:0000000000000024 $d
+     /tmp/ccJlUnsR.s:16     .text.resistors_state:0000000000000000 $t
+     /tmp/ccJlUnsR.s:23     .text.resistors_state:0000000000000000 resistors_state
+     /tmp/ccJlUnsR.s:70     .text.resistors_state:0000000000000024 $d
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
-                           .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
-                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
-                           .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
-                           .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
                            .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
                            .group:0000000000000000 wm4.features.h.33.d0b7f3cd6ee95f610104014bb3ed522a
                            .group:0000000000000000 wm4._default_types.h.15.247e5cd201eca3442cbf5404108c4935
                            .group:0000000000000000 wm4._intsup.h.10.cce27fed8484c08a33f522034c30d2b5
                            .group:0000000000000000 wm4._stdint.h.10.c24fa3af3bc1706662bb5593a907e841
                            .group:0000000000000000 wm4.stdint.h.23.d53047a68f4a85177f80b422d52785ed
-                           .group:0000000000000000 wm4.core_cm0.h.74.a7f5ed9ff199b3163f5ed99892efe60d
+                           .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
+                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
+                           .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
+                           .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
+                           .group:0000000000000000 wm4.core_cm0.h.42.7022e4f00906b4c8e9c5322381e90c37
                            .group:0000000000000000 wm4.cmsis_gcc.h.36.5bb14fd68ce7855540fcfe2d9305ae16
                            .group:0000000000000000 wm4.core_cm0.h.175.2353140684a11cc8267b4125ac92735e
                            .group:0000000000000000 wm4.stm32f072xb.h.653.664388dc5ef2a697008be7ff13986fc5
@@ -165,7 +165,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
-ARM GAS  /tmp/ccpXFKhM.s 			page 4
+ARM GAS  /tmp/ccJlUnsR.s 			page 4
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38

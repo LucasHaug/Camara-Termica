@@ -8,7 +8,7 @@ typedef enum fan {
     BOTTOM_FAN,
 } fan_t;
 
-void fans_init();
+void fans_init(void);
 
 void set_fan(fan_t fan, uint16_t speed);
 

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccnssqj3.s 			page 1
+ARM GAS  /tmp/ccQX5NH7.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccnssqj3.s 			page 1
   31:cube/Src/gpio.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   32:cube/Src/gpio.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
   33:cube/Src/gpio.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-ARM GAS  /tmp/ccnssqj3.s 			page 2
+ARM GAS  /tmp/ccQX5NH7.s 			page 2
 
 
   34:cube/Src/gpio.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccnssqj3.s 			page 1
   47 0010 5A69     		ldr	r2, [r3, #20]
   48 0012 0240     		ands	r2, r0
   49 0014 0092     		str	r2, [sp]
-ARM GAS  /tmp/ccnssqj3.s 			page 3
+ARM GAS  /tmp/ccQX5NH7.s 			page 3
 
 
   50 0016 009A     		ldr	r2, [sp]
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccnssqj3.s 			page 1
   93 0058 2900     		movs	r1, r5
   94 005a 1C48     		ldr	r0, .L2+8
   95 005c FFF7FEFF 		bl	HAL_GPIO_WritePin
-ARM GAS  /tmp/ccnssqj3.s 			page 4
+ARM GAS  /tmp/ccQX5NH7.s 			page 4
 
 
   96              	.LVL2:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccnssqj3.s 			page 1
  132              		.loc 1 95 0
  133 0090 0596     		str	r6, [sp, #20]
   96:cube/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-ARM GAS  /tmp/ccnssqj3.s 			page 5
+ARM GAS  /tmp/ccQX5NH7.s 			page 5
 
 
  134              		.loc 1 96 0
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccnssqj3.s 			page 1
  174 00cc 00040048 		.word	1207960576
  175 00d0 00001110 		.word	269549568
  176              		.cfi_endproc
-ARM GAS  /tmp/ccnssqj3.s 			page 6
+ARM GAS  /tmp/ccQX5NH7.s 			page 6
 
 
  177              	.LFE37:
@@ -314,14 +314,14 @@ ARM GAS  /tmp/ccnssqj3.s 			page 1
  188              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
  189              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
  190              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
-ARM GAS  /tmp/ccnssqj3.s 			page 7
+ARM GAS  /tmp/ccQX5NH7.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 gpio.c
-     /tmp/ccnssqj3.s:16     .text.MX_GPIO_Init:0000000000000000 $t
-     /tmp/ccnssqj3.s:23     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-     /tmp/ccnssqj3.s:172    .text.MX_GPIO_Init:00000000000000c4 $d
+     /tmp/ccQX5NH7.s:16     .text.MX_GPIO_Init:0000000000000000 $t
+     /tmp/ccQX5NH7.s:23     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+     /tmp/ccQX5NH7.s:172    .text.MX_GPIO_Init:00000000000000c4 $d
                            .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
                            .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
                            .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
@@ -374,7 +374,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
-ARM GAS  /tmp/ccnssqj3.s 			page 8
+ARM GAS  /tmp/ccQX5NH7.s 			page 8
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38

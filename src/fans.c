@@ -8,7 +8,7 @@
 
 static bool fan_on = false;
 
-void fans_init() {
+void fans_init(void) {
     MX_TIM1_Init();
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);

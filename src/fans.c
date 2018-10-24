@@ -33,14 +33,14 @@ void set_fan(fan_t fan, uint16_t speed) {
     }
 }
 
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-    if (GPIO_Pin == GPIO_PIN_13 && fan_on == false) {
-        set_fan(TOP_FAN, 1000);
-        set_fan(BOTTOM_FAN, 0);
-    } else if (GPIO_Pin == GPIO_PIN_13 && fan_on == true) {
-        set_fan(TOP_FAN, 0);
-        set_fan(BOTTOM_FAN, 1000);
-    }
+// void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+//     if (GPIO_Pin == GPIO_PIN_13 && fan_on == false) {
+//         set_fan(TOP_FAN, 1000);
+//         set_fan(BOTTOM_FAN, 0);
+//     } else if (GPIO_Pin == GPIO_PIN_13 && fan_on == true) {
+//         set_fan(TOP_FAN, 0);
+//         set_fan(BOTTOM_FAN, 1000);
+//     }
 
-    fan_on = !fan_on;
-}
+//     fan_on = !fan_on;
+// }

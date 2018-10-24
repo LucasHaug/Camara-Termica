@@ -27,7 +27,7 @@ endif
 
 # Optmization
 ifeq ($(DEBUG), 1)
-OPT := -Og
+OPT := -O0
 else
 OPT := -Os
 endif

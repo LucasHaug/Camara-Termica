@@ -1,6 +1,9 @@
+#include "gpio.h"
+
 #include "fans.h"
 #include "leds.h"
 #include "mcu.h"
+#include "control.h"
 
 /*****************************************
  * Private Constant Definitions
@@ -14,7 +17,10 @@ int main(void) {
     mcu_init();
 
     for (;;) {
-        leds_state(TOGGLE);
-        mcu_sleep(LED_TOGGLE_DELAY_MS);
+        control_led_state(OFF);
+        while (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_SET)
+            ;
+        control_led_state(ON);
+        pi_action();
     }
 }

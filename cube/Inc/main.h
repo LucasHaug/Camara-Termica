@@ -52,8 +52,18 @@
 #define User_Button_Pin GPIO_PIN_13
 #define User_Button_GPIO_Port GPIOC
 #define User_Button_EXTI_IRQn EXTI4_15_IRQn
+#define Relay___Power_Resistors_Pin GPIO_PIN_1
+#define Relay___Power_Resistors_GPIO_Port GPIOC
+#define DHT11_Pin GPIO_PIN_4
+#define DHT11_GPIO_Port GPIOA
 #define Green_Led_Pin GPIO_PIN_5
 #define Green_Led_GPIO_Port GPIOA
+#define H_Bridge_Pin GPIO_PIN_10
+#define H_Bridge_GPIO_Port GPIOB
+#define Lamps_Pin GPIO_PIN_10
+#define Lamps_GPIO_Port GPIOA
+#define H_BridgeB4_Pin GPIO_PIN_4
+#define H_BridgeB4_GPIO_Port GPIOB
 
 /* ########################## Assert Selection ############################## */
 /**

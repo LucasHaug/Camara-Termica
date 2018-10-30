@@ -1,5 +1,4 @@
-build/control.o: src/control.c inc/control.h inc/fans.h \
- inc/power_resistors.h inc/sensors.h cube/Inc/tim.h \
+build/control.o: src/control.c \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h \
  cube/Inc/stm32f0xx_hal_conf.h cube/Inc/main.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h \
@@ -26,17 +25,10 @@ build/control.o: src/control.c inc/control.h inc/fans.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h \
- cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h
-
-inc/control.h:
-
-inc/fans.h:
-
-inc/power_resistors.h:
-
-inc/sensors.h:
-
-cube/Inc/tim.h:
+ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h \
+ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h \
+ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h \
+ inc/control.h inc/fans.h inc/power_resistors.h inc/sensors.h
 
 cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:
 
@@ -93,3 +85,15 @@ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h:
 cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h:
 
 cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h:
+
+cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:
+
+cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h:
+
+inc/control.h:
+
+inc/fans.h:
+
+inc/power_resistors.h:
+
+inc/sensors.h:

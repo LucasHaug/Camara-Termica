@@ -26,6 +26,8 @@ build/adc.o: cube/Src/adc.c cube/Inc/adc.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h \
+ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h \
+ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h \
  cube/Inc/gpio.h cube/Inc/dma.h
 
 cube/Inc/adc.h:
@@ -85,6 +87,10 @@ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h:
 cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h:
 
 cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h:
+
+cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:
+
+cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h:
 
 cube/Inc/gpio.h:
 

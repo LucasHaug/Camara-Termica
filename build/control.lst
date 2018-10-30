@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccHnSonQ.s 			page 1
+ARM GAS  /tmp/ccQxVkpA.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -8,546 +8,454 @@ ARM GAS  /tmp/ccHnSonQ.s 			page 1
    5              		.eabi_attribute 24, 1
    6              		.eabi_attribute 25, 1
    7              		.eabi_attribute 26, 1
-   8              		.eabi_attribute 30, 1
+   8              		.eabi_attribute 30, 6
    9              		.eabi_attribute 34, 0
   10              		.eabi_attribute 18, 4
   11              		.file	"control.c"
   12              		.text
   13              	.Ltext0:
   14              		.cfi_sections	.debug_frame
-  15              		.global	__aeabi_ui2f
-  16              		.global	__aeabi_fdiv
-  17              		.global	__aeabi_uidiv
-  18              		.global	__aeabi_fsub
-  19              		.global	__aeabi_fmul
-  20              		.global	__aeabi_fadd
-  21              		.global	__aeabi_fcmpgt
-  22              		.global	__aeabi_fcmplt
-  23              		.global	__aeabi_idivmod
-  24              		.global	__aeabi_f2uiz
-  25              		.section	.text.pi_action,"ax",%progbits
-  26              		.align	1
-  27              		.global	pi_action
-  28              		.syntax unified
-  29              		.code	16
-  30              		.thumb_func
-  31              		.fpu softvfp
-  33              	pi_action:
-  34              	.LFB37:
-  35              		.file 1 "src/control.c"
+  15              		.section	.bss.action,"aw",%nobits
+  16              		.align	2
+  19              	action:
+  20 0000 00000000 		.space	4
+  21              		.section	.bss.last_action,"aw",%nobits
+  22              		.align	2
+  25              	last_action:
+  26 0000 00000000 		.space	4
+  27              		.section	.bss.error,"aw",%nobits
+  28              		.align	2
+  31              	error:
+  32 0000 00000000 		.space	4
+  33              		.section	.bss.last_error,"aw",%nobits
+  34              		.align	2
+  37              	last_error:
+  38 0000 00000000 		.space	4
+  39              		.section	.bss.current_time,"aw",%nobits
+  40              		.align	2
+  43              	current_time:
+  44 0000 00000000 		.space	4
+  45              		.section	.bss.last_time,"aw",%nobits
+  46              		.align	2
+  49              	last_time:
+  50 0000 00000000 		.space	4
+  51              		.section	.data.kp,"aw",%progbits
+  52              		.align	2
+  55              	kp:
+  56 0000 00001643 		.word	1125515264
+  57              		.section	.data.ki,"aw",%progbits
+  58              		.align	2
+  61              	ki:
+  62 0000 00001041 		.word	1091567616
+  63              		.global	__aeabi_ui2f
+  64              		.global	__aeabi_fdiv
+  65              		.global	__aeabi_uidiv
+  66              		.global	__aeabi_fsub
+  67              		.global	__aeabi_fmul
+  68              		.global	__aeabi_fadd
+  69              		.global	__aeabi_fcmpgt
+  70              		.global	__aeabi_fcmplt
+  71              		.global	__aeabi_f2uiz
+  72              		.section	.text.pi_action,"ax",%progbits
+  73              		.align	1
+ARM GAS  /tmp/ccQxVkpA.s 			page 2
+
+
+  74              		.global	pi_action
+  75              		.syntax unified
+  76              		.code	16
+  77              		.thumb_func
+  78              		.fpu softvfp
+  80              	pi_action:
+  81              	.LFB37:
+  82              		.file 1 "src/control.c"
    1:src/control.c **** #include <stdint.h>
    2:src/control.c **** 
-   3:src/control.c **** #include "control.h"
-   4:src/control.c **** #include "fans.h"
-   5:src/control.c **** #include "power_resistors.h"
-   6:src/control.c **** #include "sensors.h"
-   7:src/control.c **** #include "tim.h"
-   8:src/control.c **** 
-   9:src/control.c **** #define SETPOINT_TEMPERATURE 33
-  10:src/control.c **** #define NMAX 10
-  11:src/control.c **** 
-  12:src/control.c **** //@ Causar erro minimo proposital
-  13:src/control.c **** 
-  14:src/control.c **** static float action = 0;
-  15:src/control.c **** static float last_action = 0;
-  16:src/control.c **** static float error = 0;
-  17:src/control.c **** static float last_error = 0;
-  18:src/control.c **** 
-  19:src/control.c **** static float current_time = 0;
-  20:src/control.c **** static float last_time = 0;
-  21:src/control.c **** 
-  22:src/control.c **** static uint8_t temperature_trend[NMAX] = {0};
-  23:src/control.c **** // global temperature_trend[] index
-ARM GAS  /tmp/ccHnSonQ.s 			page 2
+   3:src/control.c **** #include "stm32f0xx_hal.h"
+   4:src/control.c **** 
+   5:src/control.c **** #include "control.h"
+   6:src/control.c **** #include "fans.h"
+   7:src/control.c **** #include "power_resistors.h"
+   8:src/control.c **** #include "sensors.h"
+   9:src/control.c **** 
+  10:src/control.c **** #define SETPOINT_TEMPERATURE 33
+  11:src/control.c **** #define NMAX 10
+  12:src/control.c **** 
+  13:src/control.c **** static float action = 0;
+  14:src/control.c **** static float last_action = 0;
+  15:src/control.c **** static float error = 0;
+  16:src/control.c **** static float last_error = 0;
+  17:src/control.c **** 
+  18:src/control.c **** static float current_time = 0;
+  19:src/control.c **** static float last_time = 0;
+  20:src/control.c **** 
+  21:src/control.c **** // pi control constants
+  22:src/control.c **** static float kp = 150;
+  23:src/control.c **** static float ki = 9;
+  24:src/control.c **** 
+  25:src/control.c **** void pi_action(void) {
+  83              		.loc 1 25 0
+  84              		.cfi_startproc
+  85              		@ args = 0, pretend = 0, frame = 8
+  86              		@ frame_needed = 1, uses_anonymous_args = 0
+  87 0000 90B5     		push	{r4, r7, lr}
+  88              		.cfi_def_cfa_offset 12
+  89              		.cfi_offset 4, -12
+  90              		.cfi_offset 7, -8
+  91              		.cfi_offset 14, -4
+  92 0002 83B0     		sub	sp, sp, #12
+  93              		.cfi_def_cfa_offset 24
+  94 0004 00AF     		add	r7, sp, #0
+  95              		.cfi_def_cfa_register 7
+  96              	.L13:
+  97              	.LBB2:
+  26:src/control.c ****     for (;;) {
+  27:src/control.c ****         float current_temperature = (float) temperature[1] / 10;
+  98              		.loc 1 27 0
+  99 0006 684B     		ldr	r3, .L21
+ 100 0008 5B68     		ldr	r3, [r3, #4]
+ 101 000a 1800     		movs	r0, r3
+ 102 000c FFF7FEFF 		bl	__aeabi_ui2f
+ 103              	.LVL0:
+ 104 0010 031C     		adds	r3, r0, #0
+ARM GAS  /tmp/ccQxVkpA.s 			page 3
 
 
-  24:src/control.c **** static uint8_t n = 0;
-  25:src/control.c **** 
-  26:src/control.c **** // pi control constants
-  27:src/control.c **** static float kp = 0.2;
-  28:src/control.c **** static float ki = 0.009;
-  29:src/control.c **** 
-  30:src/control.c **** void pi_action(void) {
-  36              		.loc 1 30 0
-  37              		.cfi_startproc
-  38              		@ args = 0, pretend = 0, frame = 8
-  39              		@ frame_needed = 0, uses_anonymous_args = 0
-  40 0000 F0B5     		push	{r4, r5, r6, r7, lr}
-  41              		.cfi_def_cfa_offset 20
-  42              		.cfi_offset 4, -20
-  43              		.cfi_offset 5, -16
-  44              		.cfi_offset 6, -12
-  45              		.cfi_offset 7, -8
-  46              		.cfi_offset 14, -4
-  47 0002 83B0     		sub	sp, sp, #12
-  48              		.cfi_def_cfa_offset 32
-  49              	.LVL0:
-  31:src/control.c ****     int8_t current_trend = 0;
-  32:src/control.c ****     float current_temperature = (float) temperature[2] / 10;
-  50              		.loc 1 32 0
-  51 0004 654B     		ldr	r3, .L35
-  52 0006 9868     		ldr	r0, [r3, #8]
-  53 0008 FFF7FEFF 		bl	__aeabi_ui2f
-  54              	.LVL1:
-  55 000c 6449     		ldr	r1, .L35+4
-  56 000e FFF7FEFF 		bl	__aeabi_fdiv
-  57              	.LVL2:
-  58 0012 041C     		adds	r4, r0, #0
-  59              	.LVL3:
+ 105 0012 6649     		ldr	r1, .L21+4
+ 106 0014 181C     		adds	r0, r3, #0
+ 107 0016 FFF7FEFF 		bl	__aeabi_fdiv
+ 108              	.LVL1:
+ 109 001a 031C     		adds	r3, r0, #0
+ 110 001c 7B60     		str	r3, [r7, #4]
+  28:src/control.c **** 
+  29:src/control.c ****         current_time = HAL_GetTick() / 1000;
+ 111              		.loc 1 29 0
+ 112 001e FFF7FEFF 		bl	HAL_GetTick
+ 113 0022 0200     		movs	r2, r0
+ 114 0024 FA23     		movs	r3, #250
+ 115 0026 9900     		lsls	r1, r3, #2
+ 116 0028 1000     		movs	r0, r2
+ 117 002a FFF7FEFF 		bl	__aeabi_uidiv
+ 118              	.LVL2:
+ 119 002e 0300     		movs	r3, r0
+ 120 0030 1800     		movs	r0, r3
+ 121 0032 FFF7FEFF 		bl	__aeabi_ui2f
+ 122              	.LVL3:
+ 123 0036 021C     		adds	r2, r0, #0
+ 124 0038 5D4B     		ldr	r3, .L21+8
+ 125 003a 1A60     		str	r2, [r3]
+  30:src/control.c ****         error = SETPOINT_TEMPERATURE - current_temperature;
+ 126              		.loc 1 30 0
+ 127 003c 7968     		ldr	r1, [r7, #4]
+ 128 003e 5D48     		ldr	r0, .L21+12
+ 129 0040 FFF7FEFF 		bl	__aeabi_fsub
+ 130              	.LVL4:
+ 131 0044 031C     		adds	r3, r0, #0
+ 132 0046 1A1C     		adds	r2, r3, #0
+ 133 0048 5B4B     		ldr	r3, .L21+16
+ 134 004a 1A60     		str	r2, [r3]
+  31:src/control.c ****         action = last_action + kp * (error - last_error) + ki * (current_time - last_time) * error;
+ 135              		.loc 1 31 0
+ 136 004c 5A4B     		ldr	r3, .L21+16
+ 137 004e 1A68     		ldr	r2, [r3]
+ 138 0050 5A4B     		ldr	r3, .L21+20
+ 139 0052 1B68     		ldr	r3, [r3]
+ 140 0054 191C     		adds	r1, r3, #0
+ 141 0056 101C     		adds	r0, r2, #0
+ 142 0058 FFF7FEFF 		bl	__aeabi_fsub
+ 143              	.LVL5:
+ 144 005c 031C     		adds	r3, r0, #0
+ 145 005e 1A1C     		adds	r2, r3, #0
+ 146 0060 574B     		ldr	r3, .L21+24
+ 147 0062 1B68     		ldr	r3, [r3]
+ 148 0064 191C     		adds	r1, r3, #0
+ 149 0066 101C     		adds	r0, r2, #0
+ 150 0068 FFF7FEFF 		bl	__aeabi_fmul
+ 151              	.LVL6:
+ 152 006c 031C     		adds	r3, r0, #0
+ 153 006e 1A1C     		adds	r2, r3, #0
+ 154 0070 544B     		ldr	r3, .L21+28
+ 155 0072 1B68     		ldr	r3, [r3]
+ 156 0074 191C     		adds	r1, r3, #0
+ 157 0076 101C     		adds	r0, r2, #0
+ARM GAS  /tmp/ccQxVkpA.s 			page 4
+
+
+ 158 0078 FFF7FEFF 		bl	__aeabi_fadd
+ 159              	.LVL7:
+ 160 007c 031C     		adds	r3, r0, #0
+ 161 007e 1C1C     		adds	r4, r3, #0
+ 162 0080 4B4B     		ldr	r3, .L21+8
+ 163 0082 1A68     		ldr	r2, [r3]
+ 164 0084 504B     		ldr	r3, .L21+32
+ 165 0086 1B68     		ldr	r3, [r3]
+ 166 0088 191C     		adds	r1, r3, #0
+ 167 008a 101C     		adds	r0, r2, #0
+ 168 008c FFF7FEFF 		bl	__aeabi_fsub
+ 169              	.LVL8:
+ 170 0090 031C     		adds	r3, r0, #0
+ 171 0092 1A1C     		adds	r2, r3, #0
+ 172 0094 4D4B     		ldr	r3, .L21+36
+ 173 0096 1B68     		ldr	r3, [r3]
+ 174 0098 191C     		adds	r1, r3, #0
+ 175 009a 101C     		adds	r0, r2, #0
+ 176 009c FFF7FEFF 		bl	__aeabi_fmul
+ 177              	.LVL9:
+ 178 00a0 031C     		adds	r3, r0, #0
+ 179 00a2 1A1C     		adds	r2, r3, #0
+ 180 00a4 444B     		ldr	r3, .L21+16
+ 181 00a6 1B68     		ldr	r3, [r3]
+ 182 00a8 191C     		adds	r1, r3, #0
+ 183 00aa 101C     		adds	r0, r2, #0
+ 184 00ac FFF7FEFF 		bl	__aeabi_fmul
+ 185              	.LVL10:
+ 186 00b0 031C     		adds	r3, r0, #0
+ 187 00b2 191C     		adds	r1, r3, #0
+ 188 00b4 201C     		adds	r0, r4, #0
+ 189 00b6 FFF7FEFF 		bl	__aeabi_fadd
+ 190              	.LVL11:
+ 191 00ba 031C     		adds	r3, r0, #0
+ 192 00bc 1A1C     		adds	r2, r3, #0
+ 193 00be 444B     		ldr	r3, .L21+40
+ 194 00c0 1A60     		str	r2, [r3]
+  32:src/control.c ****         last_time = current_time;
+ 195              		.loc 1 32 0
+ 196 00c2 3B4B     		ldr	r3, .L21+8
+ 197 00c4 1A68     		ldr	r2, [r3]
+ 198 00c6 404B     		ldr	r3, .L21+32
+ 199 00c8 1A60     		str	r2, [r3]
   33:src/control.c **** 
-  34:src/control.c ****     current_time = HAL_GetTick() / 1000;
-  60              		.loc 1 34 0
-  61 0014 FFF7FEFF 		bl	HAL_GetTick
-  62              	.LVL4:
-  63 0018 FA21     		movs	r1, #250
-  64 001a 8900     		lsls	r1, r1, #2
-  65 001c FFF7FEFF 		bl	__aeabi_uidiv
-  66              	.LVL5:
-  67 0020 FFF7FEFF 		bl	__aeabi_ui2f
-  68              	.LVL6:
-  69 0024 051C     		adds	r5, r0, #0
-  35:src/control.c ****     error = SETPOINT_TEMPERATURE - current_temperature;
-  70              		.loc 1 35 0
-  71 0026 211C     		adds	r1, r4, #0
-  72 0028 5E48     		ldr	r0, .L35+8
-  73 002a FFF7FEFF 		bl	__aeabi_fsub
-  74              	.LVL7:
-  75 002e 041C     		adds	r4, r0, #0
-  76              	.LVL8:
-  77 0030 5D4B     		ldr	r3, .L35+12
-  78 0032 1860     		str	r0, [r3]
-  36:src/control.c ****     action = last_action + kp * (error - last_error) + ki * (current_time - last_time) * error;
-  79              		.loc 1 36 0
-ARM GAS  /tmp/ccHnSonQ.s 			page 3
+  34:src/control.c ****         // limit action value
+  35:src/control.c ****         if (action > 1000) {
+ 200              		.loc 1 35 0
+ 201 00ca 414B     		ldr	r3, .L21+40
+ 202 00cc 1B68     		ldr	r3, [r3]
+ 203 00ce 4149     		ldr	r1, .L21+44
+ 204 00d0 181C     		adds	r0, r3, #0
+ 205 00d2 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 206              	.LVL12:
+ 207 00d6 031E     		subs	r3, r0, #0
+ 208 00d8 03D0     		beq	.L19
+  36:src/control.c ****             action = 1000;
+ 209              		.loc 1 36 0
+ARM GAS  /tmp/ccQxVkpA.s 			page 5
 
 
-  80 0034 5D4B     		ldr	r3, .L35+16
-  81 0036 1E68     		ldr	r6, [r3]
-  82 0038 311C     		adds	r1, r6, #0
-  83 003a FFF7FEFF 		bl	__aeabi_fsub
-  84              	.LVL9:
-  85 003e 5C49     		ldr	r1, .L35+20
-  86 0040 FFF7FEFF 		bl	__aeabi_fmul
-  87              	.LVL10:
-  88 0044 5B4B     		ldr	r3, .L35+24
-  89 0046 1968     		ldr	r1, [r3]
-  90 0048 FFF7FEFF 		bl	__aeabi_fadd
-  91              	.LVL11:
-  92 004c 0190     		str	r0, [sp, #4]
-  93 004e 5A4F     		ldr	r7, .L35+28
-  94 0050 3968     		ldr	r1, [r7]
-  95 0052 281C     		adds	r0, r5, #0
-  96 0054 FFF7FEFF 		bl	__aeabi_fsub
-  97              	.LVL12:
-  98 0058 5849     		ldr	r1, .L35+32
-  99 005a FFF7FEFF 		bl	__aeabi_fmul
- 100              	.LVL13:
- 101 005e 011C     		adds	r1, r0, #0
- 102 0060 201C     		adds	r0, r4, #0
- 103 0062 FFF7FEFF 		bl	__aeabi_fmul
- 104              	.LVL14:
- 105 0066 011C     		adds	r1, r0, #0
- 106 0068 0198     		ldr	r0, [sp, #4]
- 107 006a FFF7FEFF 		bl	__aeabi_fadd
- 108              	.LVL15:
-  37:src/control.c ****     last_time = current_time;
- 109              		.loc 1 37 0
- 110 006e 3D60     		str	r5, [r7]
-  38:src/control.c **** 
-  39:src/control.c ****     // limit action value
-  40:src/control.c ****     action *= 1000;
- 111              		.loc 1 40 0
- 112 0070 5349     		ldr	r1, .L35+36
- 113 0072 FFF7FEFF 		bl	__aeabi_fmul
- 114              	.LVL16:
- 115 0076 051C     		adds	r5, r0, #0
- 116 0078 524B     		ldr	r3, .L35+40
- 117 007a 1860     		str	r0, [r3]
-  41:src/control.c ****     if (action > 1000) {
- 118              		.loc 1 41 0
- 119 007c 5049     		ldr	r1, .L35+36
- 120 007e FFF7FEFF 		bl	__aeabi_fcmpgt
- 121              	.LVL17:
- 122 0082 0028     		cmp	r0, #0
- 123 0084 1BD0     		beq	.L27
-  42:src/control.c ****         action = 1000;
- 124              		.loc 1 42 0
- 125 0086 4F4B     		ldr	r3, .L35+40
- 126 0088 4D4A     		ldr	r2, .L35+36
- 127 008a 1A60     		str	r2, [r3]
- 128              	.L4:
-  43:src/control.c ****     } else if (action < -1000) {
-  44:src/control.c ****         action = -1000;
-ARM GAS  /tmp/ccHnSonQ.s 			page 4
+ 210 00da 3D4B     		ldr	r3, .L21+40
+ 211 00dc 3D4A     		ldr	r2, .L21+44
+ 212 00de 1A60     		str	r2, [r3]
+ 213 00e0 0AE0     		b	.L4
+ 214              	.L19:
+  37:src/control.c ****         } else if (action < -1000) {
+ 215              		.loc 1 37 0
+ 216 00e2 3B4B     		ldr	r3, .L21+40
+ 217 00e4 1B68     		ldr	r3, [r3]
+ 218 00e6 3C49     		ldr	r1, .L21+48
+ 219 00e8 181C     		adds	r0, r3, #0
+ 220 00ea FFF7FEFF 		bl	__aeabi_fcmplt
+ 221              	.LVL13:
+ 222 00ee 031E     		subs	r3, r0, #0
+ 223 00f0 02D0     		beq	.L4
+  38:src/control.c ****             action = -1000;
+ 224              		.loc 1 38 0
+ 225 00f2 374B     		ldr	r3, .L21+40
+ 226 00f4 384A     		ldr	r2, .L21+48
+ 227 00f6 1A60     		str	r2, [r3]
+ 228              	.L4:
+  39:src/control.c ****         }
+  40:src/control.c **** 
+  41:src/control.c ****         if (action < 0 && temperature[0] < temperature[1]) {
+ 229              		.loc 1 41 0
+ 230 00f8 354B     		ldr	r3, .L21+40
+ 231 00fa 1B68     		ldr	r3, [r3]
+ 232 00fc 0021     		movs	r1, #0
+ 233 00fe 181C     		adds	r0, r3, #0
+ 234 0100 FFF7FEFF 		bl	__aeabi_fcmplt
+ 235              	.LVL14:
+ 236 0104 031E     		subs	r3, r0, #0
+ 237 0106 18D0     		beq	.L6
+ 238              		.loc 1 41 0 is_stmt 0 discriminator 1
+ 239 0108 274B     		ldr	r3, .L21
+ 240 010a 1A68     		ldr	r2, [r3]
+ 241 010c 264B     		ldr	r3, .L21
+ 242 010e 5B68     		ldr	r3, [r3, #4]
+ 243 0110 9A42     		cmp	r2, r3
+ 244 0112 12D2     		bcs	.L6
+  42:src/control.c ****             set_fan(TOP_FAN, action);
+ 245              		.loc 1 42 0 is_stmt 1
+ 246 0114 2E4B     		ldr	r3, .L21+40
+ 247 0116 1B68     		ldr	r3, [r3]
+ 248 0118 181C     		adds	r0, r3, #0
+ 249 011a FFF7FEFF 		bl	__aeabi_f2uiz
+ 250              	.LVL15:
+ 251 011e 0300     		movs	r3, r0
+ 252 0120 9BB2     		uxth	r3, r3
+ 253 0122 1900     		movs	r1, r3
+ 254 0124 0020     		movs	r0, #0
+ 255 0126 FFF7FEFF 		bl	set_fan
+  43:src/control.c ****             set_fan(BOTTOM_FAN, 0);
+ 256              		.loc 1 43 0
+ 257 012a 0021     		movs	r1, #0
+ 258 012c 0120     		movs	r0, #1
+ 259 012e FFF7FEFF 		bl	set_fan
+ARM GAS  /tmp/ccQxVkpA.s 			page 6
 
 
-  45:src/control.c ****     }
-  46:src/control.c **** 
-  47:src/control.c ****     // calculate current temperature trend
-  48:src/control.c ****     if (last_error - error > 0) {
- 129              		.loc 1 48 0
- 130 008c 211C     		adds	r1, r4, #0
- 131 008e 301C     		adds	r0, r6, #0
- 132 0090 FFF7FEFF 		bl	__aeabi_fsub
- 133              	.LVL18:
- 134 0094 041C     		adds	r4, r0, #0
- 135 0096 0021     		movs	r1, #0
- 136 0098 FFF7FEFF 		bl	__aeabi_fcmpgt
- 137              	.LVL19:
- 138 009c 0028     		cmp	r0, #0
- 139 009e 18D0     		beq	.L28
-  49:src/control.c ****         temperature_trend[n] = 1;
- 140              		.loc 1 49 0
- 141 00a0 494B     		ldr	r3, .L35+44
- 142 00a2 1B78     		ldrb	r3, [r3]
- 143 00a4 494A     		ldr	r2, .L35+48
- 144 00a6 0121     		movs	r1, #1
- 145 00a8 D154     		strb	r1, [r2, r3]
- 146              	.L8:
-  50:src/control.c ****     } else if (last_error - error < 0) {
-  51:src/control.c ****         temperature_trend[n] = -1;
-  52:src/control.c ****     } else {
-  53:src/control.c ****         temperature_trend[n] = 0;
-  54:src/control.c ****     }
-  55:src/control.c ****     n = (n + 1) % NMAX;
- 147              		.loc 1 55 0
- 148 00aa 474C     		ldr	r4, .L35+44
- 149 00ac 2078     		ldrb	r0, [r4]
- 150 00ae 0130     		adds	r0, r0, #1
- 151 00b0 0A21     		movs	r1, #10
- 152 00b2 FFF7FEFF 		bl	__aeabi_idivmod
- 153              	.LVL20:
- 154 00b6 2170     		strb	r1, [r4]
- 155              	.LVL21:
- 156              	.LBB2:
-  56:src/control.c ****     for (int i = 0; i < NMAX; i++) {
- 157              		.loc 1 56 0
- 158 00b8 0022     		movs	r2, #0
- 159              	.LBE2:
-  31:src/control.c ****     float current_temperature = (float) temperature[2] / 10;
- 160              		.loc 1 31 0
- 161 00ba 0023     		movs	r3, #0
- 162              	.LBB3:
- 163              		.loc 1 56 0
- 164 00bc 20E0     		b	.L11
- 165              	.LVL22:
- 166              	.L27:
- 167              	.LBE3:
-  43:src/control.c ****         action = -1000;
- 168              		.loc 1 43 0
- 169 00be 4449     		ldr	r1, .L35+52
- 170 00c0 281C     		adds	r0, r5, #0
- 171 00c2 FFF7FEFF 		bl	__aeabi_fcmplt
-ARM GAS  /tmp/ccHnSonQ.s 			page 5
+  44:src/control.c ****             resistors_state(OFF);
+ 260              		.loc 1 44 0
+ 261 0132 0120     		movs	r0, #1
+ 262 0134 FFF7FEFF 		bl	resistors_state
+ 263 0138 2DE0     		b	.L8
+ 264              	.L6:
+  45:src/control.c ****         } else if (action > 0) {
+ 265              		.loc 1 45 0
+ 266 013a 254B     		ldr	r3, .L21+40
+ 267 013c 1B68     		ldr	r3, [r3]
+ 268 013e 0021     		movs	r1, #0
+ 269 0140 181C     		adds	r0, r3, #0
+ 270 0142 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 271              	.LVL16:
+ 272 0146 031E     		subs	r3, r0, #0
+ 273 0148 1AD0     		beq	.L20
+  46:src/control.c ****             if (error > 5) {
+ 274              		.loc 1 46 0
+ 275 014a 1B4B     		ldr	r3, .L21+16
+ 276 014c 1B68     		ldr	r3, [r3]
+ 277 014e 2349     		ldr	r1, .L21+52
+ 278 0150 181C     		adds	r0, r3, #0
+ 279 0152 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 280              	.LVL17:
+ 281 0156 031E     		subs	r3, r0, #0
+ 282 0158 02D0     		beq	.L11
+  47:src/control.c ****                 resistors_state(ON);
+ 283              		.loc 1 47 0
+ 284 015a 0020     		movs	r0, #0
+ 285 015c FFF7FEFF 		bl	resistors_state
+ 286              	.L11:
+  48:src/control.c ****             }
+  49:src/control.c ****             set_fan(TOP_FAN, 0);
+ 287              		.loc 1 49 0
+ 288 0160 0021     		movs	r1, #0
+ 289 0162 0020     		movs	r0, #0
+ 290 0164 FFF7FEFF 		bl	set_fan
+  50:src/control.c ****             set_fan(BOTTOM_FAN, action);
+ 291              		.loc 1 50 0
+ 292 0168 194B     		ldr	r3, .L21+40
+ 293 016a 1B68     		ldr	r3, [r3]
+ 294 016c 181C     		adds	r0, r3, #0
+ 295 016e FFF7FEFF 		bl	__aeabi_f2uiz
+ 296              	.LVL18:
+ 297 0172 0300     		movs	r3, r0
+ 298 0174 9BB2     		uxth	r3, r3
+ 299 0176 1900     		movs	r1, r3
+ 300 0178 0120     		movs	r0, #1
+ 301 017a FFF7FEFF 		bl	set_fan
+ 302 017e 0AE0     		b	.L8
+ 303              	.L20:
+  51:src/control.c ****         } else {
+  52:src/control.c ****             set_fan(TOP_FAN, 0);
+ 304              		.loc 1 52 0
+ 305 0180 0021     		movs	r1, #0
+ 306 0182 0020     		movs	r0, #0
+ 307 0184 FFF7FEFF 		bl	set_fan
+ARM GAS  /tmp/ccQxVkpA.s 			page 7
 
 
- 172              	.LVL23:
- 173 00c6 0028     		cmp	r0, #0
- 174 00c8 E0D0     		beq	.L4
-  44:src/control.c ****     }
- 175              		.loc 1 44 0
- 176 00ca 3E4B     		ldr	r3, .L35+40
- 177 00cc 404A     		ldr	r2, .L35+52
- 178 00ce 1A60     		str	r2, [r3]
- 179 00d0 DCE7     		b	.L4
- 180              	.L28:
-  50:src/control.c ****         temperature_trend[n] = -1;
- 181              		.loc 1 50 0
- 182 00d2 0021     		movs	r1, #0
- 183 00d4 201C     		adds	r0, r4, #0
- 184 00d6 FFF7FEFF 		bl	__aeabi_fcmplt
- 185              	.LVL24:
- 186 00da 0028     		cmp	r0, #0
- 187 00dc 05D1     		bne	.L31
-  53:src/control.c ****     }
- 188              		.loc 1 53 0
- 189 00de 3A4B     		ldr	r3, .L35+44
- 190 00e0 1B78     		ldrb	r3, [r3]
- 191 00e2 3A4A     		ldr	r2, .L35+48
- 192 00e4 0021     		movs	r1, #0
- 193 00e6 D154     		strb	r1, [r2, r3]
- 194 00e8 DFE7     		b	.L8
- 195              	.L31:
-  51:src/control.c ****     } else {
- 196              		.loc 1 51 0
- 197 00ea 374B     		ldr	r3, .L35+44
- 198 00ec 1B78     		ldrb	r3, [r3]
- 199 00ee 374A     		ldr	r2, .L35+48
- 200 00f0 FF21     		movs	r1, #255
- 201 00f2 D154     		strb	r1, [r2, r3]
- 202 00f4 D9E7     		b	.L8
- 203              	.LVL25:
- 204              	.L12:
- 205              	.LBB4:
-  57:src/control.c ****         current_trend += temperature_trend[i];
- 206              		.loc 1 57 0 discriminator 3
- 207 00f6 3549     		ldr	r1, .L35+48
- 208 00f8 895C     		ldrb	r1, [r1, r2]
- 209 00fa CB18     		adds	r3, r1, r3
- 210              	.LVL26:
- 211 00fc 5BB2     		sxtb	r3, r3
- 212              	.LVL27:
-  56:src/control.c ****         current_trend += temperature_trend[i];
- 213              		.loc 1 56 0 discriminator 3
- 214 00fe 0132     		adds	r2, r2, #1
- 215              	.LVL28:
- 216              	.L11:
-  56:src/control.c ****         current_trend += temperature_trend[i];
- 217              		.loc 1 56 0 is_stmt 0 discriminator 1
- 218 0100 092A     		cmp	r2, #9
- 219 0102 F8DD     		ble	.L12
- 220              	.LBE4:
-  58:src/control.c ****     }
-ARM GAS  /tmp/ccHnSonQ.s 			page 6
+  53:src/control.c ****             set_fan(BOTTOM_FAN, 0);
+ 308              		.loc 1 53 0
+ 309 0188 0021     		movs	r1, #0
+ 310 018a 0120     		movs	r0, #1
+ 311 018c FFF7FEFF 		bl	set_fan
+  54:src/control.c ****             resistors_state(OFF);
+ 312              		.loc 1 54 0
+ 313 0190 0120     		movs	r0, #1
+ 314 0192 FFF7FEFF 		bl	resistors_state
+ 315              	.L8:
+  55:src/control.c ****         }
+  56:src/control.c **** 
+  57:src/control.c ****         last_error = error;
+ 316              		.loc 1 57 0
+ 317 0196 084B     		ldr	r3, .L21+16
+ 318 0198 1A68     		ldr	r2, [r3]
+ 319 019a 084B     		ldr	r3, .L21+20
+ 320 019c 1A60     		str	r2, [r3]
+  58:src/control.c ****         last_action = action;
+ 321              		.loc 1 58 0
+ 322 019e 0C4B     		ldr	r3, .L21+40
+ 323 01a0 1A68     		ldr	r2, [r3]
+ 324 01a2 084B     		ldr	r3, .L21+28
+ 325 01a4 1A60     		str	r2, [r3]
+ 326              	.LBE2:
+  26:src/control.c ****         float current_temperature = (float) temperature[1] / 10;
+ 327              		.loc 1 26 0
+ 328 01a6 2EE7     		b	.L13
+ 329              	.L22:
+ 330              		.align	2
+ 331              	.L21:
+ 332 01a8 00000000 		.word	temperature
+ 333 01ac 00002041 		.word	1092616192
+ 334 01b0 00000000 		.word	current_time
+ 335 01b4 00000442 		.word	1107558400
+ 336 01b8 00000000 		.word	error
+ 337 01bc 00000000 		.word	last_error
+ 338 01c0 00000000 		.word	kp
+ 339 01c4 00000000 		.word	last_action
+ 340 01c8 00000000 		.word	last_time
+ 341 01cc 00000000 		.word	ki
+ 342 01d0 00000000 		.word	action
+ 343 01d4 00007A44 		.word	1148846080
+ 344 01d8 00007AC4 		.word	-998637568
+ 345 01dc 0000A040 		.word	1084227584
+ 346              		.cfi_endproc
+ 347              	.LFE37:
+ 349              		.text
+ 350              	.Letext0:
+ 351              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+ 352              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
+ 353              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ 354              		.file 5 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+ 355              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+ 356              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+ 357              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
+ 358              		.file 9 "inc/sensors.h"
+ARM GAS  /tmp/ccQxVkpA.s 			page 8
 
 
-  59:src/control.c **** 
-  60:src/control.c ****     if (current_trend > 0) {
- 221              		.loc 1 60 0 is_stmt 1
- 222 0104 002B     		cmp	r3, #0
- 223 0106 04DC     		bgt	.L32
-  61:src/control.c ****         resistors_state(ON);
-  62:src/control.c ****     } else if (current_trend < 0) {
- 224              		.loc 1 62 0
- 225 0108 2ADB     		blt	.L33
-  63:src/control.c ****         resistors_state(OFF);
-  64:src/control.c ****     } else {
-  65:src/control.c ****         resistors_state(OFF);
- 226              		.loc 1 65 0
- 227 010a 0120     		movs	r0, #1
- 228 010c FFF7FEFF 		bl	resistors_state
- 229              	.LVL29:
- 230 0110 02E0     		b	.L14
- 231              	.LVL30:
- 232              	.L32:
-  61:src/control.c ****         resistors_state(ON);
- 233              		.loc 1 61 0
- 234 0112 0020     		movs	r0, #0
- 235 0114 FFF7FEFF 		bl	resistors_state
- 236              	.LVL31:
- 237              	.L14:
-  66:src/control.c ****     }
-  67:src/control.c **** 
-  68:src/control.c ****     if (action < 0 && temperature[1] < temperature[2]) {
- 238              		.loc 1 68 0
- 239 0118 2A4B     		ldr	r3, .L35+40
- 240 011a 1C68     		ldr	r4, [r3]
- 241 011c 0021     		movs	r1, #0
- 242 011e 201C     		adds	r0, r4, #0
- 243 0120 FFF7FEFF 		bl	__aeabi_fcmplt
- 244              	.LVL32:
- 245 0124 0028     		cmp	r0, #0
- 246 0126 1FD1     		bne	.L34
- 247              	.L16:
-  69:src/control.c ****         set_fan(TOP_FAN, action);
-  70:src/control.c ****         set_fan(BOTTOM_FAN, 0);
-  71:src/control.c ****     } else if (action > 0) {
- 248              		.loc 1 71 0
- 249 0128 0021     		movs	r1, #0
- 250 012a 201C     		adds	r0, r4, #0
- 251 012c FFF7FEFF 		bl	__aeabi_fcmpgt
- 252              	.LVL33:
- 253 0130 0028     		cmp	r0, #0
- 254 0132 2AD0     		beq	.L30
-  72:src/control.c ****         set_fan(TOP_FAN, 0);
- 255              		.loc 1 72 0
- 256 0134 0021     		movs	r1, #0
- 257 0136 0020     		movs	r0, #0
- 258 0138 FFF7FEFF 		bl	set_fan
- 259              	.LVL34:
-  73:src/control.c ****         set_fan(BOTTOM_FAN, action);
- 260              		.loc 1 73 0
- 261 013c 214B     		ldr	r3, .L35+40
-ARM GAS  /tmp/ccHnSonQ.s 			page 7
-
-
- 262 013e 1868     		ldr	r0, [r3]
- 263 0140 FFF7FEFF 		bl	__aeabi_f2uiz
- 264              	.LVL35:
- 265 0144 81B2     		uxth	r1, r0
- 266 0146 0120     		movs	r0, #1
- 267 0148 FFF7FEFF 		bl	set_fan
- 268              	.LVL36:
- 269              	.L18:
-  74:src/control.c ****     } else {
-  75:src/control.c ****         set_fan(TOP_FAN, 0);
-  76:src/control.c ****         set_fan(BOTTOM_FAN, 0);
-  77:src/control.c ****     }
-  78:src/control.c **** 
-  79:src/control.c ****     last_error = error;
- 270              		.loc 1 79 0
- 271 014c 164B     		ldr	r3, .L35+12
- 272 014e 1A68     		ldr	r2, [r3]
- 273 0150 164B     		ldr	r3, .L35+16
- 274 0152 1A60     		str	r2, [r3]
-  80:src/control.c ****     last_action = action;
- 275              		.loc 1 80 0
- 276 0154 1B4B     		ldr	r3, .L35+40
- 277 0156 1A68     		ldr	r2, [r3]
- 278 0158 164B     		ldr	r3, .L35+24
- 279 015a 1A60     		str	r2, [r3]
-  81:src/control.c **** }
- 280              		.loc 1 81 0
- 281 015c 03B0     		add	sp, sp, #12
- 282              		@ sp needed
- 283 015e F0BD     		pop	{r4, r5, r6, r7, pc}
- 284              	.LVL37:
- 285              	.L33:
-  63:src/control.c ****     } else {
- 286              		.loc 1 63 0
- 287 0160 0120     		movs	r0, #1
- 288 0162 FFF7FEFF 		bl	resistors_state
- 289              	.LVL38:
- 290 0166 D7E7     		b	.L14
- 291              	.L34:
-  68:src/control.c ****         set_fan(TOP_FAN, action);
- 292              		.loc 1 68 0 discriminator 1
- 293 0168 0C4B     		ldr	r3, .L35
- 294 016a 5A68     		ldr	r2, [r3, #4]
- 295 016c 9B68     		ldr	r3, [r3, #8]
- 296 016e 9A42     		cmp	r2, r3
- 297 0170 DAD2     		bcs	.L16
-  69:src/control.c ****         set_fan(BOTTOM_FAN, 0);
- 298              		.loc 1 69 0
- 299 0172 201C     		adds	r0, r4, #0
- 300 0174 FFF7FEFF 		bl	__aeabi_f2uiz
- 301              	.LVL39:
- 302 0178 81B2     		uxth	r1, r0
- 303 017a 0020     		movs	r0, #0
- 304 017c FFF7FEFF 		bl	set_fan
- 305              	.LVL40:
-  70:src/control.c ****     } else if (action > 0) {
- 306              		.loc 1 70 0
-ARM GAS  /tmp/ccHnSonQ.s 			page 8
-
-
- 307 0180 0021     		movs	r1, #0
- 308 0182 0120     		movs	r0, #1
- 309 0184 FFF7FEFF 		bl	set_fan
- 310              	.LVL41:
- 311 0188 E0E7     		b	.L18
- 312              	.L30:
-  75:src/control.c ****         set_fan(BOTTOM_FAN, 0);
- 313              		.loc 1 75 0
- 314 018a 0021     		movs	r1, #0
- 315 018c 0020     		movs	r0, #0
- 316 018e FFF7FEFF 		bl	set_fan
- 317              	.LVL42:
-  76:src/control.c ****     }
- 318              		.loc 1 76 0
- 319 0192 0021     		movs	r1, #0
- 320 0194 0120     		movs	r0, #1
- 321 0196 FFF7FEFF 		bl	set_fan
- 322              	.LVL43:
- 323 019a D7E7     		b	.L18
- 324              	.L36:
- 325              		.align	2
- 326              	.L35:
- 327 019c 00000000 		.word	temperature
- 328 01a0 00002041 		.word	1092616192
- 329 01a4 00000442 		.word	1107558400
- 330 01a8 00000000 		.word	.LANCHOR0
- 331 01ac 00000000 		.word	.LANCHOR1
- 332 01b0 CDCC4C3E 		.word	1045220557
- 333 01b4 00000000 		.word	.LANCHOR2
- 334 01b8 00000000 		.word	.LANCHOR3
- 335 01bc BC74133C 		.word	1007908028
- 336 01c0 00007A44 		.word	1148846080
- 337 01c4 00000000 		.word	.LANCHOR4
- 338 01c8 00000000 		.word	.LANCHOR5
- 339 01cc 00000000 		.word	.LANCHOR6
- 340 01d0 00007AC4 		.word	-998637568
- 341              		.cfi_endproc
- 342              	.LFE37:
- 344              		.section	.bss.action,"aw",%nobits
- 345              		.align	2
- 346              		.set	.LANCHOR4,. + 0
- 349              	action:
- 350 0000 00000000 		.space	4
- 351              		.section	.bss.error,"aw",%nobits
- 352              		.align	2
- 353              		.set	.LANCHOR0,. + 0
- 356              	error:
- 357 0000 00000000 		.space	4
- 358              		.section	.bss.last_action,"aw",%nobits
- 359              		.align	2
- 360              		.set	.LANCHOR2,. + 0
- 363              	last_action:
- 364 0000 00000000 		.space	4
- 365              		.section	.bss.last_error,"aw",%nobits
- 366              		.align	2
- 367              		.set	.LANCHOR1,. + 0
- 370              	last_error:
-ARM GAS  /tmp/ccHnSonQ.s 			page 9
-
-
- 371 0000 00000000 		.space	4
- 372              		.section	.bss.last_time,"aw",%nobits
- 373              		.align	2
- 374              		.set	.LANCHOR3,. + 0
- 377              	last_time:
- 378 0000 00000000 		.space	4
- 379              		.section	.bss.n,"aw",%nobits
- 380              		.set	.LANCHOR5,. + 0
- 383              	n:
- 384 0000 00       		.space	1
- 385              		.section	.bss.temperature_trend,"aw",%nobits
- 386              		.align	2
- 387              		.set	.LANCHOR6,. + 0
- 390              	temperature_trend:
- 391 0000 00000000 		.space	10
- 391      00000000 
- 391      0000
- 392              		.text
- 393              	.Letext0:
- 394              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
- 395              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
- 396              		.file 4 "inc/sensors.h"
- 397              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
- 398              		.file 6 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
- 399              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
- 400              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
- 401              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
- 402              		.file 10 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/re
- 403              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
- 404              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
- 405              		.file 13 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h"
- 406              		.file 14 "cube/Inc/tim.h"
- 407              		.file 15 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
- 408              		.file 16 "inc/power_resistors.h"
- 409              		.file 17 "inc/fans.h"
-ARM GAS  /tmp/ccHnSonQ.s 			page 10
+ 359              		.file 10 "inc/fans.h"
+ 360              		.file 11 "inc/power_resistors.h"
+ARM GAS  /tmp/ccQxVkpA.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 control.c
-     /tmp/ccHnSonQ.s:26     .text.pi_action:0000000000000000 $t
-     /tmp/ccHnSonQ.s:33     .text.pi_action:0000000000000000 pi_action
-     /tmp/ccHnSonQ.s:327    .text.pi_action:000000000000019c $d
-     /tmp/ccHnSonQ.s:345    .bss.action:0000000000000000 $d
-     /tmp/ccHnSonQ.s:349    .bss.action:0000000000000000 action
-     /tmp/ccHnSonQ.s:352    .bss.error:0000000000000000 $d
-     /tmp/ccHnSonQ.s:356    .bss.error:0000000000000000 error
-     /tmp/ccHnSonQ.s:359    .bss.last_action:0000000000000000 $d
-     /tmp/ccHnSonQ.s:363    .bss.last_action:0000000000000000 last_action
-     /tmp/ccHnSonQ.s:366    .bss.last_error:0000000000000000 $d
-     /tmp/ccHnSonQ.s:370    .bss.last_error:0000000000000000 last_error
-     /tmp/ccHnSonQ.s:373    .bss.last_time:0000000000000000 $d
-     /tmp/ccHnSonQ.s:377    .bss.last_time:0000000000000000 last_time
-     /tmp/ccHnSonQ.s:383    .bss.n:0000000000000000 n
-     /tmp/ccHnSonQ.s:384    .bss.n:0000000000000000 $d
-     /tmp/ccHnSonQ.s:386    .bss.temperature_trend:0000000000000000 $d
-     /tmp/ccHnSonQ.s:390    .bss.temperature_trend:0000000000000000 temperature_trend
-                           .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
+     /tmp/ccQxVkpA.s:16     .bss.action:0000000000000000 $d
+     /tmp/ccQxVkpA.s:19     .bss.action:0000000000000000 action
+     /tmp/ccQxVkpA.s:22     .bss.last_action:0000000000000000 $d
+     /tmp/ccQxVkpA.s:25     .bss.last_action:0000000000000000 last_action
+     /tmp/ccQxVkpA.s:28     .bss.error:0000000000000000 $d
+     /tmp/ccQxVkpA.s:31     .bss.error:0000000000000000 error
+     /tmp/ccQxVkpA.s:34     .bss.last_error:0000000000000000 $d
+     /tmp/ccQxVkpA.s:37     .bss.last_error:0000000000000000 last_error
+     /tmp/ccQxVkpA.s:40     .bss.current_time:0000000000000000 $d
+     /tmp/ccQxVkpA.s:43     .bss.current_time:0000000000000000 current_time
+     /tmp/ccQxVkpA.s:46     .bss.last_time:0000000000000000 $d
+     /tmp/ccQxVkpA.s:49     .bss.last_time:0000000000000000 last_time
+     /tmp/ccQxVkpA.s:52     .data.kp:0000000000000000 $d
+     /tmp/ccQxVkpA.s:55     .data.kp:0000000000000000 kp
+     /tmp/ccQxVkpA.s:58     .data.ki:0000000000000000 $d
+     /tmp/ccQxVkpA.s:61     .data.ki:0000000000000000 ki
+     /tmp/ccQxVkpA.s:73     .text.pi_action:0000000000000000 $t
+     /tmp/ccQxVkpA.s:80     .text.pi_action:0000000000000000 pi_action
+     /tmp/ccQxVkpA.s:332    .text.pi_action:00000000000001a8 $d
+                           .group:0000000000000000 wm4.0.b7c3d577b02d87ac381ee43eef398462
                            .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
                            .group:0000000000000000 wm4.features.h.33.d0b7f3cd6ee95f610104014bb3ed522a
                            .group:0000000000000000 wm4._default_types.h.15.247e5cd201eca3442cbf5404108c4935
                            .group:0000000000000000 wm4._intsup.h.10.cce27fed8484c08a33f522034c30d2b5
                            .group:0000000000000000 wm4._stdint.h.10.c24fa3af3bc1706662bb5593a907e841
                            .group:0000000000000000 wm4.stdint.h.23.d53047a68f4a85177f80b422d52785ed
-                           .group:0000000000000000 wm4.sensors.h.2.00432fce449e2e33197277736b8d3c92
-                           .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
-                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
+                           .group:0000000000000000 wm4.main.h.42.3939338cba6ab0a8b761d08be8206d51
+                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.b0c07d2233f75e3b04f03d95093d88ca
                            .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
                            .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
                            .group:0000000000000000 wm4.core_cm0.h.42.7022e4f00906b4c8e9c5322381e90c37
@@ -575,10 +483,10 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stdio.h.81.2a55589bfa3ee24eeb84e3c79458e4a9
                            .group:0000000000000000 wm4.stm32f0xx_hal_def.h.76.81362c22f1bfa407bb20bdc5ef2fe817
                            .group:0000000000000000 wm4.stm32f0xx_hal_rcc.h.64.1680b96367ed05251327e73e2ef7e0a0
+ARM GAS  /tmp/ccQxVkpA.s 			page 10
+
+
                            .group:0000000000000000 wm4.stm32f0xx_hal_rcc_ex.h.38.fed157297eb0e49fa475a8f4d962b1a1
-ARM GAS  /tmp/ccHnSonQ.s 			page 11
-
-
                            .group:0000000000000000 wm4.stm32f0xx_hal_gpio.h.38.5de46a121e30d1d136216266f57becb9
                            .group:0000000000000000 wm4.stm32f0xx_hal_gpio_ex.h.38.4ae096506dfd35e4cd1e2bfdbf19c71f
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.38.9bc992aa465d2468bc055502b51063f3
@@ -596,7 +504,10 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
+                           .group:0000000000000000 wm4.stm32f0xx_hal_uart.h.38.e5eada3cdf37ca88de33bd21ddd21a5e
+                           .group:0000000000000000 wm4.stm32f0xx_hal_uart_ex.h.38.9430c2ca5ec832677dbe7308c46115fd
                            .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
+                           .group:0000000000000000 wm4.sensors.h.2.f28ea8c1f27d3bcba17595cfaf244921
 
 UNDEFINED SYMBOLS
 __aeabi_ui2f
@@ -607,9 +518,8 @@ __aeabi_fmul
 __aeabi_fadd
 __aeabi_fcmpgt
 __aeabi_fcmplt
-__aeabi_idivmod
 __aeabi_f2uiz
 HAL_GetTick
-resistors_state
 set_fan
+resistors_state
 temperature

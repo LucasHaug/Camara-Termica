@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccP5geMc.s 			page 1
+ARM GAS  /tmp/ccTxCY6n.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -8,23 +8,63 @@ ARM GAS  /tmp/ccP5geMc.s 			page 1
    5              		.eabi_attribute 24, 1
    6              		.eabi_attribute 25, 1
    7              		.eabi_attribute 26, 1
-   8              		.eabi_attribute 30, 1
+   8              		.eabi_attribute 30, 6
    9              		.eabi_attribute 34, 0
   10              		.eabi_attribute 18, 4
   11              		.file	"system_stm32f0xx.c"
   12              		.text
   13              	.Ltext0:
   14              		.cfi_sections	.debug_frame
-  15              		.section	.text.SystemInit,"ax",%progbits
-  16              		.align	1
-  17              		.global	SystemInit
-  18              		.syntax unified
-  19              		.code	16
-  20              		.thumb_func
-  21              		.fpu softvfp
-  23              	SystemInit:
-  24              	.LFB37:
-  25              		.file 1 "cube/Src/system_stm32f0xx.c"
+  15              		.global	SystemCoreClock
+  16              		.section	.data.SystemCoreClock,"aw",%progbits
+  17              		.align	2
+  20              	SystemCoreClock:
+  21 0000 00127A00 		.word	8000000
+  22              		.global	AHBPrescTable
+  23              		.section	.rodata.AHBPrescTable,"a",%progbits
+  24              		.align	2
+  27              	AHBPrescTable:
+  28 0000 00       		.byte	0
+  29 0001 00       		.byte	0
+  30 0002 00       		.byte	0
+  31 0003 00       		.byte	0
+  32 0004 00       		.byte	0
+  33 0005 00       		.byte	0
+  34 0006 00       		.byte	0
+  35 0007 00       		.byte	0
+  36 0008 01       		.byte	1
+  37 0009 02       		.byte	2
+  38 000a 03       		.byte	3
+  39 000b 04       		.byte	4
+  40 000c 06       		.byte	6
+  41 000d 07       		.byte	7
+  42 000e 08       		.byte	8
+  43 000f 09       		.byte	9
+  44              		.global	APBPrescTable
+  45              		.section	.rodata.APBPrescTable,"a",%progbits
+  46              		.align	2
+  49              	APBPrescTable:
+  50 0000 00       		.byte	0
+  51 0001 00       		.byte	0
+  52 0002 00       		.byte	0
+  53 0003 00       		.byte	0
+  54 0004 01       		.byte	1
+  55 0005 02       		.byte	2
+  56 0006 03       		.byte	3
+  57 0007 04       		.byte	4
+  58              		.section	.text.SystemInit,"ax",%progbits
+  59              		.align	1
+  60              		.global	SystemInit
+  61              		.syntax unified
+  62              		.code	16
+  63              		.thumb_func
+ARM GAS  /tmp/ccTxCY6n.s 			page 2
+
+
+  64              		.fpu softvfp
+  66              	SystemInit:
+  67              	.LFB37:
+  68              		.file 1 "cube/Src/system_stm32f0xx.c"
    1:cube/Src/system_stm32f0xx.c **** /**
    2:cube/Src/system_stm32f0xx.c ****   ******************************************************************************
    3:cube/Src/system_stm32f0xx.c ****   * @file    system_stm32f0xx.c
@@ -58,9 +98,6 @@ ARM GAS  /tmp/ccP5geMc.s 			page 1
   31:cube/Src/system_stm32f0xx.c ****   *        SYSCLK(Hz)                             | 8000000
   32:cube/Src/system_stm32f0xx.c ****   *-----------------------------------------------------------------------------
   33:cube/Src/system_stm32f0xx.c ****   *        HCLK(Hz)                               | 8000000
-ARM GAS  /tmp/ccP5geMc.s 			page 2
-
-
   34:cube/Src/system_stm32f0xx.c ****   *-----------------------------------------------------------------------------
   35:cube/Src/system_stm32f0xx.c ****   *        AHB Prescaler                          | 1
   36:cube/Src/system_stm32f0xx.c ****   *-----------------------------------------------------------------------------
@@ -81,6 +118,9 @@ ARM GAS  /tmp/ccP5geMc.s 			page 1
   51:cube/Src/system_stm32f0xx.c ****   *      and/or other materials provided with the distribution.
   52:cube/Src/system_stm32f0xx.c ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
   53:cube/Src/system_stm32f0xx.c ****   *      may be used to endorse or promote products derived from this software
+ARM GAS  /tmp/ccTxCY6n.s 			page 3
+
+
   54:cube/Src/system_stm32f0xx.c ****   *      without specific prior written permission.
   55:cube/Src/system_stm32f0xx.c ****   *
   56:cube/Src/system_stm32f0xx.c ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
@@ -118,9 +158,6 @@ ARM GAS  /tmp/ccP5geMc.s 			page 1
   88:cube/Src/system_stm32f0xx.c **** /** @addtogroup STM32F0xx_System_Private_TypesDefinitions
   89:cube/Src/system_stm32f0xx.c ****   * @{
   90:cube/Src/system_stm32f0xx.c ****   */
-ARM GAS  /tmp/ccP5geMc.s 			page 3
-
-
   91:cube/Src/system_stm32f0xx.c **** 
   92:cube/Src/system_stm32f0xx.c **** /**
   93:cube/Src/system_stm32f0xx.c ****   * @}
@@ -141,6 +178,9 @@ ARM GAS  /tmp/ccP5geMc.s 			page 1
  108:cube/Src/system_stm32f0xx.c **** 
  109:cube/Src/system_stm32f0xx.c **** #if !defined (HSI48_VALUE)
  110:cube/Src/system_stm32f0xx.c **** #define HSI48_VALUE    ((uint32_t)48000000) /*!< Default value of the HSI48 Internal oscillator in 
+ARM GAS  /tmp/ccTxCY6n.s 			page 4
+
+
  111:cube/Src/system_stm32f0xx.c ****                                                  This value can be provided and adapted by the user
  112:cube/Src/system_stm32f0xx.c **** #endif /* HSI48_VALUE */
  113:cube/Src/system_stm32f0xx.c **** /**
@@ -178,9 +218,6 @@ ARM GAS  /tmp/ccP5geMc.s 			page 1
  145:cube/Src/system_stm32f0xx.c **** /** @addtogroup STM32F0xx_System_Private_FunctionPrototypes
  146:cube/Src/system_stm32f0xx.c ****   * @{
  147:cube/Src/system_stm32f0xx.c ****   */
-ARM GAS  /tmp/ccP5geMc.s 			page 4
-
-
  148:cube/Src/system_stm32f0xx.c **** 
  149:cube/Src/system_stm32f0xx.c **** /**
  150:cube/Src/system_stm32f0xx.c ****   * @}
@@ -198,20 +235,29 @@ ARM GAS  /tmp/ccP5geMc.s 			page 1
  162:cube/Src/system_stm32f0xx.c ****   */
  163:cube/Src/system_stm32f0xx.c **** void SystemInit(void)
  164:cube/Src/system_stm32f0xx.c **** {
-  26              		.loc 1 164 0
-  27              		.cfi_startproc
-  28              		@ args = 0, pretend = 0, frame = 0
-  29              		@ frame_needed = 0, uses_anonymous_args = 0
-  30              		@ link register save eliminated.
+  69              		.loc 1 164 0
+  70              		.cfi_startproc
+  71              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/ccTxCY6n.s 			page 5
+
+
+  72              		@ frame_needed = 1, uses_anonymous_args = 0
+  73 0000 80B5     		push	{r7, lr}
+  74              		.cfi_def_cfa_offset 8
+  75              		.cfi_offset 7, -8
+  76              		.cfi_offset 14, -4
+  77 0002 00AF     		add	r7, sp, #0
+  78              		.cfi_def_cfa_register 7
  165:cube/Src/system_stm32f0xx.c ****   /* Reset the RCC clock configuration to the default reset state ------------*/
  166:cube/Src/system_stm32f0xx.c ****   /* Set HSION bit */
  167:cube/Src/system_stm32f0xx.c ****   RCC->CR |= (uint32_t)0x00000001U;
-  31              		.loc 1 167 0
-  32 0000 114B     		ldr	r3, .L2
-  33 0002 1A68     		ldr	r2, [r3]
-  34 0004 0121     		movs	r1, #1
-  35 0006 0A43     		orrs	r2, r1
-  36 0008 1A60     		str	r2, [r3]
+  79              		.loc 1 167 0
+  80 0004 1A4B     		ldr	r3, .L2
+  81 0006 1A68     		ldr	r2, [r3]
+  82 0008 194B     		ldr	r3, .L2
+  83 000a 0121     		movs	r1, #1
+  84 000c 0A43     		orrs	r2, r1
+  85 000e 1A60     		str	r2, [r3]
  168:cube/Src/system_stm32f0xx.c **** 
  169:cube/Src/system_stm32f0xx.c **** #if defined (STM32F051x8) || defined (STM32F058x8)
  170:cube/Src/system_stm32f0xx.c ****   /* Reset SW[1:0], HPRE[3:0], PPRE[2:0], ADCPRE and MCOSEL[2:0] bits */
@@ -219,56 +265,68 @@ ARM GAS  /tmp/ccP5geMc.s 			page 1
  172:cube/Src/system_stm32f0xx.c **** #else
  173:cube/Src/system_stm32f0xx.c ****   /* Reset SW[1:0], HPRE[3:0], PPRE[2:0], ADCPRE, MCOSEL[2:0], MCOPRE[2:0] and PLLNODIV bits */
  174:cube/Src/system_stm32f0xx.c ****   RCC->CFGR &= (uint32_t)0x08FFB80CU;
-  37              		.loc 1 174 0
-  38 000a 5A68     		ldr	r2, [r3, #4]
-  39 000c 0F48     		ldr	r0, .L2+4
-  40 000e 0240     		ands	r2, r0
-  41 0010 5A60     		str	r2, [r3, #4]
+  86              		.loc 1 174 0
+  87 0010 174B     		ldr	r3, .L2
+  88 0012 5A68     		ldr	r2, [r3, #4]
+  89 0014 164B     		ldr	r3, .L2
+  90 0016 1749     		ldr	r1, .L2+4
+  91 0018 0A40     		ands	r2, r1
+  92 001a 5A60     		str	r2, [r3, #4]
  175:cube/Src/system_stm32f0xx.c **** #endif /* STM32F051x8 or STM32F058x8 */
  176:cube/Src/system_stm32f0xx.c ****   
  177:cube/Src/system_stm32f0xx.c ****   /* Reset HSEON, CSSON and PLLON bits */
  178:cube/Src/system_stm32f0xx.c ****   RCC->CR &= (uint32_t)0xFEF6FFFFU;
-  42              		.loc 1 178 0
-  43 0012 1A68     		ldr	r2, [r3]
-  44 0014 0E48     		ldr	r0, .L2+8
-  45 0016 0240     		ands	r2, r0
-  46 0018 1A60     		str	r2, [r3]
+  93              		.loc 1 178 0
+  94 001c 144B     		ldr	r3, .L2
+  95 001e 1A68     		ldr	r2, [r3]
+  96 0020 134B     		ldr	r3, .L2
+  97 0022 1549     		ldr	r1, .L2+8
+  98 0024 0A40     		ands	r2, r1
+  99 0026 1A60     		str	r2, [r3]
  179:cube/Src/system_stm32f0xx.c **** 
  180:cube/Src/system_stm32f0xx.c ****   /* Reset HSEBYP bit */
  181:cube/Src/system_stm32f0xx.c ****   RCC->CR &= (uint32_t)0xFFFBFFFFU;
-  47              		.loc 1 181 0
-  48 001a 1A68     		ldr	r2, [r3]
-ARM GAS  /tmp/ccP5geMc.s 			page 5
-
-
-  49 001c 0D48     		ldr	r0, .L2+12
-  50 001e 0240     		ands	r2, r0
-  51 0020 1A60     		str	r2, [r3]
+ 100              		.loc 1 181 0
+ 101 0028 114B     		ldr	r3, .L2
+ 102 002a 1A68     		ldr	r2, [r3]
+ 103 002c 104B     		ldr	r3, .L2
+ 104 002e 1349     		ldr	r1, .L2+12
+ 105 0030 0A40     		ands	r2, r1
+ 106 0032 1A60     		str	r2, [r3]
  182:cube/Src/system_stm32f0xx.c **** 
  183:cube/Src/system_stm32f0xx.c ****   /* Reset PLLSRC, PLLXTPRE and PLLMUL[3:0] bits */
  184:cube/Src/system_stm32f0xx.c ****   RCC->CFGR &= (uint32_t)0xFFC0FFFFU;
-  52              		.loc 1 184 0
-  53 0022 5A68     		ldr	r2, [r3, #4]
-  54 0024 0C48     		ldr	r0, .L2+16
-  55 0026 0240     		ands	r2, r0
-  56 0028 5A60     		str	r2, [r3, #4]
+ 107              		.loc 1 184 0
+ 108 0034 0E4B     		ldr	r3, .L2
+ARM GAS  /tmp/ccTxCY6n.s 			page 6
+
+
+ 109 0036 5A68     		ldr	r2, [r3, #4]
+ 110 0038 0D4B     		ldr	r3, .L2
+ 111 003a 1149     		ldr	r1, .L2+16
+ 112 003c 0A40     		ands	r2, r1
+ 113 003e 5A60     		str	r2, [r3, #4]
  185:cube/Src/system_stm32f0xx.c **** 
  186:cube/Src/system_stm32f0xx.c ****   /* Reset PREDIV[3:0] bits */
  187:cube/Src/system_stm32f0xx.c ****   RCC->CFGR2 &= (uint32_t)0xFFFFFFF0U;
-  57              		.loc 1 187 0
-  58 002a DA6A     		ldr	r2, [r3, #44]
-  59 002c 0F20     		movs	r0, #15
-  60 002e 8243     		bics	r2, r0
-  61 0030 DA62     		str	r2, [r3, #44]
+ 114              		.loc 1 187 0
+ 115 0040 0B4B     		ldr	r3, .L2
+ 116 0042 DA6A     		ldr	r2, [r3, #44]
+ 117 0044 0A4B     		ldr	r3, .L2
+ 118 0046 0F21     		movs	r1, #15
+ 119 0048 8A43     		bics	r2, r1
+ 120 004a DA62     		str	r2, [r3, #44]
  188:cube/Src/system_stm32f0xx.c **** 
  189:cube/Src/system_stm32f0xx.c **** #if defined (STM32F072xB) || defined (STM32F078xx)
  190:cube/Src/system_stm32f0xx.c ****   /* Reset USART2SW[1:0], USART1SW[1:0], I2C1SW, CECSW, USBSW and ADCSW bits */
  191:cube/Src/system_stm32f0xx.c ****   RCC->CFGR3 &= (uint32_t)0xFFFCFE2CU;
-  62              		.loc 1 191 0
-  63 0032 1A6B     		ldr	r2, [r3, #48]
-  64 0034 0948     		ldr	r0, .L2+20
-  65 0036 0240     		ands	r2, r0
-  66 0038 1A63     		str	r2, [r3, #48]
+ 121              		.loc 1 191 0
+ 122 004c 084B     		ldr	r3, .L2
+ 123 004e 1A6B     		ldr	r2, [r3, #48]
+ 124 0050 074B     		ldr	r3, .L2
+ 125 0052 0C49     		ldr	r1, .L2+20
+ 126 0054 0A40     		ands	r2, r1
+ 127 0056 1A63     		str	r2, [r3, #48]
  192:cube/Src/system_stm32f0xx.c **** #elif defined (STM32F071xB)
  193:cube/Src/system_stm32f0xx.c ****   /* Reset USART2SW[1:0], USART1SW[1:0], I2C1SW, CECSW and ADCSW bits */
  194:cube/Src/system_stm32f0xx.c ****   RCC->CFGR3 &= (uint32_t)0xFFFFCEACU;
@@ -295,45 +353,51 @@ ARM GAS  /tmp/ccP5geMc.s 			page 1
  215:cube/Src/system_stm32f0xx.c **** 
  216:cube/Src/system_stm32f0xx.c ****   /* Reset HSI14 bit */
  217:cube/Src/system_stm32f0xx.c ****   RCC->CR2 &= (uint32_t)0xFFFFFFFEU;
-  67              		.loc 1 217 0
-  68 003a 5A6B     		ldr	r2, [r3, #52]
-  69 003c 8A43     		bics	r2, r1
-ARM GAS  /tmp/ccP5geMc.s 			page 6
+ 128              		.loc 1 217 0
+ 129 0058 054B     		ldr	r3, .L2
+ 130 005a 5A6B     		ldr	r2, [r3, #52]
+ 131 005c 044B     		ldr	r3, .L2
+ 132 005e 0121     		movs	r1, #1
+ARM GAS  /tmp/ccTxCY6n.s 			page 7
 
 
-  70 003e 5A63     		str	r2, [r3, #52]
+ 133 0060 8A43     		bics	r2, r1
+ 134 0062 5A63     		str	r2, [r3, #52]
  218:cube/Src/system_stm32f0xx.c **** 
  219:cube/Src/system_stm32f0xx.c ****   /* Disable all interrupts */
  220:cube/Src/system_stm32f0xx.c ****   RCC->CIR = 0x00000000U;
-  71              		.loc 1 220 0
-  72 0040 0022     		movs	r2, #0
-  73 0042 9A60     		str	r2, [r3, #8]
+ 135              		.loc 1 220 0
+ 136 0064 024B     		ldr	r3, .L2
+ 137 0066 0022     		movs	r2, #0
+ 138 0068 9A60     		str	r2, [r3, #8]
  221:cube/Src/system_stm32f0xx.c **** 
  222:cube/Src/system_stm32f0xx.c **** }
-  74              		.loc 1 222 0
-  75              		@ sp needed
-  76 0044 7047     		bx	lr
-  77              	.L3:
-  78 0046 C046     		.align	2
-  79              	.L2:
-  80 0048 00100240 		.word	1073876992
-  81 004c 0CB8FF08 		.word	150976524
-  82 0050 FFFFF6FE 		.word	-17367041
-  83 0054 FFFFFBFF 		.word	-262145
-  84 0058 FFFFC0FF 		.word	-4128769
-  85 005c 2CFEFCFF 		.word	-197076
-  86              		.cfi_endproc
-  87              	.LFE37:
-  89              		.global	__aeabi_uidiv
-  90              		.section	.text.SystemCoreClockUpdate,"ax",%progbits
-  91              		.align	1
-  92              		.global	SystemCoreClockUpdate
-  93              		.syntax unified
-  94              		.code	16
-  95              		.thumb_func
-  96              		.fpu softvfp
-  98              	SystemCoreClockUpdate:
-  99              	.LFB38:
+ 139              		.loc 1 222 0
+ 140 006a C046     		nop
+ 141 006c BD46     		mov	sp, r7
+ 142              		@ sp needed
+ 143 006e 80BD     		pop	{r7, pc}
+ 144              	.L3:
+ 145              		.align	2
+ 146              	.L2:
+ 147 0070 00100240 		.word	1073876992
+ 148 0074 0CB8FF08 		.word	150976524
+ 149 0078 FFFFF6FE 		.word	-17367041
+ 150 007c FFFFFBFF 		.word	-262145
+ 151 0080 FFFFC0FF 		.word	-4128769
+ 152 0084 2CFEFCFF 		.word	-197076
+ 153              		.cfi_endproc
+ 154              	.LFE37:
+ 156              		.global	__aeabi_uidiv
+ 157              		.section	.text.SystemCoreClockUpdate,"ax",%progbits
+ 158              		.align	1
+ 159              		.global	SystemCoreClockUpdate
+ 160              		.syntax unified
+ 161              		.code	16
+ 162              		.thumb_func
+ 163              		.fpu softvfp
+ 165              	SystemCoreClockUpdate:
+ 166              	.LFB38:
  223:cube/Src/system_stm32f0xx.c **** 
  224:cube/Src/system_stm32f0xx.c **** /**
  225:cube/Src/system_stm32f0xx.c ****    * @brief  Update SystemCoreClock variable according to Clock Register Values.
@@ -354,13 +418,13 @@ ARM GAS  /tmp/ccP5geMc.s 			page 1
  240:cube/Src/system_stm32f0xx.c ****   *           - If SYSCLK source is HSE, SystemCoreClock will contain the HSE_VALUE(**)
  241:cube/Src/system_stm32f0xx.c ****   *
  242:cube/Src/system_stm32f0xx.c ****   *           - If SYSCLK source is PLL, SystemCoreClock will contain the HSE_VALUE(**)
+ARM GAS  /tmp/ccTxCY6n.s 			page 8
+
+
  243:cube/Src/system_stm32f0xx.c ****   *             or HSI_VALUE(*) multiplied/divided by the PLL factors.
  244:cube/Src/system_stm32f0xx.c ****   *
  245:cube/Src/system_stm32f0xx.c ****   *         (*) HSI_VALUE is a constant defined in stm32f0xx_hal.h file (default value
  246:cube/Src/system_stm32f0xx.c ****   *             8 MHz) but the real value may vary depending on the variations
-ARM GAS  /tmp/ccP5geMc.s 			page 7
-
-
  247:cube/Src/system_stm32f0xx.c ****   *             in voltage and temperature.
  248:cube/Src/system_stm32f0xx.c ****   *
  249:cube/Src/system_stm32f0xx.c ****   *         (**) HSE_VALUE is a constant defined in stm32f0xx_hal.h file (default value
@@ -376,55 +440,128 @@ ARM GAS  /tmp/ccP5geMc.s 			page 1
  259:cube/Src/system_stm32f0xx.c ****   */
  260:cube/Src/system_stm32f0xx.c **** void SystemCoreClockUpdate (void)
  261:cube/Src/system_stm32f0xx.c **** {
- 100              		.loc 1 261 0
- 101              		.cfi_startproc
- 102              		@ args = 0, pretend = 0, frame = 0
- 103              		@ frame_needed = 0, uses_anonymous_args = 0
- 104 0000 10B5     		push	{r4, lr}
- 105              		.cfi_def_cfa_offset 8
- 106              		.cfi_offset 4, -8
- 107              		.cfi_offset 14, -4
- 108              	.LVL0:
+ 167              		.loc 1 261 0
+ 168              		.cfi_startproc
+ 169              		@ args = 0, pretend = 0, frame = 16
+ 170              		@ frame_needed = 1, uses_anonymous_args = 0
+ 171 0000 80B5     		push	{r7, lr}
+ 172              		.cfi_def_cfa_offset 8
+ 173              		.cfi_offset 7, -8
+ 174              		.cfi_offset 14, -4
+ 175 0002 84B0     		sub	sp, sp, #16
+ 176              		.cfi_def_cfa_offset 24
+ 177 0004 00AF     		add	r7, sp, #0
+ 178              		.cfi_def_cfa_register 7
  262:cube/Src/system_stm32f0xx.c ****   uint32_t tmp = 0, pllmull = 0, pllsource = 0, predivfactor = 0;
+ 179              		.loc 1 262 0
+ 180 0006 0023     		movs	r3, #0
+ 181 0008 FB60     		str	r3, [r7, #12]
+ 182 000a 0023     		movs	r3, #0
+ 183 000c BB60     		str	r3, [r7, #8]
+ 184 000e 0023     		movs	r3, #0
+ 185 0010 7B60     		str	r3, [r7, #4]
+ 186 0012 0023     		movs	r3, #0
+ 187 0014 3B60     		str	r3, [r7]
  263:cube/Src/system_stm32f0xx.c **** 
  264:cube/Src/system_stm32f0xx.c ****   /* Get SYSCLK source -------------------------------------------------------*/
  265:cube/Src/system_stm32f0xx.c ****   tmp = RCC->CFGR & RCC_CFGR_SWS;
- 109              		.loc 1 265 0
- 110 0002 254B     		ldr	r3, .L16
- 111 0004 5A68     		ldr	r2, [r3, #4]
- 112 0006 0C23     		movs	r3, #12
- 113 0008 1340     		ands	r3, r2
- 114              	.LVL1:
+ 188              		.loc 1 265 0
+ 189 0016 354B     		ldr	r3, .L14
+ 190 0018 5B68     		ldr	r3, [r3, #4]
+ 191 001a 0C22     		movs	r2, #12
+ 192 001c 1340     		ands	r3, r2
+ 193 001e FB60     		str	r3, [r7, #12]
  266:cube/Src/system_stm32f0xx.c **** 
  267:cube/Src/system_stm32f0xx.c ****   switch (tmp)
- 115              		.loc 1 267 0
- 116 000a 042B     		cmp	r3, #4
- 117 000c 16D0     		beq	.L6
- 118 000e 082B     		cmp	r3, #8
- 119 0010 18D0     		beq	.L7
- 120 0012 002B     		cmp	r3, #0
- 121 0014 03D0     		beq	.L13
+ 194              		.loc 1 267 0
+ 195 0020 FB68     		ldr	r3, [r7, #12]
+ 196 0022 042B     		cmp	r3, #4
+ 197 0024 07D0     		beq	.L6
+ 198 0026 082B     		cmp	r3, #8
+ARM GAS  /tmp/ccTxCY6n.s 			page 9
+
+
+ 199 0028 09D0     		beq	.L7
+ 200 002a 002B     		cmp	r3, #0
+ 201 002c 48D1     		bne	.L13
  268:cube/Src/system_stm32f0xx.c ****   {
  269:cube/Src/system_stm32f0xx.c ****     case RCC_CFGR_SWS_HSI:  /* HSI used as system clock */
  270:cube/Src/system_stm32f0xx.c ****       SystemCoreClock = HSI_VALUE;
+ 202              		.loc 1 270 0
+ 203 002e 304B     		ldr	r3, .L14+4
+ 204 0030 304A     		ldr	r2, .L14+8
+ 205 0032 1A60     		str	r2, [r3]
  271:cube/Src/system_stm32f0xx.c ****       break;
+ 206              		.loc 1 271 0
+ 207 0034 48E0     		b	.L9
+ 208              	.L6:
  272:cube/Src/system_stm32f0xx.c ****     case RCC_CFGR_SWS_HSE:  /* HSE used as system clock */
  273:cube/Src/system_stm32f0xx.c ****       SystemCoreClock = HSE_VALUE;
+ 209              		.loc 1 273 0
+ 210 0036 2E4B     		ldr	r3, .L14+4
+ 211 0038 2E4A     		ldr	r2, .L14+8
+ 212 003a 1A60     		str	r2, [r3]
  274:cube/Src/system_stm32f0xx.c ****       break;
+ 213              		.loc 1 274 0
+ 214 003c 44E0     		b	.L9
+ 215              	.L7:
  275:cube/Src/system_stm32f0xx.c ****     case RCC_CFGR_SWS_PLL:  /* PLL used as system clock */
  276:cube/Src/system_stm32f0xx.c ****       /* Get PLL clock source and multiplication factor ----------------------*/
  277:cube/Src/system_stm32f0xx.c ****       pllmull = RCC->CFGR & RCC_CFGR_PLLMUL;
+ 216              		.loc 1 277 0
+ 217 003e 2B4B     		ldr	r3, .L14
+ 218 0040 5A68     		ldr	r2, [r3, #4]
+ 219 0042 F023     		movs	r3, #240
+ 220 0044 9B03     		lsls	r3, r3, #14
+ 221 0046 1340     		ands	r3, r2
+ 222 0048 BB60     		str	r3, [r7, #8]
  278:cube/Src/system_stm32f0xx.c ****       pllsource = RCC->CFGR & RCC_CFGR_PLLSRC;
+ 223              		.loc 1 278 0
+ 224 004a 284B     		ldr	r3, .L14
+ 225 004c 5A68     		ldr	r2, [r3, #4]
+ 226 004e C023     		movs	r3, #192
+ 227 0050 5B02     		lsls	r3, r3, #9
+ 228 0052 1340     		ands	r3, r2
+ 229 0054 7B60     		str	r3, [r7, #4]
  279:cube/Src/system_stm32f0xx.c ****       pllmull = ( pllmull >> 18) + 2;
+ 230              		.loc 1 279 0
+ 231 0056 BB68     		ldr	r3, [r7, #8]
+ 232 0058 9B0C     		lsrs	r3, r3, #18
+ 233 005a 0233     		adds	r3, r3, #2
+ 234 005c BB60     		str	r3, [r7, #8]
  280:cube/Src/system_stm32f0xx.c ****       predivfactor = (RCC->CFGR2 & RCC_CFGR2_PREDIV) + 1;
+ 235              		.loc 1 280 0
+ 236 005e 234B     		ldr	r3, .L14
+ 237 0060 DB6A     		ldr	r3, [r3, #44]
+ 238 0062 0F22     		movs	r2, #15
+ 239 0064 1340     		ands	r3, r2
+ 240 0066 0133     		adds	r3, r3, #1
+ 241 0068 3B60     		str	r3, [r7]
  281:cube/Src/system_stm32f0xx.c **** 
-ARM GAS  /tmp/ccP5geMc.s 			page 8
+ARM GAS  /tmp/ccTxCY6n.s 			page 10
 
 
  282:cube/Src/system_stm32f0xx.c ****       if (pllsource == RCC_CFGR_PLLSRC_HSE_PREDIV)
+ 242              		.loc 1 282 0
+ 243 006a 7A68     		ldr	r2, [r7, #4]
+ 244 006c 8023     		movs	r3, #128
+ 245 006e 5B02     		lsls	r3, r3, #9
+ 246 0070 9A42     		cmp	r2, r3
+ 247 0072 0AD1     		bne	.L10
  283:cube/Src/system_stm32f0xx.c ****       {
  284:cube/Src/system_stm32f0xx.c ****         /* HSE used as PLL clock source : SystemCoreClock = HSE/PREDIV * PLLMUL */
  285:cube/Src/system_stm32f0xx.c ****         SystemCoreClock = (HSE_VALUE/predivfactor) * pllmull;
+ 248              		.loc 1 285 0
+ 249 0074 3968     		ldr	r1, [r7]
+ 250 0076 1F48     		ldr	r0, .L14+8
+ 251 0078 FFF7FEFF 		bl	__aeabi_uidiv
+ 252              	.LVL0:
+ 253 007c 0300     		movs	r3, r0
+ 254 007e 1A00     		movs	r2, r3
+ 255 0080 BB68     		ldr	r3, [r7, #8]
+ 256 0082 5A43     		muls	r2, r3
+ 257 0084 1A4B     		ldr	r3, .L14+4
+ 258 0086 1A60     		str	r2, [r3]
  286:cube/Src/system_stm32f0xx.c ****       }
  287:cube/Src/system_stm32f0xx.c **** #if defined(STM32F042x6) || defined(STM32F048xx) || defined(STM32F072xB) || defined(STM32F078xx) ||
  288:cube/Src/system_stm32f0xx.c ****       else if (pllsource == RCC_CFGR_PLLSRC_HSI48_PREDIV)
@@ -448,222 +585,129 @@ ARM GAS  /tmp/ccP5geMc.s 			page 1
  306:cube/Src/system_stm32f0xx.c ****           STM32F091xC || STM32F098xx || STM32F030xC */
  307:cube/Src/system_stm32f0xx.c ****       }
  308:cube/Src/system_stm32f0xx.c ****       break;
+ 259              		.loc 1 308 0
+ 260 0088 1EE0     		b	.L9
+ 261              	.L10:
+ 288:cube/Src/system_stm32f0xx.c ****       {
+ 262              		.loc 1 288 0
+ 263 008a 7A68     		ldr	r2, [r7, #4]
+ 264 008c C023     		movs	r3, #192
+ 265 008e 5B02     		lsls	r3, r3, #9
+ 266 0090 9A42     		cmp	r2, r3
+ 267 0092 0AD1     		bne	.L12
+ 291:cube/Src/system_stm32f0xx.c ****       }
+ 268              		.loc 1 291 0
+ 269 0094 3968     		ldr	r1, [r7]
+ARM GAS  /tmp/ccTxCY6n.s 			page 11
+
+
+ 270 0096 1848     		ldr	r0, .L14+12
+ 271 0098 FFF7FEFF 		bl	__aeabi_uidiv
+ 272              	.LVL1:
+ 273 009c 0300     		movs	r3, r0
+ 274 009e 1A00     		movs	r2, r3
+ 275 00a0 BB68     		ldr	r3, [r7, #8]
+ 276 00a2 5A43     		muls	r2, r3
+ 277 00a4 124B     		ldr	r3, .L14+4
+ 278 00a6 1A60     		str	r2, [r3]
+ 279              		.loc 1 308 0
+ 280 00a8 0EE0     		b	.L9
+ 281              	.L12:
+ 300:cube/Src/system_stm32f0xx.c **** #else
+ 282              		.loc 1 300 0
+ 283 00aa 3968     		ldr	r1, [r7]
+ 284 00ac 1148     		ldr	r0, .L14+8
+ 285 00ae FFF7FEFF 		bl	__aeabi_uidiv
+ 286              	.LVL2:
+ 287 00b2 0300     		movs	r3, r0
+ 288 00b4 1A00     		movs	r2, r3
+ 289 00b6 BB68     		ldr	r3, [r7, #8]
+ 290 00b8 5A43     		muls	r2, r3
+ 291 00ba 0D4B     		ldr	r3, .L14+4
+ 292 00bc 1A60     		str	r2, [r3]
+ 293              		.loc 1 308 0
+ 294 00be 03E0     		b	.L9
+ 295              	.L13:
  309:cube/Src/system_stm32f0xx.c ****     default: /* HSI used as system clock */
  310:cube/Src/system_stm32f0xx.c ****       SystemCoreClock = HSI_VALUE;
- 122              		.loc 1 310 0
- 123 0016 214B     		ldr	r3, .L16+4
- 124              	.LVL2:
- 125 0018 214A     		ldr	r2, .L16+8
- 126              	.LVL3:
- 127 001a 1A60     		str	r2, [r3]
+ 296              		.loc 1 310 0
+ 297 00c0 0B4B     		ldr	r3, .L14+4
+ 298 00c2 0C4A     		ldr	r2, .L14+8
+ 299 00c4 1A60     		str	r2, [r3]
  311:cube/Src/system_stm32f0xx.c ****       break;
- 128              		.loc 1 311 0
- 129 001c 02E0     		b	.L9
- 130              	.LVL4:
- 131              	.L13:
- 270:cube/Src/system_stm32f0xx.c ****       break;
- 132              		.loc 1 270 0
- 133 001e 1F4B     		ldr	r3, .L16+4
- 134              	.LVL5:
- 135 0020 1F4A     		ldr	r2, .L16+8
- 136              	.LVL6:
- 137 0022 1A60     		str	r2, [r3]
- 138              	.LVL7:
- 139              	.L9:
+ 300              		.loc 1 311 0
+ 301 00c6 C046     		nop
+ 302              	.L9:
  312:cube/Src/system_stm32f0xx.c ****   }
  313:cube/Src/system_stm32f0xx.c ****   /* Compute HCLK clock frequency ----------------*/
  314:cube/Src/system_stm32f0xx.c ****   /* Get HCLK prescaler */
  315:cube/Src/system_stm32f0xx.c ****   tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4)];
- 140              		.loc 1 315 0
- 141 0024 1C4B     		ldr	r3, .L16
- 142 0026 5A68     		ldr	r2, [r3, #4]
- 143 0028 1209     		lsrs	r2, r2, #4
-ARM GAS  /tmp/ccP5geMc.s 			page 9
-
-
- 144 002a 0F23     		movs	r3, #15
- 145 002c 1340     		ands	r3, r2
- 146 002e 1D4A     		ldr	r2, .L16+12
- 147 0030 D35C     		ldrb	r3, [r2, r3]
- 148              	.LVL8:
+ 303              		.loc 1 315 0
+ 304 00c8 084B     		ldr	r3, .L14
+ 305 00ca 5B68     		ldr	r3, [r3, #4]
+ 306 00cc 1B09     		lsrs	r3, r3, #4
+ 307 00ce 0F22     		movs	r2, #15
+ 308 00d0 1340     		ands	r3, r2
+ 309 00d2 0A4A     		ldr	r2, .L14+16
+ 310 00d4 D35C     		ldrb	r3, [r2, r3]
+ 311 00d6 FB60     		str	r3, [r7, #12]
  316:cube/Src/system_stm32f0xx.c ****   /* HCLK clock frequency */
  317:cube/Src/system_stm32f0xx.c ****   SystemCoreClock >>= tmp;
- 149              		.loc 1 317 0
- 150 0032 1A4A     		ldr	r2, .L16+4
- 151 0034 1168     		ldr	r1, [r2]
- 152 0036 D940     		lsrs	r1, r1, r3
- 153 0038 1160     		str	r1, [r2]
+ 312              		.loc 1 317 0
+ 313 00d8 054B     		ldr	r3, .L14+4
+ 314 00da 1A68     		ldr	r2, [r3]
+ 315 00dc FB68     		ldr	r3, [r7, #12]
+ 316 00de DA40     		lsrs	r2, r2, r3
+ARM GAS  /tmp/ccTxCY6n.s 			page 12
+
+
+ 317 00e0 034B     		ldr	r3, .L14+4
+ 318 00e2 1A60     		str	r2, [r3]
  318:cube/Src/system_stm32f0xx.c **** }
- 154              		.loc 1 318 0
- 155              		@ sp needed
- 156 003a 10BD     		pop	{r4, pc}
- 157              	.LVL9:
- 158              	.L6:
- 273:cube/Src/system_stm32f0xx.c ****       break;
- 159              		.loc 1 273 0
- 160 003c 174B     		ldr	r3, .L16+4
- 161              	.LVL10:
- 162 003e 184A     		ldr	r2, .L16+8
- 163              	.LVL11:
- 164 0040 1A60     		str	r2, [r3]
- 274:cube/Src/system_stm32f0xx.c ****     case RCC_CFGR_SWS_PLL:  /* PLL used as system clock */
- 165              		.loc 1 274 0
- 166 0042 EFE7     		b	.L9
- 167              	.LVL12:
- 168              	.L7:
- 277:cube/Src/system_stm32f0xx.c ****       pllsource = RCC->CFGR & RCC_CFGR_PLLSRC;
- 169              		.loc 1 277 0
- 170 0044 144A     		ldr	r2, .L16
- 171 0046 5068     		ldr	r0, [r2, #4]
- 172              	.LVL13:
- 278:cube/Src/system_stm32f0xx.c ****       pllmull = ( pllmull >> 18) + 2;
- 173              		.loc 1 278 0
- 174 0048 5368     		ldr	r3, [r2, #4]
- 175              	.LVL14:
- 176 004a C021     		movs	r1, #192
- 177 004c 4902     		lsls	r1, r1, #9
- 178 004e 0B40     		ands	r3, r1
- 179              	.LVL15:
- 279:cube/Src/system_stm32f0xx.c ****       predivfactor = (RCC->CFGR2 & RCC_CFGR2_PREDIV) + 1;
- 180              		.loc 1 279 0
- 181 0050 800C     		lsrs	r0, r0, #18
- 182              	.LVL16:
- 183 0052 0F21     		movs	r1, #15
- 184 0054 0840     		ands	r0, r1
- 185 0056 841C     		adds	r4, r0, #2
- 186              	.LVL17:
- 280:cube/Src/system_stm32f0xx.c **** 
- 187              		.loc 1 280 0
- 188 0058 D26A     		ldr	r2, [r2, #44]
- 189 005a 1140     		ands	r1, r2
- 190 005c 0131     		adds	r1, r1, #1
- 191              	.LVL18:
-ARM GAS  /tmp/ccP5geMc.s 			page 10
-
-
- 282:cube/Src/system_stm32f0xx.c ****       {
- 192              		.loc 1 282 0
- 193 005e 8022     		movs	r2, #128
- 194 0060 5202     		lsls	r2, r2, #9
- 195 0062 9342     		cmp	r3, r2
- 196 0064 0AD0     		beq	.L14
- 288:cube/Src/system_stm32f0xx.c ****       {
- 197              		.loc 1 288 0
- 198 0066 C022     		movs	r2, #192
- 199 0068 5202     		lsls	r2, r2, #9
- 200 006a 9342     		cmp	r3, r2
- 201 006c 0DD0     		beq	.L15
- 300:cube/Src/system_stm32f0xx.c **** #else
- 202              		.loc 1 300 0
- 203 006e 0C48     		ldr	r0, .L16+8
- 204 0070 FFF7FEFF 		bl	__aeabi_uidiv
- 205              	.LVL19:
- 206 0074 6043     		muls	r0, r4
- 207 0076 094B     		ldr	r3, .L16+4
- 208 0078 1860     		str	r0, [r3]
- 209 007a D3E7     		b	.L9
- 210              	.LVL20:
- 211              	.L14:
- 285:cube/Src/system_stm32f0xx.c ****       }
- 212              		.loc 1 285 0
- 213 007c 0848     		ldr	r0, .L16+8
- 214 007e FFF7FEFF 		bl	__aeabi_uidiv
- 215              	.LVL21:
- 216 0082 6043     		muls	r0, r4
- 217 0084 054B     		ldr	r3, .L16+4
- 218 0086 1860     		str	r0, [r3]
- 219 0088 CCE7     		b	.L9
- 220              	.LVL22:
- 221              	.L15:
- 291:cube/Src/system_stm32f0xx.c ****       }
- 222              		.loc 1 291 0
- 223 008a 0748     		ldr	r0, .L16+16
- 224 008c FFF7FEFF 		bl	__aeabi_uidiv
- 225              	.LVL23:
- 226 0090 6043     		muls	r0, r4
- 227 0092 024B     		ldr	r3, .L16+4
- 228 0094 1860     		str	r0, [r3]
- 229 0096 C5E7     		b	.L9
- 230              	.L17:
- 231              		.align	2
- 232              	.L16:
- 233 0098 00100240 		.word	1073876992
- 234 009c 00000000 		.word	.LANCHOR0
- 235 00a0 00127A00 		.word	8000000
- 236 00a4 00000000 		.word	.LANCHOR1
- 237 00a8 006CDC02 		.word	48000000
- 238              		.cfi_endproc
- 239              	.LFE38:
- 241              		.global	APBPrescTable
- 242              		.global	AHBPrescTable
- 243              		.global	SystemCoreClock
- 244              		.section	.data.SystemCoreClock,"aw",%progbits
-ARM GAS  /tmp/ccP5geMc.s 			page 11
-
-
- 245              		.align	2
- 246              		.set	.LANCHOR0,. + 0
- 249              	SystemCoreClock:
- 250 0000 00127A00 		.word	8000000
- 251              		.section	.rodata.AHBPrescTable,"a",%progbits
- 252              		.align	2
- 253              		.set	.LANCHOR1,. + 0
- 256              	AHBPrescTable:
- 257 0000 00       		.byte	0
- 258 0001 00       		.byte	0
- 259 0002 00       		.byte	0
- 260 0003 00       		.byte	0
- 261 0004 00       		.byte	0
- 262 0005 00       		.byte	0
- 263 0006 00       		.byte	0
- 264 0007 00       		.byte	0
- 265 0008 01       		.byte	1
- 266 0009 02       		.byte	2
- 267 000a 03       		.byte	3
- 268 000b 04       		.byte	4
- 269 000c 06       		.byte	6
- 270 000d 07       		.byte	7
- 271 000e 08       		.byte	8
- 272 000f 09       		.byte	9
- 273              		.section	.rodata.APBPrescTable,"a",%progbits
- 274              		.align	2
- 277              	APBPrescTable:
- 278 0000 00       		.byte	0
- 279 0001 00       		.byte	0
- 280 0002 00       		.byte	0
- 281 0003 00       		.byte	0
- 282 0004 01       		.byte	1
- 283 0005 02       		.byte	2
- 284 0006 03       		.byte	3
- 285 0007 04       		.byte	4
- 286              		.text
- 287              	.Letext0:
- 288              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
- 289              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
- 290              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
- 291              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
- 292              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
- 293              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
- 294              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
- 295              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
-ARM GAS  /tmp/ccP5geMc.s 			page 12
+ 319              		.loc 1 318 0
+ 320 00e4 C046     		nop
+ 321 00e6 BD46     		mov	sp, r7
+ 322 00e8 04B0     		add	sp, sp, #16
+ 323              		@ sp needed
+ 324 00ea 80BD     		pop	{r7, pc}
+ 325              	.L15:
+ 326              		.align	2
+ 327              	.L14:
+ 328 00ec 00100240 		.word	1073876992
+ 329 00f0 00000000 		.word	SystemCoreClock
+ 330 00f4 00127A00 		.word	8000000
+ 331 00f8 006CDC02 		.word	48000000
+ 332 00fc 00000000 		.word	AHBPrescTable
+ 333              		.cfi_endproc
+ 334              	.LFE38:
+ 336              		.text
+ 337              	.Letext0:
+ 338              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+ 339              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
+ 340              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ 341              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 342              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+ 343              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+ 344              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+ 345              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
+ARM GAS  /tmp/ccTxCY6n.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 system_stm32f0xx.c
-     /tmp/ccP5geMc.s:16     .text.SystemInit:0000000000000000 $t
-     /tmp/ccP5geMc.s:23     .text.SystemInit:0000000000000000 SystemInit
-     /tmp/ccP5geMc.s:80     .text.SystemInit:0000000000000048 $d
-     /tmp/ccP5geMc.s:91     .text.SystemCoreClockUpdate:0000000000000000 $t
-     /tmp/ccP5geMc.s:98     .text.SystemCoreClockUpdate:0000000000000000 SystemCoreClockUpdate
-     /tmp/ccP5geMc.s:233    .text.SystemCoreClockUpdate:0000000000000098 $d
-     /tmp/ccP5geMc.s:277    .rodata.APBPrescTable:0000000000000000 APBPrescTable
-     /tmp/ccP5geMc.s:256    .rodata.AHBPrescTable:0000000000000000 AHBPrescTable
-     /tmp/ccP5geMc.s:249    .data.SystemCoreClock:0000000000000000 SystemCoreClock
-     /tmp/ccP5geMc.s:245    .data.SystemCoreClock:0000000000000000 $d
-     /tmp/ccP5geMc.s:252    .rodata.AHBPrescTable:0000000000000000 $d
-     /tmp/ccP5geMc.s:274    .rodata.APBPrescTable:0000000000000000 $d
-                           .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
+     /tmp/ccTxCY6n.s:20     .data.SystemCoreClock:0000000000000000 SystemCoreClock
+     /tmp/ccTxCY6n.s:17     .data.SystemCoreClock:0000000000000000 $d
+     /tmp/ccTxCY6n.s:27     .rodata.AHBPrescTable:0000000000000000 AHBPrescTable
+     /tmp/ccTxCY6n.s:24     .rodata.AHBPrescTable:0000000000000000 $d
+     /tmp/ccTxCY6n.s:49     .rodata.APBPrescTable:0000000000000000 APBPrescTable
+     /tmp/ccTxCY6n.s:46     .rodata.APBPrescTable:0000000000000000 $d
+     /tmp/ccTxCY6n.s:59     .text.SystemInit:0000000000000000 $t
+     /tmp/ccTxCY6n.s:66     .text.SystemInit:0000000000000000 SystemInit
+     /tmp/ccTxCY6n.s:147    .text.SystemInit:0000000000000070 $d
+     /tmp/ccTxCY6n.s:158    .text.SystemCoreClockUpdate:0000000000000000 $t
+     /tmp/ccTxCY6n.s:165    .text.SystemCoreClockUpdate:0000000000000000 SystemCoreClockUpdate
+     /tmp/ccTxCY6n.s:328    .text.SystemCoreClockUpdate:00000000000000ec $d
+                           .group:0000000000000000 wm4.0.b7c3d577b02d87ac381ee43eef398462
                            .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
                            .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
                            .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
@@ -677,8 +721,8 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.core_cm0.h.175.2353140684a11cc8267b4125ac92735e
                            .group:0000000000000000 wm4.stm32f072xb.h.653.664388dc5ef2a697008be7ff13986fc5
                            .group:0000000000000000 wm4.stm32f0xx.h.186.8a2f1abf0fccd74c76b01fef06350694
-                           .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
-                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
+                           .group:0000000000000000 wm4.main.h.42.3939338cba6ab0a8b761d08be8206d51
+                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.b0c07d2233f75e3b04f03d95093d88ca
                            .group:0000000000000000 wm4.newlib.h.8.f6e543eac3f2f65163ba2ffe3b04987b
                            .group:0000000000000000 wm4.ieeefp.h.77.220d9cccac42cd58761758bee2df4ce6
                            .group:0000000000000000 wm4.config.h.220.6cac6a9685cfce5e83c17784171638d9
@@ -706,7 +750,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma_ex.h.38.c2269542e0bcc97944af39289a0a60b8
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.500.3b36a5be41f3e2ac138f4041ccf5cecb
                            .group:0000000000000000 wm4.stm32f0xx_hal_cortex.h.38.61b1088b7495d338bc65ee2571a0bb95
-ARM GAS  /tmp/ccP5geMc.s 			page 13
+ARM GAS  /tmp/ccTxCY6n.s 			page 14
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_adc.h.38.e3e4bca0d8b91dc0f73ca672bc0e5aca
@@ -720,6 +764,8 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
+                           .group:0000000000000000 wm4.stm32f0xx_hal_uart.h.38.e5eada3cdf37ca88de33bd21ddd21a5e
+                           .group:0000000000000000 wm4.stm32f0xx_hal_uart_ex.h.38.9430c2ca5ec832677dbe7308c46115fd
                            .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
 
 UNDEFINED SYMBOLS

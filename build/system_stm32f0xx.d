@@ -25,7 +25,9 @@ build/system_stm32f0xx.o: cube/Src/system_stm32f0xx.c \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h \
- cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h
+ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h \
+ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h \
+ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h
 
 cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h:
 
@@ -82,3 +84,7 @@ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h:
 cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h:
 
 cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h:
+
+cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:
+
+cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h:

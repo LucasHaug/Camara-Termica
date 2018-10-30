@@ -25,7 +25,9 @@ build/leds.o: src/leds.c inc/leds.h cube/Inc/gpio.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h \
  cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h \
- cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h
+ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h \
+ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h \
+ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h
 
 inc/leds.h:
 
@@ -86,3 +88,7 @@ cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h:
 cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h:
 
 cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h:
+
+cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:
+
+cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h:

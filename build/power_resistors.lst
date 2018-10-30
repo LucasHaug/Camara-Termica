@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccJlUnsR.s 			page 1
+ARM GAS  /tmp/ccXgluNz.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -8,7 +8,7 @@ ARM GAS  /tmp/ccJlUnsR.s 			page 1
    5              		.eabi_attribute 24, 1
    6              		.eabi_attribute 25, 1
    7              		.eabi_attribute 26, 1
-   8              		.eabi_attribute 30, 1
+   8              		.eabi_attribute 30, 6
    9              		.eabi_attribute 34, 0
   10              		.eabi_attribute 18, 4
   11              		.file	"power_resistors.c"
@@ -32,96 +32,105 @@ ARM GAS  /tmp/ccJlUnsR.s 			page 1
    5:src/power_resistors.c **** void resistors_state(resist_state_t state) {
   26              		.loc 1 5 0
   27              		.cfi_startproc
-  28              		@ args = 0, pretend = 0, frame = 0
-  29              		@ frame_needed = 0, uses_anonymous_args = 0
-  30              	.LVL0:
-  31 0000 10B5     		push	{r4, lr}
-  32              		.cfi_def_cfa_offset 8
-  33              		.cfi_offset 4, -8
-  34              		.cfi_offset 14, -4
+  28              		@ args = 0, pretend = 0, frame = 8
+  29              		@ frame_needed = 1, uses_anonymous_args = 0
+  30 0000 80B5     		push	{r7, lr}
+  31              		.cfi_def_cfa_offset 8
+  32              		.cfi_offset 7, -8
+  33              		.cfi_offset 14, -4
+  34 0002 82B0     		sub	sp, sp, #8
+  35              		.cfi_def_cfa_offset 16
+  36 0004 00AF     		add	r7, sp, #0
+  37              		.cfi_def_cfa_register 7
+  38 0006 0200     		movs	r2, r0
+  39 0008 FB1D     		adds	r3, r7, #7
+  40 000a 1A70     		strb	r2, [r3]
    6:src/power_resistors.c ****     switch (state) {
-  35              		.loc 1 6 0
-  36 0002 0028     		cmp	r0, #0
-  37 0004 02D0     		beq	.L3
-  38 0006 0128     		cmp	r0, #1
-  39 0008 06D0     		beq	.L4
-  40              	.LVL1:
-  41              	.L1:
+  41              		.loc 1 6 0
+  42 000c FB1D     		adds	r3, r7, #7
+  43 000e 1B78     		ldrb	r3, [r3]
+  44 0010 002B     		cmp	r3, #0
+  45 0012 02D0     		beq	.L3
+  46 0014 012B     		cmp	r3, #1
+  47 0016 07D0     		beq	.L4
    7:src/power_resistors.c ****         case ON:
    8:src/power_resistors.c ****             HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1, SET);
    9:src/power_resistors.c ****             break;
   10:src/power_resistors.c ****         case OFF:
   11:src/power_resistors.c ****             HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1, RESET);
+ARM GAS  /tmp/ccXgluNz.s 			page 2
+
+
   12:src/power_resistors.c ****             break;
   13:src/power_resistors.c ****     }
   14:src/power_resistors.c **** }
-  42              		.loc 1 14 0
-  43              		@ sp needed
-  44 000a 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/ccJlUnsR.s 			page 2
-
-
-  45              	.LVL2:
-  46              	.L3:
+  48              		.loc 1 14 0
+  49 0018 0DE0     		b	.L5
+  50              	.L3:
    8:src/power_resistors.c ****             break;
-  47              		.loc 1 8 0
-  48 000c 0122     		movs	r2, #1
-  49 000e 0221     		movs	r1, #2
-  50 0010 0448     		ldr	r0, .L5
-  51              	.LVL3:
-  52 0012 FFF7FEFF 		bl	HAL_GPIO_WritePin
-  53              	.LVL4:
+  51              		.loc 1 8 0
+  52 001a 094B     		ldr	r3, .L6
+  53 001c 0122     		movs	r2, #1
+  54 001e 0221     		movs	r1, #2
+  55 0020 1800     		movs	r0, r3
+  56 0022 FFF7FEFF 		bl	HAL_GPIO_WritePin
    9:src/power_resistors.c ****         case OFF:
-  54              		.loc 1 9 0
-  55 0016 F8E7     		b	.L1
-  56              	.LVL5:
-  57              	.L4:
+  57              		.loc 1 9 0
+  58 0026 06E0     		b	.L2
+  59              	.L4:
   11:src/power_resistors.c ****             break;
-  58              		.loc 1 11 0
-  59 0018 0022     		movs	r2, #0
-  60 001a 0221     		movs	r1, #2
-  61 001c 0148     		ldr	r0, .L5
-  62              	.LVL6:
-  63 001e FFF7FEFF 		bl	HAL_GPIO_WritePin
-  64              	.LVL7:
-  65              		.loc 1 14 0
-  66 0022 F2E7     		b	.L1
-  67              	.L6:
-  68              		.align	2
+  60              		.loc 1 11 0
+  61 0028 054B     		ldr	r3, .L6
+  62 002a 0022     		movs	r2, #0
+  63 002c 0221     		movs	r1, #2
+  64 002e 1800     		movs	r0, r3
+  65 0030 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  12:src/power_resistors.c ****     }
+  66              		.loc 1 12 0
+  67 0034 C046     		nop
+  68              	.L2:
   69              	.L5:
-  70 0024 00080048 		.word	1207961600
-  71              		.cfi_endproc
-  72              	.LFE37:
-  74              		.text
-  75              	.Letext0:
-  76              		.file 2 "inc/power_resistors.h"
-  77              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
-  78              		.file 4 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
-  79              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
-  80              		.file 6 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
-  81              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
-  82              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
-  83              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
-  84              		.file 10 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/re
-  85              		.file 11 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h"
-  86              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
-ARM GAS  /tmp/ccJlUnsR.s 			page 3
+  70              		.loc 1 14 0
+  71 0036 C046     		nop
+  72 0038 BD46     		mov	sp, r7
+  73 003a 02B0     		add	sp, sp, #8
+  74              		@ sp needed
+  75 003c 80BD     		pop	{r7, pc}
+  76              	.L7:
+  77 003e C046     		.align	2
+  78              	.L6:
+  79 0040 00080048 		.word	1207961600
+  80              		.cfi_endproc
+  81              	.LFE37:
+  83              		.text
+  84              	.Letext0:
+  85              		.file 2 "inc/power_resistors.h"
+  86              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+  87              		.file 4 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
+  88              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+  89              		.file 6 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+  90              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+  91              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+  92              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+  93              		.file 10 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/re
+  94              		.file 11 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h"
+ARM GAS  /tmp/ccXgluNz.s 			page 3
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 power_resistors.c
-     /tmp/ccJlUnsR.s:16     .text.resistors_state:0000000000000000 $t
-     /tmp/ccJlUnsR.s:23     .text.resistors_state:0000000000000000 resistors_state
-     /tmp/ccJlUnsR.s:70     .text.resistors_state:0000000000000024 $d
-                           .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
+     /tmp/ccXgluNz.s:16     .text.resistors_state:0000000000000000 $t
+     /tmp/ccXgluNz.s:23     .text.resistors_state:0000000000000000 resistors_state
+     /tmp/ccXgluNz.s:79     .text.resistors_state:0000000000000040 $d
+                           .group:0000000000000000 wm4.0.b7c3d577b02d87ac381ee43eef398462
                            .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
                            .group:0000000000000000 wm4.features.h.33.d0b7f3cd6ee95f610104014bb3ed522a
                            .group:0000000000000000 wm4._default_types.h.15.247e5cd201eca3442cbf5404108c4935
                            .group:0000000000000000 wm4._intsup.h.10.cce27fed8484c08a33f522034c30d2b5
                            .group:0000000000000000 wm4._stdint.h.10.c24fa3af3bc1706662bb5593a907e841
                            .group:0000000000000000 wm4.stdint.h.23.d53047a68f4a85177f80b422d52785ed
-                           .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
-                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
+                           .group:0000000000000000 wm4.main.h.42.3939338cba6ab0a8b761d08be8206d51
+                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.b0c07d2233f75e3b04f03d95093d88ca
                            .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
                            .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
                            .group:0000000000000000 wm4.core_cm0.h.42.7022e4f00906b4c8e9c5322381e90c37
@@ -165,11 +174,13 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
-ARM GAS  /tmp/ccJlUnsR.s 			page 4
+ARM GAS  /tmp/ccXgluNz.s 			page 4
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
+                           .group:0000000000000000 wm4.stm32f0xx_hal_uart.h.38.e5eada3cdf37ca88de33bd21ddd21a5e
+                           .group:0000000000000000 wm4.stm32f0xx_hal_uart_ex.h.38.9430c2ca5ec832677dbe7308c46115fd
                            .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
 
 UNDEFINED SYMBOLS

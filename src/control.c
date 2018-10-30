@@ -1,5 +1,7 @@
 #include <stdint.h>
 
+#include "stm32f0xx_hal.h"
+
 #include "control.h"
 #include "fans.h"
 #include "power_resistors.h"
@@ -22,7 +24,6 @@ static float ki = 9;
 
 void pi_action(void) {
     for (;;) {
-        int8_t current_trend = 0;
         float current_temperature = (float) temperature[1] / 10;
 
         current_time = HAL_GetTick() / 1000;

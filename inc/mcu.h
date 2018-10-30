@@ -25,4 +25,8 @@ void mcu_init(void);
  */
 void mcu_sleep(uint32_t ms);
 
+void mcu_printf(char* data);
+
+void mcu_sleep_us(uint32_t us);
+
 #endif  // __MCU_H__

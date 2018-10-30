@@ -1,6 +1,9 @@
+#include <string.h>
+
 #include "adc.h"
 #include "dma.h"
 
+#include "mcu.h"
 #include "sensors.h"
 
 #define OLD_VALUE_WEIGHT 3
@@ -12,7 +15,7 @@ static float b = 0;
 
 uint32_t temperature[T_ADC_CHANNELS] = {0};
 //@ Mudar para adicionar o senosr de umidade + setar pino PA4
-// uint32_t uint32_t humidity[H_ADC_CHANNELS] = {0};
+uint64_t humidity[H_ADC_CHANNELS] = {0};
 
 uint32_t adc_buffer[ADC_BUFFER_SIZE] = {0};
 
@@ -26,10 +29,10 @@ void sensors_init(void) {
 void calibrate_sensors(float low_temp_ref, float high_temp_ref) {
     float low_reading;
     float high_reading;
-    float low_diff;
-    float high_diff;
-    return;
-
+    float low_diff = low_reading - low_temp_ref;
+    float high_diff = high_reading - high_temp_ref;
+    b = high_diff - low_diff;
+    a = 0;
 }
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
@@ -46,9 +49,10 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
     }
 
     for (int i = 0; i < T_ADC_CHANNELS; i++) {
-        temperature[i] = (NEW_VALUE_WEIGHT * val[i] + OLD_VALUE_WEIGHT * temperature[i]) /
-                         (NEW_VALUE_WEIGHT + OLD_VALUE_WEIGHT);
+        temperature[i] =
+            (NEW_VALUE_WEIGHT * val[i] + OLD_VALUE_WEIGHT * temperature[i]) / (NEW_VALUE_WEIGHT + OLD_VALUE_WEIGHT);
     }
     //@ Mudar para adicionar o senosr de umidade + setar pino PA4
-    // humidity = val[T_ADC_CHANNELS - 1];
+    humidity[0] = val[T_ADC_CHANNELS - 1];
+    humidity[0] = humidity[0] >> 32;
 }

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccpRec9b.s 			page 1
+ARM GAS  /tmp/ccDtL1la.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -8,7 +8,7 @@ ARM GAS  /tmp/ccpRec9b.s 			page 1
    5              		.eabi_attribute 24, 1
    6              		.eabi_attribute 25, 1
    7              		.eabi_attribute 26, 1
-   8              		.eabi_attribute 30, 1
+   8              		.eabi_attribute 30, 6
    9              		.eabi_attribute 34, 0
   10              		.eabi_attribute 18, 4
   11              		.file	"dma.c"
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccpRec9b.s 			page 1
   31:cube/Src/dma.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   32:cube/Src/dma.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
   33:cube/Src/dma.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-ARM GAS  /tmp/ccpRec9b.s 			page 2
+ARM GAS  /tmp/ccDtL1la.s 			page 2
 
 
   34:cube/Src/dma.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
@@ -89,78 +89,83 @@ ARM GAS  /tmp/ccpRec9b.s 			page 1
   26              		.loc 1 58 0
   27              		.cfi_startproc
   28              		@ args = 0, pretend = 0, frame = 8
-  29              		@ frame_needed = 0, uses_anonymous_args = 0
-  30 0000 00B5     		push	{lr}
-  31              		.cfi_def_cfa_offset 4
-  32              		.cfi_offset 14, -4
-  33 0002 83B0     		sub	sp, sp, #12
-  34              		.cfi_def_cfa_offset 16
-  35              	.LBB2:
+  29              		@ frame_needed = 1, uses_anonymous_args = 0
+  30 0000 80B5     		push	{r7, lr}
+  31              		.cfi_def_cfa_offset 8
+  32              		.cfi_offset 7, -8
+  33              		.cfi_offset 14, -4
+  34 0002 82B0     		sub	sp, sp, #8
+  35              		.cfi_def_cfa_offset 16
+  36 0004 00AF     		add	r7, sp, #0
+  37              		.cfi_def_cfa_register 7
+  38              	.LBB2:
   59:cube/Src/dma.c ****   /* DMA controller clock enable */
   60:cube/Src/dma.c ****   __HAL_RCC_DMA1_CLK_ENABLE();
-  36              		.loc 1 60 0
-  37 0004 094A     		ldr	r2, .L2
-  38 0006 5169     		ldr	r1, [r2, #20]
-  39 0008 0123     		movs	r3, #1
-  40 000a 1943     		orrs	r1, r3
-  41 000c 5161     		str	r1, [r2, #20]
-  42 000e 5269     		ldr	r2, [r2, #20]
-  43 0010 1340     		ands	r3, r2
-  44 0012 0193     		str	r3, [sp, #4]
-  45 0014 019B     		ldr	r3, [sp, #4]
-  46              	.LBE2:
+  39              		.loc 1 60 0
+  40 0006 0C4B     		ldr	r3, .L2
+  41 0008 5A69     		ldr	r2, [r3, #20]
+  42 000a 0B4B     		ldr	r3, .L2
+  43 000c 0121     		movs	r1, #1
+  44 000e 0A43     		orrs	r2, r1
+  45 0010 5A61     		str	r2, [r3, #20]
+  46 0012 094B     		ldr	r3, .L2
+  47 0014 5B69     		ldr	r3, [r3, #20]
+  48 0016 0122     		movs	r2, #1
+  49 0018 1340     		ands	r3, r2
+  50 001a 7B60     		str	r3, [r7, #4]
+  51 001c 7B68     		ldr	r3, [r7, #4]
+  52              	.LBE2:
   61:cube/Src/dma.c **** 
   62:cube/Src/dma.c ****   /* DMA interrupt init */
   63:cube/Src/dma.c ****   /* DMA1_Channel1_IRQn interrupt configuration */
+ARM GAS  /tmp/ccDtL1la.s 			page 3
+
+
   64:cube/Src/dma.c ****   HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
-  47              		.loc 1 64 0
-  48 0016 0022     		movs	r2, #0
-  49 0018 0021     		movs	r1, #0
-  50 001a 0920     		movs	r0, #9
-  51 001c FFF7FEFF 		bl	HAL_NVIC_SetPriority
-ARM GAS  /tmp/ccpRec9b.s 			page 3
-
-
-  52              	.LVL0:
+  53              		.loc 1 64 0
+  54 001e 0022     		movs	r2, #0
+  55 0020 0021     		movs	r1, #0
+  56 0022 0920     		movs	r0, #9
+  57 0024 FFF7FEFF 		bl	HAL_NVIC_SetPriority
   65:cube/Src/dma.c ****   HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
-  53              		.loc 1 65 0
-  54 0020 0920     		movs	r0, #9
-  55 0022 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
-  56              	.LVL1:
+  58              		.loc 1 65 0
+  59 0028 0920     		movs	r0, #9
+  60 002a FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
   66:cube/Src/dma.c **** 
   67:cube/Src/dma.c **** }
-  57              		.loc 1 67 0
-  58 0026 03B0     		add	sp, sp, #12
-  59              		@ sp needed
-  60 0028 00BD     		pop	{pc}
-  61              	.L3:
-  62 002a C046     		.align	2
-  63              	.L2:
-  64 002c 00100240 		.word	1073876992
-  65              		.cfi_endproc
-  66              	.LFE37:
-  68              		.text
-  69              	.Letext0:
-  70              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
-  71              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
-  72              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
-  73              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
-  74              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
-  75              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
-  76              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
-  77              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
-  78              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
-ARM GAS  /tmp/ccpRec9b.s 			page 4
+  61              		.loc 1 67 0
+  62 002e C046     		nop
+  63 0030 BD46     		mov	sp, r7
+  64 0032 02B0     		add	sp, sp, #8
+  65              		@ sp needed
+  66 0034 80BD     		pop	{r7, pc}
+  67              	.L3:
+  68 0036 C046     		.align	2
+  69              	.L2:
+  70 0038 00100240 		.word	1073876992
+  71              		.cfi_endproc
+  72              	.LFE37:
+  74              		.text
+  75              	.Letext0:
+  76              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+  77              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
+  78              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+  79              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+  80              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+  81              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+  82              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+  83              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
+ARM GAS  /tmp/ccDtL1la.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 dma.c
-     /tmp/ccpRec9b.s:16     .text.MX_DMA_Init:0000000000000000 $t
-     /tmp/ccpRec9b.s:23     .text.MX_DMA_Init:0000000000000000 MX_DMA_Init
-     /tmp/ccpRec9b.s:64     .text.MX_DMA_Init:000000000000002c $d
-                           .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
-                           .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
-                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
+     /tmp/ccDtL1la.s:16     .text.MX_DMA_Init:0000000000000000 $t
+     /tmp/ccDtL1la.s:23     .text.MX_DMA_Init:0000000000000000 MX_DMA_Init
+     /tmp/ccDtL1la.s:70     .text.MX_DMA_Init:0000000000000038 $d
+                           .group:0000000000000000 wm4.0.b7c3d577b02d87ac381ee43eef398462
+                           .group:0000000000000000 wm4.main.h.42.3939338cba6ab0a8b761d08be8206d51
+                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.b0c07d2233f75e3b04f03d95093d88ca
                            .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
                            .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
                            .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
@@ -210,11 +215,13 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
-ARM GAS  /tmp/ccpRec9b.s 			page 5
+ARM GAS  /tmp/ccDtL1la.s 			page 5
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
+                           .group:0000000000000000 wm4.stm32f0xx_hal_uart.h.38.e5eada3cdf37ca88de33bd21ddd21a5e
+                           .group:0000000000000000 wm4.stm32f0xx_hal_uart_ex.h.38.9430c2ca5ec832677dbe7308c46115fd
                            .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
 
 UNDEFINED SYMBOLS

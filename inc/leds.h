@@ -13,7 +13,7 @@ typedef enum leds_state {
 /**
  * @brief Changes LEDS state.
  */
-void leds_state(leds_state_t state);
+void lamps_state(leds_state_t state);
 
 void control_led_state(leds_state_t state);
 

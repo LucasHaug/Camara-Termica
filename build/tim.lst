@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccuv446Q.s 			page 1
+ARM GAS  /tmp/cc4lCQFX.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -8,23 +8,31 @@ ARM GAS  /tmp/ccuv446Q.s 			page 1
    5              		.eabi_attribute 24, 1
    6              		.eabi_attribute 25, 1
    7              		.eabi_attribute 26, 1
-   8              		.eabi_attribute 30, 1
+   8              		.eabi_attribute 30, 6
    9              		.eabi_attribute 34, 0
   10              		.eabi_attribute 18, 4
   11              		.file	"tim.c"
   12              		.text
   13              	.Ltext0:
   14              		.cfi_sections	.debug_frame
-  15              		.section	.text.HAL_TIM_PWM_MspInit,"ax",%progbits
-  16              		.align	1
-  17              		.global	HAL_TIM_PWM_MspInit
-  18              		.syntax unified
-  19              		.code	16
-  20              		.thumb_func
-  21              		.fpu softvfp
-  23              	HAL_TIM_PWM_MspInit:
-  24              	.LFB38:
-  25              		.file 1 "cube/Src/tim.c"
+  15              		.comm	htim1,64,4
+  16              		.section	.rodata
+  17              		.align	2
+  18              	.LC1:
+  19 0000 63756265 		.ascii	"cube/Src/tim.c\000"
+  19      2F537263 
+  19      2F74696D 
+  19      2E6300
+  20              		.section	.text.MX_TIM1_Init,"ax",%progbits
+  21              		.align	1
+  22              		.global	MX_TIM1_Init
+  23              		.syntax unified
+  24              		.code	16
+  25              		.thumb_func
+  26              		.fpu softvfp
+  28              	MX_TIM1_Init:
+  29              	.LFB37:
+  30              		.file 1 "cube/Src/tim.c"
    1:cube/Src/tim.c **** /**
    2:cube/Src/tim.c ****   ******************************************************************************
    3:cube/Src/tim.c ****   * File Name          : TIM.c
@@ -50,6 +58,9 @@ ARM GAS  /tmp/ccuv446Q.s 			page 1
   23:cube/Src/tim.c ****   *      may be used to endorse or promote products derived from this software
   24:cube/Src/tim.c ****   *      without specific prior written permission.
   25:cube/Src/tim.c ****   *
+ARM GAS  /tmp/cc4lCQFX.s 			page 2
+
+
   26:cube/Src/tim.c ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
   27:cube/Src/tim.c ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
   28:cube/Src/tim.c ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -58,9 +69,6 @@ ARM GAS  /tmp/ccuv446Q.s 			page 1
   31:cube/Src/tim.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   32:cube/Src/tim.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
   33:cube/Src/tim.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-ARM GAS  /tmp/ccuv446Q.s 			page 2
-
-
   34:cube/Src/tim.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
   35:cube/Src/tim.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   36:cube/Src/tim.c ****   *
@@ -79,168 +87,390 @@ ARM GAS  /tmp/ccuv446Q.s 			page 1
   49:cube/Src/tim.c **** /* TIM1 init function */
   50:cube/Src/tim.c **** void MX_TIM1_Init(void)
   51:cube/Src/tim.c **** {
+  31              		.loc 1 51 0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 64
+  34              		@ frame_needed = 1, uses_anonymous_args = 0
+  35 0000 80B5     		push	{r7, lr}
+  36              		.cfi_def_cfa_offset 8
+  37              		.cfi_offset 7, -8
+  38              		.cfi_offset 14, -4
+  39 0002 90B0     		sub	sp, sp, #64
+  40              		.cfi_def_cfa_offset 72
+  41 0004 00AF     		add	r7, sp, #0
+  42              		.cfi_def_cfa_register 7
   52:cube/Src/tim.c ****   TIM_MasterConfigTypeDef sMasterConfig;
   53:cube/Src/tim.c ****   TIM_OC_InitTypeDef sConfigOC;
   54:cube/Src/tim.c ****   TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig;
   55:cube/Src/tim.c **** 
   56:cube/Src/tim.c ****   htim1.Instance = TIM1;
+  43              		.loc 1 56 0
+  44 0006 4A4B     		ldr	r3, .L7
+  45 0008 4A4A     		ldr	r2, .L7+4
+  46 000a 1A60     		str	r2, [r3]
   57:cube/Src/tim.c ****   htim1.Init.Prescaler = 47;
+  47              		.loc 1 57 0
+  48 000c 484B     		ldr	r3, .L7
+  49 000e 2F22     		movs	r2, #47
+  50 0010 5A60     		str	r2, [r3, #4]
   58:cube/Src/tim.c ****   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+  51              		.loc 1 58 0
+  52 0012 474B     		ldr	r3, .L7
+  53 0014 0022     		movs	r2, #0
+  54 0016 9A60     		str	r2, [r3, #8]
+ARM GAS  /tmp/cc4lCQFX.s 			page 3
+
+
   59:cube/Src/tim.c ****   htim1.Init.Period = 1000;
+  55              		.loc 1 59 0
+  56 0018 454B     		ldr	r3, .L7
+  57 001a FA22     		movs	r2, #250
+  58 001c 9200     		lsls	r2, r2, #2
+  59 001e DA60     		str	r2, [r3, #12]
   60:cube/Src/tim.c ****   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  60              		.loc 1 60 0
+  61 0020 434B     		ldr	r3, .L7
+  62 0022 0022     		movs	r2, #0
+  63 0024 1A61     		str	r2, [r3, #16]
   61:cube/Src/tim.c ****   htim1.Init.RepetitionCounter = 0;
+  64              		.loc 1 61 0
+  65 0026 424B     		ldr	r3, .L7
+  66 0028 0022     		movs	r2, #0
+  67 002a 5A61     		str	r2, [r3, #20]
   62:cube/Src/tim.c ****   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  68              		.loc 1 62 0
+  69 002c 404B     		ldr	r3, .L7
+  70 002e 0022     		movs	r2, #0
+  71 0030 9A61     		str	r2, [r3, #24]
   63:cube/Src/tim.c ****   if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
+  72              		.loc 1 63 0
+  73 0032 3F4B     		ldr	r3, .L7
+  74 0034 1800     		movs	r0, r3
+  75 0036 FFF7FEFF 		bl	HAL_TIM_PWM_Init
+  76 003a 031E     		subs	r3, r0, #0
+  77 003c 04D0     		beq	.L2
   64:cube/Src/tim.c ****   {
   65:cube/Src/tim.c ****     _Error_Handler(__FILE__, __LINE__);
+  78              		.loc 1 65 0
+  79 003e 3E4B     		ldr	r3, .L7+8
+  80 0040 4121     		movs	r1, #65
+  81 0042 1800     		movs	r0, r3
+  82 0044 FFF7FEFF 		bl	_Error_Handler
+  83              	.L2:
   66:cube/Src/tim.c ****   }
   67:cube/Src/tim.c **** 
   68:cube/Src/tim.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  84              		.loc 1 68 0
+  85 0048 3821     		movs	r1, #56
+  86 004a 7B18     		adds	r3, r7, r1
+  87 004c 0022     		movs	r2, #0
+  88 004e 1A60     		str	r2, [r3]
   69:cube/Src/tim.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  89              		.loc 1 69 0
+  90 0050 7B18     		adds	r3, r7, r1
+  91 0052 0022     		movs	r2, #0
+  92 0054 5A60     		str	r2, [r3, #4]
   70:cube/Src/tim.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  93              		.loc 1 70 0
+  94 0056 7A18     		adds	r2, r7, r1
+  95 0058 354B     		ldr	r3, .L7
+  96 005a 1100     		movs	r1, r2
+  97 005c 1800     		movs	r0, r3
+  98 005e FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
+  99 0062 031E     		subs	r3, r0, #0
+ARM GAS  /tmp/cc4lCQFX.s 			page 4
+
+
+ 100 0064 04D0     		beq	.L3
   71:cube/Src/tim.c ****   {
   72:cube/Src/tim.c ****     _Error_Handler(__FILE__, __LINE__);
+ 101              		.loc 1 72 0
+ 102 0066 344B     		ldr	r3, .L7+8
+ 103 0068 4821     		movs	r1, #72
+ 104 006a 1800     		movs	r0, r3
+ 105 006c FFF7FEFF 		bl	_Error_Handler
+ 106              	.L3:
   73:cube/Src/tim.c ****   }
   74:cube/Src/tim.c **** 
   75:cube/Src/tim.c ****   sConfigOC.OCMode = TIM_OCMODE_PWM1;
+ 107              		.loc 1 75 0
+ 108 0070 1C21     		movs	r1, #28
+ 109 0072 7B18     		adds	r3, r7, r1
+ 110 0074 6022     		movs	r2, #96
+ 111 0076 1A60     		str	r2, [r3]
   76:cube/Src/tim.c ****   sConfigOC.Pulse = 0;
+ 112              		.loc 1 76 0
+ 113 0078 7B18     		adds	r3, r7, r1
+ 114 007a 0022     		movs	r2, #0
+ 115 007c 5A60     		str	r2, [r3, #4]
   77:cube/Src/tim.c ****   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+ 116              		.loc 1 77 0
+ 117 007e 7B18     		adds	r3, r7, r1
+ 118 0080 0022     		movs	r2, #0
+ 119 0082 9A60     		str	r2, [r3, #8]
   78:cube/Src/tim.c ****   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+ 120              		.loc 1 78 0
+ 121 0084 7B18     		adds	r3, r7, r1
+ 122 0086 0022     		movs	r2, #0
+ 123 0088 DA60     		str	r2, [r3, #12]
   79:cube/Src/tim.c ****   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+ 124              		.loc 1 79 0
+ 125 008a 7B18     		adds	r3, r7, r1
+ 126 008c 0022     		movs	r2, #0
+ 127 008e 1A61     		str	r2, [r3, #16]
   80:cube/Src/tim.c ****   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+ 128              		.loc 1 80 0
+ 129 0090 7B18     		adds	r3, r7, r1
+ 130 0092 0022     		movs	r2, #0
+ 131 0094 5A61     		str	r2, [r3, #20]
   81:cube/Src/tim.c ****   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+ 132              		.loc 1 81 0
+ 133 0096 7B18     		adds	r3, r7, r1
+ 134 0098 0022     		movs	r2, #0
+ 135 009a 9A61     		str	r2, [r3, #24]
   82:cube/Src/tim.c ****   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+ 136              		.loc 1 82 0
+ 137 009c 7918     		adds	r1, r7, r1
+ 138 009e 244B     		ldr	r3, .L7
+ 139 00a0 0022     		movs	r2, #0
+ 140 00a2 1800     		movs	r0, r3
+ 141 00a4 FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
+ 142 00a8 031E     		subs	r3, r0, #0
+ 143 00aa 04D0     		beq	.L4
   83:cube/Src/tim.c ****   {
+ARM GAS  /tmp/cc4lCQFX.s 			page 5
+
+
   84:cube/Src/tim.c ****     _Error_Handler(__FILE__, __LINE__);
+ 144              		.loc 1 84 0
+ 145 00ac 224B     		ldr	r3, .L7+8
+ 146 00ae 5421     		movs	r1, #84
+ 147 00b0 1800     		movs	r0, r3
+ 148 00b2 FFF7FEFF 		bl	_Error_Handler
+ 149              	.L4:
   85:cube/Src/tim.c ****   }
   86:cube/Src/tim.c **** 
   87:cube/Src/tim.c ****   sConfigOC.OCFastMode = TIM_OCFAST_ENABLE;
+ 150              		.loc 1 87 0
+ 151 00b6 1C21     		movs	r1, #28
+ 152 00b8 7B18     		adds	r3, r7, r1
+ 153 00ba 0422     		movs	r2, #4
+ 154 00bc 1A61     		str	r2, [r3, #16]
   88:cube/Src/tim.c ****   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+ 155              		.loc 1 88 0
+ 156 00be 7918     		adds	r1, r7, r1
+ 157 00c0 1B4B     		ldr	r3, .L7
+ 158 00c2 0422     		movs	r2, #4
+ 159 00c4 1800     		movs	r0, r3
+ 160 00c6 FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
+ 161 00ca 031E     		subs	r3, r0, #0
+ 162 00cc 04D0     		beq	.L5
   89:cube/Src/tim.c ****   {
   90:cube/Src/tim.c ****     _Error_Handler(__FILE__, __LINE__);
-ARM GAS  /tmp/ccuv446Q.s 			page 3
-
-
+ 163              		.loc 1 90 0
+ 164 00ce 1A4B     		ldr	r3, .L7+8
+ 165 00d0 5A21     		movs	r1, #90
+ 166 00d2 1800     		movs	r0, r3
+ 167 00d4 FFF7FEFF 		bl	_Error_Handler
+ 168              	.L5:
   91:cube/Src/tim.c ****   }
   92:cube/Src/tim.c **** 
   93:cube/Src/tim.c ****   sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
+ 169              		.loc 1 93 0
+ 170 00d8 3B00     		movs	r3, r7
+ 171 00da 0022     		movs	r2, #0
+ 172 00dc 1A60     		str	r2, [r3]
   94:cube/Src/tim.c ****   sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
+ 173              		.loc 1 94 0
+ 174 00de 3B00     		movs	r3, r7
+ 175 00e0 0022     		movs	r2, #0
+ 176 00e2 5A60     		str	r2, [r3, #4]
   95:cube/Src/tim.c ****   sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+ 177              		.loc 1 95 0
+ 178 00e4 3B00     		movs	r3, r7
+ 179 00e6 0022     		movs	r2, #0
+ 180 00e8 9A60     		str	r2, [r3, #8]
   96:cube/Src/tim.c ****   sBreakDeadTimeConfig.DeadTime = 0;
+ 181              		.loc 1 96 0
+ 182 00ea 3B00     		movs	r3, r7
+ 183 00ec 0022     		movs	r2, #0
+ 184 00ee DA60     		str	r2, [r3, #12]
   97:cube/Src/tim.c ****   sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
+ 185              		.loc 1 97 0
+ 186 00f0 3B00     		movs	r3, r7
+ARM GAS  /tmp/cc4lCQFX.s 			page 6
+
+
+ 187 00f2 0022     		movs	r2, #0
+ 188 00f4 1A61     		str	r2, [r3, #16]
   98:cube/Src/tim.c ****   sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+ 189              		.loc 1 98 0
+ 190 00f6 3B00     		movs	r3, r7
+ 191 00f8 8022     		movs	r2, #128
+ 192 00fa 9201     		lsls	r2, r2, #6
+ 193 00fc 5A61     		str	r2, [r3, #20]
   99:cube/Src/tim.c ****   sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
+ 194              		.loc 1 99 0
+ 195 00fe 3B00     		movs	r3, r7
+ 196 0100 0022     		movs	r2, #0
+ 197 0102 9A61     		str	r2, [r3, #24]
  100:cube/Src/tim.c ****   if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
+ 198              		.loc 1 100 0
+ 199 0104 3A00     		movs	r2, r7
+ 200 0106 0A4B     		ldr	r3, .L7
+ 201 0108 1100     		movs	r1, r2
+ 202 010a 1800     		movs	r0, r3
+ 203 010c FFF7FEFF 		bl	HAL_TIMEx_ConfigBreakDeadTime
+ 204 0110 031E     		subs	r3, r0, #0
+ 205 0112 04D0     		beq	.L6
  101:cube/Src/tim.c ****   {
  102:cube/Src/tim.c ****     _Error_Handler(__FILE__, __LINE__);
+ 206              		.loc 1 102 0
+ 207 0114 084B     		ldr	r3, .L7+8
+ 208 0116 6621     		movs	r1, #102
+ 209 0118 1800     		movs	r0, r3
+ 210 011a FFF7FEFF 		bl	_Error_Handler
+ 211              	.L6:
  103:cube/Src/tim.c ****   }
  104:cube/Src/tim.c **** 
  105:cube/Src/tim.c ****   HAL_TIM_MspPostInit(&htim1);
+ 212              		.loc 1 105 0
+ 213 011e 044B     		ldr	r3, .L7
+ 214 0120 1800     		movs	r0, r3
+ 215 0122 FFF7FEFF 		bl	HAL_TIM_MspPostInit
  106:cube/Src/tim.c **** 
  107:cube/Src/tim.c **** }
+ 216              		.loc 1 107 0
+ 217 0126 C046     		nop
+ 218 0128 BD46     		mov	sp, r7
+ 219 012a 10B0     		add	sp, sp, #64
+ 220              		@ sp needed
+ 221 012c 80BD     		pop	{r7, pc}
+ 222              	.L8:
+ 223 012e C046     		.align	2
+ 224              	.L7:
+ 225 0130 00000000 		.word	htim1
+ 226 0134 002C0140 		.word	1073818624
+ 227 0138 00000000 		.word	.LC1
+ 228              		.cfi_endproc
+ 229              	.LFE37:
+ 231              		.section	.text.HAL_TIM_PWM_MspInit,"ax",%progbits
+ 232              		.align	1
+ 233              		.global	HAL_TIM_PWM_MspInit
+ 234              		.syntax unified
+ARM GAS  /tmp/cc4lCQFX.s 			page 7
+
+
+ 235              		.code	16
+ 236              		.thumb_func
+ 237              		.fpu softvfp
+ 239              	HAL_TIM_PWM_MspInit:
+ 240              	.LFB38:
  108:cube/Src/tim.c **** 
  109:cube/Src/tim.c **** void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* tim_pwmHandle)
  110:cube/Src/tim.c **** {
-  26              		.loc 1 110 0
-  27              		.cfi_startproc
-  28              		@ args = 0, pretend = 0, frame = 8
-  29              		@ frame_needed = 0, uses_anonymous_args = 0
-  30              		@ link register save eliminated.
-  31              	.LVL0:
-  32 0000 82B0     		sub	sp, sp, #8
-  33              		.cfi_def_cfa_offset 8
+ 241              		.loc 1 110 0
+ 242              		.cfi_startproc
+ 243              		@ args = 0, pretend = 0, frame = 16
+ 244              		@ frame_needed = 1, uses_anonymous_args = 0
+ 245 0000 80B5     		push	{r7, lr}
+ 246              		.cfi_def_cfa_offset 8
+ 247              		.cfi_offset 7, -8
+ 248              		.cfi_offset 14, -4
+ 249 0002 84B0     		sub	sp, sp, #16
+ 250              		.cfi_def_cfa_offset 24
+ 251 0004 00AF     		add	r7, sp, #0
+ 252              		.cfi_def_cfa_register 7
+ 253 0006 7860     		str	r0, [r7, #4]
  111:cube/Src/tim.c **** 
  112:cube/Src/tim.c ****   if(tim_pwmHandle->Instance==TIM1)
-  34              		.loc 1 112 0
-  35 0002 0268     		ldr	r2, [r0]
-  36 0004 074B     		ldr	r3, .L4
-  37 0006 9A42     		cmp	r2, r3
-  38 0008 01D0     		beq	.L3
-  39              	.LVL1:
-  40              	.L1:
+ 254              		.loc 1 112 0
+ 255 0008 7B68     		ldr	r3, [r7, #4]
+ 256 000a 1B68     		ldr	r3, [r3]
+ 257 000c 0A4A     		ldr	r2, .L12
+ 258 000e 9342     		cmp	r3, r2
+ 259 0010 0DD1     		bne	.L11
+ 260              	.LBB2:
  113:cube/Src/tim.c ****   {
  114:cube/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspInit 0 */
  115:cube/Src/tim.c **** 
  116:cube/Src/tim.c ****   /* USER CODE END TIM1_MspInit 0 */
  117:cube/Src/tim.c ****     /* TIM1 clock enable */
  118:cube/Src/tim.c ****     __HAL_RCC_TIM1_CLK_ENABLE();
+ 261              		.loc 1 118 0
+ 262 0012 0A4B     		ldr	r3, .L12+4
+ 263 0014 9A69     		ldr	r2, [r3, #24]
+ 264 0016 094B     		ldr	r3, .L12+4
+ 265 0018 8021     		movs	r1, #128
+ 266 001a 0901     		lsls	r1, r1, #4
+ 267 001c 0A43     		orrs	r2, r1
+ 268 001e 9A61     		str	r2, [r3, #24]
+ 269 0020 064B     		ldr	r3, .L12+4
+ 270 0022 9A69     		ldr	r2, [r3, #24]
+ 271 0024 8023     		movs	r3, #128
+ 272 0026 1B01     		lsls	r3, r3, #4
+ 273 0028 1340     		ands	r3, r2
+ 274 002a FB60     		str	r3, [r7, #12]
+ 275 002c FB68     		ldr	r3, [r7, #12]
+ 276              	.L11:
+ 277              	.LBE2:
  119:cube/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspInit 1 */
  120:cube/Src/tim.c **** 
  121:cube/Src/tim.c ****   /* USER CODE END TIM1_MspInit 1 */
  122:cube/Src/tim.c ****   }
+ARM GAS  /tmp/cc4lCQFX.s 			page 8
+
+
  123:cube/Src/tim.c **** }
-  41              		.loc 1 123 0
-  42 000a 02B0     		add	sp, sp, #8
-  43              		@ sp needed
-  44 000c 7047     		bx	lr
-  45              	.LVL2:
-  46              	.L3:
-  47              	.LBB2:
- 118:cube/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspInit 1 */
-  48              		.loc 1 118 0
-ARM GAS  /tmp/ccuv446Q.s 			page 4
-
-
-  49 000e 064A     		ldr	r2, .L4+4
-  50 0010 9169     		ldr	r1, [r2, #24]
-  51 0012 8020     		movs	r0, #128
-  52              	.LVL3:
-  53 0014 0001     		lsls	r0, r0, #4
-  54 0016 0143     		orrs	r1, r0
-  55 0018 9161     		str	r1, [r2, #24]
-  56 001a 9369     		ldr	r3, [r2, #24]
-  57 001c 0340     		ands	r3, r0
-  58 001e 0193     		str	r3, [sp, #4]
-  59 0020 019B     		ldr	r3, [sp, #4]
-  60              	.LBE2:
-  61              		.loc 1 123 0
-  62 0022 F2E7     		b	.L1
-  63              	.L5:
-  64              		.align	2
-  65              	.L4:
-  66 0024 002C0140 		.word	1073818624
-  67 0028 00100240 		.word	1073876992
-  68              		.cfi_endproc
-  69              	.LFE38:
-  71              		.section	.text.HAL_TIM_MspPostInit,"ax",%progbits
-  72              		.align	1
-  73              		.global	HAL_TIM_MspPostInit
-  74              		.syntax unified
-  75              		.code	16
-  76              		.thumb_func
-  77              		.fpu softvfp
-  79              	HAL_TIM_MspPostInit:
-  80              	.LFB39:
+ 278              		.loc 1 123 0
+ 279 002e C046     		nop
+ 280 0030 BD46     		mov	sp, r7
+ 281 0032 04B0     		add	sp, sp, #16
+ 282              		@ sp needed
+ 283 0034 80BD     		pop	{r7, pc}
+ 284              	.L13:
+ 285 0036 C046     		.align	2
+ 286              	.L12:
+ 287 0038 002C0140 		.word	1073818624
+ 288 003c 00100240 		.word	1073876992
+ 289              		.cfi_endproc
+ 290              	.LFE38:
+ 292              		.section	.text.HAL_TIM_MspPostInit,"ax",%progbits
+ 293              		.align	1
+ 294              		.global	HAL_TIM_MspPostInit
+ 295              		.syntax unified
+ 296              		.code	16
+ 297              		.thumb_func
+ 298              		.fpu softvfp
+ 300              	HAL_TIM_MspPostInit:
+ 301              	.LFB39:
  124:cube/Src/tim.c **** void HAL_TIM_MspPostInit(TIM_HandleTypeDef* timHandle)
  125:cube/Src/tim.c **** {
-  81              		.loc 1 125 0
-  82              		.cfi_startproc
-  83              		@ args = 0, pretend = 0, frame = 24
-  84              		@ frame_needed = 0, uses_anonymous_args = 0
-  85              	.LVL4:
-  86 0000 70B5     		push	{r4, r5, r6, lr}
-  87              		.cfi_def_cfa_offset 16
-  88              		.cfi_offset 4, -16
-  89              		.cfi_offset 5, -12
-  90              		.cfi_offset 6, -8
-  91              		.cfi_offset 14, -4
-  92 0002 86B0     		sub	sp, sp, #24
-  93              		.cfi_def_cfa_offset 40
+ 302              		.loc 1 125 0
+ 303              		.cfi_startproc
+ 304              		@ args = 0, pretend = 0, frame = 32
+ 305              		@ frame_needed = 1, uses_anonymous_args = 0
+ 306 0000 90B5     		push	{r4, r7, lr}
+ 307              		.cfi_def_cfa_offset 12
+ 308              		.cfi_offset 4, -12
+ 309              		.cfi_offset 7, -8
+ 310              		.cfi_offset 14, -4
+ 311 0002 89B0     		sub	sp, sp, #36
+ 312              		.cfi_def_cfa_offset 48
+ 313 0004 00AF     		add	r7, sp, #0
+ 314              		.cfi_def_cfa_register 7
+ 315 0006 7860     		str	r0, [r7, #4]
  126:cube/Src/tim.c **** 
  127:cube/Src/tim.c ****   GPIO_InitTypeDef GPIO_InitStruct;
  128:cube/Src/tim.c ****   if(timHandle->Instance==TIM1)
-  94              		.loc 1 128 0
-  95 0004 0268     		ldr	r2, [r0]
-  96 0006 104B     		ldr	r3, .L9
-  97 0008 9A42     		cmp	r2, r3
-  98 000a 01D0     		beq	.L8
-  99              	.LVL5:
- 100              	.L6:
+ 316              		.loc 1 128 0
+ 317 0008 7B68     		ldr	r3, [r7, #4]
+ 318 000a 1B68     		ldr	r3, [r3]
+ 319 000c 1B4A     		ldr	r2, .L17
+ 320 000e 9342     		cmp	r3, r2
+ 321 0010 30D1     		bne	.L16
  129:cube/Src/tim.c ****   {
  130:cube/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspPostInit 0 */
-ARM GAS  /tmp/ccuv446Q.s 			page 5
-
-
  131:cube/Src/tim.c **** 
  132:cube/Src/tim.c ****   /* USER CODE END TIM1_MspPostInit 0 */
  133:cube/Src/tim.c ****   
@@ -248,19 +478,85 @@ ARM GAS  /tmp/ccuv446Q.s 			page 1
  135:cube/Src/tim.c ****     PA8     ------> TIM1_CH1
  136:cube/Src/tim.c ****     PA9     ------> TIM1_CH2 
  137:cube/Src/tim.c ****     */
+ARM GAS  /tmp/cc4lCQFX.s 			page 9
+
+
  138:cube/Src/tim.c ****     GPIO_InitStruct.Pin = GPIO_PIN_8;
+ 322              		.loc 1 138 0
+ 323 0012 0C21     		movs	r1, #12
+ 324 0014 7B18     		adds	r3, r7, r1
+ 325 0016 8022     		movs	r2, #128
+ 326 0018 5200     		lsls	r2, r2, #1
+ 327 001a 1A60     		str	r2, [r3]
  139:cube/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 328              		.loc 1 139 0
+ 329 001c 7B18     		adds	r3, r7, r1
+ 330 001e 0222     		movs	r2, #2
+ 331 0020 5A60     		str	r2, [r3, #4]
  140:cube/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 332              		.loc 1 140 0
+ 333 0022 7B18     		adds	r3, r7, r1
+ 334 0024 0022     		movs	r2, #0
+ 335 0026 9A60     		str	r2, [r3, #8]
  141:cube/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 336              		.loc 1 141 0
+ 337 0028 7B18     		adds	r3, r7, r1
+ 338 002a 0022     		movs	r2, #0
+ 339 002c DA60     		str	r2, [r3, #12]
  142:cube/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM1;
+ 340              		.loc 1 142 0
+ 341 002e 7B18     		adds	r3, r7, r1
+ 342 0030 0222     		movs	r2, #2
+ 343 0032 1A61     		str	r2, [r3, #16]
  143:cube/Src/tim.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 344              		.loc 1 143 0
+ 345 0034 0C00     		movs	r4, r1
+ 346 0036 7A18     		adds	r2, r7, r1
+ 347 0038 9023     		movs	r3, #144
+ 348 003a DB05     		lsls	r3, r3, #23
+ 349 003c 1100     		movs	r1, r2
+ 350 003e 1800     		movs	r0, r3
+ 351 0040 FFF7FEFF 		bl	HAL_GPIO_Init
  144:cube/Src/tim.c **** 
  145:cube/Src/tim.c ****     GPIO_InitStruct.Pin = GPIO_PIN_9;
+ 352              		.loc 1 145 0
+ 353 0044 2100     		movs	r1, r4
+ 354 0046 7B18     		adds	r3, r7, r1
+ 355 0048 8022     		movs	r2, #128
+ 356 004a 9200     		lsls	r2, r2, #2
+ 357 004c 1A60     		str	r2, [r3]
  146:cube/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 358              		.loc 1 146 0
+ 359 004e 7B18     		adds	r3, r7, r1
+ 360 0050 0222     		movs	r2, #2
+ 361 0052 5A60     		str	r2, [r3, #4]
  147:cube/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+ 362              		.loc 1 147 0
+ 363 0054 7B18     		adds	r3, r7, r1
+ 364 0056 0222     		movs	r2, #2
+ 365 0058 9A60     		str	r2, [r3, #8]
  148:cube/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 366              		.loc 1 148 0
+ 367 005a 7B18     		adds	r3, r7, r1
+ARM GAS  /tmp/cc4lCQFX.s 			page 10
+
+
+ 368 005c 0022     		movs	r2, #0
+ 369 005e DA60     		str	r2, [r3, #12]
  149:cube/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM1;
+ 370              		.loc 1 149 0
+ 371 0060 7B18     		adds	r3, r7, r1
+ 372 0062 0222     		movs	r2, #2
+ 373 0064 1A61     		str	r2, [r3, #16]
  150:cube/Src/tim.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 374              		.loc 1 150 0
+ 375 0066 7A18     		adds	r2, r7, r1
+ 376 0068 9023     		movs	r3, #144
+ 377 006a DB05     		lsls	r3, r3, #23
+ 378 006c 1100     		movs	r1, r2
+ 379 006e 1800     		movs	r0, r3
+ 380 0070 FFF7FEFF 		bl	HAL_GPIO_Init
+ 381              	.L16:
  151:cube/Src/tim.c **** 
  152:cube/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspPostInit 1 */
  153:cube/Src/tim.c **** 
@@ -268,400 +564,128 @@ ARM GAS  /tmp/ccuv446Q.s 			page 1
  155:cube/Src/tim.c ****   }
  156:cube/Src/tim.c **** 
  157:cube/Src/tim.c **** }
- 101              		.loc 1 157 0
- 102 000c 06B0     		add	sp, sp, #24
- 103              		@ sp needed
- 104 000e 70BD     		pop	{r4, r5, r6, pc}
- 105              	.LVL6:
- 106              	.L8:
- 138:cube/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
- 107              		.loc 1 138 0
- 108 0010 8023     		movs	r3, #128
- 109 0012 5B00     		lsls	r3, r3, #1
- 110 0014 0193     		str	r3, [sp, #4]
- 139:cube/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
- 111              		.loc 1 139 0
- 112 0016 0224     		movs	r4, #2
- 113 0018 0294     		str	r4, [sp, #8]
- 140:cube/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 114              		.loc 1 140 0
- 115 001a 0025     		movs	r5, #0
- 116 001c 0395     		str	r5, [sp, #12]
- 141:cube/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM1;
- 117              		.loc 1 141 0
- 118 001e 0495     		str	r5, [sp, #16]
- 142:cube/Src/tim.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
- 119              		.loc 1 142 0
- 120 0020 0594     		str	r4, [sp, #20]
- 143:cube/Src/tim.c **** 
- 121              		.loc 1 143 0
- 122 0022 9026     		movs	r6, #144
- 123 0024 F605     		lsls	r6, r6, #23
- 124 0026 01A9     		add	r1, sp, #4
-ARM GAS  /tmp/ccuv446Q.s 			page 6
-
-
- 125 0028 3000     		movs	r0, r6
- 126              	.LVL7:
- 127 002a FFF7FEFF 		bl	HAL_GPIO_Init
- 128              	.LVL8:
- 145:cube/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
- 129              		.loc 1 145 0
- 130 002e 8023     		movs	r3, #128
- 131 0030 9B00     		lsls	r3, r3, #2
- 132 0032 0193     		str	r3, [sp, #4]
- 146:cube/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_PULLDOWN;
- 133              		.loc 1 146 0
- 134 0034 0294     		str	r4, [sp, #8]
- 147:cube/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 135              		.loc 1 147 0
- 136 0036 0394     		str	r4, [sp, #12]
- 148:cube/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM1;
- 137              		.loc 1 148 0
- 138 0038 0495     		str	r5, [sp, #16]
- 149:cube/Src/tim.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
- 139              		.loc 1 149 0
- 140 003a 0594     		str	r4, [sp, #20]
- 150:cube/Src/tim.c **** 
- 141              		.loc 1 150 0
- 142 003c 01A9     		add	r1, sp, #4
- 143 003e 3000     		movs	r0, r6
- 144 0040 FFF7FEFF 		bl	HAL_GPIO_Init
- 145              	.LVL9:
- 146              		.loc 1 157 0
- 147 0044 E2E7     		b	.L6
- 148              	.L10:
- 149 0046 C046     		.align	2
- 150              	.L9:
- 151 0048 002C0140 		.word	1073818624
- 152              		.cfi_endproc
- 153              	.LFE39:
- 155              		.section	.text.MX_TIM1_Init,"ax",%progbits
- 156              		.align	1
- 157              		.global	MX_TIM1_Init
- 158              		.syntax unified
- 159              		.code	16
- 160              		.thumb_func
- 161              		.fpu softvfp
- 163              	MX_TIM1_Init:
- 164              	.LFB37:
-  51:cube/Src/tim.c ****   TIM_MasterConfigTypeDef sMasterConfig;
- 165              		.loc 1 51 0
- 166              		.cfi_startproc
- 167              		@ args = 0, pretend = 0, frame = 64
- 168              		@ frame_needed = 0, uses_anonymous_args = 0
- 169 0000 00B5     		push	{lr}
- 170              		.cfi_def_cfa_offset 4
- 171              		.cfi_offset 14, -4
- 172 0002 91B0     		sub	sp, sp, #68
- 173              		.cfi_def_cfa_offset 72
-  56:cube/Src/tim.c ****   htim1.Init.Prescaler = 47;
- 174              		.loc 1 56 0
- 175 0004 3048     		ldr	r0, .L22
-ARM GAS  /tmp/ccuv446Q.s 			page 7
-
-
- 176 0006 314B     		ldr	r3, .L22+4
- 177 0008 0360     		str	r3, [r0]
-  57:cube/Src/tim.c ****   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
- 178              		.loc 1 57 0
- 179 000a 2F23     		movs	r3, #47
- 180 000c 4360     		str	r3, [r0, #4]
-  58:cube/Src/tim.c ****   htim1.Init.Period = 1000;
- 181              		.loc 1 58 0
- 182 000e 0023     		movs	r3, #0
- 183 0010 8360     		str	r3, [r0, #8]
-  59:cube/Src/tim.c ****   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
- 184              		.loc 1 59 0
- 185 0012 FA22     		movs	r2, #250
- 186 0014 9200     		lsls	r2, r2, #2
- 187 0016 C260     		str	r2, [r0, #12]
-  60:cube/Src/tim.c ****   htim1.Init.RepetitionCounter = 0;
- 188              		.loc 1 60 0
- 189 0018 0361     		str	r3, [r0, #16]
-  61:cube/Src/tim.c ****   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
- 190              		.loc 1 61 0
- 191 001a 4361     		str	r3, [r0, #20]
-  62:cube/Src/tim.c ****   if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
- 192              		.loc 1 62 0
- 193 001c 8361     		str	r3, [r0, #24]
-  63:cube/Src/tim.c ****   {
- 194              		.loc 1 63 0
- 195 001e FFF7FEFF 		bl	HAL_TIM_PWM_Init
- 196              	.LVL10:
- 197 0022 0028     		cmp	r0, #0
- 198 0024 36D1     		bne	.L17
- 199              	.L12:
-  68:cube/Src/tim.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
- 200              		.loc 1 68 0
- 201 0026 0023     		movs	r3, #0
- 202 0028 0E93     		str	r3, [sp, #56]
-  69:cube/Src/tim.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
- 203              		.loc 1 69 0
- 204 002a 0F93     		str	r3, [sp, #60]
-  70:cube/Src/tim.c ****   {
- 205              		.loc 1 70 0
- 206 002c 0EA9     		add	r1, sp, #56
- 207 002e 2648     		ldr	r0, .L22
- 208 0030 FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
- 209              	.LVL11:
- 210 0034 0028     		cmp	r0, #0
- 211 0036 32D1     		bne	.L18
- 212              	.L13:
-  75:cube/Src/tim.c ****   sConfigOC.Pulse = 0;
- 213              		.loc 1 75 0
- 214 0038 6023     		movs	r3, #96
- 215 003a 0793     		str	r3, [sp, #28]
-  76:cube/Src/tim.c ****   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
- 216              		.loc 1 76 0
- 217 003c 0023     		movs	r3, #0
- 218 003e 0893     		str	r3, [sp, #32]
-  77:cube/Src/tim.c ****   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
- 219              		.loc 1 77 0
-ARM GAS  /tmp/ccuv446Q.s 			page 8
-
-
- 220 0040 0993     		str	r3, [sp, #36]
-  78:cube/Src/tim.c ****   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
- 221              		.loc 1 78 0
- 222 0042 0A93     		str	r3, [sp, #40]
-  79:cube/Src/tim.c ****   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
- 223              		.loc 1 79 0
- 224 0044 0B93     		str	r3, [sp, #44]
-  80:cube/Src/tim.c ****   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
- 225              		.loc 1 80 0
- 226 0046 0C93     		str	r3, [sp, #48]
-  81:cube/Src/tim.c ****   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
- 227              		.loc 1 81 0
- 228 0048 0D93     		str	r3, [sp, #52]
-  82:cube/Src/tim.c ****   {
- 229              		.loc 1 82 0
- 230 004a 0022     		movs	r2, #0
- 231 004c 07A9     		add	r1, sp, #28
- 232 004e 1E48     		ldr	r0, .L22
- 233 0050 FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
- 234              	.LVL12:
- 235 0054 0028     		cmp	r0, #0
- 236 0056 27D1     		bne	.L19
- 237              	.L14:
-  87:cube/Src/tim.c ****   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
- 238              		.loc 1 87 0
- 239 0058 0423     		movs	r3, #4
- 240 005a 0B93     		str	r3, [sp, #44]
-  88:cube/Src/tim.c ****   {
- 241              		.loc 1 88 0
- 242 005c 0422     		movs	r2, #4
- 243 005e 07A9     		add	r1, sp, #28
- 244 0060 1948     		ldr	r0, .L22
- 245 0062 FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
- 246              	.LVL13:
- 247 0066 0028     		cmp	r0, #0
- 248 0068 23D1     		bne	.L20
- 249              	.L15:
-  93:cube/Src/tim.c ****   sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
- 250              		.loc 1 93 0
- 251 006a 0023     		movs	r3, #0
- 252 006c 0093     		str	r3, [sp]
-  94:cube/Src/tim.c ****   sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
- 253              		.loc 1 94 0
- 254 006e 0193     		str	r3, [sp, #4]
-  95:cube/Src/tim.c ****   sBreakDeadTimeConfig.DeadTime = 0;
- 255              		.loc 1 95 0
- 256 0070 0293     		str	r3, [sp, #8]
-  96:cube/Src/tim.c ****   sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
- 257              		.loc 1 96 0
- 258 0072 0393     		str	r3, [sp, #12]
-  97:cube/Src/tim.c ****   sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
- 259              		.loc 1 97 0
- 260 0074 0493     		str	r3, [sp, #16]
-  98:cube/Src/tim.c ****   sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
- 261              		.loc 1 98 0
- 262 0076 8022     		movs	r2, #128
- 263 0078 9201     		lsls	r2, r2, #6
-ARM GAS  /tmp/ccuv446Q.s 			page 9
-
-
- 264 007a 0592     		str	r2, [sp, #20]
-  99:cube/Src/tim.c ****   if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
- 265              		.loc 1 99 0
- 266 007c 0693     		str	r3, [sp, #24]
- 100:cube/Src/tim.c ****   {
- 267              		.loc 1 100 0
- 268 007e 6946     		mov	r1, sp
- 269 0080 1148     		ldr	r0, .L22
- 270 0082 FFF7FEFF 		bl	HAL_TIMEx_ConfigBreakDeadTime
- 271              	.LVL14:
- 272 0086 0028     		cmp	r0, #0
- 273 0088 18D1     		bne	.L21
- 274              	.L16:
- 105:cube/Src/tim.c **** 
- 275              		.loc 1 105 0
- 276 008a 0F48     		ldr	r0, .L22
- 277 008c FFF7FEFF 		bl	HAL_TIM_MspPostInit
- 278              	.LVL15:
- 107:cube/Src/tim.c **** 
- 279              		.loc 1 107 0
- 280 0090 11B0     		add	sp, sp, #68
- 281              		@ sp needed
- 282 0092 00BD     		pop	{pc}
- 283              	.L17:
-  65:cube/Src/tim.c ****   }
- 284              		.loc 1 65 0
- 285 0094 4121     		movs	r1, #65
- 286 0096 0E48     		ldr	r0, .L22+8
- 287 0098 FFF7FEFF 		bl	_Error_Handler
- 288              	.LVL16:
- 289 009c C3E7     		b	.L12
- 290              	.L18:
-  72:cube/Src/tim.c ****   }
- 291              		.loc 1 72 0
- 292 009e 4821     		movs	r1, #72
- 293 00a0 0B48     		ldr	r0, .L22+8
- 294 00a2 FFF7FEFF 		bl	_Error_Handler
- 295              	.LVL17:
- 296 00a6 C7E7     		b	.L13
- 297              	.L19:
-  84:cube/Src/tim.c ****   }
- 298              		.loc 1 84 0
- 299 00a8 5421     		movs	r1, #84
- 300 00aa 0948     		ldr	r0, .L22+8
- 301 00ac FFF7FEFF 		bl	_Error_Handler
- 302              	.LVL18:
- 303 00b0 D2E7     		b	.L14
- 304              	.L20:
-  90:cube/Src/tim.c ****   }
- 305              		.loc 1 90 0
- 306 00b2 5A21     		movs	r1, #90
- 307 00b4 0648     		ldr	r0, .L22+8
- 308 00b6 FFF7FEFF 		bl	_Error_Handler
- 309              	.LVL19:
- 310 00ba D6E7     		b	.L15
- 311              	.L21:
- 102:cube/Src/tim.c ****   }
-ARM GAS  /tmp/ccuv446Q.s 			page 10
-
-
- 312              		.loc 1 102 0
- 313 00bc 6621     		movs	r1, #102
- 314 00be 0448     		ldr	r0, .L22+8
- 315 00c0 FFF7FEFF 		bl	_Error_Handler
- 316              	.LVL20:
- 317 00c4 E1E7     		b	.L16
- 318              	.L23:
- 319 00c6 C046     		.align	2
- 320              	.L22:
- 321 00c8 00000000 		.word	htim1
- 322 00cc 002C0140 		.word	1073818624
- 323 00d0 00000000 		.word	.LC1
- 324              		.cfi_endproc
- 325              	.LFE37:
- 327              		.section	.text.HAL_TIM_PWM_MspDeInit,"ax",%progbits
- 328              		.align	1
- 329              		.global	HAL_TIM_PWM_MspDeInit
- 330              		.syntax unified
- 331              		.code	16
- 332              		.thumb_func
- 333              		.fpu softvfp
- 335              	HAL_TIM_PWM_MspDeInit:
- 336              	.LFB40:
+ 382              		.loc 1 157 0
+ 383 0074 C046     		nop
+ 384 0076 BD46     		mov	sp, r7
+ 385 0078 09B0     		add	sp, sp, #36
+ 386              		@ sp needed
+ 387 007a 90BD     		pop	{r4, r7, pc}
+ 388              	.L18:
+ 389              		.align	2
+ 390              	.L17:
+ 391 007c 002C0140 		.word	1073818624
+ 392              		.cfi_endproc
+ 393              	.LFE39:
+ 395              		.section	.text.HAL_TIM_PWM_MspDeInit,"ax",%progbits
+ 396              		.align	1
+ 397              		.global	HAL_TIM_PWM_MspDeInit
+ 398              		.syntax unified
+ 399              		.code	16
+ 400              		.thumb_func
+ 401              		.fpu softvfp
+ 403              	HAL_TIM_PWM_MspDeInit:
+ 404              	.LFB40:
  158:cube/Src/tim.c **** 
  159:cube/Src/tim.c **** void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef* tim_pwmHandle)
  160:cube/Src/tim.c **** {
- 337              		.loc 1 160 0
- 338              		.cfi_startproc
- 339              		@ args = 0, pretend = 0, frame = 0
- 340              		@ frame_needed = 0, uses_anonymous_args = 0
- 341              		@ link register save eliminated.
- 342              	.LVL21:
+ 405              		.loc 1 160 0
+ 406              		.cfi_startproc
+ 407              		@ args = 0, pretend = 0, frame = 8
+ 408              		@ frame_needed = 1, uses_anonymous_args = 0
+ 409 0000 80B5     		push	{r7, lr}
+ 410              		.cfi_def_cfa_offset 8
+ 411              		.cfi_offset 7, -8
+ 412              		.cfi_offset 14, -4
+ 413 0002 82B0     		sub	sp, sp, #8
+ 414              		.cfi_def_cfa_offset 16
+ARM GAS  /tmp/cc4lCQFX.s 			page 11
+
+
+ 415 0004 00AF     		add	r7, sp, #0
+ 416              		.cfi_def_cfa_register 7
+ 417 0006 7860     		str	r0, [r7, #4]
  161:cube/Src/tim.c **** 
  162:cube/Src/tim.c ****   if(tim_pwmHandle->Instance==TIM1)
- 343              		.loc 1 162 0
- 344 0000 0268     		ldr	r2, [r0]
- 345 0002 054B     		ldr	r3, .L27
- 346 0004 9A42     		cmp	r2, r3
- 347 0006 00D0     		beq	.L26
- 348              	.L24:
+ 418              		.loc 1 162 0
+ 419 0008 7B68     		ldr	r3, [r7, #4]
+ 420 000a 1B68     		ldr	r3, [r3]
+ 421 000c 064A     		ldr	r2, .L22
+ 422 000e 9342     		cmp	r3, r2
+ 423 0010 05D1     		bne	.L21
  163:cube/Src/tim.c ****   {
  164:cube/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspDeInit 0 */
  165:cube/Src/tim.c **** 
  166:cube/Src/tim.c ****   /* USER CODE END TIM1_MspDeInit 0 */
  167:cube/Src/tim.c ****     /* Peripheral clock disable */
  168:cube/Src/tim.c ****     __HAL_RCC_TIM1_CLK_DISABLE();
+ 424              		.loc 1 168 0
+ 425 0012 064B     		ldr	r3, .L22+4
+ 426 0014 9A69     		ldr	r2, [r3, #24]
+ 427 0016 054B     		ldr	r3, .L22+4
+ 428 0018 0549     		ldr	r1, .L22+8
+ 429 001a 0A40     		ands	r2, r1
+ 430 001c 9A61     		str	r2, [r3, #24]
+ 431              	.L21:
  169:cube/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspDeInit 1 */
  170:cube/Src/tim.c **** 
  171:cube/Src/tim.c ****   /* USER CODE END TIM1_MspDeInit 1 */
  172:cube/Src/tim.c ****   }
  173:cube/Src/tim.c **** } 
- 349              		.loc 1 173 0
- 350              		@ sp needed
- 351 0008 7047     		bx	lr
- 352              	.L26:
- 168:cube/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspDeInit 1 */
- 353              		.loc 1 168 0
-ARM GAS  /tmp/ccuv446Q.s 			page 11
+ 432              		.loc 1 173 0
+ 433 001e C046     		nop
+ 434 0020 BD46     		mov	sp, r7
+ 435 0022 02B0     		add	sp, sp, #8
+ 436              		@ sp needed
+ 437 0024 80BD     		pop	{r7, pc}
+ 438              	.L23:
+ 439 0026 C046     		.align	2
+ 440              	.L22:
+ 441 0028 002C0140 		.word	1073818624
+ 442 002c 00100240 		.word	1073876992
+ 443 0030 FFF7FFFF 		.word	-2049
+ 444              		.cfi_endproc
+ 445              	.LFE40:
+ 447              		.text
+ 448              	.Letext0:
+ 449              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+ 450              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
+ 451              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ 452              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 453              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+ 454              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+ 455              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+ 456              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
+ 457              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 458              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
+ 459              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
+ARM GAS  /tmp/cc4lCQFX.s 			page 12
 
 
- 354 000a 044A     		ldr	r2, .L27+4
- 355 000c 9369     		ldr	r3, [r2, #24]
- 356 000e 0449     		ldr	r1, .L27+8
- 357 0010 0B40     		ands	r3, r1
- 358 0012 9361     		str	r3, [r2, #24]
- 359              		.loc 1 173 0
- 360 0014 F8E7     		b	.L24
- 361              	.L28:
- 362 0016 C046     		.align	2
- 363              	.L27:
- 364 0018 002C0140 		.word	1073818624
- 365 001c 00100240 		.word	1073876992
- 366 0020 FFF7FFFF 		.word	-2049
- 367              		.cfi_endproc
- 368              	.LFE40:
- 370              		.comm	htim1,64,4
- 371              		.section	.rodata.MX_TIM1_Init.str1.4,"aMS",%progbits,1
- 372              		.align	2
- 373              	.LC1:
- 374 0000 63756265 		.ascii	"cube/Src/tim.c\000"
- 374      2F537263 
- 374      2F74696D 
- 374      2E6300
- 375              		.text
- 376              	.Letext0:
- 377              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
- 378              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
- 379              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
- 380              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
- 381              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
- 382              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
- 383              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
- 384              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
- 385              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
- 386              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
- 387              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
- 388              		.file 13 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h"
- 389              		.file 14 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h"
- 390              		.file 15 "cube/Inc/tim.h"
-ARM GAS  /tmp/ccuv446Q.s 			page 12
+ 460              		.file 13 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h"
+ 461              		.file 14 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h"
+ 462              		.file 15 "cube/Inc/tim.h"
+ARM GAS  /tmp/cc4lCQFX.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 tim.c
-     /tmp/ccuv446Q.s:16     .text.HAL_TIM_PWM_MspInit:0000000000000000 $t
-     /tmp/ccuv446Q.s:23     .text.HAL_TIM_PWM_MspInit:0000000000000000 HAL_TIM_PWM_MspInit
-     /tmp/ccuv446Q.s:66     .text.HAL_TIM_PWM_MspInit:0000000000000024 $d
-     /tmp/ccuv446Q.s:72     .text.HAL_TIM_MspPostInit:0000000000000000 $t
-     /tmp/ccuv446Q.s:79     .text.HAL_TIM_MspPostInit:0000000000000000 HAL_TIM_MspPostInit
-     /tmp/ccuv446Q.s:151    .text.HAL_TIM_MspPostInit:0000000000000048 $d
-     /tmp/ccuv446Q.s:156    .text.MX_TIM1_Init:0000000000000000 $t
-     /tmp/ccuv446Q.s:163    .text.MX_TIM1_Init:0000000000000000 MX_TIM1_Init
-     /tmp/ccuv446Q.s:321    .text.MX_TIM1_Init:00000000000000c8 $d
                             *COM*:0000000000000040 htim1
-     /tmp/ccuv446Q.s:328    .text.HAL_TIM_PWM_MspDeInit:0000000000000000 $t
-     /tmp/ccuv446Q.s:335    .text.HAL_TIM_PWM_MspDeInit:0000000000000000 HAL_TIM_PWM_MspDeInit
-     /tmp/ccuv446Q.s:364    .text.HAL_TIM_PWM_MspDeInit:0000000000000018 $d
-     /tmp/ccuv446Q.s:372    .rodata.MX_TIM1_Init.str1.4:0000000000000000 $d
-                           .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
-                           .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
-                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
+     /tmp/cc4lCQFX.s:17     .rodata:0000000000000000 $d
+     /tmp/cc4lCQFX.s:21     .text.MX_TIM1_Init:0000000000000000 $t
+     /tmp/cc4lCQFX.s:28     .text.MX_TIM1_Init:0000000000000000 MX_TIM1_Init
+     /tmp/cc4lCQFX.s:300    .text.HAL_TIM_MspPostInit:0000000000000000 HAL_TIM_MspPostInit
+     /tmp/cc4lCQFX.s:225    .text.MX_TIM1_Init:0000000000000130 $d
+     /tmp/cc4lCQFX.s:232    .text.HAL_TIM_PWM_MspInit:0000000000000000 $t
+     /tmp/cc4lCQFX.s:239    .text.HAL_TIM_PWM_MspInit:0000000000000000 HAL_TIM_PWM_MspInit
+     /tmp/cc4lCQFX.s:287    .text.HAL_TIM_PWM_MspInit:0000000000000038 $d
+     /tmp/cc4lCQFX.s:293    .text.HAL_TIM_MspPostInit:0000000000000000 $t
+     /tmp/cc4lCQFX.s:391    .text.HAL_TIM_MspPostInit:000000000000007c $d
+     /tmp/cc4lCQFX.s:396    .text.HAL_TIM_PWM_MspDeInit:0000000000000000 $t
+     /tmp/cc4lCQFX.s:403    .text.HAL_TIM_PWM_MspDeInit:0000000000000000 HAL_TIM_PWM_MspDeInit
+     /tmp/cc4lCQFX.s:441    .text.HAL_TIM_PWM_MspDeInit:0000000000000028 $d
+                           .group:0000000000000000 wm4.0.b7c3d577b02d87ac381ee43eef398462
+                           .group:0000000000000000 wm4.main.h.42.3939338cba6ab0a8b761d08be8206d51
+                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.b0c07d2233f75e3b04f03d95093d88ca
                            .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
                            .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
                            .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
@@ -700,7 +724,7 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_gpio_ex.h.38.4ae096506dfd35e4cd1e2bfdbf19c71f
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.38.9bc992aa465d2468bc055502b51063f3
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma_ex.h.38.c2269542e0bcc97944af39289a0a60b8
-ARM GAS  /tmp/ccuv446Q.s 			page 13
+ARM GAS  /tmp/cc4lCQFX.s 			page 14
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.500.3b36a5be41f3e2ac138f4041ccf5cecb
@@ -716,12 +740,14 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
+                           .group:0000000000000000 wm4.stm32f0xx_hal_uart.h.38.e5eada3cdf37ca88de33bd21ddd21a5e
+                           .group:0000000000000000 wm4.stm32f0xx_hal_uart_ex.h.38.9430c2ca5ec832677dbe7308c46115fd
                            .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
 
 UNDEFINED SYMBOLS
-HAL_GPIO_Init
 HAL_TIM_PWM_Init
+_Error_Handler
 HAL_TIMEx_MasterConfigSynchronization
 HAL_TIM_PWM_ConfigChannel
 HAL_TIMEx_ConfigBreakDeadTime
-_Error_Handler
+HAL_GPIO_Init

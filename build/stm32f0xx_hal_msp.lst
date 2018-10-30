@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccIEoCYQ.s 			page 1
+ARM GAS  /tmp/cc3teYH6.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -8,7 +8,7 @@ ARM GAS  /tmp/ccIEoCYQ.s 			page 1
    5              		.eabi_attribute 24, 1
    6              		.eabi_attribute 25, 1
    7              		.eabi_attribute 26, 1
-   8              		.eabi_attribute 30, 1
+   8              		.eabi_attribute 30, 6
    9              		.eabi_attribute 34, 0
   10              		.eabi_attribute 18, 4
   11              		.file	"stm32f0xx_hal_msp.c"
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccIEoCYQ.s 			page 1
   31:cube/Src/stm32f0xx_hal_msp.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   32:cube/Src/stm32f0xx_hal_msp.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
   33:cube/Src/stm32f0xx_hal_msp.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-ARM GAS  /tmp/ccIEoCYQ.s 			page 2
+ARM GAS  /tmp/cc3teYH6.s 			page 2
 
 
   34:cube/Src/stm32f0xx_hal_msp.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
@@ -80,111 +80,126 @@ ARM GAS  /tmp/ccIEoCYQ.s 			page 1
   26              		.loc 1 49 0
   27              		.cfi_startproc
   28              		@ args = 0, pretend = 0, frame = 8
-  29              		@ frame_needed = 0, uses_anonymous_args = 0
-  30 0000 00B5     		push	{lr}
-  31              		.cfi_def_cfa_offset 4
-  32              		.cfi_offset 14, -4
-  33 0002 83B0     		sub	sp, sp, #12
-  34              		.cfi_def_cfa_offset 16
-  35              	.LBB2:
+  29              		@ frame_needed = 1, uses_anonymous_args = 0
+  30 0000 80B5     		push	{r7, lr}
+  31              		.cfi_def_cfa_offset 8
+  32              		.cfi_offset 7, -8
+  33              		.cfi_offset 14, -4
+  34 0002 82B0     		sub	sp, sp, #8
+  35              		.cfi_def_cfa_offset 16
+  36 0004 00AF     		add	r7, sp, #0
+  37              		.cfi_def_cfa_register 7
+  38              	.LBB2:
   50:cube/Src/stm32f0xx_hal_msp.c ****   /* USER CODE BEGIN MspInit 0 */
   51:cube/Src/stm32f0xx_hal_msp.c **** 
   52:cube/Src/stm32f0xx_hal_msp.c ****   /* USER CODE END MspInit 0 */
   53:cube/Src/stm32f0xx_hal_msp.c **** 
   54:cube/Src/stm32f0xx_hal_msp.c ****   __HAL_RCC_SYSCFG_CLK_ENABLE();
-  36              		.loc 1 54 0
-  37 0004 124B     		ldr	r3, .L2
-  38 0006 9969     		ldr	r1, [r3, #24]
-  39 0008 0122     		movs	r2, #1
-  40 000a 1143     		orrs	r1, r2
-  41 000c 9961     		str	r1, [r3, #24]
-  42 000e 9969     		ldr	r1, [r3, #24]
-  43 0010 0A40     		ands	r2, r1
-  44 0012 0092     		str	r2, [sp]
-  45 0014 009A     		ldr	r2, [sp]
-  46              	.LBE2:
-  47              	.LBB3:
+  39              		.loc 1 54 0
+  40 0006 194B     		ldr	r3, .L2
+  41 0008 9A69     		ldr	r2, [r3, #24]
+  42 000a 184B     		ldr	r3, .L2
+  43 000c 0121     		movs	r1, #1
+  44 000e 0A43     		orrs	r2, r1
+  45 0010 9A61     		str	r2, [r3, #24]
+  46 0012 164B     		ldr	r3, .L2
+  47 0014 9B69     		ldr	r3, [r3, #24]
+  48 0016 0122     		movs	r2, #1
+  49 0018 1340     		ands	r3, r2
+  50 001a 7B60     		str	r3, [r7, #4]
+  51 001c 7B68     		ldr	r3, [r7, #4]
+  52              	.LBE2:
+  53              	.LBB3:
   55:cube/Src/stm32f0xx_hal_msp.c ****   __HAL_RCC_PWR_CLK_ENABLE();
-  48              		.loc 1 55 0
-  49 0016 DA69     		ldr	r2, [r3, #28]
-  50 0018 8021     		movs	r1, #128
-  51 001a 4905     		lsls	r1, r1, #21
-  52 001c 0A43     		orrs	r2, r1
-  53 001e DA61     		str	r2, [r3, #28]
-  54 0020 DB69     		ldr	r3, [r3, #28]
-  55 0022 0B40     		ands	r3, r1
-  56 0024 0193     		str	r3, [sp, #4]
-  57 0026 019B     		ldr	r3, [sp, #4]
-  58              	.LBE3:
+  54              		.loc 1 55 0
+  55 001e 134B     		ldr	r3, .L2
+  56 0020 DA69     		ldr	r2, [r3, #28]
+  57 0022 124B     		ldr	r3, .L2
+  58 0024 8021     		movs	r1, #128
+  59 0026 4905     		lsls	r1, r1, #21
+  60 0028 0A43     		orrs	r2, r1
+ARM GAS  /tmp/cc3teYH6.s 			page 3
+
+
+  61 002a DA61     		str	r2, [r3, #28]
+  62 002c 0F4B     		ldr	r3, .L2
+  63 002e DA69     		ldr	r2, [r3, #28]
+  64 0030 8023     		movs	r3, #128
+  65 0032 5B05     		lsls	r3, r3, #21
+  66 0034 1340     		ands	r3, r2
+  67 0036 3B60     		str	r3, [r7]
+  68 0038 3B68     		ldr	r3, [r7]
+  69              	.LBE3:
   56:cube/Src/stm32f0xx_hal_msp.c **** 
   57:cube/Src/stm32f0xx_hal_msp.c ****   /* System interrupt init*/
-ARM GAS  /tmp/ccIEoCYQ.s 			page 3
-
-
   58:cube/Src/stm32f0xx_hal_msp.c ****   /* SVC_IRQn interrupt configuration */
   59:cube/Src/stm32f0xx_hal_msp.c ****   HAL_NVIC_SetPriority(SVC_IRQn, 0, 0);
-  59              		.loc 1 59 0
-  60 0028 0520     		movs	r0, #5
-  61 002a 0022     		movs	r2, #0
-  62 002c 0021     		movs	r1, #0
-  63 002e 4042     		rsbs	r0, r0, #0
-  64 0030 FFF7FEFF 		bl	HAL_NVIC_SetPriority
-  65              	.LVL0:
+  70              		.loc 1 59 0
+  71 003a 0523     		movs	r3, #5
+  72 003c 5B42     		rsbs	r3, r3, #0
+  73 003e 0022     		movs	r2, #0
+  74 0040 0021     		movs	r1, #0
+  75 0042 1800     		movs	r0, r3
+  76 0044 FFF7FEFF 		bl	HAL_NVIC_SetPriority
   60:cube/Src/stm32f0xx_hal_msp.c ****   /* PendSV_IRQn interrupt configuration */
   61:cube/Src/stm32f0xx_hal_msp.c ****   HAL_NVIC_SetPriority(PendSV_IRQn, 0, 0);
-  66              		.loc 1 61 0
-  67 0034 0220     		movs	r0, #2
-  68 0036 0022     		movs	r2, #0
-  69 0038 0021     		movs	r1, #0
-  70 003a 4042     		rsbs	r0, r0, #0
-  71 003c FFF7FEFF 		bl	HAL_NVIC_SetPriority
-  72              	.LVL1:
+  77              		.loc 1 61 0
+  78 0048 0223     		movs	r3, #2
+  79 004a 5B42     		rsbs	r3, r3, #0
+  80 004c 0022     		movs	r2, #0
+  81 004e 0021     		movs	r1, #0
+  82 0050 1800     		movs	r0, r3
+  83 0052 FFF7FEFF 		bl	HAL_NVIC_SetPriority
   62:cube/Src/stm32f0xx_hal_msp.c ****   /* SysTick_IRQn interrupt configuration */
   63:cube/Src/stm32f0xx_hal_msp.c ****   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
-  73              		.loc 1 63 0
-  74 0040 0120     		movs	r0, #1
-  75 0042 0022     		movs	r2, #0
-  76 0044 0021     		movs	r1, #0
-  77 0046 4042     		rsbs	r0, r0, #0
-  78 0048 FFF7FEFF 		bl	HAL_NVIC_SetPriority
-  79              	.LVL2:
+  84              		.loc 1 63 0
+  85 0056 0123     		movs	r3, #1
+  86 0058 5B42     		rsbs	r3, r3, #0
+  87 005a 0022     		movs	r2, #0
+  88 005c 0021     		movs	r1, #0
+  89 005e 1800     		movs	r0, r3
+  90 0060 FFF7FEFF 		bl	HAL_NVIC_SetPriority
   64:cube/Src/stm32f0xx_hal_msp.c **** 
   65:cube/Src/stm32f0xx_hal_msp.c ****   /* USER CODE BEGIN MspInit 1 */
   66:cube/Src/stm32f0xx_hal_msp.c **** 
   67:cube/Src/stm32f0xx_hal_msp.c ****   /* USER CODE END MspInit 1 */
   68:cube/Src/stm32f0xx_hal_msp.c **** }
-  80              		.loc 1 68 0
-  81 004c 03B0     		add	sp, sp, #12
-  82              		@ sp needed
-  83 004e 00BD     		pop	{pc}
-  84              	.L3:
-  85              		.align	2
-  86              	.L2:
-  87 0050 00100240 		.word	1073876992
-  88              		.cfi_endproc
-  89              	.LFE37:
-  91              		.text
-  92              	.Letext0:
-  93              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
-  94              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
-  95              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
-  96              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
-  97              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
-  98              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
-  99              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
- 100              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
- 101              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
-ARM GAS  /tmp/ccIEoCYQ.s 			page 4
+  91              		.loc 1 68 0
+  92 0064 C046     		nop
+  93 0066 BD46     		mov	sp, r7
+  94 0068 02B0     		add	sp, sp, #8
+  95              		@ sp needed
+  96 006a 80BD     		pop	{r7, pc}
+  97              	.L3:
+  98              		.align	2
+  99              	.L2:
+ 100 006c 00100240 		.word	1073876992
+ 101              		.cfi_endproc
+ 102              	.LFE37:
+ 104              		.text
+ 105              	.Letext0:
+ARM GAS  /tmp/cc3teYH6.s 			page 4
+
+
+ 106              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+ 107              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
+ 108              		.file 4 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ 109              		.file 5 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 110              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+ 111              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+ 112              		.file 8 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+ 113              		.file 9 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
+ARM GAS  /tmp/cc3teYH6.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f0xx_hal_msp.c
-     /tmp/ccIEoCYQ.s:16     .text.HAL_MspInit:0000000000000000 $t
-     /tmp/ccIEoCYQ.s:23     .text.HAL_MspInit:0000000000000000 HAL_MspInit
-     /tmp/ccIEoCYQ.s:87     .text.HAL_MspInit:0000000000000050 $d
-                           .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
-                           .group:0000000000000000 wm4.main.h.42.f591c98852cf8b31b9d28a7417223f7f
-                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.e02fa95cc55e74dee1039d0a6f374aae
+     /tmp/cc3teYH6.s:16     .text.HAL_MspInit:0000000000000000 $t
+     /tmp/cc3teYH6.s:23     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+     /tmp/cc3teYH6.s:100    .text.HAL_MspInit:000000000000006c $d
+                           .group:0000000000000000 wm4.0.b7c3d577b02d87ac381ee43eef398462
+                           .group:0000000000000000 wm4.main.h.42.3939338cba6ab0a8b761d08be8206d51
+                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.b0c07d2233f75e3b04f03d95093d88ca
                            .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
                            .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
                            .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
@@ -234,11 +249,13 @@ DEFINED SYMBOLS
                            .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
                            .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
-ARM GAS  /tmp/ccIEoCYQ.s 			page 5
+ARM GAS  /tmp/cc3teYH6.s 			page 6
 
 
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
                            .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
+                           .group:0000000000000000 wm4.stm32f0xx_hal_uart.h.38.e5eada3cdf37ca88de33bd21ddd21a5e
+                           .group:0000000000000000 wm4.stm32f0xx_hal_uart_ex.h.38.9430c2ca5ec832677dbe7308c46115fd
                            .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
 
 UNDEFINED SYMBOLS

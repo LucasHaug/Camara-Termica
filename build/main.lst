@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccgqDTzv.s 			page 1
+ARM GAS  /tmp/ccNSU3f2.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -8,93 +8,251 @@ ARM GAS  /tmp/ccgqDTzv.s 			page 1
    5              		.eabi_attribute 24, 1
    6              		.eabi_attribute 25, 1
    7              		.eabi_attribute 26, 1
-   8              		.eabi_attribute 30, 1
+   8              		.eabi_attribute 30, 6
    9              		.eabi_attribute 34, 0
   10              		.eabi_attribute 18, 4
   11              		.file	"main.c"
   12              		.text
   13              	.Ltext0:
   14              		.cfi_sections	.debug_frame
-  15              		.section	.text.main,"ax",%progbits
-  16              		.align	1
-  17              		.global	main
-  18              		.syntax unified
-  19              		.code	16
-  20              		.thumb_func
-  21              		.fpu softvfp
-  23              	main:
-  24              	.LFB0:
-  25              		.file 1 "src/main.c"
-   1:src/main.c    **** #include "fans.h"
-   2:src/main.c    **** #include "leds.h"
-   3:src/main.c    **** #include "mcu.h"
-   4:src/main.c    **** 
-   5:src/main.c    **** /*****************************************
-   6:src/main.c    ****  * Private Constant Definitions
-   7:src/main.c    ****  *****************************************/
-   8:src/main.c    **** #define LED_TOGGLE_DELAY_MS 1500
-   9:src/main.c    **** 
-  10:src/main.c    **** /*****************************************
-  11:src/main.c    ****  * Main Function
-  12:src/main.c    ****  *****************************************/
-  13:src/main.c    **** int main(void) {
-  26              		.loc 1 13 0
-  27              		.cfi_startproc
-  28              		@ Volatile: function does not return.
-  29              		@ args = 0, pretend = 0, frame = 0
-  30              		@ frame_needed = 0, uses_anonymous_args = 0
-  31 0000 10B5     		push	{r4, lr}
-  32              		.cfi_def_cfa_offset 8
-  33              		.cfi_offset 4, -8
-  34              		.cfi_offset 14, -4
-  14:src/main.c    ****     mcu_init();
-  35              		.loc 1 14 0
-  36 0002 FFF7FEFF 		bl	mcu_init
-  37              	.LVL0:
-  38              	.L2:
+  15              		.section	.rodata
+  16              		.align	2
+  17              	.LC0:
+  18 0000 543A2025 		.ascii	"T: %doC\015\012H: %d%%\015\012\015\012\000"
+  18      646F430D 
+  18      0A483A20 
+  18      25642525 
+  18      0D0A0D0A 
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	1
+  21              		.global	main
+  22              		.syntax unified
+  23              		.code	16
+  24              		.thumb_func
+  25              		.fpu softvfp
+  27              	main:
+  28              	.LFB37:
+  29              		.file 1 "src/main.c"
+   1:src/main.c    **** #include <string.h>
+   2:src/main.c    **** 
+   3:src/main.c    **** #include "gpio.h"
+   4:src/main.c    **** #include "usart.h"
+   5:src/main.c    **** 
+   6:src/main.c    **** #include "control.h"
+   7:src/main.c    **** #include "dht11.h"
+   8:src/main.c    **** #include "leds.h"
+   9:src/main.c    **** #include "mcu.h"
+  10:src/main.c    **** #include "sensors.h"
+  11:src/main.c    **** 
+  12:src/main.c    **** /*****************************************
+  13:src/main.c    ****  * Main Function
+  14:src/main.c    ****  *****************************************/
   15:src/main.c    **** 
-  16:src/main.c    ****     for (;;) {
-  17:src/main.c    ****         leds_state(TOGGLE);
-  39              		.loc 1 17 0 discriminator 1
-  40 0006 0220     		movs	r0, #2
-  41 0008 FFF7FEFF 		bl	leds_state
-ARM GAS  /tmp/ccgqDTzv.s 			page 2
+  16:src/main.c    **** int main(void) {
+  30              		.loc 1 16 0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 264
+  33              		@ frame_needed = 1, uses_anonymous_args = 0
+  34 0000 B0B5     		push	{r4, r5, r7, lr}
+  35              		.cfi_def_cfa_offset 16
+  36              		.cfi_offset 4, -16
+  37              		.cfi_offset 5, -12
+  38              		.cfi_offset 7, -8
+ARM GAS  /tmp/ccNSU3f2.s 			page 2
 
 
-  42              	.LVL1:
-  18:src/main.c    ****         mcu_sleep(LED_TOGGLE_DELAY_MS);
-  43              		.loc 1 18 0 discriminator 1
-  44 000c 0148     		ldr	r0, .L3
-  45 000e FFF7FEFF 		bl	mcu_sleep
-  46              	.LVL2:
-  47 0012 F8E7     		b	.L2
-  48              	.L4:
-  49              		.align	2
-  50              	.L3:
-  51 0014 DC050000 		.word	1500
-  52              		.cfi_endproc
-  53              	.LFE0:
-  55              		.text
-  56              	.Letext0:
-  57              		.file 2 "inc/mcu.h"
-  58              		.file 3 "inc/leds.h"
-ARM GAS  /tmp/ccgqDTzv.s 			page 3
+  39              		.cfi_offset 14, -4
+  40 0002 C4B0     		sub	sp, sp, #272
+  41              		.cfi_def_cfa_offset 288
+  42 0004 02AF     		add	r7, sp, #8
+  43              		.cfi_def_cfa 7, 280
+  17:src/main.c    ****     mcu_init();
+  44              		.loc 1 17 0
+  45 0006 FFF7FEFF 		bl	mcu_init
+  18:src/main.c    **** 
+  19:src/main.c    ****     mcu_sleep(1000);
+  46              		.loc 1 19 0
+  47 000a FA23     		movs	r3, #250
+  48 000c 9B00     		lsls	r3, r3, #2
+  49 000e 1800     		movs	r0, r3
+  50 0010 FFF7FEFF 		bl	mcu_sleep
+  51              	.L2:
+  20:src/main.c    **** 
+  21:src/main.c    ****     char send_data[256];
+  22:src/main.c    **** 
+  23:src/main.c    ****     uint8_t temp;
+  24:src/main.c    ****     uint8_t hum;
+  25:src/main.c    **** 
+  26:src/main.c    ****     for (;;) {
+  27:src/main.c    ****         temp = dht11_get_temperature();
+  52              		.loc 1 27 0 discriminator 1
+  53 0014 0825     		movs	r5, #8
+  54 0016 FF35     		adds	r5, r5, #255
+  55 0018 7C19     		adds	r4, r7, r5
+  56 001a FFF7FEFF 		bl	dht11_get_temperature
+  57 001e 0300     		movs	r3, r0
+  58 0020 2370     		strb	r3, [r4]
+  28:src/main.c    ****         hum = dht11_get_humidity();
+  59              		.loc 1 28 0 discriminator 1
+  60 0022 FC1D     		adds	r4, r7, #7
+  61 0024 FF34     		adds	r4, r4, #255
+  62 0026 FFF7FEFF 		bl	dht11_get_humidity
+  63 002a 0300     		movs	r3, r0
+  64 002c 2370     		strb	r3, [r4]
+  29:src/main.c    **** 
+  30:src/main.c    ****         control_led_state(OFF);
+  65              		.loc 1 30 0 discriminator 1
+  66 002e 0120     		movs	r0, #1
+  67 0030 FFF7FEFF 		bl	control_led_state
+  31:src/main.c    ****         // while (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_SET)
+  32:src/main.c    ****         //     ;
+  33:src/main.c    ****         control_led_state(ON);
+  68              		.loc 1 33 0 discriminator 1
+  69 0034 0020     		movs	r0, #0
+  70 0036 FFF7FEFF 		bl	control_led_state
+  34:src/main.c    ****         // pi_action();
+  35:src/main.c    **** 
+  36:src/main.c    ****         snprintf(send_data, sizeof(send_data), "T: %doC\r\nH: %d%%\r\n\r\n", temp, hum);
+  71              		.loc 1 36 0 discriminator 1
+  72 003a 7B19     		adds	r3, r7, r5
+  73 003c 1D78     		ldrb	r5, [r3]
+  74 003e FB1D     		adds	r3, r7, #7
+  75 0040 FF33     		adds	r3, r3, #255
+ARM GAS  /tmp/ccNSU3f2.s 			page 3
+
+
+  76 0042 1B78     		ldrb	r3, [r3]
+  77 0044 0C4C     		ldr	r4, .L3
+  78 0046 8022     		movs	r2, #128
+  79 0048 5100     		lsls	r1, r2, #1
+  80 004a 381D     		adds	r0, r7, #4
+  81 004c 0093     		str	r3, [sp]
+  82 004e 2B00     		movs	r3, r5
+  83 0050 2200     		movs	r2, r4
+  84 0052 FFF7FEFF 		bl	snprintf
+  37:src/main.c    ****         HAL_UART_Transmit(&huart2, (uint8_t*) send_data, strlen(send_data), 100);
+  85              		.loc 1 37 0 discriminator 1
+  86 0056 3B1D     		adds	r3, r7, #4
+  87 0058 1800     		movs	r0, r3
+  88 005a FFF7FEFF 		bl	strlen
+  89 005e 0300     		movs	r3, r0
+  90 0060 9AB2     		uxth	r2, r3
+  91 0062 391D     		adds	r1, r7, #4
+  92 0064 0548     		ldr	r0, .L3+4
+  93 0066 6423     		movs	r3, #100
+  94 0068 FFF7FEFF 		bl	HAL_UART_Transmit
+  38:src/main.c    **** 
+  39:src/main.c    ****         mcu_sleep(3000);
+  95              		.loc 1 39 0 discriminator 1
+  96 006c 044B     		ldr	r3, .L3+8
+  97 006e 1800     		movs	r0, r3
+  98 0070 FFF7FEFF 		bl	mcu_sleep
+  27:src/main.c    ****         hum = dht11_get_humidity();
+  99              		.loc 1 27 0 discriminator 1
+ 100 0074 CEE7     		b	.L2
+ 101              	.L4:
+ 102 0076 C046     		.align	2
+ 103              	.L3:
+ 104 0078 00000000 		.word	.LC0
+ 105 007c 00000000 		.word	huart2
+ 106 0080 B80B0000 		.word	3000
+ 107              		.cfi_endproc
+ 108              	.LFE37:
+ 110              		.text
+ 111              	.Letext0:
+ 112              		.file 2 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine
+ 113              		.file 3 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/loc
+ 114              		.file 4 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_ty
+ 115              		.file 5 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/i
+ 116              		.file 6 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/ree
+ 117              		.file 7 "/home/lhaug/Applications/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_st
+ 118              		.file 8 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ 119              		.file 9 "cube/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 120              		.file 10 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 121              		.file 11 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
+ 122              		.file 12 "cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h"
+ 123              		.file 13 "cube/Inc/usart.h"
+ 124              		.file 14 "inc/sensors.h"
+ 125              		.file 15 "inc/leds.h"
+ARM GAS  /tmp/ccNSU3f2.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccgqDTzv.s:16     .text.main:0000000000000000 $t
-     /tmp/ccgqDTzv.s:23     .text.main:0000000000000000 main
-     /tmp/ccgqDTzv.s:51     .text.main:0000000000000014 $d
-                           .group:0000000000000000 wm4.0.f4162676b8f623651f7a1199aa7e48f7
+     /tmp/ccNSU3f2.s:16     .rodata:0000000000000000 $d
+     /tmp/ccNSU3f2.s:20     .text.main:0000000000000000 $t
+     /tmp/ccNSU3f2.s:27     .text.main:0000000000000000 main
+     /tmp/ccNSU3f2.s:104    .text.main:0000000000000078 $d
+                           .group:0000000000000000 wm4.0.b7c3d577b02d87ac381ee43eef398462
                            .group:0000000000000000 wm4._newlib_version.h.4.875b979a44719054cd750d0952ad3fd6
-                           .group:0000000000000000 wm4.features.h.33.d0b7f3cd6ee95f610104014bb3ed522a
-                           .group:0000000000000000 wm4._default_types.h.15.247e5cd201eca3442cbf5404108c4935
+                           .group:0000000000000000 wm4.newlib.h.18.5e5ca3429233af402d406a202f1fc1ac
+                           .group:0000000000000000 wm4.ieeefp.h.77.220d9cccac42cd58761758bee2df4ce6
+                           .group:0000000000000000 wm4.features.h.22.373b5fd716c8f28bb5383d71effbe848
+                           .group:0000000000000000 wm4.config.h.220.6cac6a9685cfce5e83c17784171638d9
+                           .group:0000000000000000 wm4._ansi.h.31.de524f58584151836e90d8620a16f8e8
+                           .group:0000000000000000 wm4.stddef.h.39.a38874c8f8a57e66301090908ec2a69f
+                           .group:0000000000000000 wm4._default_types.h.6.959254cf5f09734ea7516c89e8bb21bd
+                           .group:0000000000000000 wm4.lock.h.2.1461d1fff82dffe8bfddc23307f6484f
+                           .group:0000000000000000 wm4._types.h.125.5cf8a495f1f7ef36777ad868a1e32068
+                           .group:0000000000000000 wm4.stddef.h.161.5349cb105733e8777bfb0cf53c4e3f34
+                           .group:0000000000000000 wm4._types.h.184.03611d4f6b5bec9997bcf4279eceba07
+                           .group:0000000000000000 wm4.reent.h.17.90c2574d4acdcfce933db5cb09ff35fe
+                           .group:0000000000000000 wm4.cdefs.h.47.0bcdf94cb40e176393dd1404056825b4
+                           .group:0000000000000000 wm4.string.h.15.dab3980bf35408a4c507182805e2de3a
+                           .group:0000000000000000 wm4.stddef.h.161.19e15733342b50ead2919490b095303e
+                           .group:0000000000000000 wm4.main.h.42.3939338cba6ab0a8b761d08be8206d51
+                           .group:0000000000000000 wm4.stm32f0xx_hal_conf.h.51.b0c07d2233f75e3b04f03d95093d88ca
+                           .group:0000000000000000 wm4.stm32f0xx.h.55.6dda558900ae83b4ddf41af91bcbf2f5
+                           .group:0000000000000000 wm4.stm32f072xb.h.53.c99f4c72149ed98740992cfc418a4d39
                            .group:0000000000000000 wm4._intsup.h.10.cce27fed8484c08a33f522034c30d2b5
                            .group:0000000000000000 wm4._stdint.h.10.c24fa3af3bc1706662bb5593a907e841
                            .group:0000000000000000 wm4.stdint.h.23.d53047a68f4a85177f80b422d52785ed
+                           .group:0000000000000000 wm4.core_cm0.h.74.a7f5ed9ff199b3163f5ed99892efe60d
+                           .group:0000000000000000 wm4.cmsis_gcc.h.36.5bb14fd68ce7855540fcfe2d9305ae16
+                           .group:0000000000000000 wm4.core_cm0.h.175.2353140684a11cc8267b4125ac92735e
+                           .group:0000000000000000 wm4.stm32f072xb.h.653.664388dc5ef2a697008be7ff13986fc5
+                           .group:0000000000000000 wm4.stm32f0xx.h.186.8a2f1abf0fccd74c76b01fef06350694
+                           .group:0000000000000000 wm4.stdio.h.27.3fc80220048df77954e38daec3bb9670
+                           .group:0000000000000000 wm4.stdarg.h.34.3a23a216c0c293b3d2ea2e89281481e6
+                           .group:0000000000000000 wm4.types.h.40.e8c16e7ec36ba55f133d0616070e25fc
+                           .group:0000000000000000 wm4.types.h.114.fb65732f4f5f288a036a25898de2c91f
+                           .group:0000000000000000 wm4.stdio.h.2.4aa87247282eca6c8f36f9de33d8df1a
+                           .group:0000000000000000 wm4.stdio.h.81.2a55589bfa3ee24eeb84e3c79458e4a9
+                           .group:0000000000000000 wm4.stm32f0xx_hal_def.h.76.81362c22f1bfa407bb20bdc5ef2fe817
+                           .group:0000000000000000 wm4.stm32f0xx_hal_rcc.h.64.1680b96367ed05251327e73e2ef7e0a0
+                           .group:0000000000000000 wm4.stm32f0xx_hal_rcc_ex.h.38.fed157297eb0e49fa475a8f4d962b1a1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_gpio.h.38.5de46a121e30d1d136216266f57becb9
+                           .group:0000000000000000 wm4.stm32f0xx_hal_gpio_ex.h.38.4ae096506dfd35e4cd1e2bfdbf19c71f
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.38.9bc992aa465d2468bc055502b51063f3
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma_ex.h.38.c2269542e0bcc97944af39289a0a60b8
+                           .group:0000000000000000 wm4.stm32f0xx_hal_dma.h.500.3b36a5be41f3e2ac138f4041ccf5cecb
+                           .group:0000000000000000 wm4.stm32f0xx_hal_cortex.h.38.61b1088b7495d338bc65ee2571a0bb95
+                           .group:0000000000000000 wm4.stm32f0xx_hal_adc.h.38.e3e4bca0d8b91dc0f73ca672bc0e5aca
+                           .group:0000000000000000 wm4.stm32f0xx_hal_adc_ex.h.38.79c684f1976d63630feab98f4d82be4a
+                           .group:0000000000000000 wm4.stm32f0xx_hal_flash.h.38.752a2d52b6ea91b900355f4ecd0538c0
+                           .group:0000000000000000 wm4.stm32f0xx_hal_flash_ex.h.38.8097982a0077322c9b7a892e64a756d8
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.38.387f38a4bc9cbea958e7081da9f60815
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c_ex.h.38.9a4523b2ddbaaa2727287ccab47d88d1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_i2c.h.625.1e7eff54876bba211f769007bbafd5f1
+ARM GAS  /tmp/ccNSU3f2.s 			page 5
+
+
+                           .group:0000000000000000 wm4.stm32f0xx_hal_pwr.h.38.2c4d8c2e90fc76cec57b78b078d485d1
+                           .group:0000000000000000 wm4.stm32f0xx_hal_pwr_ex.h.38.e18331c4036598a45f5d1fd3922b2997
+                           .group:0000000000000000 wm4.stm32f0xx_hal_tim.h.38.42f3ee0b54a54fc44c665553058edb38
+                           .group:0000000000000000 wm4.stm32f0xx_hal_tim_ex.h.38.12cd16a4e412877272e70689edb6b518
+                           .group:0000000000000000 wm4.stm32f0xx_hal_uart.h.38.e5eada3cdf37ca88de33bd21ddd21a5e
+                           .group:0000000000000000 wm4.stm32f0xx_hal_uart_ex.h.38.9430c2ca5ec832677dbe7308c46115fd
+                           .group:0000000000000000 wm4.stm32f0xx_hal.h.70.818459bc3b31dd9e51543930b5b3b8df
+                           .group:0000000000000000 wm4.sensors.h.2.f28ea8c1f27d3bcba17595cfaf244921
 
 UNDEFINED SYMBOLS
 mcu_init
-leds_state
 mcu_sleep
+dht11_get_temperature
+dht11_get_humidity
+control_led_state
+snprintf
+strlen
+HAL_UART_Transmit
+huart2

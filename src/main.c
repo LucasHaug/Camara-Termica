@@ -8,6 +8,7 @@
 #include "leds.h"
 #include "mcu.h"
 #include "sensors.h"
+// #include "fans.h" //@
 
 /*****************************************
  * Main Function
@@ -20,12 +21,12 @@ int main(void) {
 
     char send_data[256];
 
-    uint8_t temp;
-    uint8_t hum;
+    // uint8_t temp;
+    // uint8_t hum;
 
     for (;;) {
-        temp = dht11_get_temperature();
-        hum = dht11_get_humidity();
+        // temp = dht11_get_temperature();
+        // hum = dht11_get_humidity();
 
         control_led_state(OFF);
         // while (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_SET)
@@ -33,7 +34,11 @@ int main(void) {
         control_led_state(ON);
         // pi_action();
 
-        snprintf(send_data, sizeof(send_data), "T: %doC\r\nH: %d%%\r\n\r\n", temp, hum);
+        // lamps_state(ON);
+        // set_fan(TOP_FAN, 1000);
+        // set_fan(BOTTOM_FAN, 1000);
+
+        snprintf(send_data, sizeof(send_data), "T1: %ldoC\r\nT2: %ldoC\r\n\r\n", temperature[0], temperature[1]);
         HAL_UART_Transmit(&huart2, (uint8_t*) send_data, strlen(send_data), 100);
 
         mcu_sleep(3000);

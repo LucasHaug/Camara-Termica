@@ -25,7 +25,7 @@
 
             "//": "Change device as needed",
             "defines": [
-                "STM32F303xE",
+                "STM32F072xB",
                 "USE_HAL_DRIVER"
             ],
 

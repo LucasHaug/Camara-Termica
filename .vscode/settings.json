@@ -21,7 +21,6 @@
         "files.trimTrailingWhitespace": false,
         "files.trimFinalNewlines": false,
     },
-    "files.associations": {
-        "stm32f0xx_hal.h": "c"
-    }
+
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
 }

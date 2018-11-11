@@ -5,13 +5,10 @@
 
 #include "mcu.h"
 #include "sensors.h"
+#include "utils.h"
 
 #define OLD_VALUE_WEIGHT 3
 #define NEW_VALUE_WEIGHT 1
-
-//@ calibration indexs
-static float a = 0;
-static float b = 0;
 
 uint32_t temperature[T_ADC_CHANNELS] = {0};
 
@@ -24,13 +21,22 @@ void sensors_init(void) {
     HAL_ADC_Start_DMA(&hadc, adc_buffer, ADC_BUFFER_SIZE);
 }
 
-void calibrate_sensors(float low_temp_ref, float high_temp_ref) {
-    float low_reading;
-    float high_reading;
-    float low_diff = low_reading - low_temp_ref;
-    float high_diff = high_reading - high_temp_ref;
-    b = high_diff - low_diff;
-    a = 0;
+float calibrated_reading(sensors_order_t sensor) {
+    float current_temperature;
+
+    switch (sensor) {
+        case INT_SENSOR:
+            // current_temperature = map(temperature[INT_SENSOR] / 100.0, 0, 3.3, 0, 5.0) * 100;
+            current_temperature = temperature[INT_SENSOR];
+            break;
+        case EXT_SENSOR:
+            // current_temperature = map(temperature[EXT_SENSOR] / 100.0, 0, 3.3, 0, 5.0) * 100;
+            current_temperature = temperature[EXT_SENSOR];
+            current_temperature = current_temperature + 20;
+            break;
+    }
+
+    return current_temperature / 10;
 }
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {

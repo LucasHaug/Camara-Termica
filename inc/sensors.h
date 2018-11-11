@@ -8,12 +8,25 @@
 #define ADC_BUFFER_SIZE (128 * T_ADC_CHANNELS )
 
 /**
+ * Public Types
+ */
+
+/**
+ * @brief Sensors order
+ */
+
+typedef enum sensors_order {
+    INT_SENSOR,
+    EXT_SENSOR,
+} sensors_order_t;
+
+/**
  * Public Variables
  */
 extern uint32_t temperature[T_ADC_CHANNELS];
 
 void sensors_init(void);
 
-void calibrate_sensors(float low_temp_ref, float high_temp_ref);
+float calibrated_reading(sensors_order_t sensor);
 
 #endif  // __SENSORS_H__

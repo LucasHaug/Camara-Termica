@@ -3,7 +3,9 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/usr/include",
+                "/home/lhaug/Documents/Camara-Termica/cube/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
             ],
 
             "//": "Change device as needed",

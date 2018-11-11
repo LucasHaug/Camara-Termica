@@ -24,10 +24,11 @@ static float ki = 9;
 
 void pi_action(void) {
     for (;;) {
-        float current_temperature = (float) temperature[1] / 10;
+        float current_int_temperature = calibrated_reading(INT_SENSOR);
+        // float current_ext_temperature = calibrated_reading(EXT_SENSOR);
 
         current_time = HAL_GetTick() / 1000;
-        error = SETPOINT_TEMPERATURE - current_temperature;
+        error = SETPOINT_TEMPERATURE - current_int_temperature;
         action = last_action + kp * (error - last_error) + ki * (current_time - last_time) * error;
         last_time = current_time;
 
@@ -38,7 +39,7 @@ void pi_action(void) {
             action = -1000;
         }
 
-        if (action < 0 && temperature[0] < temperature[1]) {
+        if (action < 0 /* && current_ext_temperature < current_int_temperature //@*/) {
             set_fan(TOP_FAN, action);
             set_fan(BOTTOM_FAN, 0);
             resistors_state(OFF);
@@ -47,7 +48,7 @@ void pi_action(void) {
                 resistors_state(ON);
             }
             set_fan(TOP_FAN, 0);
-            set_fan(BOTTOM_FAN, action);
+            set_fan(BOTTOM_FAN, action*2/3);
         } else {
             set_fan(TOP_FAN, 0);
             set_fan(BOTTOM_FAN, 0);

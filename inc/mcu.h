@@ -10,7 +10,7 @@
 #include <stdint.h>
 
 /** Changes are needed also in the Makefile */
-#define SERIE 3
+#define SERIE 0
 
 #if SERIE == 0
 #define F0_SERIE

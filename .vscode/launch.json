@@ -30,7 +30,28 @@
         {
             "type": "gnu-debugger",
             "request": "launch",
-            "name": "GNU debugger",
+            "name": "GNU debugger F0",
+            "program": "${workspaceFolder}/build/main.elf",
+            "toolchain": "${env:ARM_GCC_PATH}",
+            "client": "arm-none-eabi-gdb",
+            "server": "JLinkGDBServer",
+            "windows":{
+                "server": "JLinkGDBServerCL.exe",
+                "client": "arm-none-eabi-gdb.exe",
+            },
+
+            // Change device as needed
+            "serverArgs": [
+                "-device", "STM32F072xB",
+                "-if", "SWD",
+                "-speed", "4000"
+            ],
+            "serverPort": 2331,
+        },
+        {
+            "type": "gnu-debugger",
+            "request": "launch",
+            "name": "GNU debugger F3",
             "program": "${workspaceFolder}/build/main.elf",
             "toolchain": "${env:ARM_GCC_PATH}",
             "client": "arm-none-eabi-gdb",

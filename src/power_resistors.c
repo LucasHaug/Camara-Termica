@@ -1,6 +1,6 @@
 #include "power_resistors.h"
-#include "mcu.h"
 #include "gpio.h"
+#include "mcu.h"
 
 void resistors_state(resist_state_t state) {
     switch (state) {

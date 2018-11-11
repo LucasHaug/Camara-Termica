@@ -2,8 +2,14 @@
 #include <stdint.h>
 
 #include "fans.h"
+#include "mcu.h"
 #include "tim.h"
+
+#ifdef F0_SERIE
 #include "stm32f0xx_hal_tim.h"
+#else
+#include "stm32f3xx_hal_tim.h"
+#endif
 
 void fans_init(void) {
     MX_TIM1_Init();

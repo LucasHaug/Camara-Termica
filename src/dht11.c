@@ -2,7 +2,12 @@
 
 #include "dht11.h"
 #include "mcu.h"
+
+#ifdef F0_SERIE
 #include "stm32f0xx_hal.h"
+#else
+#include "stm32f3xx_hal.h"
+#endif
 
 #define MIN_READ_TIME 2000
 

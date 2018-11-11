@@ -11,4 +11,4 @@ typedef enum resist_state {
 
 void resistors_state(resist_state_t);
 
-#endif // __POWER_RESISTORS_H__
+#endif  // __POWER_RESISTORS_H__

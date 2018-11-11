@@ -3,4 +3,4 @@
 
 void pi_action(void);
 
-#endif // __CONTROL_H__
+#endif  // __CONTROL_H__

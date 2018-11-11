@@ -3,11 +3,22 @@
 # ThundeRatz Robotics Team
 # 08/2018
 
+# Changes are needed also in file mcu.h
+SERIE := F3
+
+ifeq ($(SERIE), F0)
 DEVICE_FAMILY := STM32F0xx
 DEVICE_TYPE   := STM32F072xx
 DEVICE        := STM32F072RB
 DEVICE_LD     := STM32F072RBTx
 DEVICE_DEF    := STM32F072xB
+else
+DEVICE_FAMILY := STM32F3xx
+DEVICE_TYPE   := STM32F303xx
+DEVICE        := STM32F303RE
+DEVICE_LD     := STM32F303RETx
+DEVICE_DEF    := STM32F303xE
+endif
 
 TARGET = main
 
@@ -148,10 +159,18 @@ endif
 
 # Generate Cube Files
 cube:
-ifeq ($(OS),Windows_NT)
-	@java -jar "$(CUBE_PATH)\STM32CubeMX.exe" -q .cube
+ifeq ($(SERIE),F0)
+BOARD_FILE := .cube
 else
-	@java -jar "$(CUBE_PATH)/STM32CubeMX" -q .cube
+BOARD_FILE := .cubeF3
+endif
+
+# Generate Cube Files
+cube:
+ifeq ($(OS),Windows_NT)
+	@java -jar "$(CUBE_PATH)\STM32CubeMX.exe" -q $(BOARD_FILE)
+else
+	@java -jar "$(CUBE_PATH)/STM32CubeMX" -q $(BOARD_FILE)
 endif
 
 # Prepare for compilation

@@ -1,3 +1,13 @@
+/**
+ * @file power_resistors.h
+ *
+ * @brief Resistors state related.
+ *
+ * @author Lucas Haug <lucas.haug@thunderatz.org>
+ *
+ * @date 11/2018
+ */
+
 #ifndef __POWER_RESISTORS_H__
 #define __POWER_RESISTORS_H__
 

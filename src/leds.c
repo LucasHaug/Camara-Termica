@@ -1,3 +1,14 @@
+/**
+ * @file leds.c
+ *
+ * @brief Functions to change the state of the control
+ *        led of the board and of the lamps of leds.
+ *
+ * @author Lucas Haug <lucas.haug@thunderatz.org>
+ *
+ * @date 11/2018
+ */
+
 #include "leds.h"
 #include "gpio.h"
 

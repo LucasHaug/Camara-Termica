@@ -1,3 +1,13 @@
+/**
+ * @file sensors.h
+ *
+ * @brief Functions to read and calibrate the temperature sensors.
+ *
+ * @author Lucas Haug <lucas.haug@thunderatz.org>
+ *
+ * @date 11/2018
+ */
+
 #ifndef __SENSORS_H__
 #define __SENSORS_H__
 
@@ -6,14 +16,13 @@
 
 #define ADC_BUFFER_SIZE (128 * T_ADC_CHANNELS)
 
-/**
+/*****************************************
  * Public Types
- */
+ *****************************************/
 
 /**
  * @brief Sensors order
  */
-
 typedef enum sensors_order {
     INT_SENSOR,
     EXT_SENSOR,

@@ -1,3 +1,13 @@
+/**
+ * @file power_resistors.c
+ *
+ * @brief Resistors state related.
+ *
+ * @author Lucas Haug <lucas.haug@thunderatz.org>
+ *
+ * @date 11/2018
+ */
+
 #include "power_resistors.h"
 #include "gpio.h"
 #include "mcu.h"

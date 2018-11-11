@@ -1,12 +1,19 @@
-#include <string.h>
+/**
+ * @file main.c
+ *
+ * @brief Main function.
+ *
+ * @author Lucas Haug <lucas.haug@thunderatz.org>
+ *
+ * @date 11/2018
+ */
 
 #include "gpio.h"
 
 #include "control.h"
-#include "dht11.h"
 #include "leds.h"
 #include "mcu.h"
-#include "sensors.h"
+
 
 /*****************************************
  * Main Function
@@ -27,4 +34,3 @@ int main(void) {
         mcu_sleep(3000);
     }
 }
-

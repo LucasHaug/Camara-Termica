@@ -1,4 +1,13 @@
-#include <string.h>
+/**
+ * @file sensors.c
+ *
+ * @brief Functions to read and calibrate the temperature sensors.
+ *
+ * @author Lucas Haug <lucas.haug@thunderatz.org>
+ *
+ * @date 11/2018
+ */
+
 
 #include "adc.h"
 #include "dma.h"

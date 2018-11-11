@@ -2,39 +2,12 @@
  * @file utils.h
  *
  * @brief Mathematic utilitary functions.
+ *
+ * @date 11/2018
  */
 
 #ifndef __UTILS_H__
 #define __UTILS_H__
-
-/*****************************************
- * Public Macros
- *****************************************/
-
-/**
- * @brief Returns x absolute value.
- */
-#define abs(x) ((x) > 0 ? (x) : -(x))
-
-/**
- * @brief Returns maximum value between x and y.
- */
-#define max(x, y) ((x) > (y) ? (x) : (y))
-
-/**
- * @brief Returns minimum value between x and y.
- */
-#define min(x, y) ((x) < (y) ? (x) : (y))
-
-/**
- * @brief Constrains v between x and y, returning at least x and at most y.
- */
-#define constrain(v, x, y) ((v) < (x) ? (x) : ((v) > (y) ? (y) : (v)))
-
-/**
- * @brief Returns the length of statically defined arrays.
- */
-#define len(arr) (sizeof(arr) / sizeof(arr[0]))
 
 /*****************************************
  * Public Function Prototypes

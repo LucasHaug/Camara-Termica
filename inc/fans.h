@@ -1,3 +1,13 @@
+/**
+ * @file fans.h
+ *
+ * @brief Functions for initializing and setting fan's speed.
+ *
+ * @author Lucas Haug <lucas.haug@thunderatz.org>
+  *
+ * @date 11/2018
+ */
+
 #ifndef __FANS_H__
 #define __FANS_H__
 

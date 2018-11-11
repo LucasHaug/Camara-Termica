@@ -1,3 +1,13 @@
+/**
+ * @file control.c
+ *
+ * @brief PI algorithm.
+ *
+ * @author Lucas Haug <lucas.haug@thunderatz.org>
+ *
+ * @date 11/2018
+ */
+
 #include <stdint.h>
 
 #include "mcu.h"
@@ -32,7 +42,7 @@ static float ki = 9;
 
 // char send_data[256]; //@
 // uint8_t temp; //@
-// uint8_t hum; //2
+// uint8_t hum; //@
 
 void pi_action(void) {
     for (;;) {
@@ -47,7 +57,7 @@ void pi_action(void) {
         action = last_action + kp * (error - last_error) + ki * (current_time - last_time) * error;
         last_time = current_time;
 
-        /**limit action value */
+        /** Limit action value */
         if (action > 1000) {
             action = 1000;
         } else if (action < -1000) {

@@ -1,7 +1,11 @@
 /**
  * @file mcu.h
  *
- * @brief MCU related
+ * @brief MCU related.
+ *
+ * @author Lucas Haug <lucas.haug@thunderatz.org>
+ *
+ * @date 11/2018
  */
 
 #ifndef __MCU_H__
@@ -9,7 +13,11 @@
 
 #include <stdint.h>
 
-/** Changes are needed also in the Makefile */
+/**
+ * @brief Serie of the mcu.
+ * 
+ * @note Changes are needed also in the Makefile
+ */
 #define SERIE 0
 
 #if SERIE == 0

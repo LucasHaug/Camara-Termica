@@ -2,6 +2,8 @@
  * @file utils.c
  *
  * @brief Mathematic utilitary functions.
+ *
+ * @date 11/2018
  */
 
 #include "utils.h"

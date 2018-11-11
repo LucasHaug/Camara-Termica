@@ -1,7 +1,11 @@
 /**
  * @file mcu.c
  *
- * @brief MCU related
+ * @brief MCU related.
+ *
+ * @author Lucas Haug <lucas.haug@thunderatz.org>
+ *
+ * @date 11/2018
  */
 
 #include <stdint.h>
@@ -34,6 +38,7 @@ static void SystemClock_Config(void);
 /*****************************************
  * Public Function Body Definitions
  *****************************************/
+
 void mcu_init(void) {
     HAL_Init();
 

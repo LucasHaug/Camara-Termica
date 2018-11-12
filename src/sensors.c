@@ -8,7 +8,6 @@
  * @date 11/2018
  */
 
-
 #include "adc.h"
 #include "dma.h"
 
@@ -40,13 +39,19 @@ float calibrated_reading(sensors_order_t sensor) {
 
     switch (sensor) {
         case INT_SENSOR:
-            // current_temperature = map(temperature[INT_SENSOR] / 100.0, 0, 3.3, 0, 5.0) * 100;
+#ifdef F0_SERIE
+            current_temperature = map(temperature[INT_SENSOR] / 100.0, 0, 3.3, 0, 5.0) * 100;
+#else
             current_temperature = temperature[INT_SENSOR];
+#endif
             break;
         case EXT_SENSOR:
-            // current_temperature = map(temperature[EXT_SENSOR] / 100.0, 0, 3.3, 0, 5.0) * 100;
+#ifdef F0_SERIE
+            current_temperature = map(temperature[EXT_SENSOR] / 100.0, 0, 3.3, 0, 5.0) * 100;
+#else
             current_temperature = temperature[EXT_SENSOR];
-            current_temperature = current_temperature + 20;
+#endif
+            // current_temperature = current_temperature + 20;
             break;
     }
 

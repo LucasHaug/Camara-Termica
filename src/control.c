@@ -47,7 +47,7 @@ static float ki = 9;
 void pi_action(void) {
     for (;;) {
         float current_int_temperature = calibrated_reading(INT_SENSOR);
-        // float current_ext_temperature = calibrated_reading(EXT_SENSOR);
+        float current_ext_temperature = calibrated_reading(EXT_SENSOR);
 
         // temp = dht11_get_temperature();
         // hum = dht11_get_humidity();

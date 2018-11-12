@@ -69,7 +69,7 @@ void pi_action(void) {
             set_fan(BOTTOM_FAN, 0);
             resistors_state(OFF);
         } else if (action > 0) {
-            if (error > 5) {
+            if (error > 2.5) {
                 resistors_state(ON);
             }
             set_fan(TOP_FAN, 0);

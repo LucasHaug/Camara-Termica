@@ -73,7 +73,7 @@ void pi_action(void) {
                 resistors_state(ON);
             }
             set_fan(TOP_FAN, 0);
-            set_fan(BOTTOM_FAN, action * 2 / 3);
+            // set_fan(BOTTOM_FAN, action * 2 / 3);
         } else {
             set_fan(TOP_FAN, 0);
             set_fan(BOTTOM_FAN, 0);

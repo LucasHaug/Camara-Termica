@@ -37,7 +37,7 @@ static float current_time = 0;
 static float last_time = 0;
 
 // pi control constants
-static float kp = 150;
+static float kp = 120;
 static float ki = 9;
 
 // char send_data[256]; //@
@@ -69,7 +69,7 @@ void pi_action(void) {
             set_fan(BOTTOM_FAN, 0);
             resistors_state(OFF);
         } else if (action > 0) {
-            if (error > 2.5) {
+            if (error > 1) {
                 resistors_state(ON);
             }
             set_fan(TOP_FAN, 0);

@@ -4,9 +4,9 @@
 # 08/2018
 
 # Changes are needed also in file mcu.h
-SERIE := F0
+SERIE := F3_SERIE
 
-ifeq ($(SERIE), F0)
+ifeq ($(SERIE), F0_SERIE)
 DEVICE_FAMILY := STM32F0xx
 DEVICE_TYPE   := STM32F072xx
 DEVICE        := STM32F072RB
@@ -62,7 +62,11 @@ BIN     := $(OBJCOPY) -O binary -S
 
 # Defines
 AS_DEFS :=
-C_DEFS  := -DUSE_HAL_DRIVER -D$(DEVICE_DEF)
+C_DEFS  :=                    \
+	-DUSE_HAL_DRIVER          \
+	-D$(DEVICE_DEF)           \
+	-D$(SERIE)                \
+
 
 # Include Paths
 AS_INCLUDES :=
@@ -107,7 +111,7 @@ LIBDIR   :=
 LDFLAGS  :=                                            \
 	$(FLAGS) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) \
 	$(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref \
-	-Wl,--gc-sections                                  \
+	-Wl,--gc-sections -u _printf_float                 \
 
 # Object Files
 CUBE_OBJECTS := $(addprefix $(BUILD_DIR)/,$(notdir $(CUBE_SOURCES:.c=.o)))
@@ -159,7 +163,7 @@ endif
 
 # Generate Cube Files
 cube:
-ifeq ($(SERIE),F0)
+ifeq ($(SERIE),F0_SERIE)
 BOARD_FILE := .cube
 else
 BOARD_FILE := .cubeF3

@@ -58,30 +58,12 @@ float calibrated_reading(sensors_order_t sensor) {
     return current_temperature / 10;
 }
 
-#ifdef F0_SERIE
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
     uint32_t val[T_ADC_CHANNELS] = {0};
 
-    for (int i = 0; i < ADC_BUFFER_SIZE / T_ADC_CHANNELS; i++) {
-        for (int j = 0; j < T_ADC_CHANNELS; j++) {
-            val[j] += adc_buffer[T_ADC_CHANNELS * i + j];
-        }
-    }
-
-    for (int i = 0; i < T_ADC_CHANNELS; i++) {
-        val[i] /= ADC_BUFFER_SIZE / T_ADC_CHANNELS;
-    }
-
-    for (int i = 0; i < T_ADC_CHANNELS; i++) {
-        temperature[i] =
-            (NEW_VALUE_WEIGHT * val[i] + OLD_VALUE_WEIGHT * temperature[i]) / (NEW_VALUE_WEIGHT + OLD_VALUE_WEIGHT);
-    }
-}
-#else
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
-    uint32_t val[T_ADC_CHANNELS] = {0};
-
+#ifdef F3_SERIE
     if (hadc->Instance == ADC1) {
+#endif
         for (int i = 0; i < ADC_BUFFER_SIZE / T_ADC_CHANNELS; i++) {
             for (int j = 0; j < T_ADC_CHANNELS; j++) {
                 val[j] += adc_buffer[T_ADC_CHANNELS * i + j];
@@ -96,6 +78,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
             temperature[i] =
                 (NEW_VALUE_WEIGHT * val[i] + OLD_VALUE_WEIGHT * temperature[i]) / (NEW_VALUE_WEIGHT + OLD_VALUE_WEIGHT);
         }
+#ifdef F3_SERIE
     }
-}
 #endif
+}

@@ -59,8 +59,14 @@ void set_gpio_input(void) {
 
 uint32_t get_pulse(uint8_t val) {
     uint32_t cycles = 0;
-    while (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_10) == val)
+
+    while (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_10) == val) {
         cycles++;
+
+        if (HAL_GetTick() - last_read_time >= 1000) {
+            return 0;
+        }
+    }
 
     return cycles;
 }
@@ -82,6 +88,8 @@ void dht11_read(void) {
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 0);
     mcu_sleep(20);
 
+    HAL_NVIC_DisableIRQ(ADC1_2_IRQn);
+
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1);
     mcu_sleep_us(40);
 
@@ -94,7 +102,18 @@ void dht11_read(void) {
     uint32_t cycles[80];
     for (int i = 0; i < 80; i += 2) {
         cycles[i] = get_pulse(0);
+
+        if (HAL_GetTick() - last_read_time >= 1000) {
+            HAL_NVIC_EnableIRQ(ADC1_2_IRQn);
+            return;
+        }
+
         cycles[i + 1] = get_pulse(1);
+
+        if (HAL_GetTick() - last_read_time >= 1000) {
+            HAL_NVIC_EnableIRQ(ADC1_2_IRQn);
+            return;
+        }
     }
 
     for (int i = 0; i < 40; i++) {
@@ -107,8 +126,10 @@ void dht11_read(void) {
     }
 
     if (read_data[4] != (read_data[0] + read_data[1] + read_data[2] + read_data[3])) {
+        HAL_NVIC_EnableIRQ(ADC1_2_IRQn);
         return;
     }
 
     memcpy(last_data, read_data, sizeof(last_data));
+    HAL_NVIC_EnableIRQ(ADC1_2_IRQn);
 }

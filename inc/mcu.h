@@ -13,19 +13,6 @@
 
 #include <stdint.h>
 
-/**
- * @brief Serie of the mcu.
- * 
- * @note Changes are needed also in the Makefile
- */
-#define SERIE 0
-
-#if SERIE == 0
-#define F0_SERIE
-#else
-#define F3_SERIE
-#endif
-
 /*****************************************
  * Public Function Prototypes
  *****************************************/

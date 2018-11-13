@@ -14,7 +14,7 @@
 // Number of ADC channels for the temperature sensors
 #define T_ADC_CHANNELS 2
 
-#define ADC_BUFFER_SIZE (128 * T_ADC_CHANNELS)
+#define ADC_BUFFER_SIZE (512 * T_ADC_CHANNELS)
 
 /*****************************************
  * Public Types

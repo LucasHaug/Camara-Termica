@@ -3,7 +3,7 @@
 # ThundeRatz Robotics Team
 # 08/2018
 
-# Changes are needed also in file mcu.h
+# Switches between the Nucleo Series
 SERIE := F0_SERIE
 
 ifeq ($(SERIE), F0_SERIE)

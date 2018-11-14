@@ -1,8 +1,6 @@
 # Câmara Térmica
 
-Repositório da Câmara Térmica do Grupo 33 (Grupo Eiffel)da disciplina de Introdução a Engenharia Elétrica da Escola Politécnica da USP, oferencimento de 2018.
-
-O código foi elaborado para funcionar com as Nucleo-64: STM32F303RET6 e STM32F072RBT6, sendo necessário alterar uma configuração do Makefile e uma do arquivo `mcu.h`. 
+Código para rodar na Nucleo-64 da ST. O código foi elaborado para funcionar com as Nucleo-64: STM32F303RET6 e STM32F072RBT6, sendo necessário alterar uma configuração do Makefile.
 
 ## Requisitos
 

@@ -9,6 +9,8 @@
  * @date 11/2018
  */
 
+#ifdef F3_SERIE
+
 #include <string.h>
 
 #include "dht11.h"
@@ -133,3 +135,5 @@ void dht11_read(void) {
     memcpy(last_data, read_data, sizeof(last_data));
     HAL_NVIC_EnableIRQ(ADC1_2_IRQn);
 }
+
+#endif // F3_SERIE

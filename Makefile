@@ -4,7 +4,7 @@
 # 08/2018
 
 # Changes are needed also in file mcu.h
-SERIE := F3_SERIE
+SERIE := F0_SERIE
 
 ifeq ($(SERIE), F0_SERIE)
 DEVICE_FAMILY := STM32F0xx

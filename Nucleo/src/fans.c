@@ -4,7 +4,7 @@
  * @brief Functions for initializing and setting fan's speeds.
  *
  * @author Lucas Haug <lucas.haug@thunderatz.org>
-  *
+ *
  * @date 11/2018
  */
 

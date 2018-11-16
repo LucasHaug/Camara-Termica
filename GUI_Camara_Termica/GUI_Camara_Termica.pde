@@ -8,16 +8,18 @@ PImage fireWithColor, fireWithoutColor;
 PImage lightWithColor, lightWithoutColor;
 PImage powerButtonON, powerButtonOFF;
 
-//Serial port;
+Serial port;
 
-// Float[] data;
 /**
  * data[0] -> temperatura interna
- * data[0] -> temperatura externa
- * data[0] -> humidade
- * data[0] -> valor da ação do algoritmo de pi
- * data[0] -> 
- */
+ * data[1] -> temperatura externa
+ * data[2] -> humidade
+ * data[3] -> ventoinha ligada
+ * data[4] -> aquecimento ligado
+ */ //@
+Float[] receivedData;
+
+byte sendData; /**< Se deve ficar ligada ou desligada */ //@
 
 float firstColumn, secondColumn, thirdColumn;
 
@@ -55,8 +57,11 @@ void setup() {
     size(1200, 800);
 
     // println(Serial.list()[0]);
-    // port = new Serial(this, "/dev/ttyACM0", 115200);
-    // port.clear();
+    /**
+     * In Windows switch to the correct serial port.
+     */
+    port = new Serial(this, Serial.list()[0], 115200);
+    port.clear();
 
     firstColumn =  width * 0.25 - 7;
     secondColumn = width * 0.5;
@@ -116,19 +121,19 @@ void setup() {
     // String[] fontList = PFont.list();
     // printArray(fontList);
     /**
-     * Mudar para uma fonte disponivel no seu computador
+     * Switch to a font available in your computer.
      */
     myTextFont = createFont("Dyuthi", textSize);
     textFont(myTextFont);
     inside = "Inside";
     outside = "Outside";
 
-    // dados = new Float[4];
+    receivedData = new Float[5];
     
-    // for (int i = 0; i < 4; i++)
-    //     data[i] = 0.0;  
+    for (int i = 0; i < 5; i++)
+        receivedData[i] = 0.0;  
         
-    //port.bufferUntil('\n');
+    port.bufferUntil('\n');
 }
 
 void draw() { 
@@ -197,38 +202,42 @@ void draw() {
     update(mouseX, mouseY);
 }
 
-// void serialEvent(Serial p) {
-//     int i;
-//     String temporary;
+void serialEvent(Serial p) {
+    String temporary;
 
-//     temporary = p.readString();
-//     temporary = trim(temporary);
-//     //println(temporary);
-//     String[] vals = split(temporary, ',');
-//     //println(vals.length);
-//     if (vals.length != 8)
-//         return;
-//     //println(vals);
+    /**
+     * infos[0] -> start flag
+     * infos[1] -> internal temperatura
+     * infos[2] -> external temperatura
+     * infos[3] -> humidity
+     * infos[4] -> fan on/off
+     * infos[5] -> heat on/off
+     * infos[6] -> end flag
+     */
+    String[] infos;
 
-//     if (vals[7].equals("d")) {
-//         if (vals[4].equals("1")) {
-//             i = int(vals[3]);
-//             dados1[0][i] = float(vals[1]);
-//             dados1[1][i] = float(vals[2]);
-//         } else if (vals[4].equals("2")) {
-//             i = int(vals[3]);
-//             dados2[0][i] = float(vals[1]);
-//             dados2[1][i] = float(vals[2]);
-//         }
-//     } else if (vals[7].equals("w")) {
-//         i = int(vals[6]);
-//         wave[i].set("Vrms", float(vals[1]));
-//         wave[i].set("def", float(vals[2]));
-//         wave[i].set("frequencia", float(vals[3]));
-//         wave[i].set("periodo", float(vals[4]));
-//         wave[i].set("amplitude", float(vals[5]));
-//     }
-// }
+    temporary = p.readString();
+    temporary = trim(temporary);
+    // println(temporary);
+    infos = split(temporary, ',');
+    // println(infos);
+
+
+    if (infos[0].equals("s") && infos[6].equals("e")) {
+        for (int i = 0; i < 5; i++) {
+            receivedData[i] = float(infos[i + 1]);
+        }
+    }
+    // println(receivedData);
+
+    powerON = true;
+    for (int i = 0; i < 7; i++) {
+        if (infos[i].equals("stop")) {
+            powerON = false;
+            break;
+        }
+    }
+}
 
 
 boolean overButton(float x, float y, int width, int height)  {
@@ -247,5 +256,6 @@ void update(int x, int y) {
 void mousePressed() {
     if(isOverTheButton) {
         powerON = !powerON;
+        port.write(byte(powerON));
     }
 }

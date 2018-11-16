@@ -9,7 +9,6 @@
  * @date 11/2018
  */
 
-
 #ifndef __DHT11_H__
 #define __DHT11_H__
 
@@ -20,6 +19,6 @@
 uint8_t dht11_get_temperature(void);
 uint8_t dht11_get_humidity(void);
 
-#endif // F3_SERIE
+#endif  // F3_SERIE
 
 #endif  // __DHT11_H__

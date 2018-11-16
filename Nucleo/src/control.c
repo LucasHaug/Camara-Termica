@@ -20,13 +20,15 @@
 #endif
 
 #include "control.h"
-// #include "dht11.h"  //@
+#include "dht11.h"
 #include "fans.h"
 #include "power_resistors.h"
 #include "sensors.h"
+#include "serial_rx.h"
 
 #define SETPOINT_TEMPERATURE 33
 #define NMAX 10
+#define SENDING_PERIOD_MS 1000
 
 static float action = 0;
 static float last_action = 0;
@@ -36,21 +38,30 @@ static float last_error = 0;
 static float current_time = 0;
 static float last_time = 0;
 
-// pi control constants
+/**
+ * @brief pi control constants
+ */
 static float kp = 120;
 static float ki = 9;
 
-// char send_data[256]; //@
-// uint8_t temp; //@
-// uint8_t hum; //@
+char send_data[256];
+uint8_t temp;
+uint8_t humidity;
+uint32_t time_aux = 0;
 
 void pi_action(void) {
     for (;;) {
         float current_int_temperature = calibrated_reading(INT_SENSOR);
         float current_ext_temperature = calibrated_reading(EXT_SENSOR);
 
-        // temp = dht11_get_temperature();
-        // hum = dht11_get_humidity();
+#ifdef F3_SERIE
+        humidity = dht11_get_humidity();
+#else
+        /**
+         * Atributes any invalid value;
+         */
+        humidity = -42;
+#endif
 
         current_time = HAL_GetTick() / 1000;
         error = SETPOINT_TEMPERATURE - current_int_temperature;
@@ -83,9 +94,24 @@ void pi_action(void) {
         last_error = error;
         last_action = action;
 
-        // snprintf(send_data, sizeof(send_data), "T1: %ldoC\r\nT2: %ldoC\r\n\r\n", temperature[EXT_SENSOR],
-        // temperature[INT_SENSOR]); HAL_UART_Transmit(&huart2, (uint8_t*) send_data, strlen(send_data), 100);
+        /**
+         * To see the serial data in the terminal, run
+         * `sudo screen /dev/ttyACM0 115200`
+         */
+        if (HAL_GetTick() - time_aux > SENDING_PERIOD_MS) {
+            uint8_t fan_on = action < 0;
+            uint8_t heat_on = action > 0 && error > 1;
 
-        // sudo screen /dev/ttyACM0 115200
+            time_aux = HAL_GetTick();
+            sprintf(send_data, "s,%.2f,%.2f,%u,%u,%u,e\r\n", current_int_temperature, current_ext_temperature, humidity,
+                    fan_on, heat_on);
+            mcu_printf(send_data);
+        }
+
+        if (turn_ON == 0) {
+            sprintf(send_data, "stop,stop,stop,stop,stop,stop,stop\r\n");
+            mcu_printf(send_data);
+            break;
+        }
     }
 }

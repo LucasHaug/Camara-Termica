@@ -25,6 +25,7 @@
 
 #include "fans.h"
 #include "sensors.h"
+#include "serial_rx.h"
 
 /*****************************************
  * Private Function Prototypes
@@ -57,7 +58,7 @@ void mcu_init(void) {
     }
 #endif
 
-    MX_USART2_UART_Init();
+    serial_init();
 }
 
 void mcu_sleep(uint32_t ms) {

@@ -44,7 +44,7 @@ uint8_t dht11_get_humidity(void) {
 }
 
 void set_gpio_output(void) {
-    GPIO_InitStruct.Pin = GPIO_PIN_10;
+    GPIO_InitStruct.Pin = GPIO_PIN_4;
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 
@@ -52,7 +52,7 @@ void set_gpio_output(void) {
 }
 
 void set_gpio_input(void) {
-    GPIO_InitStruct.Pin = GPIO_PIN_10;
+    GPIO_InitStruct.Pin = GPIO_PIN_4;
     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
 
@@ -62,7 +62,7 @@ void set_gpio_input(void) {
 uint32_t get_pulse(uint8_t val) {
     uint32_t cycles = 0;
 
-    while (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_10) == val) {
+    while (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4) == val) {
         cycles++;
 
         if (HAL_GetTick() - last_read_time >= 1000) {
@@ -83,16 +83,16 @@ void dht11_read(void) {
     uint8_t read_data[5] = {0};
 
     set_gpio_input();
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, 1);
     mcu_sleep(250);
 
     set_gpio_output();
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 0);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, 0);
     mcu_sleep(20);
 
     HAL_NVIC_DisableIRQ(ADC1_2_IRQn);
 
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, 1);
     mcu_sleep_us(40);
 
     set_gpio_input();
@@ -136,4 +136,4 @@ void dht11_read(void) {
     HAL_NVIC_EnableIRQ(ADC1_2_IRQn);
 }
 
-#endif // F3_SERIE
+#endif  // F3_SERIE

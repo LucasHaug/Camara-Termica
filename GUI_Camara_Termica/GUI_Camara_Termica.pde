@@ -11,15 +11,13 @@ PImage powerButtonON, powerButtonOFF;
 Serial port;
 
 /**
- * data[0] -> temperatura interna
- * data[1] -> temperatura externa
- * data[2] -> humidade
- * data[3] -> ventoinha ligada
- * data[4] -> aquecimento ligado
- */ //@
+ * received[0] -> internal temperatura
+ * received[1] -> external temperatura
+ * received[2] -> humidity
+ * received[3] -> fan on/off
+ * received[4] -> heat on/off
+ */
 Float[] receivedData;
-
-byte sendData; /**< Se deve ficar ligada ou desligada */ //@
 
 float firstColumn, secondColumn, thirdColumn;
 
@@ -36,7 +34,6 @@ float buttonY;
 boolean isOverTheButton;
 
 boolean fanON;
-boolean lightsON;
 boolean heatingON;
 boolean powerON;
 
@@ -72,11 +69,11 @@ void setup() {
     cornerRadius = 15;
 
     distance = rectHeight * 2;
-    rect1X = firstColumn - rectWidth/2; 
+    rect1X = firstColumn - rectWidth/2;
     rect1Y = height * 0.32 - rectHeight/2 + 7;
-    rect2X = firstColumn - rectWidth/2; 
+    rect2X = firstColumn - rectWidth/2;
     rect2Y = rect1Y + distance;
-    rect3X = firstColumn - rectWidth/2;; 
+    rect3X = firstColumn - rectWidth/2;;
     rect3Y = rect2Y + distance;
 
     logoCamara = loadImage("./Images/Camara-Termica-Logo.png");
@@ -89,7 +86,7 @@ void setup() {
     humidity.resize(0, int(rectHeight));
 
     fanWithColor = loadImage("./Images/fan_with_color.png");
-    fanWithColor.resize(0, int(rectHeight)); 
+    fanWithColor.resize(0, int(rectHeight));
     fanWithoutColor = loadImage("./Images/fan_without_color.png");
     fanWithoutColor.resize(0, int(rectHeight));
 
@@ -113,7 +110,6 @@ void setup() {
     isOverTheButton = false;
 
     fanON = false;
-    lightsON = false;
     heatingON = false;
     powerON = false;
 
@@ -129,22 +125,26 @@ void setup() {
     outside = "Outside";
 
     receivedData = new Float[5];
-    
+
     for (int i = 0; i < 5; i++)
-        receivedData[i] = 0.0;  
-        
+        receivedData[i] = 0.0;
+
     port.bufferUntil('\n');
 }
 
-void draw() { 
+void draw() {
     background(158, 164, 201);
 
     image(logoCamara, secondColumn - logoCamara.width/2, height*0.12 - logoCamara.height/2);
 
-    intTemp = "33°C";
-    extTemp = "22°C";
-    humidityValue = "83%";
-    fanON = true;
+    intTemp = String.valueOf(receivedData[0]) + "°C";
+    extTemp = String.valueOf(receivedData[1]) + "°C";
+
+    if (receivedData[2] < 0) {
+        humidityValue = " - %";
+    } else {
+        humidityValue = String.valueOf(receivedData[2])  + "%";
+    }
 
     stroke(255);
     strokeWeight(5);
@@ -155,7 +155,7 @@ void draw() {
     text(inside, rect1X + rectWidth/2 - textWidth(inside)/2, rect1Y + rectHeight + textSize + 5);
     fill(0);
     text(intTemp, rect1X + rectWidth/2 - textWidth(intTemp)/2, rect1Y + rectHeight/2 + textSize/4);
-    
+
     stroke(255);
     strokeWeight(5);
     fill(210);
@@ -175,28 +175,28 @@ void draw() {
     fill(0);
     text(humidityValue, rect3X + rectWidth/2 - textWidth(humidityValue)/2, rect3Y + rectHeight/2 + textSize/4);
 
-    if (fanON) {
-        image(fanWithColor, secondColumn - fanWithColor.width/2, rect1Y);
-    } else {
-        image(fanWithoutColor, secondColumn - fanWithoutColor.width/2, rect1Y);
-    }
-
-    if (lightsON) {
-        image(lightWithColor, secondColumn - lightWithColor.width/2, rect2Y);
-    } else {
-        image(lightWithoutColor, secondColumn - lightWithoutColor.width/2, rect2Y);
-    }
-
-    if (heatingON) {
-        image(fireWithColor, secondColumn - fireWithColor.width/2, rect3Y);
-    } else {
-        image(fireWithoutColor, secondColumn - fireWithoutColor.width/2, rect3Y);
-    }
-
     if (powerON) {
         image(powerButtonON, buttonX, buttonY);
+        image(lightWithColor, secondColumn - lightWithColor.width/2, rect2Y);
+
+        fanON = boolean(int(receivedData[3]));
+        if (fanON) {
+            image(fanWithColor, secondColumn - fanWithColor.width/2, rect1Y);
+        } else {
+            image(fanWithoutColor, secondColumn - fanWithoutColor.width/2, rect1Y);
+        }
+
+        heatingON = boolean(int(receivedData[4]));
+        if (heatingON) {
+            image(fireWithColor, secondColumn - fireWithColor.width/2, rect3Y);
+        } else {
+            image(fireWithoutColor, secondColumn - fireWithoutColor.width/2, rect3Y);
+        }
     } else {
         image(powerButtonOFF, buttonX, buttonY);
+        image(lightWithoutColor, secondColumn - lightWithoutColor.width/2, rect2Y);
+        image(fanWithoutColor, secondColumn - fanWithoutColor.width/2, rect1Y);
+        image(fireWithoutColor, secondColumn - fireWithoutColor.width/2, rect3Y);
     }
 
     update(mouseX, mouseY);
@@ -241,7 +241,7 @@ void serialEvent(Serial p) {
 
 
 boolean overButton(float x, float y, int width, int height)  {
-  if (mouseX >= x && mouseX <= x + width && 
+  if (mouseX >= x && mouseX <= x + width &&
       mouseY >= y && mouseY <= y + height) {
     return true;
   } else {
@@ -250,7 +250,7 @@ boolean overButton(float x, float y, int width, int height)  {
 }
 
 void update(int x, int y) {
-    isOverTheButton = overButton(buttonX, buttonY, powerButtonON.width, powerButtonON.height); 
+    isOverTheButton = overButton(buttonX, buttonY, powerButtonON.width, powerButtonON.height);
 }
 
 void mousePressed() {

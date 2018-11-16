@@ -46,7 +46,7 @@ static float ki = 9;
 
 char send_data[256];
 uint8_t temp;
-uint8_t humidity;
+int8_t humidity;
 uint32_t time_aux = 0;
 
 void pi_action(void) {
@@ -103,7 +103,7 @@ void pi_action(void) {
             uint8_t heat_on = action > 0 && error > 1;
 
             time_aux = HAL_GetTick();
-            sprintf(send_data, "s,%.2f,%.2f,%u,%u,%u,e\r\n", current_int_temperature, current_ext_temperature, humidity,
+            sprintf(send_data, "s,%.2f,%.2f,%d,%u,%u,e\r\n", current_int_temperature, current_ext_temperature, humidity,
                     fan_on, heat_on);
             mcu_printf(send_data);
         }
@@ -113,5 +113,13 @@ void pi_action(void) {
             mcu_printf(send_data);
             break;
         }
+    }
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+    if (GPIO_Pin == GPIO_PIN_13) {
+        while (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET)
+            ;
+        turn_ON = !turn_ON;
     }
 }

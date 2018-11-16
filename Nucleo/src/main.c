@@ -30,13 +30,12 @@ int main(void) {
         control_led_state(ON);
 
         lamps_state(OFF);
-        while (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_SET && turn_ON == 0)
+        while (turn_ON == 0)
             ;
-        turn_ON = 1;
         lamps_state(ON);
         pi_action();
 
-        control_led_state(OFF); //@
+        control_led_state(OFF);
 
         mcu_sleep(2000);
     }

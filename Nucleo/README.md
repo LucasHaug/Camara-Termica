@@ -1,6 +1,6 @@
 # Câmara Térmica
 
-Código para rodar na Nucleo-64 da ST. O código foi elaborado para funcionar com as Nucleo-64: STM32F303RET6 e STM32F072RBT6, sendo necessário alterar uma configuração do Makefile.
+Código para rodar na Nucleo-64 da ST. O código foi elaborado para funcionar com as Nucleo-64: STM32F303RET6 e STM32F072RBT6, sendo necessário alterar uma configuração no início do Makefile para escolher entre uma das duas.
 
 ## Requisitos
 

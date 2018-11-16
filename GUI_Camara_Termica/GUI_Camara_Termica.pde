@@ -1,19 +1,43 @@
 import processing.serial.*;
- 
-// processing-java --sketch=/home/lhaug/Documents/Interface_Camara_Termica/ --run --force
 
 PImage logoCamara;
-PImage termometro;
-PImage gota;
+PImage thermometer;
+PImage humidity;
+PImage fanWithColor, fanWithoutColor;
+PImage fireWithColor, fireWithoutColor;
+PImage lightWithColor, lightWithoutColor;
+PImage powerButtonON, powerButtonOFF;
+
 // Screen tela;
 //Serial port;
 
 // Float[] data;
+/**
+ * data[0] -> temperatura interna
+ * data[0] -> temperatura externa
+ * data[0] -> humidade
+ * data[0] -> valor da ação do algoritmo de pi
+ * data[0] -> 
+ */
+
+float firstColumn, secondColumn, thirdColumn;
 
 int rectHight, rectWidth;
 float rect1X, rect1Y;
 float rect2X, rect2Y;
 float rect3X, rect3Y;
+
+boolean isOverTheButton;
+
+boolean fanON;
+boolean lightsON;
+boolean heatingON;
+boolean powerON;
+
+PFont myTextFont;
+String inside;
+String outside;
+int textSize;
 
 void setup() {
     // fullScreen();
@@ -24,22 +48,66 @@ void setup() {
     // println(Serial.list()[0]);
     //port = new Serial(this, Serial.list()[0], 115200);
     //port.clear();
+
+    firstColumn =  width * 0.15;
+    secondColumn = width * 0.5;
+    thirdColumn = width * 0.8;
+
     rectHight = 50;
     rectWidth = 200;
 
-    rect1X = width * 0.15 - rectWidth/2; 
+    rect1X = firstColumn - rectWidth/2; 
     rect1Y = height * 0.3 - rectHight/2;
-    rect2X = width * 0.15 - rectWidth/2; 
+    rect2X = firstColumn - rectWidth/2; 
     rect2Y = height * 0.4 - rectHight/2 + height * 0.1;
-    rect3X = width * 0.15 - rectWidth/2;; 
+    rect3X = firstColumn - rectWidth/2;; 
     rect3Y = height * 0.5 - rectHight/2 + height * 0.1 * 2;
 
-    logoCamara = loadImage("./Camara-Termica-Logo.png");
-    termometro = loadImage("./termometro.png");
-    termometro.resize(0, int(rectHight));
-    gota = loadImage("./gota.png");
-    gota.resize(0, int(rectHight));
+    logoCamara = loadImage("./Images/Camara-Termica-Logo.png");
 
+    thermometer = loadImage("./Images/thermometer.png");
+    thermometer.resize(0, int(rectHight));
+
+    humidity = loadImage("./Images/humidity.png");
+    humidity.resize(0, int(rectHight));
+
+    fanWithColor = loadImage("./Images/fan_with_color.png");
+    fanWithColor.resize(0, int(rectHight)); 
+    fanWithoutColor = loadImage("./Images/fan_without_color.png");
+    fanWithoutColor.resize(0, int(rectHight));
+
+    fireWithColor = loadImage("./Images/fire_with_color.png");
+    fireWithColor.resize(0, int(rectHight));
+    fireWithoutColor = loadImage("./Images/fire_without_color.png");
+    fireWithoutColor.resize(0, int(rectHight));
+
+    lightWithColor = loadImage("./Images/light_with_color.png");
+    lightWithColor.resize(0, int(rectHight));
+    lightWithoutColor = loadImage("./Images/light_without_color.png");
+    lightWithoutColor.resize(0, int(rectHight));
+
+    powerButtonON = loadImage("./Images/power_button_ON.png");
+    powerButtonON.resize(0, int(rectHight * 2));
+    powerButtonOFF = loadImage("./Images/power_button_OFF.png");
+    powerButtonOFF.resize(0, int(rectHight * 2));
+
+    isOverTheButton = false;
+
+    fanON = false;
+    lightsON = false;
+    heatingON = false;
+    powerON = false;
+
+    // String[] fontList = PFont.list();
+    // printArray(fontList);
+    textSize = 40;
+    /**
+     * Mudar para uma fonte disponivel no seu computador
+     */
+    myTextFont = createFont("Dyuthi", textSize);
+    textFont(myTextFont);
+    inside = "Inside";
+    outside = "Outside";
 
     // dados = new Float[4];
     
@@ -60,46 +128,62 @@ void setup() {
     //port.bufferUntil('\n');
 }
 
-void draw() {
-    background(150);
+//(87, 20, 168)
+
+void draw() { 
+    background(158, 164, 201);
 
     image(logoCamara, width*0.5 - logoCamara.width/2, height*0.12 - logoCamara.height/2);
 
     stroke(255);
     fill(210);
     rect(rect1X, rect1Y, rectWidth, rectHight);
-    image(termometro, rect1X - termometro.width - 4, rect1Y);
+    fill(0);
+    text("Inside", rect1X + rectWidth/2 - textWidth(inside)/2, rect1Y + rectHight + textSize);
+    image(thermometer, rect1X - thermometer.width - 4, rect1Y);
 
     noStroke();
     fill(255, 0, 0);
     rect(rect2X, rect2Y, rectWidth, rectHight);
-    image(termometro, rect2X - termometro.width - 4, rect2Y);
+    image(thermometer, rect2X - thermometer.width - 4, rect2Y);
 
     noStroke();
     fill(255, 0, 0);
     rect(rect3X, rect3Y, rectWidth, rectHight);
-    image(gota, rect3X - termometro.width - 4, rect3Y);
+    image(humidity, rect3X - thermometer.width - 7, rect3Y);
 
-    // update(mouseX, mouseY);
+    if (fanON) {
+        image(fanWithColor, secondColumn - fanWithColor.width/2, rect1Y);
+    } else {
+        image(fanWithoutColor, secondColumn - fanWithoutColor.width/2, rect1Y);
+    }
+
+    if (lightsON) {
+        image(lightWithColor, secondColumn - lightWithColor.width/2, rect2Y);
+    } else {
+        image(lightWithoutColor, secondColumn - lightWithoutColor.width/2, rect2Y);
+    }
+
+    if (heatingON) {
+        image(fireWithColor, secondColumn - fireWithColor.width/2, rect3Y);
+    } else {
+        image(fireWithoutColor, secondColumn - fireWithoutColor.width/2, rect3Y);
+    }
+
+    if (powerON) {
+        image(powerButtonON, thirdColumn - powerButtonON.width/2, rect2Y);
+    } else {
+        image(powerButtonOFF, thirdColumn - powerButtonOFF.width/2, rect2Y);
+    }
+
+    update(mouseX, mouseY);
+    
+    
+
+
     // tela.update();
 
-    
-    // if (rectOver) {
-    //   fill(rectHighlight);
-    // } else {
-    //   fill(rectColor);
-    // }
-    // stroke(255);
-    // rect(rectX, rectY, rectSize, rectSize);
-    
-    // if (circleOver) {
-    //   fill(circleHighlight);
-    // } else {
-    //   fill(circleColor);
-    // }
-    // stroke(0);
-    // ellipse(circleX, circleY, circleSize, circleSize);
-    
+   
     // delay(1);
 }
 
@@ -209,41 +293,21 @@ void draw() {
 //     }
 // }
 
-// class Button {
-//     int rectX, rectY;      // Position of square button
-//     int rectSize = 90;     // Diameter of rect
-//     color rectColor, baseColor;
-//     color rectHighlight;
-//     boolean rectOver = false;
+boolean overButton(float x, float y, int width, int height)  {
+  if (mouseX >= x && mouseX <= x + width && 
+      mouseY >= y && mouseY <= y + height) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
-//     Button() {
+void update(int x, int y) {
+    isOverTheButton = overButton(thirdColumn - powerButtonON.width/2, rect2Y, powerButtonON.width, powerButtonON.height); 
+}
 
-//     }
-// }
-
-// void mousePressed() {
-//   if (rectOver) {
-//     currentColor = rectColor;
-//   }
-// }
-
-// boolean overRect(int x, int y, int width, int height)  {
-//   if (mouseX >= x && mouseX <= x+width && 
-//       mouseY >= y && mouseY <= y+height) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-
-// void update(int x, int y) {
-//   if ( overCircle(circleX, circleY, circleSize) ) {
-//     circleOver = true;
-//     rectOver = false;
-//   } else if ( overRect(rectX, rectY, rectSize, rectSize) ) {
-//     rectOver = true;
-//     circleOver = false;
-//   } else {
-//     circleOver = rectOver = false;
-//   }
-// }
+void mousePressed() {
+    if(isOverTheButton) {
+        powerON = !powerON;
+    }
+}

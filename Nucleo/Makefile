@@ -4,7 +4,7 @@
 # 08/2018
 
 # Switches between the Nucleo Series
-SERIE := F3_SERIE
+SERIE := F0_SERIE
 
 ifeq ($(SERIE), F0_SERIE)
 DEVICE_FAMILY := STM32F0xx

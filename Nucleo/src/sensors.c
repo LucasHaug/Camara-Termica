@@ -43,15 +43,15 @@ float calibrated_reading(sensors_order_t sensor) {
             current_temperature = map(temperature[INT_SENSOR] / 100.0, 0, 3.3, 0, 5.0) * 100;
 #else
             current_temperature = temperature[INT_SENSOR];
-#endif
+#endif  // F0_SERIE
             break;
         case EXT_SENSOR:
 #ifdef F0_SERIE
             current_temperature = map(temperature[EXT_SENSOR] / 100.0, 0, 3.3, 0, 5.0) * 100;
 #else
             current_temperature = temperature[EXT_SENSOR];
-#endif
-            // current_temperature = current_temperature + 20;
+#endif  // F0_SERIE
+        // current_temperature = current_temperature + 20;
             break;
     }
 
@@ -63,7 +63,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 
 #ifdef F3_SERIE
     if (hadc->Instance == ADC1) {
-#endif
+#endif  // F3_SERIE
         for (int i = 0; i < ADC_BUFFER_SIZE / T_ADC_CHANNELS; i++) {
             for (int j = 0; j < T_ADC_CHANNELS; j++) {
                 val[j] += adc_buffer[T_ADC_CHANNELS * i + j];
@@ -80,5 +80,5 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
         }
 #ifdef F3_SERIE
     }
-#endif
+#endif  // F3_SERIE
 }

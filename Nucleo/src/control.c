@@ -61,7 +61,7 @@ void pi_action(void) {
          * Atributes any invalid value;
          */
         humidity = -42;
-#endif
+#endif  // F3_SERIE
 
         current_time = HAL_GetTick() / 1000;
         error = SETPOINT_TEMPERATURE - current_int_temperature;
@@ -79,10 +79,8 @@ void pi_action(void) {
             set_fan(TOP_FAN, action);
             set_fan(BOTTOM_FAN, 0);
             resistors_state(OFF);
-        } else if (action > 0) {
-            if (error > 1) {
-                resistors_state(ON);
-            }
+        } else if (action > 0 && error > 1) {
+            resistors_state(ON);
             set_fan(TOP_FAN, 0);
             // set_fan(BOTTOM_FAN, action * 2 / 3);
         } else {

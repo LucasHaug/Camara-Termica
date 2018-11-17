@@ -1,12 +1,14 @@
 import processing.serial.*;
 
-PImage logoCamara;
+PImage chamberLogo;
 PImage thermometer;
 PImage humidity;
 PImage fanWithColor, fanWithoutColor;
 PImage fireWithColor, fireWithoutColor;
 PImage lightWithColor, lightWithoutColor;
 PImage powerButtonON, powerButtonOFF;
+PImage tree;
+PImage plantLogo;
 
 Serial port;
 
@@ -65,7 +67,7 @@ void setup() {
     thirdColumn = width * 0.75 + 15;
 
     rectHeight = 100;
-    rectWidth = 230;
+    rectWidth = 210;
     cornerRadius = 15;
 
     distance = rectHeight * 2;
@@ -76,8 +78,8 @@ void setup() {
     rect3X = firstColumn - rectWidth/2;;
     rect3Y = rect2Y + distance;
 
-    logoCamara = loadImage("./Images/Camara-Termica-Logo.png");
-    logoCamara.resize(0, int(logoCamara.height * 1.1));
+    chamberLogo = loadImage("./Images/Camara-Termica-Logo.png");
+    chamberLogo.resize(0, int(chamberLogo.height * 1.1));
 
     thermometer = loadImage("./Images/thermometer.png");
     thermometer.resize(0, int(rectHeight));
@@ -104,6 +106,12 @@ void setup() {
     powerButtonON.resize(0, int(rectHeight * 2));
     powerButtonOFF = loadImage("./Images/power_button_OFF.png");
     powerButtonOFF.resize(0, int(rectHeight * 2));
+
+    tree = loadImage("./Images/tree.png");
+    tree.resize(int(width * 0.8), 0);
+
+    plantLogo = loadImage("./Images/plantLogo.png");
+    plantLogo.resize(0, int(chamberLogo.height * 0.75));
 
     buttonX = thirdColumn - powerButtonON.width/2;
     buttonY = rect2Y - powerButtonON.height/2 + rectHeight/2;
@@ -135,7 +143,8 @@ void setup() {
 void draw() {
     background(158, 164, 201);
 
-    image(logoCamara, secondColumn - logoCamara.width/2, height*0.12 - logoCamara.height/2);
+    image(chamberLogo, secondColumn - chamberLogo.width/2 - plantLogo.width/2, height * 0.12 - chamberLogo.height/2);
+    image(plantLogo, secondColumn + plantLogo.width * 1.3, height * 0.13 - chamberLogo.height/2);
 
     intTemp = String.valueOf(receivedData[0]) + "°C";
     extTemp = String.valueOf(receivedData[1]) + "°C";
@@ -174,6 +183,8 @@ void draw() {
     image(humidity, rect3X - thermometer.width - 11, rect3Y);
     fill(0);
     text(humidityValue, rect3X + rectWidth/2 - textWidth(humidityValue)/2, rect3Y + rectHeight/2 + textSize/4);
+
+    image(tree, width - tree.width * 0.55, height - tree.height * 0.47);
 
     if (powerON) {
         image(powerButtonON, buttonX, buttonY);

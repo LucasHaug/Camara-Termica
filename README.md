@@ -4,7 +4,7 @@ Repositório da Câmara Térmica do Grupo 33 (Grupo Eiffel) da disciplina de Int
 
 ## Nucleo 
 
-No diretório `Nucleo` está o código a ser rodado em duas Nucleos-64 da STMicroeletronics. Para mais informações leia o [README](Nucleo/README.md) desse diretório.
+No diretório `Nucleo` está o código a ser rodado na Nucleo-64 da STMicroeletronics. Para mais informações leia o [README](Nucleo/README.md) desse diretório.
 
 ## GUI Câmara Térmica
 

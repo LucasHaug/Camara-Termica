@@ -10,7 +10,7 @@ Também é necessário ter o `make` instalado, assim como para o código da Nucl
 
 ## Rodando
 
-Para rodar a interface é necessário ir até o diretório `/GUI_Camara_Termica` pelo terminal e deve-se executar:
+Para rodar a interface é necessário executar:
 
 ```bash
 $ make

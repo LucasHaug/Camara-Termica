@@ -9,8 +9,6 @@
  * @date 11/2018
  */
 
-#ifdef F3_SERIE
-
 #include <string.h>
 
 #include "dht11.h"
@@ -90,7 +88,11 @@ void dht11_read(void) {
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, 0);
     mcu_sleep(20);
 
+#ifdef F3_SERIE
     HAL_NVIC_DisableIRQ(ADC1_2_IRQn);
+#else
+    HAL_NVIC_DisableIRQ(ADC1_IRQn);
+#endif
 
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, 1);
     mcu_sleep_us(40);
@@ -106,14 +108,22 @@ void dht11_read(void) {
         cycles[i] = get_pulse(0);
 
         if (HAL_GetTick() - last_read_time >= 1000) {
-            HAL_NVIC_EnableIRQ(ADC1_2_IRQn);
+#ifdef F3_SERIE
+            HAL_NVIC_DisableIRQ(ADC1_2_IRQn);
+#else
+            HAL_NVIC_DisableIRQ(ADC1_IRQn);
+#endif
             return;
         }
 
         cycles[i + 1] = get_pulse(1);
 
         if (HAL_GetTick() - last_read_time >= 1000) {
-            HAL_NVIC_EnableIRQ(ADC1_2_IRQn);
+#ifdef F3_SERIE
+            HAL_NVIC_DisableIRQ(ADC1_2_IRQn);
+#else
+            HAL_NVIC_DisableIRQ(ADC1_IRQn);
+#endif
             return;
         }
     }
@@ -128,12 +138,18 @@ void dht11_read(void) {
     }
 
     if (read_data[4] != (read_data[0] + read_data[1] + read_data[2] + read_data[3])) {
-        HAL_NVIC_EnableIRQ(ADC1_2_IRQn);
+#ifdef F3_SERIE
+        HAL_NVIC_DisableIRQ(ADC1_2_IRQn);
+#else
+        HAL_NVIC_DisableIRQ(ADC1_IRQn);
+#endif
         return;
     }
 
     memcpy(last_data, read_data, sizeof(last_data));
-    HAL_NVIC_EnableIRQ(ADC1_2_IRQn);
+#ifdef F3_SERIE
+    HAL_NVIC_DisableIRQ(ADC1_2_IRQn);
+#else
+    HAL_NVIC_DisableIRQ(ADC1_IRQn);
+#endif
 }
-
-#endif  // F3_SERIE

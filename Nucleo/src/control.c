@@ -10,6 +10,7 @@
 
 #include <stdint.h>
 
+#include "gpio.h"
 #include "mcu.h"
 #include "usart.h"
 

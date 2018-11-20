@@ -56,9 +56,6 @@ void setup() {
     size(1200, 800);
 
     // println(Serial.list()[0]);
-    /**
-     * In Windows switch to the correct serial port.
-     */
     port = new Serial(this, Serial.list()[0], 115200);
     port.clear();
 
@@ -122,12 +119,7 @@ void setup() {
     powerON = false;
 
     textSize = 40;
-    // String[] fontList = PFont.list();
-    // printArray(fontList);
-    /**
-     * Switch to a font available in your computer.
-     */
-    myTextFont = createFont("Dyuthi", textSize);
+    myTextFont = createFont("Dyuthi.ttf", textSize);
     textFont(myTextFont);
     inside = "Inside";
     outside = "Outside";

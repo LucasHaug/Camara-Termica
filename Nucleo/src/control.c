@@ -76,7 +76,7 @@ void pi_action(void) {
             action = -1000;
         }
 
-        if (action < 0 /* && current_ext_temperature < current_int_temperature //@ */) {
+        if (action < 0 && current_ext_temperature < current_int_temperature) {
             set_fan(TOP_FAN, -action);
             set_fan(BOTTOM_FAN, 0);
             resistors_state(OFF);

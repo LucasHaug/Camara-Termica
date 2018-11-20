@@ -33,7 +33,7 @@
 #define SETPOINT_TEMPERATURE_C 33
 
 /**
- * @brief Serial comunication sending period.
+ * @brief Serial comunication sending period in miliseconds.
  */
 #define SENDING_PERIOD_MS 1000
 

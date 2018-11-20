@@ -38,9 +38,19 @@
 #define SENDING_PERIOD_MS 1000
 
 /**
+ * @brief Maximum temperature to consider a cold day in degrees Celsius.
+ */
+#define COLD_DAY_TEMPERATURE_C 20
+
+/**
+ * @brief Minimum temperature to consider a hot day in degrees Celsius.
+ */
+#define HOT_DAY_TEMPERATURE_C 27
+
+/**
  * @bief Minumum error value for the power resisitors to turn on.
  */
-#define RESIST_ON_MIN_ERROR 0.5
+static float resist_ON_min_error = 0.5;
 
 static float action = 0;
 static float last_action = 0;
@@ -87,11 +97,19 @@ void pi_action(void) {
             action = -1000;
         }
 
+        if (current_ext_temperature < COLD_DAY_TEMPERATURE_C) {
+            resist_ON_min_error = 0;
+        } else if (current_ext_temperature > HOT_DAY_TEMPERATURE_C) {
+            resist_ON_min_error = 1.5;
+        } else {
+            resist_ON_min_error = 1;
+        }
+
         if (action < 0 && current_ext_temperature < current_int_temperature) {
             set_fan(TOP_FAN, -action);
             set_fan(BOTTOM_FAN, 0);
             resistors_state(OFF);
-        } else if (action > 0 && error > RESIST_ON_MIN_ERROR) {
+        } else if (action > 0 && error > resist_ON_min_error) {
             resistors_state(ON);
             set_fan(TOP_FAN, 0);
             // set_fan(BOTTOM_FAN, action * 2 / 3);
@@ -110,7 +128,7 @@ void pi_action(void) {
          */
         if (HAL_GetTick() - time_aux > SENDING_PERIOD_MS) {
             uint8_t fan_on = action < 0;
-            uint8_t heat_on = action > 0 && error > RESIST_ON_MIN_ERROR;
+            uint8_t heat_on = action > 0 && error > resist_ON_min_error;
 
             time_aux = HAL_GetTick();
             sprintf(send_data, "s,%.2f,%.2f,%d,%u,%u,e\r\n", current_int_temperature, current_ext_temperature, humidity,

@@ -45,7 +45,7 @@
 /**
  * @brief Minimum temperature to consider a hot day in degrees Celsius.
  */
-#define HOT_DAY_TEMPERATURE_C 27
+#define HOT_DAY_TEMPERATURE_C 29
 
 /**
  * @bief Minumum error value for the power resisitors to turn on.

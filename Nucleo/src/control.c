@@ -40,7 +40,7 @@
 /**
  * @brief Maximum temperature to consider a cold day in degrees Celsius.
  */
-#define COLD_DAY_TEMPERATURE_C 20
+#define COLD_DAY_TEMPERATURE_C 25
 
 /**
  * @brief Minimum temperature to consider a hot day in degrees Celsius.
@@ -100,9 +100,9 @@ void pi_action(void) {
         if (current_ext_temperature < COLD_DAY_TEMPERATURE_C) {
             resist_ON_min_error = 0;
         } else if (current_ext_temperature > HOT_DAY_TEMPERATURE_C) {
-            resist_ON_min_error = 1.5;
-        } else {
             resist_ON_min_error = 1;
+        } else {
+            resist_ON_min_error = 0.5;
         }
 
         if (action < 0 && current_ext_temperature < current_int_temperature) {

@@ -61,6 +61,9 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# Extra
+screenlog.0
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
